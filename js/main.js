@@ -255,6 +255,14 @@
       });
     }
 
+    // 세부페이지 프로세스(.steps .step) — 현재 단계 활성화(딤은 CSS·데스크톱)
+    gsap.utils.toArray(".steps .step").forEach(function (step) {
+      ScrollTrigger.create({
+        trigger: step, start: "top 62%", end: "bottom 42%",
+        onToggle: function (self) { step.classList.toggle("on", self.isActive); }
+      });
+    });
+
     // 스크롤 진행바
     var bar = document.querySelector(".scroll-progress");
     if (bar) {
