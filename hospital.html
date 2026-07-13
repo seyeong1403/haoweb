@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>병원 홈페이지 제작 | 하오웹 — 예약·지역 검색에 강한 병원 홈페이지</title>
+
+  <meta name="description" content="병원 홈페이지 제작. 진료과목·의료진·예약·지역 검색까지, 환자가 먼저 찾고 예약으로 이어지는 병원 홈페이지를 설계·제작합니다. 제작 범위·비용 기준·FAQ까지 한 곳에서. 하오웹." />
+  <meta name="keywords" content="병원 홈페이지 제작, 의원 홈페이지, 치과 홈페이지, 한의원 홈페이지, 병원 홈페이지 리뉴얼, 병원 예약 홈페이지, 지역 병원 검색" />
+  <!-- 확인 필요: 실제 운영 도메인 확정 후 canonical 정확히 -->
+  <link rel="canonical" href="https://haoweb.kr/hospital" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="하오웹" />
+  <meta property="og:title" content="병원 홈페이지 제작 | 하오웹" />
+  <meta property="og:description" content="환자가 먼저 찾고 예약으로 이어지는 병원 홈페이지를 설계·제작합니다." />
+  <meta property="og:locale" content="ko_KR" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" />
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "병원 홈페이지 제작",
+    "provider": { "@type": "ProfessionalService", "name": "하오웹" },
+    "areaServed": "KR",
+    "description": "진료과목·의료진·예약·지역 검색을 함께 고려한 병원 홈페이지를 설계·제작합니다.",
+    "url": "https://haoweb.kr/hospital"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "홈", "item": "https://haoweb.kr/" },
+      { "@type": "ListItem", "position": 2, "name": "제작 서비스", "item": "https://haoweb.kr/#services" },
+      { "@type": "ListItem", "position": 3, "name": "병원 홈페이지 제작", "item": "https://haoweb.kr/hospital" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "병원 홈페이지 제작 기간은 얼마나 걸리나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "진료과목 수와 기능(예약·게시판 등)에 따라 다르지만 보통 3~4주 내에 완성됩니다. 상담 단계에서 정확한 일정을 안내해 드립니다." } },
+      { "@type": "Question", "name": "예약 시스템도 연동되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "전화 예약, 온라인 예약 폼, 외부 예약 서비스 연동 등 병원에 맞는 방식으로 예약·문의 동선을 설계합니다." } },
+      { "@type": "Question", "name": "지역 검색에 잘 나오게 할 수 있나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "지역명과 진료과목, 증상 질문을 검색엔진과 AI가 이해하도록 정보구조를 설계해 지역 검색 노출을 함께 고려합니다." } },
+      { "@type": "Question", "name": "병원 홈페이지 제작 비용은 어떻게 되나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "진료과목·페이지 수, 예약 연동, 콘텐츠 범위에 따라 달라집니다. 상담 후 맞춤 견적을 드립니다." } },
+      { "@type": "Question", "name": "제작 전에 무엇을 준비해야 하나요?",
+        "acceptedAnswer": { "@type": "Answer", "text": "진료과목·의료진 정보·진료시간·병원 사진·로고 정도면 시작할 수 있습니다. 자료가 부족해도 상담에서 함께 정리해 드립니다." } }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ===== Header (공용 크롬) ===== -->
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="하오웹 홈">
+        <img class="brand-logo" src="assets/logo-original.png" alt="하오웹" width="107" height="60" />
+      </a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <ul class="nav-list">
+          <li class="nav-item has-sub">
+            <a href="index.html#services">제작 서비스</a>
+            <ul class="sub">
+              <li><a href="company.html">기업 홈페이지 제작</a></li>
+              <li><a href="hospital.html" aria-current="page">병원 홈페이지 제작</a></li>
+              <li><a href="index.html#services">변호사 홈페이지 제작</a></li>
+              <li><a href="index.html#services">쇼핑몰 제작</a></li>
+              <li><a href="index.html#services">프랜차이즈 홈페이지 제작</a></li>
+              <li><a href="index.html#services">랜딩페이지 제작</a></li>
+              <li><a href="index.html#services">앱 제작</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="index.html#portfolio">포트폴리오</a></li>
+          <li class="nav-item"><a href="index.html#reviews">고객 인터뷰</a></li>
+          <li class="nav-item"><a href="index.html#plans">제작 플랜</a></li>
+          <li class="nav-item"><a href="index.html#gov">정부지원사업</a></li>
+          <li class="nav-item"><a href="index.html#columns">칼럼</a></li>
+          <li class="nav-item"><a href="index.html#support">고객지원</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary btn-sm nav-cta" href="#contact">무료 상담</a>
+      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="모바일 메뉴" hidden>
+      <a href="index.html#services">제작 서비스</a>
+      <a href="index.html#portfolio">포트폴리오</a>
+      <a href="index.html#reviews">고객 인터뷰</a>
+      <a href="index.html#plans">제작 플랜</a>
+      <a href="index.html#gov">정부지원사업</a>
+      <a href="index.html#columns">칼럼</a>
+      <a href="index.html#support">고객지원</a>
+      <a class="btn btn-primary btn-block" href="#contact">무료 상담 신청</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== 1. Hero ===== -->
+    <section class="page-hero">
+      <div class="hero-watermark" aria-hidden="true">CLINIC</div>
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="위치">
+          <a href="index.html">홈</a><span>›</span><a href="index.html#services">제작 서비스</a><span>›</span><b>병원 홈페이지 제작</b>
+        </nav>
+        <p class="eyebrow">병원 홈페이지 제작</p>
+        <h1 class="page-hero-title">환자가 먼저 찾고,<br /><span class="accent">예약으로 이어지는</span> 병원 홈페이지</h1>
+        <p class="page-hero-lead">
+          진료과목·의료진·예약 정보를 환자와 검색·AI가 쉽게 찾도록 설계해 —
+          <b>지역 검색 노출</b>과 <b>예약·문의</b>로 이어지는 병원 홈페이지를 만듭니다.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="#contact">병원 홈페이지 상담</a>
+          <a class="btn btn-ghost btn-lg" href="#guide">제작 범위·비용 기준 보기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. 병원 홈페이지가 필요한 이유 ===== -->
+    <section class="section" id="why-needed">
+      <div class="wrap">
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow reveal">WHY</p>
+            <h2 class="section-title reveal">병원 홈페이지,<br />왜 지금 다시 봐야 할까요?</h2>
+          </div>
+          <p class="section-sub right reveal">환자는 방문 전에 검색으로 병원을 먼저 고릅니다. 이제는 사람뿐 아니라 AI도 ‘어디가 좋냐’는 질문에 병원을 추천합니다.</p>
+        </div>
+        <div class="trio-grid">
+          <div class="why-item reveal"><span class="why-k">지역 검색</span><h3>동네에서 먼저 보여야 합니다.</h3><p>환자는 ‘지역명 + 진료과목’, 증상으로 검색합니다. 그 검색에서 먼저 발견되어야 합니다.</p></div>
+          <div class="why-item reveal"><span class="why-k">예약·문의</span><h3>찾은 환자를 예약으로.</h3><p>전화·온라인 예약으로 자연스럽게 이어지는 동선이 있어야 방문으로 연결됩니다.</p></div>
+          <div class="why-item reveal"><span class="why-k">신뢰</span><h3>믿을 수 있어야 방문합니다.</h3><p>의료진·진료 안내·시설 정보가 환자에게 신뢰를 주고 선택을 돕습니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2-1. 병원 유형별 구축 방향 ===== -->
+    <section class="section light" id="biztype">
+      <div class="wrap">
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow reveal">FOR</p>
+            <h2 class="section-title reveal">병원 유형에 맞춰,<br />다르게 설계합니다.</h2>
+          </div>
+          <p class="section-sub right reveal">같은 ‘병원 홈페이지’여도 진료 형태에 따라 환자의 질문과 예약 방식이 다릅니다. 그에 맞춰 구조를 잡습니다.</p>
+        </div>
+        <div class="trio-grid">
+          <div class="why-item reveal"><span class="why-k">의원·클리닉</span><h3>진료과목·증상 중심</h3><p>진료과목과 증상별 안내를 지역 검색·예약 동선에 맞춰 구성합니다.</p></div>
+          <div class="why-item reveal"><span class="why-k">치과·한의원</span><h3>진료 항목·상담 중심</h3><p>진료 항목과 상담 예약 흐름을 규정 안에서 명확하게 안내합니다.</p></div>
+          <div class="why-item reveal"><span class="why-k">전문·종합병원</span><h3>진료과·의료진 구조화</h3><p>여러 진료과·의료진·센터 정보를 환자와 AI가 이해하도록 정리합니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. HAOWEB만의 차별점 ===== -->
+    <section class="section" id="diff">
+      <div class="wrap">
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow reveal">WHY HAOWEB</p>
+            <h2 class="section-title reveal">병원 홈페이지, 이렇게<br />다르게 만듭니다.</h2>
+          </div>
+          <p class="section-sub right reveal">보이는 디자인을 넘어, 지역 검색·AI 노출과 예약 전환까지 함께 설계하는 것이 하오웹의 방식입니다.</p>
+        </div>
+        <div class="strength-grid">
+          <div class="outcome reveal">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.4"/></svg>
+            <h3>지역 검색 대응</h3><p>‘지역명 + 진료과목’ 검색에서 먼저 발견되는 구조.</p>
+          </div>
+          <div class="outcome reveal">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"/></svg>
+            <h3>SEO · AEO · GEO 설계</h3><p>증상·질문형 검색과 AI 답변 노출을 함께 고려.</p>
+          </div>
+          <div class="outcome reveal">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M4 7h16v13H4zM12 11v5M9.5 13.5h5"/></svg>
+            <h3>예약·문의 동선</h3><p>전화·온라인 예약으로 이어지는 설계.</p>
+          </div>
+          <div class="outcome reveal">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>
+            <h3>모바일 최적화</h3><p>예약의 대부분인 모바일에서 최적 화면.</p>
+          </div>
+          <div class="outcome reveal">
+            <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4-3 7-7 8-4-1-7-4-7-8V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            <h3>규정 고려 표현</h3><p>의료광고 규정을 고려한 신중한 표현. <span class="chk" title="의료광고 사전심의 절차 실제 지원 범위 내부 확인 필요">확인 필요</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4. 제작 프로세스 ===== -->
+    <section class="section process" id="process">
+      <div class="wrap">
+        <p class="eyebrow reveal">PROCESS</p>
+        <h2 class="section-title reveal">상담부터 유지관리까지.</h2>
+        <ol class="steps steps-7">
+          <li class="step reveal"><span class="step-no">01</span><h3>상담</h3><p>진료과목·목표·예산을 함께 정리합니다.</p></li>
+          <li class="step reveal"><span class="step-no">02</span><h3>기획</h3><p>진료·예약 정보구조와 콘텐츠를 설계합니다.</p></li>
+          <li class="step reveal"><span class="step-no">03</span><h3>디자인</h3><p>병원의 신뢰감을 담은 화면을 만듭니다.</p></li>
+          <li class="step reveal"><span class="step-no">04</span><h3>개발</h3><p>예약·반응형을 정교하게 구현합니다.</p></li>
+          <li class="step reveal"><span class="step-no">05</span><h3>검수</h3><p>진료 정보·예약 동선을 꼼꼼히 점검합니다.</p></li>
+          <li class="step reveal"><span class="step-no">06</span><h3>오픈</h3><p>도메인 연결부터 인수인계까지.</p></li>
+          <li class="step reveal"><span class="step-no">07</span><h3>유지관리</h3><p>공지·건강정보를 쌓으며 검색을 키웁니다.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== 5. 주요 기능 (라이트) ===== -->
+    <section class="section features light" id="features">
+      <div class="wrap">
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow reveal">FEATURES</p>
+            <h2 class="section-title reveal">병원 홈페이지에<br />담기는 것들.</h2>
+          </div>
+          <p class="section-sub right reveal">필요한 기능만 골라 구성합니다. 아래는 병원 홈페이지에 자주 들어가는 구성입니다.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-item reveal"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 8v8M8 12h8"/></svg><h3>진료안내</h3><p>진료과목·증상별 안내를 명확히.</p></div>
+          <div class="feature-item reveal"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0114 0"/></svg><h3>의료진 소개</h3><p>전문성과 이력을 신뢰감 있게.</p></div>
+          <div class="feature-item reveal"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4M9 14l2 2 4-4"/></svg><h3>예약·문의</h3><p>전화·온라인 예약 동선.</p></div>
+          <div class="feature-item reveal"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.4"/></svg><h3>오시는 길</h3><p>지도·주차·진료시간 안내.</p></div>
+          <div class="feature-item reveal"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>진료시간</h3><p>요일·점심·휴진 안내.</p></div>
+          <div class="feature-item reveal"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg><h3>공지·건강정보</h3><p>소식·건강정보 게시판.</p></div>
+          <div class="feature-item reveal"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg><h3>반응형</h3><p>모바일 예약에 최적화.</p></div>
+          <div class="feature-item reveal"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><h3>검색 최적화</h3><p>지역·증상 검색을 위한 구조.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5-1. AI 검색 진단 · 오픈 후 점검 ===== -->
+    <section class="section" id="ai-check">
+      <div class="wrap">
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow reveal">AI-READY</p>
+            <h2 class="section-title reveal">제작 전 진단하고,<br />오픈 후 점검합니다.</h2>
+          </div>
+          <p class="section-sub right reveal">‘AI를 씁니다’가 아니라, 실제로 무엇을 확인하고 무엇을 받는지. 병원 홈페이지에 맞춰 진행합니다.</p>
+        </div>
+        <div class="diag-2">
+          <div class="diag reveal">
+            <span class="diag-tag">제작 전 · 진단</span>
+            <h3>지역·AI 검색 진단</h3>
+            <p>현재 병원 정보가 ‘지역명 + 진료과목’과 증상 질문에서 검색·AI로 어떻게 노출되는지 점검하고 개선 방향을 정리합니다.</p>
+            <ul class="diag-list"><li>진료과목·지역 정보구조 점검</li><li>증상·질문형 검색 노출 확인</li><li>개선 우선순위 정리</li></ul>
+          </div>
+          <div class="diag reveal">
+            <span class="diag-tag">오픈 후 · 점검</span>
+            <h3>오픈 후 대응 점검 <span class="chk" title="실제 제공 여부 내부 확인 필요">확인 필요</span></h3>
+            <p>오픈 후 지역 검색·예약 유입 상태를 점검하고, 앞으로 어떤 콘텐츠를 보완할지 리포트 형태로 제안합니다.</p>
+            <ul class="diag-list"><li>지역 검색·예약 유입 점검</li><li>건강정보 콘텐츠 보완 방향</li><li>리포트 형태 제공</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5-2. 제작 안내: 범위·비용·기간·준비 자료 ===== -->
+    <section class="section light" id="guide">
+      <div class="wrap">
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow reveal">GUIDE</p>
+            <h2 class="section-title reveal">제작 범위와<br />비용·기간 기준.</h2>
+          </div>
+          <p class="section-sub right reveal">정확한 견적은 상담 후 안내드리지만, 무엇으로 범위·비용·기간이 정해지는지 먼저 투명하게 알려드립니다.</p>
+        </div>
+        <div class="spec-grid">
+          <div class="spec reveal"><span class="spec-k">01</span><h3>제작 범위</h3><p>진료안내·의료진·예약·오시는 길을 기본으로, 필요에 따라 비급여 안내·건강정보·다국어 등을 더합니다.</p></div>
+          <div class="spec reveal"><span class="spec-k">02</span><h3>비용이 정해지는 기준</h3><p>진료과목·페이지 수, 예약 연동 방식, 콘텐츠 제작 범위에 따라 달라집니다. <b>맞춤 견적</b>으로 안내합니다. <span class="chk" title="실제 가격 정책 내부 확인 필요">확인 필요</span></p></div>
+          <div class="spec reveal"><span class="spec-k">03</span><h3>기간이 달라지는 기준</h3><p>진료과목 규모, 자료 준비 상태, 검수 일정에 따라 달라집니다. 상담 시 정확한 일정을 함께 잡습니다.</p></div>
+          <div class="spec reveal"><span class="spec-k">04</span><h3>준비하실 자료</h3><p>진료과목·의료진 정보·진료시간·병원 사진·로고 등. 자료가 부족해도 상담에서 함께 정리해 드립니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6. 제작 사례 (플레이스홀더) ===== -->
+    <section class="section portfolio" id="cases">
+      <div class="wrap">
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow reveal">WORKS</p>
+            <h2 class="section-title reveal">병원 홈페이지 제작 사례.</h2>
+          </div>
+          <p class="section-sub right reveal">목적부터 결과까지, 어떤 문제를 어떻게 풀었는지 함께 보여드립니다. 실제 프로젝트로 계속 업데이트됩니다.</p>
+        </div>
+        <!-- 실제 병원 프로젝트 자료 확보 전 플레이스홀더. 가상 병원명·성과 수치 사용하지 않음. -->
+        <div class="port-ph-grid">
+          <div class="port-ph reveal">
+            <span class="port-ph-media" aria-hidden="true"><span class="port-ph-tag">실제 제작 화면 등록 예정</span></span>
+            <div class="port-ph-meta"><span class="port-ph-cat">병원 (등록 예정)</span><h3>병원 프로젝트 ①</h3><span class="port-ph-fields">진료과목 · 제작 목적 · 구축 범위 · 상세 사례</span></div>
+          </div>
+          <div class="port-ph reveal">
+            <span class="port-ph-media" aria-hidden="true"><span class="port-ph-tag">실제 제작 화면 등록 예정</span></span>
+            <div class="port-ph-meta"><span class="port-ph-cat">병원 (등록 예정)</span><h3>병원 프로젝트 ②</h3><span class="port-ph-fields">진료과목 · 제작 목적 · 구축 범위 · 상세 사례</span></div>
+          </div>
+          <div class="port-ph reveal">
+            <span class="port-ph-media" aria-hidden="true"><span class="port-ph-tag">실제 제작 화면 등록 예정</span></span>
+            <div class="port-ph-meta"><span class="port-ph-cat">병원 (등록 예정)</span><h3>병원 프로젝트 ③</h3><span class="port-ph-fields">진료과목 · 제작 목적 · 구축 범위 · 상세 사례</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7. 포트폴리오 링크 ===== -->
+    <section class="section" id="portfolio-link">
+      <div class="wrap band-inner reveal">
+        <div>
+          <h2 class="band-title">더 많은 제작 사례가 궁금하다면.</h2>
+          <p class="band-desc">전체 포트폴리오에서 병원 홈페이지 프로젝트를 모아 보세요.</p>
+        </div>
+        <a class="btn btn-ghost btn-lg" href="index.html#portfolio">전체 포트폴리오 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ===== 8. 고객 인터뷰 (플레이스홀더) ===== -->
+    <section class="section reviews light" id="reviews">
+      <div class="wrap">
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow reveal">CASE STUDY</p>
+            <h2 class="section-title reveal">맡긴 병원의 이야기.</h2>
+          </div>
+          <p class="section-sub right reveal">후기가 아니라 프로젝트로. 어떤 문제를 어떻게 해결했는지 보여드립니다.</p>
+        </div>
+        <!-- 실제 병원 동의된 인터뷰 확보 전 플레이스홀더. 가상 병원명·인용문·성과 수치 사용하지 않음. 치료경험담 광고 규정 유의. -->
+        <div class="port-ph-grid">
+          <div class="port-ph reveal">
+            <span class="port-ph-media" aria-hidden="true"><span class="port-ph-tag">인터뷰 준비 중</span></span>
+            <div class="port-ph-meta"><span class="port-ph-cat">고객 인터뷰 (등록 예정)</span><h3>문제 → 해결 → 결과 → 원장님의 이야기</h3><span class="port-ph-fields">실제 병원 동의 후 게재</span></div>
+          </div>
+          <div class="port-ph reveal">
+            <span class="port-ph-media" aria-hidden="true"><span class="port-ph-tag">인터뷰 준비 중</span></span>
+            <div class="port-ph-meta"><span class="port-ph-cat">고객 인터뷰 (등록 예정)</span><h3>한 병원의 제작 과정을 깊이 있게</h3><span class="port-ph-fields">실제 병원 동의 후 게재</span></div>
+          </div>
+        </div>
+        <p class="review-note reveal">실제 고객 인터뷰는 병원의 동의를 받아 게재하며, 의료광고 규정을 지킨 표현만 사용합니다. 가상의 후기·수치는 사용하지 않습니다.</p>
+      </div>
+    </section>
+
+    <!-- ===== 9. FAQ ===== -->
+    <section class="section support" id="faq">
+      <div class="wrap faq-wrap">
+        <div class="faq-intro">
+          <p class="eyebrow reveal">FAQ</p>
+          <h2 class="section-title reveal">병원 홈페이지 제작,<br />자주 묻는 질문.</h2>
+          <p class="section-sub reveal">더 궁금하시면 언제든 편하게 상담 신청해 주세요.</p>
+        </div>
+        <div class="faq-list reveal">
+          <details class="faq-item"><summary>병원 홈페이지 제작 기간은 얼마나 걸리나요?</summary><div class="faq-a">진료과목 수와 기능(예약·게시판 등)에 따라 다르지만 보통 <b>3~4주</b> 내에 완성됩니다. 상담 단계에서 정확한 일정을 안내드려요.</div></details>
+          <details class="faq-item"><summary>예약 시스템도 연동되나요?</summary><div class="faq-a">전화 예약, 온라인 예약 폼, 외부 예약 서비스 연동 등 <b>병원에 맞는 방식</b>으로 예약·문의 동선을 설계합니다. <!-- 확인 필요: 연동 가능한 외부 예약 서비스 범위 --></div></details>
+          <details class="faq-item"><summary>지역 검색에 잘 나오게 할 수 있나요?</summary><div class="faq-a">지역명·진료과목·증상 질문을 검색엔진과 AI가 이해하도록 <b>정보구조를 설계</b>해 지역 검색 노출을 함께 고려합니다.</div></details>
+          <details class="faq-item"><summary>의료광고 규정도 고려하나요?</summary><div class="faq-a">네. 과장·단정 표현을 피하고 규정을 고려한 신중한 표현으로 구성합니다. <b>사전심의가 필요한 내용</b>은 병원과 함께 확인합니다. <span class="chk" title="의료광고 사전심의 대행 여부 등 실제 지원 범위 확인 필요">확인 필요</span></div></details>
+          <details class="faq-item"><summary>제작 비용은 어떻게 산정되나요?</summary><div class="faq-a">진료과목·페이지 수, 예약 연동, 콘텐츠 범위에 따라 달라집니다. 상담 후 <b>맞춤 견적</b>을 드립니다. <!-- 확인 필요: 실제 가격 정책 --></div></details>
+          <details class="faq-item"><summary>제작 전에 무엇을 준비해야 하나요?</summary><div class="faq-a">진료과목·의료진 정보·진료시간·병원 사진·로고 정도면 시작할 수 있습니다. <b>자료가 부족해도</b> 상담에서 함께 정리해 드립니다.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 10. 관련 칼럼 ===== -->
+    <section class="section columns" id="columns">
+      <div class="wrap">
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow reveal">INSIGHT</p>
+            <h2 class="section-title reveal">병원 홈페이지 인사이트.</h2>
+          </div>
+          <p class="section-sub right reveal">병원 홈페이지 제작·운영에 도움이 되는 글을 모았습니다.</p>
+        </div>
+        <div class="col-grid">
+          <a class="col-card reveal" href="index.html#columns"><span class="col-cat">병원</span><h3>병원 홈페이지 제작 시 꼭 챙겨야 할 것</h3><p>예약·후기·지역 검색까지, 병원 맞춤 설계.</p></a>
+          <a class="col-card reveal" href="index.html#columns"><span class="col-cat">지역 검색</span><h3>동네 병원이 지역 검색에서 먼저 뜨려면</h3><p>지역·진료과목·증상 키워드 설계.</p></a>
+          <a class="col-card reveal" href="index.html#columns"><span class="col-cat">AI 검색</span><h3>AI가 추천하는 병원이 되는 법</h3><p>질문형 콘텐츠와 정보구조 전략.</p></a>
+        </div>
+        <a class="col-more reveal" href="index.html#columns">칼럼 전체 보기 →</a>
+      </div>
+    </section>
+
+    <!-- ===== 11. 상담 CTA ===== -->
+    <section class="final-cta" id="contact">
+      <div class="wrap final-inner reveal">
+        <p class="final-eyebrow">CLINIC WEBSITE</p>
+        <h2>병원 홈페이지,<br />제대로 만들어 보세요.</h2>
+        <p>진료과목과 목표를 알려주시면, 병원에 맞는 방향을 제안해 드립니다.</p>
+        <form class="contact-form" data-diag>
+          <input id="cname" name="name" type="text" placeholder="병원명 또는 성함" aria-label="병원명 또는 성함" required />
+          <input id="cphone" name="contact" type="text" placeholder="연락처 (이메일 또는 휴대폰)" aria-label="연락처" required />
+          <button class="btn btn-primary btn-lg" type="submit">병원 홈페이지 상담 신청</button>
+        </form>
+        <p class="form-note" data-diag-note hidden>상담 신청이 접수되었습니다. 1~2일 내 연락드릴게요. (※ 데모: 실제 전송은 연결 전)</p>
+        <!-- 확인 필요: 아래 전화·이메일은 실제 운영 정보로 교체. 도메인(haoweb.kr)도 실제 운영 도메인인지 확인. -->
+        <p class="contact-line">전화 000-0000-0000 · 이메일 hello@haoweb.kr · 평일 10:00–18:00</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer (공용) ===== -->
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <img class="footer-logo" src="assets/logo-original.png" alt="하오웹" width="107" height="60" />
+        <p>AI 검색 시대의 홈페이지 제작.<br />검색과 AI가 이해하는 홈페이지를 설계합니다. 운영: 하오</p>
+      </div>
+      <div class="footer-col">
+        <h4>제작 서비스</h4>
+        <a href="company.html">기업 홈페이지</a>
+        <a href="hospital.html">병원 홈페이지</a>
+        <a href="index.html#services">변호사 홈페이지</a>
+        <a href="index.html#services">쇼핑몰</a>
+        <a href="index.html#services">프랜차이즈</a>
+        <a href="index.html#services">랜딩페이지</a>
+        <a href="index.html#services">앱 제작</a>
+      </div>
+      <div class="footer-col">
+        <h4>신뢰</h4>
+        <a href="index.html#portfolio">포트폴리오</a>
+        <a href="index.html#reviews">고객 인터뷰</a>
+        <a href="index.html#plans">제작 플랜</a>
+      </div>
+      <div class="footer-col">
+        <h4>콘텐츠</h4>
+        <a href="index.html#columns">칼럼</a>
+        <a href="index.html#gov">정부지원사업</a>
+      </div>
+      <div class="footer-col">
+        <h4>고객지원</h4>
+        <a href="index.html#support">자주 묻는 질문</a>
+        <a href="#contact">상담 신청</a>
+        <a href="mailto:hello@haoweb.kr">문의하기</a>
+      </div>
+    </div>
+    <div class="wrap footer-base">
+      <span>© 2026 하오웹 (HAOWEB) · 하오. All rights reserved.</span>
+      <span class="footer-selfnote">검색과 AI가 이해하는 홈페이지, 하오웹.</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
