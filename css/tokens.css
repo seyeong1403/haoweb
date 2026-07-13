@@ -126,6 +126,7 @@
 
   /* 라이트 인터루드 섹션용 */
   --light-bg: var(--l-bg);
+  --paper-bg: #F9F9FB;   /* 오프화이트(#E8E8ED)보다 밝은 순백 톤 — 섹션 리듬용 */
   --light-card: var(--l-card);
   --light-line: var(--l-line);
   --on-light: var(--t-dark);

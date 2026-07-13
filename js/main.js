@@ -79,6 +79,29 @@
     });
   }
 
+  /* ---------- 3b-3) 제작 서비스 좌우 전환 (hover·click) ---------- */
+  var svcTabs = document.querySelectorAll(".svc-tab");
+  if (svcTabs.length) {
+    var svcActivate = function (key) {
+      svcTabs.forEach(function (t) {
+        var on = t.getAttribute("data-svc") === key;
+        t.classList.toggle("is-active", on);
+        t.setAttribute("aria-selected", String(on));
+      });
+      document.querySelectorAll(".svc-panel").forEach(function (p) {
+        var on = p.id === "svp-" + key;
+        p.hidden = !on;
+        p.classList.toggle("is-active", on);
+      });
+    };
+    svcTabs.forEach(function (t) {
+      var key = t.getAttribute("data-svc");
+      t.addEventListener("mouseenter", function () { svcActivate(key); });
+      t.addEventListener("focus", function () { svcActivate(key); });
+      t.addEventListener("click", function () { svcActivate(key); });
+    });
+  }
+
   /* ---------- 3c) FAQ 부드러운 아코디언 ---------- */
   document.querySelectorAll(".faq-item").forEach(function (item) {
     var sum = item.querySelector("summary");
@@ -150,7 +173,7 @@
 
     // 히어로 인트로 (로드 시 시네마틱 등장) — rAF 정지/백그라운드에도 콘텐츠는 반드시 보이게
     if (document.querySelector(".hero-title")) {
-      var heroSel = ".hero .eyebrow, .hero-title, .hero-lead, .hero-actions, .hero-niche, .hero-demo, .hero-foot";
+      var heroSel = ".hero .eyebrow, .hero-title, .hero-lead, .hero-actions, .hero-foot";
       var heroShow = function () { gsap.set(heroSel, { opacity: 1, y: 0 }); gsap.set(".hero-watermark", { opacity: 1, scale: 1 }); };
       if (document.visibilityState === "visible") {
         gsap.set(heroSel, { opacity: 0, y: 30 });
@@ -187,6 +210,49 @@
     }
     if (document.querySelector(".hero-copy")) {
       gsap.to(".hero-copy", { yPercent: -5, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+    }
+
+    // 브랜드 통합 4단계 — 스크롤에 따라 현재 단계 활성화 + 연결선 진행
+    var biSteps = gsap.utils.toArray(".bi-step");
+    if (biSteps.length) {
+      biSteps.forEach(function (step) {
+        ScrollTrigger.create({
+          trigger: step, start: "top 62%", end: "bottom 42%",
+          onToggle: function (self) { step.classList.toggle("on", self.isActive); }
+        });
+      });
+      var biFill = document.querySelector(".bi-rail-fill");
+      var biList = document.querySelector(".bi-steps");
+      if (biFill && biList) {
+        ScrollTrigger.create({
+          trigger: biList, start: "top 60%", end: "bottom 46%", scrub: true,
+          onUpdate: function (self) { biFill.style.height = (self.progress * 100).toFixed(1) + "%"; }
+        });
+      }
+    }
+
+    // 제작 프로세스 7단계 — 스크롤에 따라 좌측 대형 표시 전환 + 진행선
+    var procItems = gsap.utils.toArray(".proc-item");
+    if (procItems.length) {
+      var pCurNo = document.querySelector(".proc-cur-no");
+      var pCurTitle = document.querySelector(".proc-cur-title");
+      var pCount = document.querySelector(".proc-count b");
+      var pFill = document.querySelector(".proc-track-fill");
+      var total = procItems.length;
+      var setProc = function (i) {
+        procItems.forEach(function (it, idx) { it.classList.toggle("on", idx === i); });
+        var el = procItems[i];
+        if (pCurNo) pCurNo.textContent = el.getAttribute("data-no");
+        if (pCurTitle) pCurTitle.textContent = el.getAttribute("data-title");
+        if (pCount) pCount.textContent = el.getAttribute("data-no");
+        if (pFill) pFill.style.width = (((i + 1) / total) * 100).toFixed(1) + "%";
+      };
+      procItems.forEach(function (it, i) {
+        ScrollTrigger.create({
+          trigger: it, start: "top 60%", end: "bottom 40%",
+          onToggle: function (self) { if (self.isActive) setProc(i); }
+        });
+      });
     }
 
     // 스크롤 진행바
