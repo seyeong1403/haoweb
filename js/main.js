@@ -221,6 +221,24 @@
       // onLeave/onLeaveBack 제거: 화면 밖으로 나가도 숨기지 않음(콘텐츠 사라짐 방지)
     });
 
+    // 제목 라인 마스크 리빌 (SplitText 대체: <br> 기준 라인 분할 → 순차 상승) — 108 Creativemore·004 Primora·105 Towards 시그니처
+    gsap.utils.toArray(".section-title, .bi-title, .page-hero-title, .final-cta h2, .dfx-title").forEach(function (h) {
+      if (h.dataset.split || !h.innerHTML.trim()) return;
+      h.dataset.split = "1";
+      h.innerHTML = h.innerHTML.split(/<br\s*\/?>/i).map(function (seg) {
+        return '<span class="rl"><span class="rl-i">' + seg + "</span></span>";
+      }).join("");
+      var inner = h.querySelectorAll(".rl-i");
+      gsap.set(h, { opacity: 1, y: 0, scale: 1 }); // 배치 페이드/스케일 대신 라인 리빌 사용
+      gsap.set(inner, { yPercent: 115 });
+      ScrollTrigger.create({
+        trigger: h, start: "top 90%", once: true,
+        onEnter: function () { gsap.to(inner, { yPercent: 0, duration: 0.9, ease: "power4.out", stagger: 0.09 }); },
+      });
+      // 안전장치: 트리거가 안 잡혀도 일정 시간 뒤 반드시 보이게
+      setTimeout(function () { gsap.set(inner, { yPercent: 0 }); }, 2600);
+    });
+
     // 히어로 패럴랙스 (미묘하게)
     if (document.querySelector(".hero-demo")) {
       gsap.to(".hero-demo", { yPercent: 14, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });

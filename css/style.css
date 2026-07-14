@@ -220,6 +220,9 @@ body.gsap-on .reveal { transition: none; }
    ============================================================ */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
 .reveal.in { opacity: 1; transform: none; }
+/* 제목 라인 마스크 리빌 (JS가 <br> 기준으로 분할, GSAP path에서만 초기 숨김 설정) */
+.rl { display: block; overflow: hidden; padding-bottom: .06em; margin-bottom: -.06em; }
+.rl-i { display: block; will-change: transform; }
 
 /* ============================================================
    Responsive
