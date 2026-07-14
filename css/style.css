@@ -21,7 +21,10 @@ img { max-width: 100%; display: block; }
 mark { background: none; color: inherit; }
 ::selection { background: var(--color-primary); color: #fff; }
 
-.wrap { width: min(100% - 40px, var(--container)); margin-inline: auto; }
+/* 콘텐츠 폭 1240 + 여백: 데스크톱 64 / 태블릿 32 / 모바일 20 (전 섹션 동일 시작선) */
+.wrap { width: 100%; max-width: calc(var(--container) + 128px); margin-inline: auto; padding-inline: 64px; }
+@media (max-width: 900px) { .wrap { padding-inline: 32px; } }
+@media (max-width: 560px) { .wrap { padding-inline: 20px; } }
 .skip-link { position: absolute; left: 16px; top: -60px; z-index: 100; background: var(--color-primary); color: #fff; padding: 10px 16px; border-radius: var(--r-sm); transition: top var(--dur-fast); }
 .skip-link:focus { top: 16px; }
 :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
