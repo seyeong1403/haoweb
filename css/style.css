@@ -59,7 +59,7 @@ body.gsap-on .reveal { transition: none; }
 .eyebrow.center { text-align: center; }
 .section-title { font-size: var(--fs-3xl); font-weight: var(--fw-bold); color: var(--text); word-break: keep-all; line-height: 1.18; }
 .section-title.center { text-align: center; }
-.section-sub { color: var(--text-soft); font-size: var(--fs-lg); margin-top: 16px; max-width: 56ch; }
+.section-sub { color: var(--text-soft); font-size: var(--fs-lg); line-height: 1.6; margin-top: 16px; max-width: 56ch; }
 .section-sub.center { margin-inline: auto; text-align: center; }
 .section-sub.right { margin-top: 0; align-self: end; }
 .section { padding: clamp(68px, 7.5vw, 116px) 0; position: relative; }
@@ -364,9 +364,6 @@ body.gsap-on .reveal { transition: none; }
 .gov-benefits li { font-size: var(--fs-base); color: var(--on-light-soft); padding-left: 28px; position: relative; }
 .gov-benefits li::before { content: ""; position: absolute; left: 0; top: 6px; width: 13px; height: 8px; border-left: 2px solid var(--color-primary); border-bottom: 2px solid var(--color-primary); transform: rotate(-45deg); }
 .gov-benefits strong { display: block; color: var(--on-light); font-weight: var(--fw-bold); margin-bottom: 2px; }
-
-/* 폴리시 — 여백·밀도 */
-.section-sub { line-height: 1.6; }
 
 /* ============================================================
    v15 모션·리듬 (하오커뮤니케이션 재해석)
@@ -781,3 +778,21 @@ html:has(.page-nav) { scroll-padding-top: calc(var(--header-h) + 60px); }
 .final-cta .cta-note { margin-top: 4px; }
 .privacy-line { margin-top: 10px; font-size: var(--fs-xs); color: var(--text-muted); }
 .privacy-line a { color: var(--text-soft); text-decoration: underline; text-underline-offset: 2px; }
+
+/* ============================================================
+   문의 폼 (inquiry.html) — 신규 기능용 최소 스타일
+   ============================================================ */
+.iform { display: grid; gap: 18px; }
+.iform-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.iform-field { display: grid; gap: 7px; }
+.iform-field label { font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--text); }
+.iform-field input, .iform-field select, .iform-field textarea {
+  width: 100%; padding: 13px 15px; border-radius: var(--r-sm); border: 1px solid var(--border-strong);
+  background: var(--surface); color: var(--text); font-family: var(--font-sans); font-size: var(--fs-base); }
+.iform-field textarea { resize: vertical; min-height: 130px; }
+.iform-field input:focus, .iform-field select:focus, .iform-field textarea:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-primary-wash); }
+.iform-consent { display: flex; gap: 10px; align-items: flex-start; font-size: var(--fs-sm); color: var(--text-soft); line-height: 1.55; }
+.iform-consent input { margin-top: 3px; flex: none; width: 18px; height: 18px; accent-color: var(--color-primary); }
+.iform-consent a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
+.iform-note { font-size: var(--fs-sm); color: var(--text-muted); line-height: 1.55; padding: 12px 14px; border: 1px dashed var(--border-strong); border-radius: var(--r-sm); }
+@media (max-width: 640px) { .iform-row { grid-template-columns: 1fr; } }
