@@ -362,6 +362,14 @@
       gsap.to(".hero-copy", { yPercent: -5, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
     }
 
+    // 핵심 3축 — 스크롤 위치에 따라 활성화(번호·라벨 강조)
+    gsap.utils.toArray(".axis3").forEach(function (ax) {
+      ScrollTrigger.create({
+        trigger: ax, start: "top 78%", end: "bottom 40%",
+        onToggle: function (self) { ax.classList.toggle("on", self.isActive); }
+      });
+    });
+
     // 브랜드 통합 4단계 — 스크롤에 따라 현재 단계 활성화 + 연결선 진행
     var biSteps = gsap.utils.toArray(".bi-step");
     if (biSteps.length) {
