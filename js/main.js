@@ -112,6 +112,13 @@
     });
   }
 
+  /* ---------- 3b-4) 서비스 고객 흐름 칩 마퀴 (끊김 없는 루프 위해 1회 복제) ---------- */
+  document.querySelectorAll(".sp-track").forEach(function (t) {
+    if (t.dataset.dup) return;
+    t.dataset.dup = "1";
+    t.innerHTML += t.innerHTML;
+  });
+
   /* ---------- 3c) FAQ 부드러운 아코디언 ---------- */
   document.querySelectorAll(".faq-item").forEach(function (item) {
     var sum = item.querySelector("summary");
