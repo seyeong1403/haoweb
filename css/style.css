@@ -59,7 +59,7 @@ body.gsap-on .reveal { transition: none; }
 .section-sub { color: var(--text-soft); font-size: var(--fs-lg); margin-top: 16px; max-width: 56ch; }
 .section-sub.center { margin-inline: auto; text-align: center; }
 .section-sub.right { margin-top: 0; align-self: end; }
-.section { padding: clamp(96px, 11vw, 176px) 0; position: relative; }
+.section { padding: clamp(68px, 7.5vw, 116px) 0; position: relative; }
 
 /* ---------- Light interlude sections ---------- */
 .section.light, .section.paper { color: var(--on-light); }
@@ -102,8 +102,8 @@ body.gsap-on .reveal { transition: none; }
    Hero (dark, cinematic)
    ============================================================ */
 .hero { min-height: calc(100vh - var(--header-h)); min-height: calc(100svh - var(--header-h)); display: flex; flex-direction: column; padding: clamp(28px, 4vw, 52px) 0 24px; position: relative; overflow: hidden; }
-.hero::before { content: ""; position: absolute; top: -260px; left: 50%; transform: translateX(-30%); width: 760px; height: 760px; background: radial-gradient(circle, rgba(232,56,23,.20), transparent 62%); z-index: 0; pointer-events: none; filter: blur(20px); }
-.hero::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background-image: linear-gradient(var(--d-line) 1px, transparent 1px), linear-gradient(90deg, var(--d-line) 1px, transparent 1px); background-size: 64px 64px; opacity: .35; mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000, transparent 75%); }
+/* (구 .hero::before 레드 블롭 제거 — 아래 앰비언트 글로우로 통합) */
+.hero::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background-image: linear-gradient(var(--d-line) 1px, transparent 1px), linear-gradient(90deg, var(--d-line) 1px, transparent 1px); background-size: 72px 72px; opacity: .14; mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000, transparent 75%); }
 .hero-grid { position: relative; z-index: 1; flex: 1; align-content: center; display: grid; grid-template-columns: 1fr; gap: clamp(32px, 5vw, 64px); align-items: center; }
 .hero-copy { max-width: 1000px; }
 .hero-title { font-size: clamp(2.7rem, 6.6vw, 5.6rem); font-weight: var(--fw-black); line-height: 1.08; letter-spacing: -.035em; margin-bottom: 30px; word-break: keep-all; }
@@ -124,7 +124,7 @@ body.gsap-on .reveal { transition: none; }
 /* ============================================================
    Section head row
    ============================================================ */
-.section-head-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end; margin-bottom: 60px; }
+.section-head-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(36px, 4.5vw, 56px); }
 
 /* ============================================================
    Services (LIGHT) — 서비스 섹션 부제 여백
@@ -345,8 +345,8 @@ body.gsap-on .reveal { transition: none; }
 .hero::before {
   content: ""; position: absolute; inset: 0; top: auto; right: auto; width: auto; height: auto; z-index: 0; pointer-events: none;
   background:
-    radial-gradient(620px 520px at 80% 30%, rgba(232, 56, 23, .17), transparent 62%),
-    radial-gradient(520px 420px at 8% 82%, rgba(232, 56, 23, .07), transparent 60%);
+    radial-gradient(620px 520px at 80% 30%, rgba(232, 56, 23, .12), transparent 62%),
+    radial-gradient(520px 420px at 8% 82%, rgba(232, 56, 23, .05), transparent 60%);
 }
 
 /* 칼럼 — 인사이트 센터 톤 (카테고리 강조) */
@@ -476,9 +476,6 @@ body.gsap-on .reveal { transition: none; }
    v19 폴리시 — 히어로 업종 pill(008) · 여백 확대(002) · 서비스→상담 전환(047)
    ============================================================ */
 
-/* 섹션 호흡 — 과도한 여백 축소, 섹션 간 연결감 (한글 가독·밀도 재조정) */
-.section { padding: clamp(68px, 7.5vw, 116px) 0; }
-.section-head-row { margin-bottom: clamp(36px, 4.5vw, 56px); }
 
 /* 히어로 업종 pill (008 Blunarova niche 태그) */
 .hero-niche { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; margin: 4px 0 30px; }
