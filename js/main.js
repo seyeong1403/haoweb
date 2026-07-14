@@ -17,36 +17,45 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  /* ---------- 1b) 히어로 배경 영상 순차 재생 (3편 루프) ---------- */
-  var heroVid = document.getElementById("heroVideo");
-  if (heroVid) {
+  /* ---------- 1b) 히어로 배경 영상 — 2개 레이어 크로스페이드 ---------- */
+  var heroLayers = [document.getElementById("heroVidA"), document.getElementById("heroVidB")];
+  if (heroLayers[0] && heroLayers[1]) {
     if (reduce) {
       // 모션 최소화: 영상 정지, 포스터만 노출 (CSS가 포스터 표시)
-      heroVid.removeAttribute("autoplay");
-      heroVid.pause();
+      heroLayers.forEach(function (l) { l.removeAttribute("autoplay"); l.pause(); });
     } else {
       var heroClips = ["assets/hero-1.mp4", "assets/hero-3.mp4"];
-      var heroIdx = 0, heroSwapping = false;
-      // 끝나면 먼저 페이드 아웃 → 다 사라진 뒤 교체 → 재생되면 페이드 인 (뚝 끊김 방지)
-      heroVid.addEventListener("ended", function () {
-        if (heroSwapping) return;
-        heroSwapping = true;
-        heroVid.style.opacity = "0"; // 페이드 아웃 시작
-        var next = (heroIdx + 1) % heroClips.length;
-        setTimeout(function () {
-          heroIdx = next;
-          heroVid.src = heroClips[heroIdx];
-          heroVid.load();
-          var p = heroVid.play();
-          if (p && p.catch) p.catch(function () {});
-          // 안전장치: playing 이벤트가 늦거나 안 와도 다시 밝게(검은 화면 방지)
-          setTimeout(function () { heroVid.style.opacity = "1"; heroSwapping = false; }, 500);
-        }, 620); // CSS opacity 트랜지션(.6s)이 끝난 뒤 교체
+      var front = 0;   // 현재 보이는 레이어
+      var ci = 0;      // 앞 레이어가 재생 중인 클립 index
+      var tryPlay = function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+      // 초기: A=클립0(재생), B=클립1(프리로드·정지·투명)
+      heroLayers[0].src = heroClips[0];
+      heroLayers[1].src = heroClips[1 % heroClips.length];
+      heroLayers[0].style.opacity = "1";
+      heroLayers[1].style.opacity = "0";
+      heroLayers[1].load();
+      tryPlay(heroLayers[0]);
+
+      var advance = function () {
+        var back = 1 - front;
+        var bl = heroLayers[back], fl = heroLayers[front];
+        var nextCi = (ci + 1) % heroClips.length;
+        // 뒤 레이어(다음 클립 프리로드됨)를 처음부터 재생하며 동시에 크로스페이드
+        try { bl.currentTime = 0; } catch (e) {}
+        tryPlay(bl);
+        bl.style.opacity = "1"; // 나타남
+        fl.style.opacity = "0"; // 동시에 사라짐
+        front = back; ci = nextCi;
+        // 방금 빠진(옛 앞) 레이어에 그다음 클립을 미리 로드
+        var afterNext = (ci + 1) % heroClips.length;
+        fl.pause();
+        if (fl.getAttribute("src") !== heroClips[afterNext]) { fl.src = heroClips[afterNext]; fl.load(); }
+        else { try { fl.currentTime = 0; } catch (e2) {} }
+      };
+      // 현재 앞 레이어가 끝났을 때만 전환
+      heroLayers.forEach(function (l) {
+        l.addEventListener("ended", function () { if (heroLayers[front] === l) advance(); });
       });
-      heroVid.addEventListener("playing", function () { heroVid.style.opacity = "1"; heroSwapping = false; }); // 페이드 인
-      // 자동재생이 차단된 환경 대비: 명시적 재생 시도
-      var pp = heroVid.play();
-      if (pp && pp.catch) pp.catch(function () {});
     }
   }
 
