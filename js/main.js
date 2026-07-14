@@ -347,15 +347,20 @@
       h.innerHTML = h.innerHTML.split(/<br\s*\/?>/i).map(function (seg) {
         return '<span class="rl"><span class="rl-i">' + seg + "</span></span>";
       }).join("");
-      var inner = h.querySelectorAll(".rl-i");
-      gsap.set(h, { opacity: 1, y: 0, scale: 1 }); // 배치 페이드/스케일 대신 라인 리빌 사용
-      gsap.set(inner, { yPercent: 115 });
-      ScrollTrigger.create({
-        trigger: h, start: "top 90%", once: true, // 한 번 상승 후 유지(콘텐츠 사라짐 방지)
-        onEnter: function () { gsap.to(inner, { yPercent: 0, duration: 0.8, ease: "power4.out", stagger: 0.08 }); }
-      });
-      setTimeout(function () { gsap.set(inner, { yPercent: 0 }); }, 2600); // 안전장치: 트리거 미동작 시에도 표시
+      gsap.set(h, { clearProps: "transform,scale" }); // 컨테이너 인라인 초기화(라인 상승은 CSS + .in 이 담당)
+      h.style.opacity = "1"; // 컨테이너는 항상 보이게(마스크 안에서 라인만 상승)
+      h.classList.add("reveal"); // .reveal.in .rl-i 선택자 매칭(원래 reveal 아닌 제목도 포함)
+      revIO.observe(h);          // 뷰포트 진입 시 .in 토글 → CSS 라인 상승(재진입마다 재생)
     });
+
+    // 안전장치: IO가 늦거나 실패해도 '화면 안'의 리빌은 반드시 표시(화면 밖은 안 건드림 → 재진입 재생 유지)
+    setTimeout(function () {
+      document.querySelectorAll(".reveal").forEach(function (el) {
+        if (el.classList.contains("in")) return;
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.95 && r.bottom > 0) el.classList.add("in");
+      });
+    }, 2200);
 
     // 히어로 패럴랙스 (미묘하게)
     if (document.querySelector(".hero-demo")) {
