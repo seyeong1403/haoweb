@@ -401,6 +401,11 @@ body.gsap-on .reveal { transition: none; }
 /* 주요 기능 (라이트) */
 .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px 24px; }
 .feature-item .ic { width: 26px; height: 26px; color: var(--color-primary); margin-bottom: 13px; }
+/* DB 아이콘(마스크로 브랜드 컬러 적용) */
+.feat-ic { display: block; width: 30px; height: 30px; background: var(--color-primary); margin-bottom: 13px;
+  -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat;
+  transition: transform var(--dur-mid) var(--ease-out); }
+.feature-item:hover .feat-ic { transform: translateY(-3px) scale(1.06); }
 .feature-item h3 { font-size: var(--fs-base); color: var(--on-light); margin-bottom: 5px; }
 .feature-item p { font-size: var(--fs-sm); color: var(--on-light-soft); }
 
