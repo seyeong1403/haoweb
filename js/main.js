@@ -25,17 +25,25 @@
       heroVid.removeAttribute("autoplay");
       heroVid.pause();
     } else {
-      var heroClips = ["assets/hero-1.mp4", "assets/hero-2.mp4", "assets/hero-3.mp4"];
-      var heroIdx = 0;
+      var heroClips = ["assets/hero-1.mp4", "assets/hero-3.mp4"];
+      var heroIdx = 0, heroSwapping = false;
+      // 끝나면 먼저 페이드 아웃 → 다 사라진 뒤 교체 → 재생되면 페이드 인 (뚝 끊김 방지)
       heroVid.addEventListener("ended", function () {
-        heroIdx = (heroIdx + 1) % heroClips.length;
-        heroVid.style.opacity = "0"; // 전환 시 살짝 페이드
-        heroVid.src = heroClips[heroIdx];
-        heroVid.load();
-        var p = heroVid.play();
-        if (p && p.catch) p.catch(function () {});
+        if (heroSwapping) return;
+        heroSwapping = true;
+        heroVid.style.opacity = "0"; // 페이드 아웃 시작
+        var next = (heroIdx + 1) % heroClips.length;
+        setTimeout(function () {
+          heroIdx = next;
+          heroVid.src = heroClips[heroIdx];
+          heroVid.load();
+          var p = heroVid.play();
+          if (p && p.catch) p.catch(function () {});
+          // 안전장치: playing 이벤트가 늦거나 안 와도 다시 밝게(검은 화면 방지)
+          setTimeout(function () { heroVid.style.opacity = "1"; heroSwapping = false; }, 500);
+        }, 620); // CSS opacity 트랜지션(.6s)이 끝난 뒤 교체
       });
-      heroVid.addEventListener("playing", function () { heroVid.style.opacity = "1"; });
+      heroVid.addEventListener("playing", function () { heroVid.style.opacity = "1"; heroSwapping = false; }); // 페이드 인
       // 자동재생이 차단된 환경 대비: 명시적 재생 시도
       var pp = heroVid.play();
       if (pp && pp.catch) pp.catch(function () {});
