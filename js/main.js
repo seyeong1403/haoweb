@@ -340,6 +340,10 @@
       });
     }
 
+    // 히어로 다이어그램 — 모션 완료 후 완성본 고정(진행 안 돼도 보장)
+    var hd = document.querySelector(".hero-diagram");
+    if (hd) setTimeout(function () { hd.classList.add("hd-shown"); }, 2800);
+
     // 스크롤 진행바
     var bar = document.querySelector(".scroll-progress");
     if (bar) {
