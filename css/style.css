@@ -72,12 +72,12 @@ body.gsap-on .reveal { transition: none; }
 .site-header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); backdrop-filter: saturate(150%) blur(16px); border-bottom: 1px solid var(--border); transition: background var(--dur-mid); }
 .header-inner { display: flex; align-items: center; gap: 24px; height: var(--header-h); }
 .brand { display: inline-flex; align-items: center; flex: none; }
-.brand-logo { height: 40px; width: auto; }
+.brand-logo { height: 46px; width: auto; }
 
 .nav { margin-inline: auto; }
-.nav-list { display: flex; gap: 2px; }
+.nav-list { display: flex; gap: 6px; }
 .nav-item { position: relative; }
-.nav-item > a { display: inline-flex; align-items: center; padding: 10px 14px; font-weight: var(--fw-medium); font-size: var(--fs-sm); color: var(--text-soft); border-radius: var(--r-sm); transition: color var(--dur-fast), background var(--dur-fast); }
+.nav-item > a { display: inline-flex; align-items: center; padding: 10px 16px; font-weight: var(--fw-medium); font-size: var(--fs-base); color: var(--text-soft); border-radius: var(--r-sm); transition: color var(--dur-fast), background var(--dur-fast); }
 .nav-item > a:hover { color: var(--text); background: rgba(255,255,255,.05); }
 .has-sub > a::after { content: ""; width: 6px; height: 6px; margin-left: 7px; border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor; transform: rotate(45deg) translateY(-1px); opacity: .5; }
 
@@ -651,39 +651,49 @@ body.gsap-on .port-ph { transition: border-color var(--dur-mid) var(--ease-out),
    [1단계] 브랜드 통합 제작 섹션 (WHY HAOWEB) — 108 Creativemore(에디토리얼·역량통합) + 008(대형타이포·여백) + 047(밝은배경)
    ※ CSS 전면 재구조화(#16)에서 공통 컴포넌트로 통합 예정
    ============================================================ */
-/* 좌: 타이틀 고정 / 우: 4단계 세로 전환 + 연결선 */
-.bi-grid { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
-.bi-head { position: sticky; top: 128px; }
-.bi-title { font-size: clamp(1.9rem, 4vw, 3.3rem); font-weight: var(--fw-black); line-height: 1.2; letter-spacing: -.03em; color: var(--on-light); word-break: keep-all; margin: 18px 0 22px; }
-.bi-desc { font-size: var(--fs-lg); line-height: 1.7; color: var(--on-light-soft); max-width: 42ch; word-break: keep-all; }
+/* 좌: 제목 + 두 축 고정(sticky ~40%) / 우: 5원칙 세로 전환 + 연결선(~60%) */
+.bi-grid { display: grid; grid-template-columns: minmax(0, .66fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 90px); align-items: start; }
+.bi-head { position: sticky; top: 116px; }
+.bi-title { font-size: clamp(1.8rem, 3.6vw, 3rem); font-weight: var(--fw-black); line-height: 1.2; letter-spacing: -.03em; color: var(--on-light); word-break: keep-all; margin: 16px 0 30px; }
+/* 두 핵심 축 */
+.bi-axes { display: grid; gap: 26px; }
+.bi-axis { padding-top: 18px; border-top: 1px solid var(--light-line); }
+.bi-axis-k { display: block; font-family: var(--font-label); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--color-primary); }
+.bi-flow { margin: 10px 0 8px; font-size: var(--fs-base); font-weight: var(--fw-semibold); color: var(--on-light); letter-spacing: -.01em; line-height: 1.5; word-break: keep-all; }
+.bi-flow i { font-style: normal; color: var(--on-light-muted); margin: 0 3px; }
+.bi-axis-d { font-size: var(--fs-sm); line-height: 1.6; color: var(--on-light-soft); max-width: 40ch; word-break: keep-all; }
 
 .bi-steps { position: relative; padding-left: 78px; }
 .bi-rail { position: absolute; left: 22px; top: 30px; bottom: 30px; width: 2px; background: var(--light-line); }
 .bi-rail-fill { position: absolute; left: 0; top: 0; width: 100%; height: 0; background: var(--color-primary); transition: height .1s linear; }
-.bi-step { position: relative; padding: clamp(30px, 4vw, 48px) 0; transition: opacity var(--dur-mid) var(--ease-out); }
+.bi-step { position: relative; padding: clamp(26px, 3.4vw, 42px) 0; transition: opacity var(--dur-mid) var(--ease-out); }
 .bi-step + .bi-step { border-top: 1px solid var(--light-line); }
-/* GSAP 동작 시에만 딤(스크롤 활성화). 미동작 시 전체 표시 */
-body.gsap-on .bi-step { opacity: .34; }
-body.gsap-on .bi-step.on { opacity: 1; }
-.bi-no { position: absolute; left: -78px; top: calc(clamp(30px, 4vw, 48px) + 2px); width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; background: var(--light-bg, #fff); border: 1.5px solid var(--light-line); font-family: var(--font-label); font-size: var(--fs-sm); font-weight: 700; color: var(--on-light-muted); transition: border-color var(--dur-mid), color var(--dur-mid), background var(--dur-mid); z-index: 1; }
+/* GSAP 동작 시에만 딤(스크롤 활성화). 미동작·모바일 시 전체 표시 */
+@media (min-width: 901px) {
+  body.gsap-on .bi-step { opacity: .34; }
+  body.gsap-on .bi-step.on { opacity: 1; }
+}
+.bi-no { position: absolute; left: -78px; top: clamp(26px, 3.4vw, 42px); width: 46px; height: 46px; display: grid; place-items: center; border-radius: 50%; background: var(--light-bg, #fff); border: 1.5px solid var(--light-line); font-family: var(--font-label); font-size: var(--fs-sm); font-weight: 700; color: var(--on-light-muted); transition: border-color var(--dur-mid), color var(--dur-mid), background var(--dur-mid); z-index: 1; }
 .bi-step.on .bi-no { border-color: var(--color-primary); color: #fff; background: var(--color-primary); }
-.bi-en { display: block; font-family: var(--font-label); font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--on-light-muted); }
-.bi-name { font-size: clamp(1.4rem, 2.6vw, 2.05rem); font-weight: var(--fw-bold); color: var(--on-light); letter-spacing: -.02em; margin: 7px 0 12px; }
-.bi-line { font-size: var(--fs-base); line-height: 1.62; color: var(--on-light-soft); max-width: 40ch; word-break: keep-all; }
+.bi-name { font-size: clamp(1.3rem, 2.3vw, 1.85rem); font-weight: var(--fw-bold); color: var(--on-light); letter-spacing: -.02em; margin: 0 0 12px; word-break: keep-all; }
+.bi-line { font-size: var(--fs-base); line-height: 1.68; color: var(--on-light-soft); max-width: 52ch; word-break: keep-all; }
+.bi-eg { margin-top: 12px; font-family: var(--font-label); font-size: var(--fs-sm); color: var(--on-light-muted); letter-spacing: .01em; line-height: 1.55; word-break: keep-all; }
 
-.bi-foot { margin-top: clamp(48px, 7vw, 96px); padding-top: clamp(32px, 4vw, 52px); border-top: 1px solid var(--light-line); }
-.bi-close { font-size: clamp(1.35rem, 2.7vw, 2.1rem); font-weight: var(--fw-bold); line-height: 1.42; color: var(--on-light); letter-spacing: -.02em; word-break: keep-all; max-width: 30ch; }
+/* 마무리 문장 — 별도 대형 영역 아님, 컴팩트 */
+.bi-foot { margin-top: clamp(36px, 4.5vw, 64px); padding-top: clamp(26px, 3vw, 40px); border-top: 1px solid var(--light-line); }
+.bi-close { font-size: clamp(1.2rem, 2.2vw, 1.75rem); font-weight: var(--fw-bold); line-height: 1.44; color: var(--on-light); letter-spacing: -.02em; word-break: keep-all; max-width: 44ch; }
 .bi-close b { color: var(--color-primary); font-weight: var(--fw-bold); }
 
 @media (max-width: 900px) {
-  .bi-grid { grid-template-columns: 1fr; gap: 40px; }
+  .bi-grid { grid-template-columns: 1fr; gap: 34px; }
   .bi-head { position: static; }
-  .bi-desc { max-width: none; }
+  .bi-axis-d { max-width: none; }
+  .bi-line { max-width: none; }
 }
 @media (max-width: 560px) {
-  .bi-steps { padding-left: 58px; }
-  .bi-rail { left: 17px; }
-  .bi-no { left: -58px; width: 36px; height: 36px; }
+  .bi-steps { padding-left: 54px; }
+  .bi-rail { left: 15px; }
+  .bi-no { left: -54px; width: 34px; height: 34px; }
 }
 
 /* ============================================================
