@@ -107,6 +107,19 @@
   /* ---------- 3b-3) 제작 서비스 전환 (데스크톱 hover·click / 모바일 목록→상세) ---------- */
   var svcTabs = document.querySelectorAll(".svc-tab");
   if (svcTabs.length) {
+    var svcPanels = document.querySelectorAll(".svc-panel");
+    // 떠난 패널은 전환이 끝나면 오른쪽 대기 위치로 순간 복귀(다음엔 다시 오른쪽에서 등장)
+    svcPanels.forEach(function (p) {
+      p.addEventListener("transitionend", function (e) {
+        if (e.propertyName !== "transform") return;
+        if (!p.classList.contains("is-active")) {
+          p.classList.add("no-anim");
+          p.classList.remove("is-leave"); // 기본(오른쪽 +108%) 대기 상태로
+          void p.offsetWidth;             // 리플로우로 트랜지션 없이 스냅
+          p.classList.remove("no-anim");
+        }
+      });
+    });
     var svcActivate = function (key, scrollTo) {
       svcTabs.forEach(function (t) {
         var on = t.getAttribute("data-svc") === key;
@@ -114,11 +127,18 @@
         t.setAttribute("aria-selected", String(on));
       });
       var panel = null;
-      document.querySelectorAll(".svc-panel").forEach(function (p) {
+      svcPanels.forEach(function (p) {
         var on = p.id === "svp-" + key;
-        p.hidden = !on;
-        p.classList.toggle("is-active", on);
-        if (on) panel = p;
+        if (on) {
+          p.classList.remove("is-leave");
+          p.classList.add("is-active");     // 오른쪽에서 슬라이드 인 → 정지
+          p.setAttribute("aria-hidden", "false");
+          panel = p;
+        } else if (p.classList.contains("is-active")) {
+          p.classList.remove("is-active");
+          p.classList.add("is-leave");      // 왼쪽으로 슬라이드 아웃
+          p.setAttribute("aria-hidden", "true");
+        }
       });
       // 모바일: 선택 상세가 목록 아래에 나타나므로 살짝 스크롤해 보여줌
       if (scrollTo && panel && window.matchMedia("(max-width: 900px)").matches) {
