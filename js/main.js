@@ -17,6 +17,31 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  /* ---------- 1b) 히어로 배경 영상 순차 재생 (3편 루프) ---------- */
+  var heroVid = document.getElementById("heroVideo");
+  if (heroVid) {
+    if (reduce) {
+      // 모션 최소화: 영상 정지, 포스터만 노출 (CSS가 포스터 표시)
+      heroVid.removeAttribute("autoplay");
+      heroVid.pause();
+    } else {
+      var heroClips = ["assets/hero-1.mp4", "assets/hero-2.mp4", "assets/hero-3.mp4"];
+      var heroIdx = 0;
+      heroVid.addEventListener("ended", function () {
+        heroIdx = (heroIdx + 1) % heroClips.length;
+        heroVid.style.opacity = "0"; // 전환 시 살짝 페이드
+        heroVid.src = heroClips[heroIdx];
+        heroVid.load();
+        var p = heroVid.play();
+        if (p && p.catch) p.catch(function () {});
+      });
+      heroVid.addEventListener("playing", function () { heroVid.style.opacity = "1"; });
+      // 자동재생이 차단된 환경 대비: 명시적 재생 시도
+      var pp = heroVid.play();
+      if (pp && pp.catch) pp.catch(function () {});
+    }
+  }
+
   /* ---------- 2) 모바일 메뉴 ---------- */
   var toggle = document.querySelector(".nav-toggle");
   var mnav = document.getElementById("mobile-nav");
