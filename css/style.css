@@ -253,6 +253,14 @@ body.gsap-on .reveal { transition: none; }
 /* 3) 워드 라이트업 — 스크롤에 따라 단어가 순차적으로 또렷해짐 (JS가 단어 분할 + .lit) */
 [data-wordlight] .wl { color: color-mix(in srgb, currentColor 26%, transparent); transition: color .35s var(--ease-out); }
 [data-wordlight] .wl.lit { color: currentColor; }
+/* 4) 라인 와이프 텍스트 스왑(로테이터) — 얇은 라인이 좌→우로 지나가며 글자 교체 */
+.lw { position: relative; display: inline-block; }
+.lw-cur, .lw-inc { position: absolute; left: 0; top: 0; white-space: nowrap; will-change: clip-path; }
+.lw-inc { clip-path: inset(0 100% 0 0); }
+.lw-size { visibility: hidden; white-space: nowrap; } /* 가장 긴 단어로 폭 고정 → 라인·클립 정렬 */
+.lw-bar { position: absolute; top: 6%; bottom: 6%; left: 0; width: 2px; margin-left: -1px; opacity: 0;
+  background: var(--color-primary); box-shadow: 0 0 10px 1px color-mix(in srgb, var(--color-primary) 55%, transparent); }
+@media (prefers-reduced-motion: reduce) { .lw-bar, .lw-inc { display: none; } }
 
 /* ============================================================
    Responsive

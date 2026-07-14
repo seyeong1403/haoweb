@@ -398,6 +398,40 @@
         }
       });
     });
+    // 라인 와이프 텍스트 로테이터 — 얇은 라인이 좌→우로 지나가며 옛 글자를 지우고 새 글자를 드러냄
+    document.querySelectorAll(".lw").forEach(function (lw) {
+      var words = (lw.getAttribute("data-words") || "").split("|").filter(Boolean);
+      var cur = lw.querySelector(".lw-cur"), inc = lw.querySelector(".lw-inc"), bar = lw.querySelector(".lw-bar");
+      if (words.length < 2 || !cur || !inc || !bar) return;
+      var i = 0;
+      var setP = function (p) {
+        inc.style.clipPath = "inset(0 " + (100 - 100 * p).toFixed(2) + "% 0 0)"; // 새 글자: 좌→우로 드러남
+        cur.style.clipPath = "inset(0 0 0 " + (100 * p).toFixed(2) + "%)";        // 옛 글자: 좌→우로 지워짐
+        bar.style.left = (100 * p).toFixed(2) + "%";                              // 라인: 경계에서 이동
+        bar.style.opacity = (p > 0.02 && p < 0.98) ? "1" : "0";
+      };
+      var cycle = function () {
+        var ni = (i + 1) % words.length;
+        inc.textContent = words[ni];
+        setP(0);
+        var o = { p: 0 };
+        gsap.to(o, {
+          p: 1, duration: 0.75, ease: "power3.inOut",
+          onUpdate: function () { setP(o.p); },
+          onComplete: function () {
+            cur.textContent = words[ni];
+            cur.style.clipPath = "none";
+            inc.style.clipPath = "inset(0 100% 0 0)";
+            bar.style.opacity = "0";
+            i = ni;
+            gsap.delayedCall(1.7, cycle); // 정지(hold) 후 다음 단어
+          }
+        });
+      };
+      cur.textContent = words[0];
+      gsap.delayedCall(1.7, cycle);
+    });
+
     document.querySelectorAll(".svc-tab").forEach(function (t) {
       var run = function () { countUp(document.querySelector("#svp-" + t.getAttribute("data-svc") + " .sp-no"), true); };
       t.addEventListener("click", run);
