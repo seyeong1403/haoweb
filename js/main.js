@@ -298,6 +298,48 @@
       });
     });
 
+    // 숫자 카운트업 — 번호가 화면에 들어오거나 서비스가 활성화될 때 0→N (제로패딩 유지)
+    var countUp = function (el, force) {
+      if (!el || el.dataset.counting) return;
+      var target = parseInt((el.dataset.num || el.textContent || "").replace(/\D/g, ""), 10);
+      if (isNaN(target)) return;
+      if (!el.dataset.num) { el.dataset.num = String(target); el.dataset.pad = String((el.textContent || "").trim().length || String(target).length); }
+      if (el.dataset.counted && !force) return;
+      el.dataset.counted = "1"; el.dataset.counting = "1";
+      var pad = parseInt(el.dataset.pad, 10) || 1;
+      var o = { v: 0 };
+      gsap.to(o, {
+        v: target, duration: 0.7, ease: "power2.out",
+        onUpdate: function () { el.textContent = String(Math.round(o.v)).padStart(pad, "0"); },
+        onComplete: function () { el.textContent = String(target).padStart(pad, "0"); el.dataset.counting = ""; }
+      });
+    };
+    gsap.utils.toArray(".step-no, .pj-no, .bc-no, .bi-no").forEach(function (el) {
+      ScrollTrigger.create({ trigger: el, start: "top 92%", once: true, onEnter: function () { countUp(el); } });
+    });
+    document.querySelectorAll(".svc-tab").forEach(function (t) {
+      var run = function () { countUp(document.querySelector("#svp-" + t.getAttribute("data-svc") + " .sp-no"), true); };
+      t.addEventListener("click", run);
+      t.addEventListener("mouseenter", function () { if (window.matchMedia("(hover:hover) and (min-width:901px)").matches) run(); });
+    });
+    var firstSp = document.querySelector(".svc-panel.is-active .sp-no");
+    if (firstSp) ScrollTrigger.create({ trigger: "#services", start: "top 82%", once: true, onEnter: function () { countUp(firstSp, true); } });
+
+    // 버튼 마그네틱 hover (데스크톱 포인터 전용; reduced-motion 경로는 이미 제외됨)
+    if (window.matchMedia("(hover:hover) and (pointer:fine)").matches) {
+      document.querySelectorAll(".btn-lg, .nav-cta").forEach(function (btn) {
+        btn.classList.add("magnetic");
+        var s = 0.28;
+        btn.addEventListener("mousemove", function (e) {
+          var r = btn.getBoundingClientRect();
+          gsap.to(btn, { x: (e.clientX - (r.left + r.width / 2)) * s, y: (e.clientY - (r.top + r.height / 2)) * s, duration: 0.3, ease: "power3.out", overwrite: "auto" });
+        });
+        btn.addEventListener("mouseleave", function () {
+          gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.4)", overwrite: "auto" });
+        });
+      });
+    }
+
     // 스크롤 진행바
     var bar = document.querySelector(".scroll-progress");
     if (bar) {

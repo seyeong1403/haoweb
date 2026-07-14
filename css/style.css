@@ -41,6 +41,9 @@ body.gsap-on .reveal { transition: none; }
   padding: 13px 26px; border-radius: var(--btn-radius); border: 1px solid transparent; cursor: pointer; white-space: nowrap;
   transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-mid), background var(--dur-mid), color var(--dur-mid), border-color var(--dur-mid);
 }
+/* 마그네틱 버튼: transform은 JS(GSAP)가 전담 → CSS transform 전환 제외(충돌 방지) */
+.btn.magnetic { transition: box-shadow var(--dur-mid), background var(--dur-mid), color var(--dur-mid), border-color var(--dur-mid); }
+.btn.magnetic:hover { transform: none; }
 .btn-primary { background: var(--btn-primary-bg); color: var(--btn-primary-fg); box-shadow: var(--glow-brand); }
 .btn-primary:hover { background: var(--btn-primary-bg-hover); transform: translateY(-2px); }
 .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
