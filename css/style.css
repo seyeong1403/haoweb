@@ -714,11 +714,12 @@ html:has(.page-nav) { scroll-padding-top: calc(var(--header-h) + 60px); }
 /* 브랜드 체인 (기업·병원 #brand, 다크 섹션) */
 /* 브랜드 체인 — 세로 번호 스텝(메인 bi-steps 톤, 다크·라이트 양쪽 대응: 색 상속) */
 .brand-chain { display: block; margin-top: clamp(26px, 3.5vw, 46px); }
-.bc-item { position: relative; display: grid; grid-template-columns: 3.2rem 1fr; gap: clamp(14px, 2vw, 26px); align-items: baseline; padding: clamp(22px, 3vw, 34px) 0; }
+.bc-item { position: relative; display: grid; grid-template-columns: 3.2rem 1fr; column-gap: clamp(14px, 2vw, 26px); align-items: baseline; padding: clamp(22px, 3vw, 34px) 0; }
 .bc-item + .bc-item { border-top: 1px solid; border-color: color-mix(in srgb, currentColor 16%, transparent); }
-.bc-no { font-family: var(--font-label); font-size: var(--fs-lg); font-weight: 700; color: var(--color-primary); letter-spacing: .02em; }
-.bc-item h3 { font-size: var(--fs-xl); font-weight: var(--fw-bold); color: inherit; margin: 0 0 7px; letter-spacing: -.015em; word-break: keep-all; }
-.bc-item p { font-size: var(--fs-base); color: inherit; opacity: .78; line-height: 1.6; max-width: 60ch; word-break: keep-all; }
+/* 번호=1열(두 행 span), 제목·설명=2열 (설명이 좁은 번호열로 밀리지 않게) */
+.bc-no { grid-column: 1; grid-row: 1 / span 2; font-family: var(--font-label); font-size: var(--fs-lg); font-weight: 700; color: var(--color-primary); letter-spacing: .02em; }
+.bc-item h3 { grid-column: 2; grid-row: 1; font-size: var(--fs-xl); font-weight: var(--fw-bold); color: inherit; margin: 0 0 7px; letter-spacing: -.015em; word-break: keep-all; }
+.bc-item p { grid-column: 2; grid-row: 2; font-size: var(--fs-base); color: inherit; opacity: .78; line-height: 1.6; max-width: 60ch; word-break: keep-all; }
 @media (max-width: 500px) { .bc-item { grid-template-columns: 2.6rem 1fr; gap: 12px; } }
 
 /* 병원: 환자 탐색 여정 (라이트 섹션, 5단계) */
