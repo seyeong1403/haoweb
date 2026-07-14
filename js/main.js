@@ -17,20 +17,60 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  /* ---------- 1b) 히어로 배경 영상 — 2개 레이어 크로스페이드 ---------- */
+  /* ---------- 1b) 히어로 — 영상 2개 레이어 크로스페이드 + 영상별 카피 전환 ---------- */
+  // 영상·카피를 하나의 데이터로 관리(영상 추가 시 slide 객체만 추가하면 됨)
+  var heroSlides = [
+    {
+      video: "assets/hero-1.mp4",
+      eyebrow: "AI SEARCH READY",
+      title: "AI는 당신의 홈페이지를<br>이해하고 있습니까?",
+      lead: "고객이 쉽게 이해하고, 검색엔진과 AI도 정확하게 읽을 수 있도록 홈페이지의 정보와 콘텐츠 구조를 설계합니다."
+    },
+    {
+      video: "assets/hero-3.mp4",
+      eyebrow: "BRAND INTEGRATION",
+      title: "홈페이지를 넘어,<br>브랜드의 모든 접점을<br>연결합니다.",
+      lead: "브랜딩과 촬영, 카탈로그와 편집디자인부터 웹과 앱까지 한 팀이 하나의 기준으로 연결합니다."
+    }
+    // 예비(영상 추가 시 사용, 현재 미노출):
+    // { video: "assets/hero-4.mp4", eyebrow: "ONE TEAM", title: "브랜딩부터 웹과 앱까지,<br>하나의 브랜드를 한 팀이 완성합니다.", lead: "" }
+  ];
   var heroLayers = [document.getElementById("heroVidA"), document.getElementById("heroVidB")];
-  if (heroLayers[0] && heroLayers[1]) {
+  var heroCopy = document.getElementById("heroCopy");
+  if (heroLayers[0] && heroLayers[1] && heroCopy) {
+    var hEyebrow = heroCopy.querySelector(".hero-eyebrow");
+    var hTitle = heroCopy.querySelector(".hero-title");
+    var hLead = heroCopy.querySelector(".hero-lead");
+    var hActions = heroCopy.querySelector(".hero-actions");
+    var hCur = heroCopy.querySelector(".hi-cur");
+    var hTot = heroCopy.querySelector(".hi-tot");
+    var copyEls = [hEyebrow, hTitle, hLead, hActions].filter(Boolean);
+    if (hTot) hTot.textContent = "/ " + String(heroSlides.length).padStart(2, "0");
+
+    var setCopy = function (i) {
+      var s = heroSlides[i];
+      if (hEyebrow) hEyebrow.textContent = s.eyebrow;
+      if (hTitle) hTitle.innerHTML = s.title;
+      if (hLead) hLead.textContent = s.lead;
+      if (hCur) hCur.textContent = String(i + 1).padStart(2, "0");
+    };
+    var copyOut = function () { copyEls.forEach(function (el) { el.style.transitionDelay = "0s"; }); heroCopy.classList.add("copy-out"); };
+    var copyIn = function () {
+      var d = [0, 0.08, 0.18, 0.28]; // 제목 → 설명 → CTA 순으로 등장
+      copyEls.forEach(function (el, k) { el.style.transitionDelay = (d[k] || 0) + "s"; });
+      heroCopy.classList.remove("copy-out");
+    };
+
     if (reduce) {
-      // 모션 최소화: 영상 정지, 포스터만 노출 (CSS가 포스터 표시)
+      // 모션 최소화: 첫 영상·첫 문구만 정적 표시(HTML 그대로), 영상 정지·포스터 노출
       heroLayers.forEach(function (l) { l.removeAttribute("autoplay"); l.pause(); });
     } else {
-      var heroClips = ["assets/hero-1.mp4", "assets/hero-3.mp4"];
       var front = 0;   // 현재 보이는 레이어
-      var ci = 0;      // 앞 레이어가 재생 중인 클립 index
+      var ci = 0;      // 앞 레이어가 재생 중인 슬라이드 index
       var tryPlay = function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
-      // 초기: A=클립0(재생), B=클립1(프리로드·정지·투명)
-      heroLayers[0].src = heroClips[0];
-      heroLayers[1].src = heroClips[1 % heroClips.length];
+      // 초기: A=슬라이드0(재생), B=슬라이드1(프리로드·정지·투명)
+      heroLayers[0].src = heroSlides[0].video;
+      heroLayers[1].src = heroSlides[1 % heroSlides.length].video;
       heroLayers[0].style.opacity = "1";
       heroLayers[1].style.opacity = "0";
       heroLayers[1].load();
@@ -39,20 +79,22 @@
       var advance = function () {
         var back = 1 - front;
         var bl = heroLayers[back], fl = heroLayers[front];
-        var nextCi = (ci + 1) % heroClips.length;
-        // 뒤 레이어(다음 클립 프리로드됨)를 처음부터 재생하며 동시에 크로스페이드
+        var nextCi = (ci + 1) % heroSlides.length;
+        // 1) 현재 문구 페이드 아웃 + 영상 크로스페이드(동시)
+        copyOut();
         try { bl.currentTime = 0; } catch (e) {}
         tryPlay(bl);
-        bl.style.opacity = "1"; // 나타남
-        fl.style.opacity = "0"; // 동시에 사라짐
+        bl.style.opacity = "1"; // 다음 영상 나타남
+        fl.style.opacity = "0"; // 현재 영상 사라짐
         front = back; ci = nextCi;
-        // 방금 빠진(옛 앞) 레이어에 그다음 클립을 미리 로드
-        var afterNext = (ci + 1) % heroClips.length;
+        // 2) 다음 슬라이드 영상 미리 로드(방금 빠진 레이어에)
+        var afterNext = (ci + 1) % heroSlides.length;
         fl.pause();
-        if (fl.getAttribute("src") !== heroClips[afterNext]) { fl.src = heroClips[afterNext]; fl.load(); }
+        if (fl.getAttribute("src") !== heroSlides[afterNext].video) { fl.src = heroSlides[afterNext].video; fl.load(); }
         else { try { fl.currentTime = 0; } catch (e2) {} }
+        // 3) 영상 전환 중반에 새 문구 교체 후 제목→설명→CTA 순으로 등장
+        setTimeout(function () { setCopy(ci); copyIn(); }, 560);
       };
-      // 현재 앞 레이어가 끝났을 때만 전환
       heroLayers.forEach(function (l) {
         l.addEventListener("ended", function () { if (heroLayers[front] === l) advance(); });
       });
@@ -75,18 +117,6 @@
         mnav.removeAttribute("data-open"); mnav.hidden = true;
         toggle.setAttribute("aria-expanded", "false");
       });
-    });
-  }
-
-  /* ---------- 3) 무료 진단 폼 (데모) ---------- */
-  var form = document.querySelector("[data-diag]");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var note = form.querySelector("[data-diag-note]");
-      if (note) note.hidden = false;
-      var btn = form.querySelector('button[type="submit"]');
-      if (btn) { btn.textContent = "신청 완료 ✓"; btn.disabled = true; }
     });
   }
 

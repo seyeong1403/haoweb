@@ -120,12 +120,20 @@ body.gsap-on .reveal { transition: none; }
 .hero--video::before, .hero--video::after { display: none !important; }
 .hero--video .hero-grid, .hero--video .hero-foot { position: relative; z-index: 1; }
 .hero--video .hero-copy { max-width: 780px; }
+/* 영상별 카피 전환 — 제목→설명→CTA 순서로 페이드/상승 */
+.hero-copy .hero-eyebrow, .hero-copy .hero-title, .hero-copy .hero-lead, .hero-copy .hero-actions {
+  transition: opacity .55s var(--ease-out), transform .55s var(--ease-out); will-change: opacity, transform; }
+.hero-copy.copy-out .hero-eyebrow, .hero-copy.copy-out .hero-title, .hero-copy.copy-out .hero-lead, .hero-copy.copy-out .hero-actions {
+  opacity: 0; transform: translateY(16px); }
+/* 01 / 02 진행 표시 */
+.hero-idx { display: flex; align-items: baseline; gap: 6px; font-family: var(--font-label); font-size: var(--fs-sm); letter-spacing: .12em; color: rgba(255,255,255,.55); margin-bottom: 18px; }
+.hero-idx .hi-cur { color: var(--color-primary); font-weight: var(--fw-bold); font-size: 1.05rem; }
 /* reduced-motion: 영상 대신 정지 포스터 */
 @media (prefers-reduced-motion: reduce) {
   .hero--video .hero-video { display: none; }
   .hero--video .hero-media { background: #0a0a0b url(../assets/hero-poster.jpg) center / cover no-repeat; }
 }
-.hero-title { font-size: clamp(2.7rem, 6.6vw, 5.6rem); font-weight: var(--fw-black); line-height: 1.08; letter-spacing: -.035em; margin-bottom: 30px; word-break: keep-all; }
+.hero-title { font-size: clamp(2.7rem, 6.6vw, 5.6rem); font-weight: var(--fw-black); line-height: 1.08; letter-spacing: -.035em; margin-bottom: 30px; word-break: keep-all; min-height: calc(1.08em * 3); } /* 3줄 예약 → 제목 줄수 달라도 CTA 위치 안정 */
 .hero-title .accent { color: var(--color-primary); }
 .hero-lead { font-size: var(--fs-lg); color: var(--text-soft); max-width: 48ch; line-height: 1.65; }
 .hero-lead b { color: var(--text); font-weight: var(--fw-semibold); }
