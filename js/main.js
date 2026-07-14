@@ -271,7 +271,7 @@
             e.target.style.transition = "";
           }
         });
-      }, { threshold: 0.2, rootMargin: "0px 0px -8% 0px" });
+      }, { threshold: 0, rootMargin: "0px 0px -10% 0px" }); // 화면에서 완전히 벗어났을 때만 리셋(부분 노출 중 닫힘 방지)
       curtains.forEach(function (el) { curIO.observe(el); }); // unobserve 안 함 → 재진입마다 재생
     }
   }
@@ -332,19 +332,13 @@
       }
     }
 
-    // 스크롤 리빌 — 재진입(위로 올렸다 다시 볼 때)마다 동일하게 재생
-    var animIn = function (els) {
-      gsap.to(els, { opacity: 1, y: 0, scale: 1, duration: 0.62, ease: "power3.out", stagger: { each: 0.07, from: "start" }, overwrite: true });
-    };
-    var animReset = function (els) { gsap.set(els, { opacity: 0, y: 26, scale: 0.99 }); }; // 화면 밖에서 즉시 리셋(재진입 시 다시 등장)
-    gsap.set(reveals, { opacity: 0, y: 26, scale: 0.99 });
-    ScrollTrigger.batch(".reveal", {
-      start: "top 92%",
-      onEnter: animIn,        // 아래로 스크롤해 들어올 때
-      onEnterBack: animIn,    // 위로 스크롤해 다시 들어올 때
-      onLeave: animReset,     // 아래로 지나쳐 위로 사라질 때 리셋
-      onLeaveBack: animReset  // 위로 지나쳐 아래로 사라질 때 리셋
-    });
+    // 스크롤 리빌 — IntersectionObserver로 .in 토글(CSS 트랜지션이 페이드/상승 처리).
+    // 화면에서 '완전히' 벗어났을 때만 숨김 → 재진입마다 재생하면서도 화면 안 콘텐츠는 절대 숨기지 않음(빈 화면 버그 방지).
+    gsap.set(reveals, { clearProps: "opacity,transform" }); // 혹시 남은 GSAP 인라인 제거 → CSS(.reveal/.reveal.in)가 담당
+    var revIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.target.classList.toggle("in", e.isIntersecting); });
+    }, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
+    reveals.forEach(function (el) { revIO.observe(el); });
 
     // 제목 라인 마스크 리빌 (SplitText 대체: <br> 기준 라인 분할 → 순차 상승) — 108 Creativemore·004 Primora·105 Towards 시그니처
     gsap.utils.toArray(".section-title, .bi-title, .page-hero-title, .final-cta h2, .dfx-title").forEach(function (h) {
@@ -356,13 +350,11 @@
       var inner = h.querySelectorAll(".rl-i");
       gsap.set(h, { opacity: 1, y: 0, scale: 1 }); // 배치 페이드/스케일 대신 라인 리빌 사용
       gsap.set(inner, { yPercent: 115 });
-      var rlIn = function () { gsap.to(inner, { yPercent: 0, duration: 0.8, ease: "power4.out", stagger: 0.08, overwrite: true }); };
-      var rlReset = function () { gsap.set(inner, { yPercent: 115 }); };
       ScrollTrigger.create({
-        trigger: h, start: "top 90%", end: "bottom 8%",
-        onEnter: rlIn, onEnterBack: rlIn,     // 재진입마다 다시 상승
-        onLeave: rlReset, onLeaveBack: rlReset // 화면 밖에서 즉시 리셋
+        trigger: h, start: "top 90%", once: true, // 한 번 상승 후 유지(콘텐츠 사라짐 방지)
+        onEnter: function () { gsap.to(inner, { yPercent: 0, duration: 0.8, ease: "power4.out", stagger: 0.08 }); }
       });
+      setTimeout(function () { gsap.set(inner, { yPercent: 0 }); }, 2600); // 안전장치: 트리거 미동작 시에도 표시
     });
 
     // 히어로 패럴랙스 (미묘하게)
@@ -448,15 +440,8 @@
         onComplete: function () { el.textContent = String(target).padStart(pad, "0"); el.dataset.counting = ""; }
       });
     };
-    var popNum = function (el) { el.classList.remove("num-pop"); void el.offsetWidth; el.classList.add("num-pop"); }; // 애니메이션 재생
     gsap.utils.toArray(".step-no, .pj-no, .bc-no, .bi-no").forEach(function (el) {
-      var runNum = function () { el.dataset.counted = ""; countUp(el, true); popNum(el); }; // 재진입마다 0→N + 팝
-      ScrollTrigger.create({
-        trigger: el, start: "top 92%", end: "bottom 8%",
-        onEnter: runNum, onEnterBack: runNum,
-        onLeave: function () { el.classList.remove("num-pop"); },
-        onLeaveBack: function () { el.classList.remove("num-pop"); }
-      });
+      ScrollTrigger.create({ trigger: el, start: "top 92%", once: true, onEnter: function () { countUp(el); el.classList.add("num-pop"); } });
     });
 
     // 워드 라이트업 — 스크롤 진행에 따라 문장의 단어를 순차 점등

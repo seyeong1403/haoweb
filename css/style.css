@@ -31,8 +31,6 @@ mark { background: none; color: inherit; }
 
 /* 스크롤 진행바 (GSAP scrub) */
 .scroll-progress { position: fixed; inset: 0 0 auto 0; height: 3px; background: var(--color-primary); transform: scaleX(0); transform-origin: 0 50%; z-index: 60; pointer-events: none; }
-/* GSAP가 리빌을 제어할 때는 CSS 트랜지션 끄기 (충돌 방지) */
-body.gsap-on .reveal { transition: none; }
 
 /* ---------- Buttons ---------- */
 .btn {
