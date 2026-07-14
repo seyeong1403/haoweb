@@ -863,18 +863,22 @@ html:has(.page-nav) { scroll-padding-top: calc(var(--header-h) + 60px); }
    방문자 여정 · 정보구조 · 비교표 · 체크리스트 · HAOWEB METHOD · 관련 링크
    ============================================================ */
 
-/* 방문자 탐색 과정 — 가로 흐름(모바일 세로), 연결선 */
-.jrny { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; margin-top: 18px; list-style: none; padding: 0; }
-.jrny li { flex: 1 1 0; min-width: 128px; position: relative; padding: 16px 16px; border: 1px solid var(--light-line); border-radius: 14px; background: #fff;
-  font-family: var(--font-label); font-size: var(--fs-sm); font-weight: 600; color: var(--on-light); line-height: 1.4; display: flex; align-items: center; word-break: keep-all; }
-.jrny li::after { content: "→"; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); color: var(--color-primary); font-weight: 700; z-index: 1; }
-.jrny li:last-child::after { display: none; }
-.jrny li b { display: block; font-family: var(--font-label); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .08em; color: var(--on-light-muted); margin-bottom: 3px; }
-.section.light .jrny li, .section.paper .jrny li { background: #fff; }
+/* 방문자 탐색 과정 — 원형 번호 배지 인포그래픽 (숫자=포인트 컬러 원 + 라벨, 연결선) */
+.jrny { position: relative; display: flex; align-items: flex-start; gap: 6px; counter-reset: jrny; margin-top: 22px; list-style: none; padding: 0; }
+.jrny::before { content: ""; position: absolute; top: 25px; left: 8%; right: 8%; height: 2px; background: var(--light-line); z-index: 0; } /* 배지 뒤 연결선 */
+.jrny li { flex: 1 1 0; min-width: 0; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 11px; padding: 0 4px;
+  font-size: var(--fs-sm); font-weight: 600; color: var(--on-light); line-height: 1.45; word-break: keep-all; }
+.jrny li::before { counter-increment: jrny; content: counter(jrny, decimal-leading-zero); flex: none;
+  width: 50px; height: 50px; display: grid; place-items: center; border-radius: 50%;
+  background: var(--color-primary); color: #fff; font-family: var(--font-label); font-weight: 700; font-size: 1.02rem; letter-spacing: -.02em;
+  box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--color-primary) 55%, transparent); }
+.jrny li b { display: block; font-family: var(--font-label); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .06em; color: var(--color-primary); margin-bottom: 2px; } /* 선택적 키커(있을 때만) */
 @media (max-width: 720px) {
-  .jrny { flex-direction: column; }
-  .jrny li { min-width: 0; }
-  .jrny li::after { content: "↓"; right: auto; left: 24px; top: auto; bottom: -13px; transform: none; }
+  .jrny { flex-direction: column; gap: 2px; }
+  .jrny::before { top: 24px; bottom: 24px; left: 24px; right: auto; width: 2px; height: auto; } /* 세로 연결선 */
+  .jrny li { flex-direction: row; align-items: center; text-align: left; gap: 16px; padding: 9px 0; }
+  .jrny li::before { width: 48px; height: 48px; }
+  .jrny li b { margin-bottom: 0; margin-right: 2px; }
 }
 
 /* 정보구조 / 사이트맵 예시 — 태그형 목록 */
