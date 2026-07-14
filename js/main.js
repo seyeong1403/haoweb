@@ -198,6 +198,29 @@
   /* ---------- 4) 모션 ---------- */
   var hasGSAP = !!(window.gsap && window.ScrollTrigger);
 
+  /* ---- 레퍼런스 모션(경로 무관): 워드 라이트업 분할 + 커튼 클립 리빌 ---- */
+  // 워드 라이트업: 대상 문장을 단어 단위로 분할(진행 점등은 GSAP path에서)
+  document.querySelectorAll("[data-wordlight]").forEach(function (el) {
+    if (el.dataset.wlReady) return;
+    el.dataset.wlReady = "1";
+    el.innerHTML = el.textContent.trim().split(/\s+/).map(function (w) {
+      return '<span class="wl">' + w + "</span>";
+    }).join(" ");
+    if (reduce || !hasGSAP) el.querySelectorAll(".wl").forEach(function (w) { w.classList.add("lit"); });
+  });
+  // 커튼 클립 리빌: 화면 진입 시 .in → CSS 트랜지션이 clip-path 처리
+  var curtains = document.querySelectorAll(".reveal-cur");
+  if (curtains.length) {
+    if (reduce || !("IntersectionObserver" in window)) {
+      curtains.forEach(function (el) { el.classList.add("in"); });
+    } else {
+      var curIO = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); curIO.unobserve(e.target); } });
+      }, { threshold: 0.2, rootMargin: "0px 0px -8% 0px" });
+      curtains.forEach(function (el) { curIO.observe(el); });
+    }
+  }
+
   // 폴백: 모션 끄기(reduced-motion) 또는 GSAP 미로드 → 즉시/IO 표시
   if (reduce || !hasGSAP) {
     if (reduce) { showAll(); return; }
@@ -360,7 +383,20 @@
       });
     };
     gsap.utils.toArray(".step-no, .pj-no, .bc-no, .bi-no").forEach(function (el) {
-      ScrollTrigger.create({ trigger: el, start: "top 92%", once: true, onEnter: function () { countUp(el); } });
+      ScrollTrigger.create({ trigger: el, start: "top 92%", once: true, onEnter: function () { countUp(el); el.classList.add("num-pop"); } });
+    });
+
+    // 워드 라이트업 — 스크롤 진행에 따라 문장의 단어를 순차 점등
+    document.querySelectorAll("[data-wordlight]").forEach(function (el) {
+      var ws = el.querySelectorAll(".wl");
+      if (!ws.length) return;
+      ScrollTrigger.create({
+        trigger: el, start: "top 85%", end: "bottom 62%", scrub: 0.3,
+        onUpdate: function (self) {
+          var n = Math.round(self.progress * ws.length);
+          for (var i = 0; i < ws.length; i++) ws[i].classList.toggle("lit", i < n);
+        }
+      });
     });
     document.querySelectorAll(".svc-tab").forEach(function (t) {
       var run = function () { countUp(document.querySelector("#svp-" + t.getAttribute("data-svc") + " .sp-no"), true); };
@@ -399,5 +435,7 @@
     // GSAP 도중 오류 → 콘텐츠 무조건 표시
     document.body.classList.remove("gsap-on");
     showAll();
+    document.querySelectorAll("[data-wordlight] .wl").forEach(function (w) { w.classList.add("lit"); });
+    document.querySelectorAll(".reveal-cur").forEach(function (el) { el.classList.add("in"); });
   }
 })();

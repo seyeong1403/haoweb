@@ -243,6 +243,17 @@ body.gsap-on .reveal { transition: none; }
 .rl { display: block; overflow: hidden; padding-bottom: .06em; margin-bottom: -.06em; }
 .rl-i { display: block; will-change: transform; }
 
+/* ===== 레퍼런스(하오커뮤니케이션) 모션 이식 ===== */
+/* 1) 커튼 클립 리빌 — 이미지가 좌→우로 닦이듯 등장 (JS가 .in 부여) */
+.reveal-cur { clip-path: inset(0 100% 0 0); transition: clip-path 1s var(--ease-out); will-change: clip-path; }
+.reveal-cur.in { clip-path: inset(0 0 0 0); }
+/* 2) 숫자 팝인 오버슈트 — 원형 숫자가 톡 튀며 등장 (카운트업과 함께) */
+@keyframes noPop { 0% { transform: scale(.5); } 55% { transform: scale(1.16); } 100% { transform: scale(1); } }
+.step-no.num-pop, .pj-no.num-pop, .bc-no.num-pop, .bi-no.num-pop { animation: noPop .55s var(--ease-out) both; transform-origin: center center; }
+/* 3) 워드 라이트업 — 스크롤에 따라 단어가 순차적으로 또렷해짐 (JS가 단어 분할 + .lit) */
+[data-wordlight] .wl { color: color-mix(in srgb, currentColor 26%, transparent); transition: color .35s var(--ease-out); }
+[data-wordlight] .wl.lit { color: currentColor; }
+
 /* ============================================================
    Responsive
    ============================================================ */
