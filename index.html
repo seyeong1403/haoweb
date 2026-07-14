@@ -132,8 +132,14 @@
   <main id="main">
 
     <!-- ===== Hero ===== -->
-    <section class="hero">
-      <div class="hero-watermark" aria-hidden="true">HAOWEB</div>
+    <section class="hero hero--video">
+      <div class="hero-media" aria-hidden="true">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/hero-poster.jpg">
+          <source src="assets/hero.webm" type="video/webm" />
+          <source src="assets/hero.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-overlay"></div>
+      </div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <p class="eyebrow"><b class="eyebrow-brand">하오웹</b> · 브랜드 통합형 홈페이지 제작</p>
@@ -143,71 +149,6 @@
             <a class="btn btn-primary btn-lg" href="#contact">제작 상담하기</a>
             <a class="btn btn-ghost btn-lg" href="#portfolio">포트폴리오 보기</a>
           </div>
-        </div>
-
-        <!-- 히어로 라인 다이어그램: 브랜드·자료·콘텐츠 → 홈페이지 구조화 → 고객·검색·AI·문의 -->
-        <div class="hero-visual" aria-hidden="true">
-          <svg class="hero-diagram" viewBox="0 0 560 520" role="img" aria-label="브랜드·콘텐츠가 하나의 홈페이지로 구조화되어 고객·검색·AI·문의로 연결되는 하오웹의 제작 흐름">
-            <!-- 입력 → 병합 라인 -->
-            <g class="hero-diagram__input">
-              <path class="hero-diagram__line" pathLength="1" style="--d:.15s" d="M88 88 C150 88 158 260 208 260" />
-              <path class="hero-diagram__line" pathLength="1" style="--d:.27s" d="M88 164 C150 164 160 260 208 260" />
-              <path class="hero-diagram__line" pathLength="1" style="--d:.39s" d="M88 240 C150 240 168 260 208 260" />
-              <path class="hero-diagram__line" pathLength="1" style="--d:.51s" d="M88 316 C150 316 160 260 208 260" />
-              <path class="hero-diagram__line" pathLength="1" style="--d:.63s" d="M88 392 C150 392 158 260 208 260" />
-              <circle class="hero-diagram__node" cx="88" cy="88" r="3.5" style="--d:.12s" />
-              <circle class="hero-diagram__node" cx="88" cy="164" r="3.5" style="--d:.24s" />
-              <circle class="hero-diagram__node" cx="88" cy="240" r="3.5" style="--d:.36s" />
-              <circle class="hero-diagram__node" cx="88" cy="316" r="3.5" style="--d:.48s" />
-              <circle class="hero-diagram__node" cx="88" cy="392" r="3.5" style="--d:.60s" />
-              <text class="hero-diagram__label" x="8" y="72" style="--d:.20s">BRAND</text>
-              <text class="hero-diagram__label" x="8" y="148" style="--d:.32s">PHOTO</text>
-              <text class="hero-diagram__label" x="8" y="224" style="--d:.44s">CATALOG</text>
-              <text class="hero-diagram__label" x="8" y="300" style="--d:.56s">CONTENT</text>
-              <text class="hero-diagram__label" x="8" y="376" style="--d:.68s">PRODUCT</text>
-            </g>
-
-            <!-- 중앙 홈페이지 구조 -->
-            <g class="hero-diagram__core">
-              <rect class="hero-diagram__frame" x="210" y="96" width="190" height="330" rx="10" style="--d:.5s" />
-              <circle class="hero-diagram__dot" cx="226" cy="111" r="3" style="--d:.62s" />
-              <circle class="hero-diagram__dot" cx="238" cy="111" r="3" style="--d:.64s" />
-              <circle class="hero-diagram__dot" cx="250" cy="111" r="3" style="--d:.66s" />
-              <line class="hero-diagram__line" pathLength="1" x1="268" y1="111" x2="386" y2="111" style="--d:.66s" />
-              <rect class="hero-diagram__block" x="224" y="138" width="162" height="46" rx="6" style="--d:.78s" />
-              <rect class="hero-diagram__block" x="224" y="198" width="162" height="20" rx="4" style="--d:.90s" />
-              <rect class="hero-diagram__block" x="224" y="230" width="162" height="20" rx="4" style="--d:1.0s" />
-              <rect class="hero-diagram__block" x="224" y="262" width="162" height="20" rx="4" style="--d:1.1s" />
-              <rect class="hero-diagram__block" x="224" y="294" width="162" height="20" rx="4" style="--d:1.2s" />
-              <rect class="hero-diagram__block is-active" x="224" y="326" width="162" height="20" rx="4" style="--d:1.3s" />
-              <text class="hero-diagram__label is-core" x="305" y="211" text-anchor="middle" style="--d:.94s">ABOUT</text>
-              <text class="hero-diagram__label is-core" x="305" y="243" text-anchor="middle" style="--d:1.04s">SERVICE</text>
-              <text class="hero-diagram__label is-core" x="305" y="275" text-anchor="middle" style="--d:1.14s">WORKS</text>
-              <text class="hero-diagram__label is-core" x="305" y="307" text-anchor="middle" style="--d:1.24s">FAQ</text>
-              <text class="hero-diagram__label is-core is-red" x="305" y="339" text-anchor="middle" style="--d:1.34s">CONTACT</text>
-              <text class="hero-diagram__label is-core" x="305" y="410" text-anchor="middle" style="--d:1.36s">HOMEPAGE</text>
-            </g>
-
-            <!-- 병합·확산 노드 (레드) -->
-            <circle class="hero-diagram__node is-red" cx="208" cy="260" r="5" style="--d:.72s" />
-            <circle class="hero-diagram__node is-red" cx="402" cy="260" r="5" style="--d:1.42s" />
-
-            <!-- 홈페이지 → 출력 라인 -->
-            <g class="hero-diagram__output">
-              <path class="hero-diagram__line" pathLength="1" style="--d:1.5s" d="M402 260 C430 260 430 128 452 128" />
-              <path class="hero-diagram__line" pathLength="1" style="--d:1.62s" d="M402 260 C430 260 432 216 452 216" />
-              <path class="hero-diagram__line" pathLength="1" style="--d:1.74s" d="M402 260 C430 260 432 304 452 304" />
-              <path class="hero-diagram__line is-red" pathLength="1" style="--d:1.86s" d="M402 260 C430 260 430 392 452 392" />
-              <circle class="hero-diagram__node" cx="452" cy="128" r="4" style="--d:1.56s" />
-              <circle class="hero-diagram__node" cx="452" cy="216" r="4" style="--d:1.68s" />
-              <circle class="hero-diagram__node" cx="452" cy="304" r="4" style="--d:1.80s" />
-              <circle class="hero-diagram__node is-red" cx="452" cy="392" r="4" style="--d:1.92s" />
-              <text class="hero-diagram__label" x="468" y="132" style="--d:1.62s">CUSTOMER</text>
-              <text class="hero-diagram__label" x="468" y="220" style="--d:1.74s">SEARCH</text>
-              <text class="hero-diagram__label" x="468" y="308" style="--d:1.86s">AI</text>
-              <text class="hero-diagram__label is-red" x="468" y="396" style="--d:1.98s">INQUIRY</text>
-            </g>
-          </svg>
         </div>
       </div>
 
