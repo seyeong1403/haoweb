@@ -79,26 +79,36 @@
     });
   }
 
-  /* ---------- 3b-3) 제작 서비스 좌우 전환 (hover·click) ---------- */
+  /* ---------- 3b-3) 제작 서비스 전환 (데스크톱 hover·click / 모바일 목록→상세) ---------- */
   var svcTabs = document.querySelectorAll(".svc-tab");
   if (svcTabs.length) {
-    var svcActivate = function (key) {
+    var svcActivate = function (key, scrollTo) {
       svcTabs.forEach(function (t) {
         var on = t.getAttribute("data-svc") === key;
         t.classList.toggle("is-active", on);
         t.setAttribute("aria-selected", String(on));
       });
+      var panel = null;
       document.querySelectorAll(".svc-panel").forEach(function (p) {
         var on = p.id === "svp-" + key;
         p.hidden = !on;
         p.classList.toggle("is-active", on);
+        if (on) panel = p;
       });
+      // 모바일: 선택 상세가 목록 아래에 나타나므로 살짝 스크롤해 보여줌
+      if (scrollTo && panel && window.matchMedia("(max-width: 900px)").matches) {
+        var y = panel.getBoundingClientRect().top + window.scrollY - 90;
+        window.scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
+      }
     };
     svcTabs.forEach(function (t) {
       var key = t.getAttribute("data-svc");
-      t.addEventListener("mouseenter", function () { svcActivate(key); });
+      // hover 전환은 데스크톱(포인터) 전용 — 터치에서는 click만
+      t.addEventListener("mouseenter", function () {
+        if (window.matchMedia("(hover: hover) and (min-width: 901px)").matches) svcActivate(key);
+      });
       t.addEventListener("focus", function () { svcActivate(key); });
-      t.addEventListener("click", function () { svcActivate(key); });
+      t.addEventListener("click", function () { svcActivate(key, true); });
     });
   }
 
