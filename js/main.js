@@ -262,9 +262,17 @@
       curtains.forEach(function (el) { el.classList.add("in"); });
     } else {
       var curIO = new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); curIO.unobserve(e.target); } });
+        es.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add("in"); }         // 진입 시 좌→우 와이프
+          else {                                                          // 화면 밖: 트랜지션 없이 즉시 리셋 → 재진입 때 다시 정방향 와이프
+            e.target.style.transition = "none";
+            e.target.classList.remove("in");
+            void e.target.offsetWidth;
+            e.target.style.transition = "";
+          }
+        });
       }, { threshold: 0.2, rootMargin: "0px 0px -8% 0px" });
-      curtains.forEach(function (el) { curIO.observe(el); });
+      curtains.forEach(function (el) { curIO.observe(el); }); // unobserve 안 함 → 재진입마다 재생
     }
   }
 
@@ -324,16 +332,18 @@
       }
     }
 
-    // 스크롤 리빌 (한 번 나타나면 계속 유지 — 되돌아와도 사라지지 않음)
+    // 스크롤 리빌 — 재진입(위로 올렸다 다시 볼 때)마다 동일하게 재생
     var animIn = function (els) {
-      gsap.to(els, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out", stagger: { each: 0.08, from: "start" }, overwrite: true });
+      gsap.to(els, { opacity: 1, y: 0, scale: 1, duration: 0.62, ease: "power3.out", stagger: { each: 0.07, from: "start" }, overwrite: true });
     };
-    gsap.set(reveals, { opacity: 0, y: 28, scale: 0.985 });
+    var animReset = function (els) { gsap.set(els, { opacity: 0, y: 26, scale: 0.99 }); }; // 화면 밖에서 즉시 리셋(재진입 시 다시 등장)
+    gsap.set(reveals, { opacity: 0, y: 26, scale: 0.99 });
     ScrollTrigger.batch(".reveal", {
       start: "top 92%",
-      onEnter: animIn,      // 아래로 스크롤해 처음 들어올 때
-      onEnterBack: animIn   // 위로 스크롤해 다시 들어올 때
-      // onLeave/onLeaveBack 제거: 화면 밖으로 나가도 숨기지 않음(콘텐츠 사라짐 방지)
+      onEnter: animIn,        // 아래로 스크롤해 들어올 때
+      onEnterBack: animIn,    // 위로 스크롤해 다시 들어올 때
+      onLeave: animReset,     // 아래로 지나쳐 위로 사라질 때 리셋
+      onLeaveBack: animReset  // 위로 지나쳐 아래로 사라질 때 리셋
     });
 
     // 제목 라인 마스크 리빌 (SplitText 대체: <br> 기준 라인 분할 → 순차 상승) — 108 Creativemore·004 Primora·105 Towards 시그니처
@@ -346,12 +356,13 @@
       var inner = h.querySelectorAll(".rl-i");
       gsap.set(h, { opacity: 1, y: 0, scale: 1 }); // 배치 페이드/스케일 대신 라인 리빌 사용
       gsap.set(inner, { yPercent: 115 });
+      var rlIn = function () { gsap.to(inner, { yPercent: 0, duration: 0.8, ease: "power4.out", stagger: 0.08, overwrite: true }); };
+      var rlReset = function () { gsap.set(inner, { yPercent: 115 }); };
       ScrollTrigger.create({
-        trigger: h, start: "top 90%", once: true,
-        onEnter: function () { gsap.to(inner, { yPercent: 0, duration: 0.9, ease: "power4.out", stagger: 0.09 }); },
+        trigger: h, start: "top 90%", end: "bottom 8%",
+        onEnter: rlIn, onEnterBack: rlIn,     // 재진입마다 다시 상승
+        onLeave: rlReset, onLeaveBack: rlReset // 화면 밖에서 즉시 리셋
       });
-      // 안전장치: 트리거가 안 잡혀도 일정 시간 뒤 반드시 보이게
-      setTimeout(function () { gsap.set(inner, { yPercent: 0 }); }, 2600);
     });
 
     // 히어로 패럴랙스 (미묘하게)
@@ -437,8 +448,15 @@
         onComplete: function () { el.textContent = String(target).padStart(pad, "0"); el.dataset.counting = ""; }
       });
     };
+    var popNum = function (el) { el.classList.remove("num-pop"); void el.offsetWidth; el.classList.add("num-pop"); }; // 애니메이션 재생
     gsap.utils.toArray(".step-no, .pj-no, .bc-no, .bi-no").forEach(function (el) {
-      ScrollTrigger.create({ trigger: el, start: "top 92%", once: true, onEnter: function () { countUp(el); el.classList.add("num-pop"); } });
+      var runNum = function () { el.dataset.counted = ""; countUp(el, true); popNum(el); }; // 재진입마다 0→N + 팝
+      ScrollTrigger.create({
+        trigger: el, start: "top 92%", end: "bottom 8%",
+        onEnter: runNum, onEnterBack: runNum,
+        onLeave: function () { el.classList.remove("num-pop"); },
+        onLeaveBack: function () { el.classList.remove("num-pop"); }
+      });
     });
 
     // 워드 라이트업 — 스크롤 진행에 따라 문장의 단어를 순차 점등
@@ -526,5 +544,6 @@
     showAll();
     document.querySelectorAll("[data-wordlight] .wl").forEach(function (w) { w.classList.add("lit"); });
     document.querySelectorAll(".reveal-cur").forEach(function (el) { el.classList.add("in"); });
+    document.querySelectorAll(".rl-i").forEach(function (el) { el.style.transform = "none"; }); // 제목 라인리빌 강제 표시
   }
 })();
