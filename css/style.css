@@ -493,11 +493,6 @@ mark { background: none; color: inherit; }
      mask: var(--src) center / contain no-repeat; }
 
 
-/* FAQ 인트로 포인트 아이콘 */
-.faq-badge { display: inline-flex; align-items: center; justify-content: center;
-             width: 46px; height: 46px; border-radius: 50%; margin-bottom: 18px;
-             background: var(--color-primary-wash); color: var(--color-primary); }
-.faq-badge .i { width: 24px; height: 24px; }
 
 /* --- 포트폴리오 섹션 타이틀 --- */
 .portfolio .section-title { font-size: clamp(2rem, 5vw, 3.7rem); }
