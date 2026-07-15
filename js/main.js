@@ -394,12 +394,15 @@
     // 브랜드 통합 4단계 — 스크롤에 따라 현재 단계 활성화 + 연결선 진행
     var biSteps = gsap.utils.toArray(".bi-step");
     if (biSteps.length) {
-      biSteps.forEach(function (step) {
-        ScrollTrigger.create({
-          trigger: step, start: "top 62%", end: "bottom 42%",
-          onToggle: function (self) { step.classList.toggle("on", self.isActive); }
-        });
-      });
+      // 누적 방식: 지나온 단계는 계속 포인트 컬러로 채워진 채 유지 → 다 보이는 화면에선 전부 채워짐
+      if ("IntersectionObserver" in window) {
+        var biStepIO = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) e.target.classList.add("on"); });
+        }, { threshold: 0.3, rootMargin: "0px 0px -8% 0px" });
+        biSteps.forEach(function (s) { biStepIO.observe(s); });
+      } else {
+        biSteps.forEach(function (s) { s.classList.add("on"); });
+      }
       var biFill = document.querySelector(".bi-rail-fill");
       var biList = document.querySelector(".bi-steps");
       if (biFill && biList) {
@@ -407,6 +410,12 @@
           trigger: biList, start: "top 60%", end: "bottom 46%", scrub: true,
           onUpdate: function (self) { biFill.style.height = (self.progress * 100).toFixed(1) + "%"; }
         });
+        // 섹션이 완전히 화면 밖이면 리셋(재진입 시 다시 차례로 점등)
+        if ("IntersectionObserver" in window) {
+          new IntersectionObserver(function (es) {
+            es.forEach(function (e) { if (!e.isIntersecting) biSteps.forEach(function (s) { s.classList.remove("on"); }); });
+          }, { threshold: 0 }).observe(biList);
+        }
       }
     }
 
