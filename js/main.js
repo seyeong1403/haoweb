@@ -323,6 +323,73 @@
     });
   });
 
+  /* ---------- 3c) 전환 측정 훅 (dataLayer + 공통 track 함수) ----------
+     실제 분석 도구 미연결 상태 — 외부 스크립트 없이 이벤트만 쌓아 둔다. 추후 GA/GTM 연결 시 dataLayer 소비. */
+  window.dataLayer = window.dataLayer || [];
+  function track(ev, data) {
+    if (!ev) return;
+    try { window.dataLayer.push(Object.assign({ event: ev, ts: undefined }, data || {})); } catch (e) {}
+    if (typeof window.haowebTrack === "function") { try { window.haowebTrack(ev, data || {}); } catch (e2) {} }
+  }
+  window.haowebEmit = track; // 외부에서도 호출 가능
+  // data-ev 속성이 있는 요소 클릭 → 자동 트래킹
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-ev]");
+    if (t) track(t.getAttribute("data-ev"), { label: (t.textContent || "").trim().slice(0, 40) });
+  });
+
+  /* ---------- 3d) 빠른 상담 FAB (전 페이지 공통 · JS 주입) ----------
+     기본 '상담하기' → 클릭 시 경로 분기. 카카오/전화는 실제 채널 확인 전이라 '준비 중'(링크 비공개). */
+  (function initQuickContact() {
+    if (document.querySelector(".qc-fab")) return;
+    var fab = document.createElement("div");
+    fab.className = "qc-fab";
+    fab.innerHTML =
+      '<div class="qc-menu" id="qc-menu" role="menu" hidden>' +
+        '<a role="menuitem" href="diagnosis.html" data-ev="diagnosis_start"><b>홈페이지 진단</b><span>현재 홈페이지에서 우선 확인할 부분</span></a>' +
+        '<a role="menuitem" href="site-plan.html" data-ev="siteplan_start"><b>구조안 신청</b><span>우리 업종에 맞는 기본 구조 안내</span></a>' +
+        '<a role="menuitem" href="inquiry.html" data-ev="inquiry_start"><b>제작 상담</b><span>프로젝트를 구체적으로 논의</span></a>' +
+        '<button type="button" role="menuitem" class="qc-soon" data-ev="kakao_contact_click" disabled><b>카카오톡 상담</b><span>채널 준비 중</span></button>' +
+        '<button type="button" role="menuitem" class="qc-soon" data-ev="phone_contact_click" disabled><b>전화 문의</b><span>번호 준비 중</span></button>' +
+      '</div>' +
+      '<button class="qc-btn" type="button" aria-expanded="false" aria-controls="qc-menu"><span class="qc-btn-t">상담하기</span></button>';
+    document.body.appendChild(fab);
+    var btn = fab.querySelector(".qc-btn");
+    var menu = fab.querySelector(".qc-menu");
+    var setOpen = function (open) {
+      fab.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", String(open));
+      if (open) { menu.hidden = false; track("quick_contact_open", {}); }
+      else { menu.hidden = true; }
+    };
+    btn.addEventListener("click", function () { setOpen(!fab.classList.contains("is-open")); });
+    document.addEventListener("click", function (e) { if (!fab.contains(e.target)) setOpen(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
+    // TODO(내부 확인): 카카오톡 채널 URL·대표 전화번호 확정 후 .qc-soon → 실제 링크로 교체
+  })();
+
+  /* ---------- 3e) 폼 전송 안내 (백엔드 미연결) ----------
+     data-noserver 폼은 실제 전송 대신 안내만 노출. '접수 완료' 문구 사용하지 않음. */
+  document.querySelectorAll("form[data-noserver]").forEach(function (form) {
+    var notice = form.querySelector(".form-notice");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      track(form.getAttribute("data-ev") || "form_submit", { form: form.getAttribute("name") || "" });
+      if (notice) {
+        notice.hidden = false;
+        notice.setAttribute("role", "status");
+        notice.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+        form.querySelector('[type="submit"]').disabled = true;
+      }
+    });
+    // 입력 시작 시 1회 start 이벤트
+    var started = false;
+    form.addEventListener("input", function () {
+      if (started) return; started = true;
+      track((form.getAttribute("data-ev-start")) || "form_start", { form: form.getAttribute("name") || "" });
+    });
+  });
+
   /* ---------- 4) 모션 ---------- */
   var hasGSAP = !!(window.gsap && window.ScrollTrigger);
 
