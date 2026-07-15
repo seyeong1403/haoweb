@@ -50,7 +50,8 @@
     var setCopy = function (i) {
       var s = heroSlides[i];
       if (hEyebrow) hEyebrow.textContent = s.eyebrow;
-      if (hTitle) hTitle.innerHTML = s.title;
+      // 제목: 줄마다 마스크(rl/rl-i) 래핑 → 전환 시 아래에서 부드럽게 상승(갑자기 뜨지 않게)
+      if (hTitle) hTitle.innerHTML = s.title.split(/<br\s*\/?>/i).map(function (seg) { return '<span class="rl"><span class="rl-i">' + seg + "</span></span>"; }).join("");
       if (hLead) hLead.textContent = s.lead;
       if (hCur) hCur.textContent = String(i + 1).padStart(2, "0");
     };
@@ -75,6 +76,7 @@
       heroLayers[1].style.opacity = "0";
       heroLayers[1].load();
       tryPlay(heroLayers[0]);
+      setCopy(0); // 첫 제목도 마스크 래핑(로드 시 즉시 표시, 이후 전환은 마스크 상승)
 
       var advance = function () {
         var back = 1 - front;
@@ -384,7 +386,7 @@
     if ("IntersectionObserver" in window) {
       document.querySelectorAll(".jrny").forEach(function (jr) {
         var steps = [].slice.call(jr.querySelectorAll("li"));
-        var jon = function () { steps.forEach(function (li, i) { clearTimeout(li._t); li._t = setTimeout(function () { li.classList.add("on"); }, i * 130); }); };
+        var jon = function () { steps.forEach(function (li, i) { clearTimeout(li._t); li._t = setTimeout(function () { li.classList.add("on"); }, i * 240); }); };
         var joff = function () { steps.forEach(function (li) { clearTimeout(li._t); li.classList.remove("on"); }); };
         var jio = new IntersectionObserver(function (es) { es.forEach(function (e) { e.isIntersecting ? jon() : joff(); }); }, { threshold: 0, rootMargin: "0px 0px -12% 0px" });
         jio.observe(jr);

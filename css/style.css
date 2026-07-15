@@ -119,10 +119,19 @@ mark { background: none; color: inherit; }
 .hero--video .hero-grid, .hero--video .hero-foot { position: relative; z-index: 1; }
 .hero--video .hero-copy { max-width: 780px; }
 /* 영상별 카피 전환 — 제목→설명→CTA 순서로 페이드/상승 */
-.hero-copy .hero-eyebrow, .hero-copy .hero-title, .hero-copy .hero-lead, .hero-copy .hero-actions {
-  transition: opacity .55s var(--ease-out), transform .55s var(--ease-out); will-change: opacity, transform; }
-.hero-copy.copy-out .hero-eyebrow, .hero-copy.copy-out .hero-title, .hero-copy.copy-out .hero-lead, .hero-copy.copy-out .hero-actions {
-  opacity: 0; transform: translateY(16px); }
+/* 카피 전환 — 제목은 마스크 상승, 나머지는 페이드+상승 (부드러운 감속) */
+.hero-copy .hero-eyebrow, .hero-copy .hero-lead, .hero-copy .hero-actions {
+  transition: opacity var(--dur-content) var(--ease), transform var(--dur-content) var(--ease); will-change: opacity, transform; }
+.hero-copy.copy-out .hero-eyebrow, .hero-copy.copy-out .hero-lead, .hero-copy.copy-out .hero-actions {
+  opacity: 0; transform: translateY(18px); }
+/* 제목 라인 마스크 리빌 — 아래에서 부드럽게 상승(갑자기 뜨지 않게) */
+.hero-title .rl { display: block; overflow: hidden; padding-bottom: .04em; margin-bottom: -.04em; }
+.hero-title .rl-i { display: block; transform: translateY(115%); transition: transform var(--dur-content) var(--ease); will-change: transform; }
+.hero-copy:not(.copy-out) .hero-title .rl-i { transform: translateY(0); }
+.hero-title .rl:nth-child(1) .rl-i { transition-delay: .06s; }
+.hero-title .rl:nth-child(2) .rl-i { transition-delay: .15s; }
+.hero-title .rl:nth-child(3) .rl-i { transition-delay: .24s; }
+@media (prefers-reduced-motion: reduce) { .hero-title .rl-i { transform: none !important; transition: none; } }
 /* 01 / 02 진행 표시 */
 .hero-idx { display: flex; align-items: baseline; gap: 6px; font-family: var(--font-label); font-size: var(--fs-sm); letter-spacing: .12em; color: rgba(255,255,255,.55); margin-bottom: 18px; }
 .hero-idx .hi-cur { color: var(--color-primary); font-weight: var(--fw-bold); font-size: 1.05rem; }
