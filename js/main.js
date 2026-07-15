@@ -128,6 +128,56 @@
     }
   }
 
+  /* ---------- 1c) 히어로 워터마크 — 포인트 컬러 라인이 글자 획을 따라 그려지는 모션 ----------
+     .hero-watermark 텍스트를 SVG 두 겹(고스트 밑선 + 그려지는 라인)으로 교체하고
+     stroke-dasharray/dashoffset 로 획을 순차적으로 '쓰는' 느낌. (reduce 모션이면 폴백 텍스트 유지) */
+  var wmEls = [].slice.call(document.querySelectorAll(".hero-watermark"));
+  if (wmEls.length && !reduce) {
+    var SVGNS = "http://www.w3.org/2000/svg";
+    var mkText = function (cls, text, cs, fs, ls) {
+      var t = document.createElementNS(SVGNS, "text");
+      t.setAttribute("x", "0"); t.setAttribute("y", "0");
+      t.setAttribute("dominant-baseline", "text-before-edge");
+      t.setAttribute("class", cls);
+      t.style.fontFamily = cs.fontFamily; t.style.fontWeight = cs.fontWeight;
+      t.style.fontSize = fs + "px"; t.style.letterSpacing = ls;
+      t.textContent = text;
+      return t;
+    };
+    var buildWM = function (el) {
+      var text = (el.getAttribute("data-wm") || el.textContent || "").trim().toUpperCase();
+      if (!text) return;
+      el.setAttribute("data-wm", text); // 원본 보존(리사이즈 재빌드용)
+      var cs = getComputedStyle(el);
+      var fs = parseFloat(cs.fontSize) || 160;
+      var ls = cs.letterSpacing === "normal" ? "0px" : cs.letterSpacing;
+      var svg = document.createElementNS(SVGNS, "svg");
+      var base = mkText("wm-base", text, cs, fs, ls);
+      var draw = mkText("wm-draw", text, cs, fs, ls);
+      svg.appendChild(base); svg.appendChild(draw);
+      svg.style.position = "absolute"; svg.style.visibility = "hidden"; // 측정용
+      el.textContent = ""; el.appendChild(svg);
+      var bb = draw.getBBox();
+      var padX = fs * 0.09, padY = fs * 0.16;
+      var vbW = bb.width + padX * 2, vbH = bb.height + padY * 2;
+      svg.setAttribute("viewBox", (bb.x - padX) + " " + (bb.y - padY) + " " + vbW + " " + vbH);
+      svg.setAttribute("width", vbW + "px"); svg.setAttribute("height", vbH + "px");
+      svg.style.position = ""; svg.style.visibility = "";
+      // 획 둘레 근사 → dash 길이. 글자 아웃라인 둘레는 가로 진행폭의 약 6배(카운터 포함).
+      // 부족하면 끝 글자가 안 그려지므로 넉넉히(6배) 잡는다.
+      var len = Math.round((draw.getComputedTextLength() || bb.width) * 6);
+      draw.style.setProperty("--wm-len", String(len));
+      draw.style.strokeDasharray = String(len);
+      draw.style.strokeDashoffset = String(len);
+    };
+    wmEls.forEach(buildWM);
+    var wmT;
+    window.addEventListener("resize", function () {
+      clearTimeout(wmT);
+      wmT = setTimeout(function () { wmEls.forEach(buildWM); }, 220);
+    });
+  }
+
   /* ---------- 2) 모바일 메뉴 ---------- */
   var toggle = document.querySelector(".nav-toggle");
   var mnav = document.getElementById("mobile-nav");
