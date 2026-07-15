@@ -146,7 +146,12 @@ mark { background: none; color: inherit; }
 .hero-lead b { color: var(--text); font-weight: var(--fw-semibold); }
 .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 32px 0 28px; }
 /* 거대 워터마크 (무게감) */
-.hero-watermark { position: absolute; z-index: 0; top: 3%; right: -1%; pointer-events: none; user-select: none; font-family: var(--font-label); font-weight: 700; line-height: .8; text-align: right; text-transform: uppercase; font-size: clamp(5rem, 16.5vw, 17rem); letter-spacing: -.045em; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.055); }
+.hero-watermark { position: absolute; z-index: 0; top: 3%; right: -1%; pointer-events: none; user-select: none; font-family: var(--font-label); font-weight: 700; line-height: .8; text-align: right; text-transform: uppercase; font-size: clamp(5rem, 16.5vw, 17rem); letter-spacing: -.045em;
+  color: transparent; -webkit-text-fill-color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--color-primary) 42%, transparent); /* 포인트 컬러 아웃라인 */
+  background: linear-gradient(100deg, transparent 33%, color-mix(in srgb, var(--color-primary) 62%, transparent) 50%, transparent 67%); background-size: 60% 100%; background-repeat: no-repeat; background-position: 150% 0; -webkit-background-clip: text; background-clip: text; /* 글자 안으로 훑고 지나가는 하이라이트 */
+  animation: wmSweep 6.5s linear infinite; }
+@keyframes wmSweep { to { background-position: -60% 0; } } /* 우 → 좌 반복 */
+@media (prefers-reduced-motion: reduce) { .hero-watermark { animation: none; } }
 /* 하단 크레덴셜 바 + 스크롤 큐 */
 .hero-foot { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 24px; padding: 22px 0 4px; border-top: 1px solid var(--border); }
 .hero-scroll { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-label); font-size: .72rem; font-weight: var(--fw-medium); letter-spacing: .22em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; transition: color var(--dur-fast); }
