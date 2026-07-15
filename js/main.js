@@ -334,8 +334,8 @@
   window.haowebEmit = track; // 외부에서도 호출 가능
   // data-ev 속성이 있는 요소 클릭 → 자동 트래킹
   document.addEventListener("click", function (e) {
-    var t = e.target.closest("[data-ev]");
-    if (t) track(t.getAttribute("data-ev"), { label: (t.textContent || "").trim().slice(0, 40) });
+    var t = e.target.closest("a[data-ev], button[data-ev]"); // 폼(submit는 별도 처리)은 제외해 중복 방지
+    if (t && !t.disabled) track(t.getAttribute("data-ev"), { label: (t.textContent || "").trim().slice(0, 40) });
   });
 
   /* ---------- 3d) 빠른 상담 FAB (전 페이지 공통 · JS 주입) ----------
@@ -389,6 +389,32 @@
       track((form.getAttribute("data-ev-start")) || "form_start", { form: form.getAttribute("name") || "" });
     });
   });
+
+  /* ---------- 3f) 홈페이지 진단 — 주소 프리필 + 점검 항목 순차 활성화 ---------- */
+  (function initDiagnosis() {
+    // diagnosis.html: 메인에서 넘어온 ?url= 를 주소 입력에 채움
+    try {
+      var q = new URLSearchParams(window.location.search);
+      var url = q.get("url");
+      var input = document.getElementById("d-url");
+      if (url && input && !input.value) { input.value = url; }
+    } catch (e) {}
+    // 점검 항목 리스트가 화면에 들어오면 순서대로 체크 표시
+    var lists = document.querySelectorAll("[data-diag-checklist]");
+    if (!lists.length) return;
+    if (reduce) { lists.forEach(function (ul) { [].forEach.call(ul.children, function (li) { li.classList.add("on"); }); }); return; }
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (ent) {
+        if (ent.isIntersecting) {
+          var items = [].slice.call(ent.target.children);
+          items.forEach(function (li, i) { setTimeout(function () { li.classList.add("on"); }, 140 * i); });
+        } else {
+          [].forEach.call(ent.target.children, function (li) { li.classList.remove("on"); }); // 재진입 시 다시 재생
+        }
+      });
+    }, { threshold: 0.35 });
+    lists.forEach(function (ul) { io.observe(ul); });
+  })();
 
   /* ---------- 4) 모션 ---------- */
   var hasGSAP = !!(window.gsap && window.ScrollTrigger);

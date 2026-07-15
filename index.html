@@ -146,9 +146,10 @@
           <h1 class="hero-title">AI는 당신의 홈페이지를<br />이해하고 있습니까?</h1>
           <p class="hero-lead">고객이 쉽게 이해하고, 검색엔진과 AI도 정확하게 읽을 수 있도록 홈페이지의 정보와 콘텐츠 구조를 설계합니다.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="#contact">제작 상담하기</a>
-            <a class="btn btn-ghost btn-lg" href="#portfolio">포트폴리오 보기</a>
+            <a class="btn btn-primary btn-lg" href="site-plan.html" data-ev="hero_siteplan_click">우리 업종 구조안 받아보기</a>
+            <a class="btn btn-ghost btn-lg" href="portfolio.html" data-ev="hero_portfolio_click">포트폴리오 보기</a>
           </div>
+          <p class="hero-sublink">기존 홈페이지가 있으신가요? <a href="diagnosis.html" data-ev="hero_diagnosis_click">현재 홈페이지 진단받기 →</a></p>
         </div>
       </div>
 
@@ -537,6 +538,34 @@
         <p class="section-sub reveal" style="margin-top:22px">하오웹은 SEO·AEO·GEO를 별도의 장식이나 추가 기능으로 적용하지 않습니다. 홈페이지의 기획·정보구조·콘텐츠·디자인·개발 전 과정에 통합하여 적용합니다.</p>
         <div class="saeg-cta reveal">
           <a class="btn btn-primary btn-lg" href="search-ai.html">SEO·AEO·GEO 제작 방식 자세히 보기 →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 홈페이지 진단 유입 (기존 홈페이지 보유 고객) ===== -->
+    <section class="section light" id="diagnosis">
+      <div class="wrap">
+        <div class="diag-intro">
+          <div>
+            <p class="eyebrow reveal">DIAGNOSIS</p>
+            <h2 class="section-title reveal">현재 홈페이지,<br />무엇을 바꿔야 할까요?</h2>
+            <p class="section-sub reveal" style="max-width:46ch;margin-top:18px">홈페이지 주소를 남겨주시면 디자인·콘텐츠·검색 구조·문의 동선을 기준으로 우선 확인이 필요한 부분을 살펴봅니다.</p>
+            <!-- JS 없이도 diagnosis.html 로 이동(GET). diagnosis.html 에서 주소 프리필 -->
+            <form class="diag-url reveal" action="diagnosis.html" method="get" role="search" aria-label="홈페이지 진단">
+              <label class="sr-only" for="diag-url-in">현재 홈페이지 주소</label>
+              <input type="url" id="diag-url-in" name="url" placeholder="현재 홈페이지 주소 (https://)" inputmode="url" />
+              <button class="btn btn-primary btn-lg" type="submit" data-ev="diagnosis_start">내 홈페이지 진단받기</button>
+            </form>
+            <p class="cta-note reveal">주소와 고민되는 부분을 남겨주시면, 먼저 손봐야 할 지점을 정리해 안내합니다.</p>
+          </div>
+          <ul class="diag-checklist reveal" data-diag-checklist>
+            <li>첫 화면에서 회사와 서비스가 명확하게 보이는지</li>
+            <li>모바일에서도 내용을 읽고 문의하기 쉬운지</li>
+            <li>고객에게 필요한 정보가 충분히 있는지</li>
+            <li>서비스·사례·FAQ·칼럼이 서로 연결되어 있는지</li>
+            <li>문의 버튼과 상담 동선이 적절한지</li>
+            <li>SEO·AEO·GEO의 기본 구조가 갖춰져 있는지</li>
+          </ul>
         </div>
       </div>
     </section>
