@@ -235,6 +235,98 @@
       </div>
     </section>
 
+    <!-- ===== 30초 프로젝트 체크 (단계형 진단 → 문의/구조안 연결) ===== -->
+    <section class="section light" id="project-check">
+      <div class="wrap">
+        <div class="section-head-row">
+          <div>
+            <p class="eyebrow reveal">30-SECOND CHECK</p>
+            <h2 class="section-title reveal">어떤 제작이 필요한지<br />잘 모르시나요?</h2>
+          </div>
+          <p class="section-sub right reveal">다섯 가지 질문에 답하면 현재 프로젝트에 필요한 제작 범위를 확인할 수 있습니다. 확정 견적이나 기간을 제시하는 것이 아니라, 검토 방향을 함께 잡는 과정입니다.</p>
+        </div>
+
+        <div class="pcheck reveal" data-pcheck>
+          <div class="pc-head">
+            <div class="pc-progress" aria-hidden="true"><span class="pc-bar"></span></div>
+            <p class="pc-count"><b class="pc-cur">01</b> <span>/ 05</span></p>
+          </div>
+          <div class="pc-stage">
+            <fieldset class="pc-step" data-step="0">
+              <legend class="pc-q">어떤 결과가 필요한가요?</legend>
+              <div class="pc-opts">
+                <label class="pc-opt"><input type="radio" name="q0" value="회사 소개와 문의" /><span>회사 소개와 문의</span></label>
+                <label class="pc-opt"><input type="radio" name="q0" value="예약과 상담" /><span>예약과 상담</span></label>
+                <label class="pc-opt"><input type="radio" name="q0" value="상품 판매" /><span>상품 판매</span></label>
+                <label class="pc-opt"><input type="radio" name="q0" value="가맹 모집" /><span>가맹 모집</span></label>
+                <label class="pc-opt"><input type="radio" name="q0" value="광고 전환" /><span>광고 전환</span></label>
+                <label class="pc-opt"><input type="radio" name="q0" value="모바일 앱 운영" /><span>모바일 앱 운영</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="pc-step" data-step="1" hidden>
+              <legend class="pc-q">신규 제작인가요?</legend>
+              <div class="pc-opts">
+                <label class="pc-opt"><input type="radio" name="q1" value="신규 제작" /><span>신규 제작</span></label>
+                <label class="pc-opt"><input type="radio" name="q1" value="기존 홈페이지 리뉴얼" /><span>기존 홈페이지 리뉴얼</span></label>
+                <label class="pc-opt"><input type="radio" name="q1" value="일부 페이지 추가" /><span>일부 페이지 추가</span></label>
+                <label class="pc-opt"><input type="radio" name="q1" value="아직 잘 모르겠음" /><span>아직 잘 모르겠음</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="pc-step" data-step="2" hidden>
+              <legend class="pc-q">현재 준비된 자료가 있나요?<span class="pc-multi">복수 선택</span></legend>
+              <div class="pc-opts">
+                <label class="pc-opt"><input type="checkbox" name="q2" value="로고와 브랜드 가이드" /><span>로고와 브랜드 가이드</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q2" value="회사소개서" /><span>회사소개서</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q2" value="카탈로그" /><span>카탈로그</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q2" value="사진" /><span>사진</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q2" value="웹 원고" /><span>웹 원고</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q2" value="거의 준비되지 않음" /><span>거의 준비되지 않음</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="pc-step" data-step="3" hidden>
+              <legend class="pc-q">함께 필요한 업무는 무엇인가요?<span class="pc-multi">복수 선택</span></legend>
+              <div class="pc-opts">
+                <label class="pc-opt"><input type="checkbox" name="q3" value="브랜딩" /><span>브랜딩</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q3" value="촬영" /><span>촬영</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q3" value="웹 원고" /><span>웹 원고</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q3" value="카탈로그·편집디자인" /><span>카탈로그·편집디자인</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q3" value="홈페이지" /><span>홈페이지</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q3" value="쇼핑몰" /><span>쇼핑몰</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q3" value="랜딩페이지" /><span>랜딩페이지</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q3" value="앱" /><span>앱</span></label>
+                <label class="pc-opt"><input type="checkbox" name="q3" value="아직 잘 모르겠음" /><span>아직 잘 모르겠음</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="pc-step" data-step="4" hidden>
+              <legend class="pc-q">언제 오픈을 희망하나요?</legend>
+              <div class="pc-opts">
+                <label class="pc-opt"><input type="radio" name="q4" value="빠르게 검토 중" /><span>빠르게 검토 중</span></label>
+                <label class="pc-opt"><input type="radio" name="q4" value="1~3개월 이내" /><span>1~3개월 이내</span></label>
+                <label class="pc-opt"><input type="radio" name="q4" value="3개월 이후" /><span>3개월 이후</span></label>
+                <label class="pc-opt"><input type="radio" name="q4" value="일정 미정" /><span>일정 미정</span></label>
+              </div>
+            </fieldset>
+            <div class="pc-step pc-result" data-step="5" hidden aria-live="polite">
+              <p class="eyebrow">RESULT</p>
+              <p class="pc-rlabel">고객님의 프로젝트는<br /><b class="pc-rtype">—</b>에 가깝습니다.</p>
+              <p class="pc-rsub">아래는 이 방향에서 우선 검토해 볼 항목입니다. 실제 범위는 자료와 목표를 확인한 뒤 함께 조정합니다.</p>
+              <ul class="pc-rlist"></ul>
+              <div class="pc-ractions">
+                <a class="btn btn-primary btn-lg pc-cta-inquiry" href="inquiry.html" data-ev="project_check_complete">내 프로젝트 상담하기</a>
+                <a class="btn btn-ghost btn-lg pc-cta-siteplan" href="site-plan.html">구조안 신청하기</a>
+              </div>
+              <p class="pc-rnote">선택하신 내용은 상담·구조안 신청 화면으로 함께 전달됩니다.</p>
+              <button type="button" class="pc-restart">처음부터 다시</button>
+            </div>
+          </div>
+          <div class="pc-nav">
+            <button type="button" class="btn btn-ghost pc-prev" disabled>이전</button>
+            <button type="button" class="btn btn-primary pc-next" disabled>다음</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== 제작 서비스 (7종, 라이트) ===== -->
     <section class="section services paper" id="services">
       <div class="wrap">

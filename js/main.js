@@ -416,6 +416,118 @@
     lists.forEach(function (ul) { io.observe(ul); });
   })();
 
+  /* ---------- 3g) 30초 프로젝트 체크 (단계형 → 결과 → 문의/구조안 전달) ---------- */
+  (function initProjectCheck() {
+    var root = document.querySelector("[data-pcheck]");
+    if (!root) return;
+    var steps = [].slice.call(root.querySelectorAll(".pc-step:not(.pc-result)"));
+    var result = root.querySelector(".pc-result");
+    var bar = root.querySelector(".pc-bar");
+    var curEl = root.querySelector(".pc-cur");
+    var prevBtn = root.querySelector(".pc-prev");
+    var nextBtn = root.querySelector(".pc-next");
+    var total = steps.length;
+    var idx = 0, started = false;
+
+    var answers = function () {
+      var a = {};
+      for (var i = 0; i < total; i++) {
+        var checked = [].slice.call(root.querySelectorAll('input[name="q' + i + '"]:checked')).map(function (n) { return n.value; });
+        a["q" + i] = checked;
+      }
+      return a;
+    };
+    var stepAnswered = function (i) { return root.querySelectorAll('input[name="q' + i + '"]:checked').length > 0; };
+
+    var render = function () {
+      steps.forEach(function (s, i) { s.hidden = i !== idx; });
+      result.hidden = true;
+      bar.style.width = ((idx) / total * 100) + "%";
+      curEl.textContent = String(idx + 1).padStart(2, "0");
+      prevBtn.disabled = idx === 0;
+      nextBtn.disabled = !stepAnswered(idx);
+      nextBtn.textContent = idx === total - 1 ? "결과 보기" : "다음";
+    };
+
+    // 라벨/검토항목 산출 (확정 견적·기간 없음)
+    var buildResult = function () {
+      var a = answers();
+      var goal = (a.q0[0] || "");
+      var assets = a.q2, needs = a.q3;
+      var has = function (arr, v) { return arr.indexOf(v) >= 0; };
+      var baseMap = {
+        "회사 소개와 문의": ["기업 홈페이지", "사업과 서비스 정보구조"],
+        "예약과 상담": ["예약·상담 중심 홈페이지", "예약·상담 동선과 신뢰 정보"],
+        "상품 판매": ["쇼핑몰", "상품 분류와 구매 동선"],
+        "가맹 모집": ["프랜차이즈 홈페이지", "브랜드 경쟁력과 가맹 문의 동선"],
+        "광고 전환": ["랜딩페이지", "핵심 메시지와 전환 동선"],
+        "모바일 앱 운영": ["앱 서비스", "사용자 흐름과 화면 설계"]
+      };
+      var base = baseMap[goal] || ["홈페이지", "핵심 정보구조"];
+      var mods = [], items = [base[1]];
+      var contentNeeded = has(needs, "웹 원고") || has(assets, "거의 준비되지 않음") || !has(assets, "웹 원고");
+      if (contentNeeded) { mods.push("콘텐츠 기획"); items.push("웹 원고와 콘텐츠 구성"); }
+      if (has(assets, "회사소개서") || has(assets, "카탈로그")) items.push("회사소개서·카탈로그 자료 정리");
+      if (has(needs, "촬영") || !has(assets, "사진")) { mods.push("촬영 검토"); items.push("기업·제품 촬영 범위"); }
+      if (has(needs, "브랜딩") || !has(assets, "로고와 브랜드 가이드")) { mods.push("브랜딩 정리"); }
+      if (has(needs, "카탈로그·편집디자인")) items.push("카탈로그·편집디자인 연계");
+      if (needs.filter(function (n) { return n !== "아직 잘 모르겠음"; }).length >= 3) items.push("서비스별 전문 페이지");
+      items.push("문의 동선");
+      items.push("검색·AI 대응 구조(SEO·AEO·GEO)");
+      // 중복 제거
+      items = items.filter(function (v, i, arr) { return arr.indexOf(v) === i; });
+      var label = mods.length ? (base[0] + "＋" + mods.slice(0, 2).join("＋") + "형") : (base[0] + " 제작형");
+      return { label: label, items: items, answers: a };
+    };
+
+    var showResult = function () {
+      var r = buildResult();
+      result.querySelector(".pc-rtype").textContent = r.label;
+      var ul = result.querySelector(".pc-rlist");
+      ul.innerHTML = "";
+      r.items.forEach(function (it) { var li = document.createElement("li"); li.textContent = it; ul.appendChild(li); });
+      // 결과·선택 전달 (query string + sessionStorage). JS-off여도 CTA 기본 링크는 동작.
+      var a = r.answers;
+      var qp = function (obj) { return Object.keys(obj).map(function (k) { return k + "=" + encodeURIComponent(obj[k]); }).join("&"); };
+      var common = { goal: a.q0[0] || "", mode: a.q1[0] || "", assets: a.q2.join("·"), needs: a.q3.join("·"), timing: a.q4[0] || "", summary: r.label };
+      try { sessionStorage.setItem("haoweb_pcheck", JSON.stringify({ label: r.label, items: r.items, answers: a })); } catch (e) {}
+      var inq = root.querySelector(".pc-cta-inquiry");
+      var sp = root.querySelector(".pc-cta-siteplan");
+      if (inq) inq.href = "inquiry.html?topic=build&" + qp(common);
+      if (sp) sp.href = "site-plan.html?" + qp({ goal: common.goal, needs: common.needs, summary: r.label });
+      steps.forEach(function (s) { s.hidden = true; });
+      result.hidden = false;
+      bar.style.width = "100%";
+      curEl.textContent = String(total).padStart(2, "0");
+      prevBtn.disabled = false;
+      nextBtn.disabled = true;
+      nextBtn.style.visibility = "hidden";
+      track("project_check_complete", { summary: r.label });
+    };
+
+    root.addEventListener("change", function (e) {
+      if (e.target.name && /^q\d$/.test(e.target.name)) {
+        if (!started) { started = true; track("project_check_start", {}); }
+        nextBtn.disabled = !stepAnswered(idx);
+      }
+    });
+    nextBtn.addEventListener("click", function () {
+      if (idx < total - 1) { idx++; render(); }
+      else { showResult(); }
+    });
+    prevBtn.addEventListener("click", function () {
+      if (!result.hidden) { result.hidden = true; nextBtn.style.visibility = ""; idx = total - 1; render(); return; }
+      if (idx > 0) { idx--; render(); }
+    });
+    var restart = root.querySelector(".pc-restart");
+    if (restart) restart.addEventListener("click", function () {
+      root.querySelectorAll("input:checked").forEach(function (n) { n.checked = false; });
+      idx = 0; started = false; nextBtn.style.visibility = ""; result.hidden = true; render();
+      root.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    });
+    render();
+  })();
+
   /* ---------- 4) 모션 ---------- */
   var hasGSAP = !!(window.gsap && window.ScrollTrigger);
 
