@@ -147,20 +147,29 @@ mark { background: none; color: inherit; }
 .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 32px 0 28px; }
 /* 거대 워터마크 (무게감) */
 .hero-watermark { position: absolute; z-index: 0; top: 3%; right: 3%; pointer-events: none; user-select: none; font-family: var(--font-label); font-weight: 700; line-height: .8; text-align: right; text-transform: uppercase; font-size: clamp(5rem, 15.5vw, 16rem); letter-spacing: -.045em;
-  color: transparent; -webkit-text-fill-color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--color-primary) 28%, transparent); /* 폴백: 정적 아웃라인 */ }
-/* 포인트 컬러 라인이 글자 획을 따라 그려지는 모션 — JS가 텍스트를 SVG 두 겹(고스트 + 그리는 라인)으로 교체 */
+  color: transparent; -webkit-text-fill-color: transparent; -webkit-text-stroke: 1px rgba(190, 190, 200, .34); /* 폴백: 정적 회색 아웃라인 */ }
+/* 라인이 글자 획을 따라 이동하며 색을 바꾸는 모션 — JS가 텍스트를 SVG 세 겹으로 교체
+   회색 밑선(항상) → 포인트 컬러 라인이 획을 따라 그려져 전체가 포인트 컬러로 → 다시 회색 라인이 덮으며 회색으로 → 반복 */
 .hero-watermark svg { display: block; overflow: visible; }
-.wm-base { fill: none; stroke: color-mix(in srgb, var(--color-primary) 22%, transparent); stroke-width: 1.1px; stroke-linejoin: round; } /* 은은한 밑선(항상) */
-.wm-draw { fill: none; stroke: color-mix(in srgb, var(--color-primary) 90%, transparent); stroke-width: 1.5px; stroke-linejoin: round; stroke-linecap: round; filter: drop-shadow(0 0 7px color-mix(in srgb, var(--color-primary) 45%, transparent)); animation: wmDraw 8s var(--ease) infinite; } /* 획을 그려나가는 포인트 라인 */
-@keyframes wmDraw { /* 라인이 획을 따라 글자를 쓰고(0→44%) 잠시 머문 뒤(→62%) 같은 방향으로 사라짐(→93%) */
-  0%   { stroke-dashoffset: var(--wm-len); opacity: .15; }
-  7%   { opacity: 1; }
-  44%  { stroke-dashoffset: 0; opacity: 1; }
-  62%  { stroke-dashoffset: 0; opacity: 1; }
-  93%  { stroke-dashoffset: calc(var(--wm-len) * -1); opacity: 1; }
-  100% { stroke-dashoffset: calc(var(--wm-len) * -1); opacity: .15; }
+.wm-base,
+.wm-gray { fill: none; stroke: rgba(190, 190, 200, .4); stroke-width: 1.5px; stroke-linejoin: round; stroke-linecap: round; } /* 기본/복귀 회색 라인(동일색·동일두께 → 루프 이음새 없음) */
+.wm-color { fill: none; stroke: color-mix(in srgb, var(--color-primary) 92%, transparent); stroke-width: 1.5px; stroke-linejoin: round; stroke-linecap: round; filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-primary) 45%, transparent)); } /* 그려지는 포인트 컬러 라인(선단 글로우) */
+.wm-color { animation: wmColor 16s linear infinite; }
+.wm-gray  { animation: wmGray 16s linear infinite; }
+@keyframes wmColor { /* 0→40% 포인트 컬러가 선을 따라 그려짐 → 유지 → 회색이 덮이는 동안(52~90%) 서서히 사라짐 */
+  0%   { stroke-dashoffset: var(--wm-len); opacity: 1; }
+  40%  { stroke-dashoffset: 0; opacity: 1; }
+  52%  { stroke-dashoffset: 0; opacity: 1; }
+  90%  { stroke-dashoffset: 0; opacity: 0; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
 }
-@media (prefers-reduced-motion: reduce) { .wm-draw { animation: none; opacity: 0; } }
+@keyframes wmGray { /* 50→90% 회색이 선을 따라 포인트 컬러를 덮으며 그려짐 → 유지 → 루프 시작에 리셋(밑선과 동일해 이음새 없음) */
+  0%   { stroke-dashoffset: var(--wm-len); }
+  50%  { stroke-dashoffset: var(--wm-len); }
+  90%  { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .wm-color, .wm-gray { animation: none; } .wm-color { opacity: 0; } }
 /* 하단 크레덴셜 바 + 스크롤 큐 */
 .hero-foot { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 24px; padding: 22px 0 4px; border-top: 1px solid var(--border); }
 .hero-scroll { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-label); font-size: .72rem; font-weight: var(--fw-medium); letter-spacing: .22em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; transition: color var(--dur-fast); }

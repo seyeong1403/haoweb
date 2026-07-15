@@ -152,23 +152,27 @@
       var fs = parseFloat(cs.fontSize) || 160;
       var ls = cs.letterSpacing === "normal" ? "0px" : cs.letterSpacing;
       var svg = document.createElementNS(SVGNS, "svg");
+      // 아래→위: 회색 밑선 → 포인트 컬러 라인 → 다시 덮는 회색 라인
       var base = mkText("wm-base", text, cs, fs, ls);
-      var draw = mkText("wm-draw", text, cs, fs, ls);
-      svg.appendChild(base); svg.appendChild(draw);
+      var color = mkText("wm-color", text, cs, fs, ls);
+      var gray = mkText("wm-gray", text, cs, fs, ls);
+      svg.appendChild(base); svg.appendChild(color); svg.appendChild(gray);
       svg.style.position = "absolute"; svg.style.visibility = "hidden"; // 측정용
       el.textContent = ""; el.appendChild(svg);
-      var bb = draw.getBBox();
+      var bb = color.getBBox();
       var padX = fs * 0.09, padY = fs * 0.16;
       var vbW = bb.width + padX * 2, vbH = bb.height + padY * 2;
       svg.setAttribute("viewBox", (bb.x - padX) + " " + (bb.y - padY) + " " + vbW + " " + vbH);
       svg.setAttribute("width", vbW + "px"); svg.setAttribute("height", vbH + "px");
       svg.style.position = ""; svg.style.visibility = "";
       // 획 둘레 근사 → dash 길이. 글자 아웃라인 둘레는 가로 진행폭의 약 6배(카운터 포함).
-      // 부족하면 끝 글자가 안 그려지므로 넉넉히(6배) 잡는다.
-      var len = Math.round((draw.getComputedTextLength() || bb.width) * 6);
-      draw.style.setProperty("--wm-len", String(len));
-      draw.style.strokeDasharray = String(len);
-      draw.style.strokeDashoffset = String(len);
+      // 부족하면 끝 글자가 안 그려지므로 넉넉히(6배) 잡는다. 두 애니메이션 레이어에 각각 지정.
+      var len = Math.round((color.getComputedTextLength() || bb.width) * 6);
+      [color, gray].forEach(function (t) {
+        t.style.setProperty("--wm-len", String(len));
+        t.style.strokeDasharray = String(len);
+        t.style.strokeDashoffset = String(len);
+      });
     };
     wmEls.forEach(buildWM);
     var wmT;
