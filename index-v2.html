@@ -171,6 +171,44 @@
     .js-motion .hl-in{transform:translateY(112%)}
     .js-motion .hero .meta,.js-motion .roll,.js-motion .hero .actions,.js-motion .hero .subx{opacity:0}
 
+    /* ===== 세 가지 제작 방식 ===== */
+    .ptypes{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,28px);margin-top:12px}
+    @media (max-width:860px){.ptypes{grid-template-columns:1fr}}
+    .ptype{background:#fff;border:1px solid var(--line);border-radius:14px;padding:30px 28px;display:flex;flex-direction:column;transition:border-color .3s,transform .3s var(--ease),box-shadow .3s}
+    .ptype:hover,.ptype:focus-within{border-color:var(--red);transform:translateY(-4px);box-shadow:0 26px 54px rgba(22,19,14,.12)}
+    .ptype .no{font-family:var(--mono);font-size:13px;color:var(--red);letter-spacing:.06em}
+    .ptype h3{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.02em;color:var(--ink);margin:10px 0 8px}
+    .ptype .who{font-size:14px;color:var(--ink-soft);line-height:1.55;min-height:3em;word-break:keep-all}
+    .ptype ul{list-style:none;margin:20px 0 0;padding:20px 0 0;border-top:1px solid var(--line);display:grid;gap:11px}
+    .ptype li{position:relative;padding-left:22px;font-size:14.5px;color:var(--ink-2);line-height:1.5;word-break:keep-all}
+    .ptype li::before{content:"";position:absolute;left:0;top:9px;width:10px;height:2px;background:var(--red)}
+
+    /* ===== 제작비 기준 ===== */
+    .costbasis{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,52px);align-items:start;margin-top:12px}
+    @media (max-width:820px){.costbasis{grid-template-columns:1fr;gap:28px}}
+    .cost-factors{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 26px}
+    @media (max-width:520px){.cost-factors{grid-template-columns:1fr}}
+    .cost-factors li{position:relative;padding-left:24px;font-size:15px;color:var(--ink-2);line-height:1.5;word-break:keep-all}
+    .cost-factors li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:2px;background:var(--red)}
+    .cost-prep{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;position:relative;overflow:hidden}
+    .cost-prep::after{content:"";position:absolute;right:16px;bottom:14px;width:80px;height:80px;opacity:.16;background:url("assets/icon-checklist-pen.svg") center/contain no-repeat}
+    .cost-prep h3{font-family:var(--display);font-weight:800;font-size:1.2rem;color:var(--ink);position:relative;z-index:1}
+    .cost-prep>p{font-size:13.5px;color:var(--ink-mut);margin-top:4px;position:relative;z-index:1}
+    .cost-prep ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:9px;position:relative;z-index:1}
+    .cost-prep li{position:relative;padding-left:22px;font-size:14.5px;color:var(--ink-soft)}
+    .cost-prep li::before{content:"✓";position:absolute;left:0;color:var(--red);font-weight:800;font-size:13px}
+
+    /* ===== 자료 부족 흐름 ===== */
+    .flow{display:flex;flex-wrap:wrap;gap:52px;margin-top:12px}
+    .flow-i{flex:1 1 180px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px 26px;position:relative}
+    .flow-i h3{font-family:var(--display);font-weight:800;font-size:1.2rem;color:var(--ink)}
+    .flow-i p{margin-top:6px;font-size:13.5px;color:var(--ink-soft);line-height:1.5}
+    .flow-i:not(:last-child)::after{content:"";position:absolute;right:-42px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:var(--red) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><line x1='5' y1='12' x2='18' y2='12'/><polyline points='12 6 18 12 12 18'/></svg>") center/17px no-repeat;box-shadow:0 5px 14px rgba(232,56,23,.3);z-index:2}
+    @media (max-width:720px){.flow{flex-direction:column;gap:44px}.flow-i:not(:last-child)::after{right:50%;top:auto;bottom:-38px;transform:translateX(50%) rotate(90deg)}}
+    .chips{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:9px}
+    .chips li{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:8px 15px;background:#fff}
+    .muted{margin-top:18px;font-size:13.5px;color:var(--ink-mut);line-height:1.6;max-width:64ch}
+
     @media (max-width:820px){
       .top nav a:not(.cta){display:none}
       .navtoggle{display:block}
@@ -291,6 +329,63 @@
           <div class="case-b"><span class="case-cat">APP · 서비스/플랫폼</span><h3 class="case-t">앱 서비스 구축</h3><p class="case-d">사용자 흐름과 운영까지 설계한 서비스 앱과 소개 웹.</p><div class="case-tags"><span>CONTENT</span><span>WEB</span><span>APP</span></div><a class="case-more" href="portfolio-detail.html">제작 사례 보기 →</a></div>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== 세 가지 제작 방식 ===== -->
+  <section class="sec" id="ptypes" style="background:var(--warm-white)">
+    <div class="wrap">
+      <div class="sec-head rv" style="margin-bottom:clamp(36px,5vw,56px)">
+        <span class="sec-tag">How we build</span>
+        <h2 class="sec-en">프로젝트 상황에 따라<br />필요한 제작 범위가 달라집니다<span class="dot">.</span></h2>
+        <p class="sec-ko">고정 상품이 아니라 프로젝트에 맞춰 범위를 정합니다. 아래 세 가지로 지금 우리 프로젝트가 어디에 가까운지 가늠해 보세요. 실제 범위·비용은 상담 후 안내드립니다.</p>
+      </div>
+      <div class="ptypes rv">
+        <article class="ptype" tabindex="0"><span class="no">01</span><h3>기본 구축형</h3><p class="who">이미 로고, 원고, 사진과 콘텐츠가 준비된 고객</p><ul><li>사이트 구조 정리</li><li>반응형 웹 디자인</li><li>HTML·개발</li><li>기본 관리자 또는 문의 기능</li><li>검색 수집 기본 설정</li></ul></article>
+        <article class="ptype" tabindex="0"><span class="no">02</span><h3>콘텐츠 기획형</h3><p class="who">홈페이지에 넣을 정보와 원고를 함께 정리해야 하는 고객</p><ul><li>업종과 고객 탐색 과정 분석</li><li>사이트맵과 콘텐츠 순서 설계</li><li>웹 원고 정리</li><li>서비스·FAQ·사례 콘텐츠 구성</li><li>촬영 필요 범위 검토</li><li>SEO·AEO·GEO 정보구조</li></ul></article>
+        <article class="ptype" tabindex="0"><span class="no">03</span><h3>브랜드 통합형</h3><p class="who">브랜드부터 콘텐츠와 다양한 홍보 매체를 함께 구축해야 하는 고객</p><ul><li>브랜드 방향과 핵심 메시지</li><li>로고와 비주얼 정리</li><li>기업·제품·공간 촬영</li><li>카탈로그와 편집디자인</li><li>홈페이지·쇼핑몰·앱</li><li>온·오프라인 브랜드 확장</li></ul></article>
+      </div>
+      <!-- TODO(내부 확인): 각 유형별 실제 가격/기간 정책 확정 전까지 고정 금액 표기 금지 -->
+      <div class="rv" style="margin-top:clamp(28px,4vw,44px)"><a class="btn btn-ink" href="inquiry.html?topic=build" data-ev="inquiry_start">내 프로젝트는 어떤 유형인지 상담하기</a></div>
+    </div>
+  </section>
+
+  <!-- ===== 제작비 결정 기준 ===== -->
+  <section class="sec" id="cost">
+    <div class="wrap">
+      <div class="sec-headrow rv">
+        <div class="sec-head">
+          <span class="sec-tag">Cost basis</span>
+          <h2 class="sec-en">제작비는 페이지 수만으로<br />결정되지 않습니다<span class="dot">.</span></h2>
+          <p class="sec-ko">무엇이 범위를 키우는지 먼저 투명하게 알려드립니다. 정확한 견적은 상담 후 안내드리며, 고정 금액을 임의로 제시하지 않습니다.</p>
+        </div>
+        <a class="allworks" href="plan.html#guide">비용·기간 기준 <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="costbasis rv">
+        <ul class="cost-factors">
+          <li>기획과 정보구조 설계 범위</li><li>웹 원고 작성과 콘텐츠 제작 범위</li><li>디자인이 필요한 고유 페이지 수</li><li>촬영과 이미지 제작 여부</li><li>다국어 페이지 여부</li><li>관리자 기능</li><li>예약·결제·회원 기능</li><li>쇼핑몰 상품 수와 기능</li><li>외부 API와 시스템 연동</li><li>앱 제작 여부</li><li>브랜딩과 카탈로그 동시 제작 여부</li><li>유지관리와 운영 범위</li>
+        </ul>
+        <div class="cost-prep"><h3>견적을 위해 준비하면 좋은 것</h3><p>많을수록 정확한 안내가 가능합니다.</p><ul><li>제작 목적</li><li>필요한 메뉴</li><li>참고 홈페이지</li><li>보유 자료</li><li>필요한 기능</li><li>희망 일정</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 자료가 부족해도 가능 ===== -->
+  <section class="sec" id="no-assets" style="background:var(--warm-white)">
+    <div class="wrap">
+      <div class="sec-head rv" style="margin-bottom:clamp(30px,4vw,48px)">
+        <span class="sec-tag">Start anyway</span>
+        <h2 class="sec-en">자료가 완벽하지 않아도<br />제작을 시작할 수 있습니다<span class="dot">.</span></h2>
+        <p class="sec-ko">회사소개 원고와 사진이 준비되지 않았거나 무엇을 넣어야 할지 모르는 경우에도, 보유자료를 검토해 필요한 콘텐츠와 제작 범위를 함께 정리합니다.</p>
+      </div>
+      <div class="flow rv">
+        <div class="flow-i"><h3>보유자료</h3><p>지금 가진 자료를 먼저 검토합니다.</p></div>
+        <div class="flow-i"><h3>콘텐츠</h3><p>필요한 원고·정보구조를 정리합니다.</p></div>
+        <div class="flow-i"><h3>촬영</h3><p>부족한 이미지의 촬영 범위를 검토합니다.</p></div>
+        <div class="flow-i"><h3>웹·앱</h3><p>정리된 콘텐츠로 제작·구현합니다.</p></div>
+      </div>
+      <ul class="chips rv"><li>기존 자료 분석</li><li>사이트맵 기획</li><li>웹 원고 정리</li><li>브랜드 메시지 정리</li><li>기업·제품·공간 촬영</li><li>카탈로그·브로슈어 제작</li><li>상세페이지</li><li>홈페이지와 앱 제작</li></ul>
+      <p class="muted rv">모든 원고와 자료를 대신 만들어 드린다는 의미는 아닙니다. 프로젝트 범위에 따라 필요한 작업을 함께 협의해 정합니다.</p>
     </div>
   </section>
 
