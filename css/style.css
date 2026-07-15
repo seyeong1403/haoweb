@@ -152,8 +152,8 @@ mark { background: none; color: inherit; }
    회색 밑선(항상) → 포인트 컬러 라인이 획을 따라 그려져 전체가 포인트 컬러로 → 다시 회색 라인이 덮으며 회색으로 → 반복 */
 .hero-watermark svg { display: block; overflow: visible; }
 .wm-base,
-.wm-gray { fill: none; stroke: rgba(190, 190, 200, .4); stroke-width: 1.5px; stroke-linejoin: round; stroke-linecap: round; } /* 기본/복귀 회색 라인(동일색·동일두께 → 루프 이음새 없음) */
-.wm-color { fill: none; stroke: color-mix(in srgb, var(--color-primary) 92%, transparent); stroke-width: 1.5px; stroke-linejoin: round; stroke-linecap: round; filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-primary) 45%, transparent)); } /* 그려지는 포인트 컬러 라인(선단 글로우) */
+.wm-gray { fill: none; stroke: rgba(190, 190, 200, .4); stroke-width: .9px; stroke-linejoin: round; stroke-linecap: round; } /* 기본/복귀 회색 라인(동일색·동일두께 → 루프 이음새 없음) */
+.wm-color { fill: none; stroke: color-mix(in srgb, var(--color-primary) 92%, transparent); stroke-width: .9px; stroke-linejoin: round; stroke-linecap: round; filter: drop-shadow(0 0 6px color-mix(in srgb, var(--color-primary) 45%, transparent)); } /* 그려지는 포인트 컬러 라인(선단 글로우) */
 .wm-color { animation: wmColor 16s linear infinite; }
 .wm-gray  { animation: wmGray 16s linear infinite; }
 @keyframes wmColor { /* 0→40% 포인트 컬러가 선을 따라 그려짐 → 유지 → 회색이 덮이는 동안(52~90%) 서서히 사라짐 */
