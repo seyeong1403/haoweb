@@ -459,16 +459,20 @@ mark { background: none; color: inherit; }
 /* 3분할 그리드 (필요한 이유 등, why-item 재사용) */
 .trio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 46px 44px; }
 
-/* 주요 기능 (라이트) */
-.feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px 24px; }
+/* 주요 기능 — 카드(박스) + 보더 빔. 다크/라이트 적응 */
+.feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.feature-item { position: relative; padding: 22px 20px 24px; border-radius: 16px;
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent); background: color-mix(in srgb, currentColor 4%, transparent);
+  transition: transform var(--dur-ui) var(--ease), border-color var(--dur-ui) var(--ease); color: inherit; }
+.feature-item:hover { transform: translateY(-3px); }
 .feature-item .ic { width: 26px; height: 26px; color: var(--color-primary); margin-bottom: 13px; }
 /* DB 아이콘(마스크로 브랜드 컬러 적용) */
 .feat-ic { display: block; width: 30px; height: 30px; background: var(--color-primary); margin-bottom: 13px;
   -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat;
   transition: transform var(--dur-mid) var(--ease-out); }
 .feature-item:hover .feat-ic { transform: translateY(-3px) scale(1.06); }
-.feature-item h3 { font-size: var(--fs-base); color: var(--on-light); margin-bottom: 5px; }
-.feature-item p { font-size: var(--fs-sm); color: var(--on-light-soft); }
+.feature-item h3 { font-size: var(--fs-base); font-weight: var(--fw-bold); color: inherit; margin-bottom: 5px; }
+.feature-item p { font-size: var(--fs-sm); color: color-mix(in srgb, currentColor 72%, transparent); }
 
 /* 관련 프로젝트 밴드 (boxless) */
 .band-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
@@ -1000,3 +1004,25 @@ body.gsap-on .saeg-item.on .saeg-list li:nth-child(4){transition-delay:.18s} bod
   body.gsap-on .saeg-item .saeg-list li { opacity: 1; transform: none; transition: none; }
 }
 @media (prefers-reduced-motion: reduce) { .saeg-rail span { transition: none; } body.gsap-on .saeg-item .saeg-list li { opacity: 1; transform: none; transition: none; } }
+
+/* ============================================================
+   보더 빔 — 박스 외곽선을 포인트 컬러가 천천히 도는 고급 모션 (박스형 컴포넌트에만)
+   ============================================================ */
+@property --beam-a { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.feature-item, .rel-link, .svc-panel { position: relative; }
+.feature-item::after, .rel-link::after, .svc-panel::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.4px; pointer-events: none; z-index: 2;
+  background: conic-gradient(from var(--beam-a),
+    transparent 0 68%,
+    color-mix(in srgb, var(--color-primary) 45%, transparent) 78%,
+    var(--color-primary) 88%,
+    color-mix(in srgb, var(--color-primary) 45%, transparent) 94%,
+    transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); mask-composite: exclude;
+  animation: beamRot 7s linear infinite;
+}
+.rel-link:hover::after, .feature-item:hover::after { animation-duration: 3.5s; } /* hover 시 조금 빠르게 */
+@keyframes beamRot { to { --beam-a: 360deg; } }
+/* @property 미지원 브라우저: 정적 상단 하이라이트(무해). reduced-motion: 빔 숨김 → 기본 보더만 */
+@media (prefers-reduced-motion: reduce) { .feature-item::after, .rel-link::after, .svc-panel::after { display: none; } }
