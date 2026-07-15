@@ -50,13 +50,13 @@
       video: "assets/hero-1.mp4",
       eyebrow: "AI SEARCH READY",
       title: "AI는 당신의 홈페이지를<br>이해하고 있습니까?",
-      lead: "고객이 쉽게 이해하고, 검색엔진과 AI도 정확하게 읽을 수 있도록 홈페이지의 정보와 콘텐츠 구조를 설계합니다."
+      lead: "하오웹은 업종 분석과 콘텐츠 기획부터 브랜딩·촬영·편집디자인·웹·앱까지 연결해, 고객이 이해하고 신뢰한 뒤 문의하는 홈페이지를 제작합니다. 검색엔진과 생성형 AI가 정보의 의미와 관계를 이해하기 쉬운 구조까지 제작 과정에 함께 반영합니다."
     },
     {
       video: "assets/hero-3.mp4",
       eyebrow: "BRAND INTEGRATION",
       title: "홈페이지를 넘어,<br>브랜드의 모든 접점을<br>연결합니다.",
-      lead: "브랜딩과 촬영, 카탈로그와 편집디자인부터 웹과 앱까지 한 팀이 하나의 기준으로 연결합니다."
+      lead: "브랜딩, 촬영, 카탈로그, 편집디자인, 홈페이지와 앱을 각각 따로 제작하지 않고 하나의 브랜드 기준으로 연결합니다."
     }
     // 예비(영상 추가 시 사용, 현재 미노출):
     // { video: "assets/hero-4.mp4", eyebrow: "ONE TEAM", title: "브랜딩부터 웹과 앱까지,<br>하나의 브랜드를 한 팀이 완성합니다.", lead: "" }
@@ -619,6 +619,31 @@
     if (target) { target.checked = true; }
     var current = radios.filter(function (r) { return r.checked; })[0];
     showPanel(current ? current.value : (panels[0].getAttribute("data-inq-panel")));
+  })();
+
+  /* ---------- 3k) 제작 원칙 — 스크롤 시 우측 스티키 이미지 전환 ---------- */
+  (function initWhyScroll() {
+    var root = document.querySelector("[data-why-scroll]");
+    if (!root) return;
+    var items = [].slice.call(root.querySelectorAll(".why-item"));
+    var figs = [].slice.call(root.querySelectorAll(".why-fig"));
+    if (!items.length || !figs.length) return;
+    root.classList.add("is-live");
+    var setActive = function (i) {
+      items.forEach(function (it, k) { it.classList.toggle("is-current", k === i); });
+      figs.forEach(function (f, k) { f.classList.toggle("is-active", k === i); });
+    };
+    // 화면 세로 중앙 밴드를 지나는 항목을 활성화
+    var io = new IntersectionObserver(function (ents) {
+      ents.forEach(function (ent) {
+        if (ent.isIntersecting) {
+          var i = parseInt(ent.target.getAttribute("data-i"), 10) || 0;
+          setActive(i);
+        }
+      });
+    }, { rootMargin: "-48% 0px -48% 0px", threshold: 0 });
+    items.forEach(function (it) { io.observe(it); });
+    setActive(0);
   })();
 
   /* ---------- 4) 모션 ---------- */
