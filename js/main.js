@@ -97,9 +97,8 @@
         // 3) 영상 전환 중반에 새 문구 교체 후 제목→설명→CTA 순으로 등장
         setTimeout(function () { setCopy(ci); copyIn(); }, 560);
       };
-      heroLayers.forEach(function (l) {
-        l.addEventListener("ended", function () { if (heroLayers[front] === l) advance(); });
-      });
+      // 영상 길이를 기다리지 않고 3.8초마다 다음 영상+카피로 전환(전환 자체는 1.2s 크로스페이드)
+      setInterval(advance, 3800);
     }
   }
 
