@@ -972,3 +972,36 @@ body.gsap-on .jrny li.on:not(:last-child)::after { background: var(--color-prima
 .prose p b { color: inherit; font-weight: 700; }
 .lead-intro { max-width: 80ch; font-size: clamp(1.05rem, 1.6vw, 1.28rem); line-height: 1.75; color: color-mix(in srgb, currentColor 82%, transparent); word-break: keep-all; }
 .lead-intro b { color: inherit; font-weight: 700; }
+
+/* ============================================================
+   SEARCH & AI READY (SEO·AEO·GEO 흐름) — 세로 타임라인, 스크롤 순차 활성화. 다크/라이트 적응
+   ============================================================ */
+.saeg { position: relative; margin-top: clamp(30px, 4vw, 50px); padding-left: 82px; list-style: none; color: inherit; }
+.saeg-rail { position: absolute; left: 27px; top: 34px; bottom: 34px; width: 2px; background: color-mix(in srgb, currentColor 15%, transparent); }
+.saeg-rail span { position: absolute; left: 0; top: 0; width: 100%; height: 0; background: var(--color-primary); transition: height var(--dur-step) var(--ease); } /* 진행선(SEO→AEO→GEO) */
+.saeg-item { position: relative; padding: clamp(24px, 3vw, 40px) 0; }
+.saeg-item + .saeg-item { border-top: 1px solid color-mix(in srgb, currentColor 13%, transparent); }
+.saeg-no { position: absolute; left: -82px; top: clamp(24px, 3vw, 40px); width: 54px; height: 54px; display: grid; place-items: center; border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, currentColor 26%, transparent); background: transparent; font-family: var(--font-label); font-weight: 700; font-size: var(--fs-base); color: inherit;
+  transition: background var(--dur-content) var(--ease), border-color var(--dur-content) var(--ease), color var(--dur-content) var(--ease); }
+.saeg-item.on .saeg-no { border-color: var(--color-primary); background: var(--color-primary); color: #fff; } /* 현재 단계 채움 */
+.saeg-k { display: flex; align-items: baseline; gap: 9px; font-family: var(--font-label); margin-bottom: 10px; }
+.saeg-k b { font-size: var(--fs-sm); font-weight: 700; letter-spacing: .12em; color: var(--color-primary); }
+.saeg-k i { font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: .16em; color: color-mix(in srgb, currentColor 46%, transparent); }
+.saeg-title { display: block; font-size: clamp(1.15rem, 1.9vw, 1.5rem); font-weight: var(--fw-bold); color: inherit; letter-spacing: -.02em; margin-bottom: 15px; word-break: keep-all; }
+.saeg-list { display: grid; gap: 9px; padding: 0; margin: 0; list-style: none; max-width: 62ch; }
+.saeg-list li { position: relative; padding-left: 17px; font-size: var(--fs-base); line-height: 1.62; color: color-mix(in srgb, currentColor 76%, transparent); word-break: keep-all; }
+.saeg-list li::before { content: ""; position: absolute; left: 0; top: .6em; width: 5px; height: 5px; border-radius: 50%; background: var(--color-primary); }
+/* JS 동작 시 리스트 순차 등장(미동작·reduced 전체 표시) */
+body.gsap-on .saeg-item .saeg-list li { opacity: 0; transform: translateY(8px); transition: opacity var(--dur-content) var(--ease), transform var(--dur-content) var(--ease); }
+body.gsap-on .saeg-item.on .saeg-list li { opacity: 1; transform: none; }
+body.gsap-on .saeg-item.on .saeg-list li:nth-child(2){transition-delay:.06s} body.gsap-on .saeg-item.on .saeg-list li:nth-child(3){transition-delay:.12s}
+body.gsap-on .saeg-item.on .saeg-list li:nth-child(4){transition-delay:.18s} body.gsap-on .saeg-item.on .saeg-list li:nth-child(5){transition-delay:.24s}
+.saeg-cta { margin-top: clamp(28px, 3.5vw, 44px); }
+@media (max-width: 560px) {
+  .saeg { padding-left: 56px; }
+  .saeg-rail { left: 17px; }
+  .saeg-no { left: -56px; width: 40px; height: 40px; font-size: var(--fs-sm); }
+  body.gsap-on .saeg-item .saeg-list li { opacity: 1; transform: none; transition: none; }
+}
+@media (prefers-reduced-motion: reduce) { .saeg-rail span { transition: none; } body.gsap-on .saeg-item .saeg-list li { opacity: 1; transform: none; transition: none; } }

@@ -393,6 +393,19 @@
       });
     }
 
+    // SEARCH & AI (.saeg) — SEO→AEO→GEO 순차 활성화(누적) + 진행선. main·search-ai 공통
+    var saeg = document.querySelector(".saeg");
+    if (saeg && "IntersectionObserver" in window) {
+      var saegItems = [].slice.call(saeg.querySelectorAll(".saeg-item"));
+      var saegIO = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) e.target.classList.add("on"); }); }, { threshold: 0.4, rootMargin: "0px 0px -12% 0px" });
+      saegItems.forEach(function (it) { saegIO.observe(it); });
+      var saegFill = saeg.querySelector(".saeg-rail span");
+      if (saegFill) {
+        ScrollTrigger.create({ trigger: saeg, start: "top 62%", end: "bottom 55%", scrub: true, onUpdate: function (self) { saegFill.style.height = (self.progress * 100).toFixed(1) + "%"; } });
+      }
+      new IntersectionObserver(function (es) { es.forEach(function (e) { if (!e.isIntersecting) saegItems.forEach(function (it) { it.classList.remove("on"); }); }); }, { threshold: 0 }).observe(saeg);
+    }
+
     // 브랜드 통합 4단계 — 스크롤에 따라 현재 단계 활성화 + 연결선 진행
     var biSteps = gsap.utils.toArray(".bi-step");
     if (biSteps.length) {
