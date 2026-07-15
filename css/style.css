@@ -1370,6 +1370,10 @@ body.gsap-on .diag-checklist li.on::before, .diag-checklist li.on::before { back
 .pf-links a { font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--on-light); display: inline-flex; align-items: center; gap: 5px; }
 .pf-links a.pf-more { color: var(--color-primary); }
 .pf-links a:hover { color: var(--color-primary); }
+/* 인터뷰 카드용 — 인용문 '위치'를 보여주는 주제 라인(가짜 후기 아님) */
+.pf-quote { font-size: var(--fs-base); line-height: 1.5; color: var(--on-light); font-weight: var(--fw-medium); position: relative; padding-left: 15px; word-break: keep-all; }
+.pf-quote::before { content: ""; position: absolute; left: 0; top: 3px; bottom: 3px; width: 3px; border-radius: 2px; background: var(--color-primary); }
+.pf-cat.is-intv { color: var(--on-light-muted); }
 
 /* ---------- 문의 성공 화면 (운영용 · 백엔드 연결 후 노출) ---------- */
 .success-card { background: #fff; color: var(--on-light); border: 1px solid var(--light-line); border-radius: var(--r-lg); padding: clamp(28px, 4vw, 52px); box-shadow: 0 24px 60px rgba(12,12,16,.10); position: relative; overflow: hidden; }
