@@ -1134,35 +1134,48 @@ body.gsap-on .saeg-item.on .saeg-list li:nth-child(4){transition-delay:.18s} bod
 @media (prefers-reduced-motion: reduce) { .qc-fab.is-open .qc-menu { animation: none; } .qc-fab.qc-hide { transition: none; } }
 
 /* ---------- 폼 공통 ---------- */
-.form { display: grid; gap: 20px; }
-.field { display: flex; flex-direction: column; gap: 8px; }
+.form { display: grid; gap: 22px; }
+.field { display: flex; flex-direction: column; gap: 9px; }
 .field > label, .field-legend { font-size: var(--fs-base); font-weight: var(--fw-semibold); color: inherit; letter-spacing: -.01em; }
 .field .req { color: var(--color-primary); margin-left: 3px; }
 .field .hint { font-size: var(--fs-sm); color: var(--on-light-muted); font-weight: var(--fw-regular); }
 .field input[type="text"], .field input[type="tel"], .field input[type="email"], .field input[type="url"], .field select, .field textarea {
-  width: 100%; padding: 13px 15px; font: inherit; font-size: var(--fs-base); color: var(--on-light); background: #fff; border: 1px solid var(--light-line); border-radius: var(--r-md); transition: border-color var(--dur-hover), box-shadow var(--dur-hover); }
-.field textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+  width: 100%; padding: 14px 16px; font: inherit; font-size: var(--fs-base); color: var(--on-light); background: #fff; border: 1px solid var(--light-line-2); border-radius: var(--r-md); transition: border-color var(--dur-hover), box-shadow var(--dur-hover); }
+.field input::placeholder, .field textarea::placeholder { color: var(--on-light-muted); }
+.field textarea { min-height: 128px; resize: vertical; line-height: 1.6; }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--on-light-muted); }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-primary-wash); }
+.field select { appearance: none; -webkit-appearance: none; padding-right: 42px; cursor: pointer;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2374747E' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat; background-position: right 15px center; }
 .field-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 @media (max-width: 620px) { .field-2 { grid-template-columns: 1fr; } }
+/* 선택형 그룹 — 기본 fieldset 테두리 제거 후 부드러운 패널로 묶어 스캔 용이하게 */
+.form fieldset.field { border: 1px solid var(--light-line); margin: 0; min-width: 0; padding: 18px 20px 20px; background: var(--paper-bg); border-radius: var(--r-md); gap: 14px; }
+.form fieldset.field > .field-legend { display: inline-flex; align-items: center; gap: 9px; }
+.form fieldset.field > .field-legend::before { content: ""; width: 16px; height: 3px; border-radius: 2px; background: var(--color-primary); flex: none; }
 /* 선택형(체크/라디오) 칩 그리드 */
 .choice-grid { display: flex; flex-wrap: wrap; gap: 10px; }
 .choice { position: relative; }
 .choice input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
-.choice span { display: inline-flex; align-items: center; padding: 10px 16px; border: 1px solid var(--light-line); border-radius: var(--r-pill); font-size: var(--fs-sm); color: var(--on-light-soft); background: #fff; cursor: pointer; transition: border-color var(--dur-hover), background var(--dur-hover), color var(--dur-hover); }
+.choice span { display: inline-flex; align-items: center; padding: 11px 17px; border: 1px solid var(--light-line-2); border-radius: var(--r-pill); font-size: var(--fs-sm); color: var(--on-light-soft); background: #fff; cursor: pointer; transition: border-color var(--dur-hover), background var(--dur-hover), color var(--dur-hover), transform var(--dur-hover); }
 .choice input:hover + span { border-color: var(--color-primary-line); }
-.choice input:checked + span { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+.choice input:checked + span { background: var(--color-primary); border-color: var(--color-primary); color: #fff; transform: translateY(-1px); }
 .choice input:focus-visible + span { box-shadow: 0 0 0 3px var(--color-primary-wash); }
-/* 개인정보 동의 */
-.consent { display: flex; gap: 10px; align-items: flex-start; font-size: var(--fs-sm); color: var(--on-light-soft); }
-.consent input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--color-primary); flex: none; }
+/* 개인정보 동의 — 패널 */
+.consent { display: flex; gap: 11px; align-items: center; font-size: var(--fs-sm); color: var(--on-light-soft); padding: 15px 18px; background: var(--paper-bg); border: 1px solid var(--light-line); border-radius: var(--r-md); }
+.consent input { width: 19px; height: 19px; accent-color: var(--color-primary); flex: none; }
 .consent a { color: var(--color-primary); text-decoration: underline; }
+/* 제출 영역 */
+.form .cta-row { margin-top: 2px; }
+@media (max-width: 560px) { .form .cta-row .btn { width: 100%; } }
 /* 전송 안내(백엔드 미연결) */
-.form-notice { margin-top: 4px; padding: 16px 18px; border: 1px solid var(--color-primary-line); border-left-width: 3px; border-radius: var(--r-md); background: var(--color-primary-wash); color: var(--on-light); font-size: var(--fs-sm); line-height: 1.6; }
+.form-notice { margin-top: 2px; padding: 16px 18px; border: 1px solid var(--color-primary-line); border-left-width: 3px; border-radius: var(--r-md); background: var(--color-primary-wash); color: var(--on-light); font-size: var(--fs-sm); line-height: 1.6; }
 .form-notice[hidden] { display: none; }
 .form-notice b { font-weight: var(--fw-semibold); }
-/* 다크 섹션 위 폼도 카드처럼 흰 배경으로 감싸 가독 확보 */
-.form-card { background: #fff; color: var(--on-light); border: 1px solid var(--light-line); border-radius: var(--r-lg); padding: clamp(22px, 3.5vw, 40px); }
+/* 폼 카드 — 흰 배경 + 포인트 상단 바 + 부드러운 그림자 */
+.form-card { background: #fff; color: var(--on-light); border: 1px solid var(--light-line); border-radius: var(--r-lg); padding: clamp(26px, 4vw, 46px); position: relative; overflow: hidden; box-shadow: 0 24px 60px rgba(12, 12, 16, .10); }
+.form-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover)); }
 .wrap.wrap-narrow { max-width: 880px; }
 /* 라이트/페이퍼 섹션의 btn-ghost는 밝은 글자라 안 보임 → 짙은 글자·라인으로 반전 */
 .light .btn-ghost, .paper .btn-ghost { color: var(--on-light); border-color: var(--light-line-2); }
