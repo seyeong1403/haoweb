@@ -459,27 +459,35 @@
       }
     }
 
-    // 제작 프로세스 7단계 — 스크롤에 따라 좌측 대형 표시 전환 + 진행선
-    var procItems = gsap.utils.toArray(".proc-item");
+    // 제작 프로세스 7단계 — 스크롤에 따라 좌측 대형 표시 전환 + hover 시 해당 단계 미리보기 (IO 스크롤스파이)
+    var procItems = [].slice.call(document.querySelectorAll(".proc-item"));
     if (procItems.length) {
       var pCurNo = document.querySelector(".proc-cur-no");
       var pCurTitle = document.querySelector(".proc-cur-title");
       var pCount = document.querySelector(".proc-count b");
       var pFill = document.querySelector(".proc-track-fill");
-      var total = procItems.length;
+      var pTotal = procItems.length;
+      var procCur = 0;
       var setProc = function (i) {
+        if (i < 0 || i >= pTotal) return;
         procItems.forEach(function (it, idx) { it.classList.toggle("on", idx === i); });
         var el = procItems[i];
         if (pCurNo) pCurNo.textContent = el.getAttribute("data-no");
         if (pCurTitle) pCurTitle.textContent = el.getAttribute("data-title");
         if (pCount) pCount.textContent = el.getAttribute("data-no");
-        if (pFill) pFill.style.width = (((i + 1) / total) * 100).toFixed(1) + "%";
+        if (pFill) pFill.style.width = (((i + 1) / pTotal) * 100).toFixed(1) + "%";
       };
+      if ("IntersectionObserver" in window) {
+        // 화면 중앙 얇은 밴드에 들어온 단계를 현재로(순차 전환)
+        var procIO = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) { procCur = procItems.indexOf(e.target); setProc(procCur); } });
+        }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
+        procItems.forEach(function (it) { procIO.observe(it); });
+      }
+      // hover: 오른쪽 단계에 커서 → 왼쪽 큰 숫자·제목이 그 단계로. 떠나면 스크롤 현재로 복귀
       procItems.forEach(function (it, i) {
-        ScrollTrigger.create({
-          trigger: it, start: "top 60%", end: "bottom 40%",
-          onToggle: function (self) { if (self.isActive) setProc(i); }
-        });
+        it.addEventListener("mouseenter", function () { setProc(i); });
+        it.addEventListener("mouseleave", function () { setProc(procCur); });
       });
     }
 
