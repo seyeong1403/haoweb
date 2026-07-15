@@ -672,16 +672,22 @@ mark { background: none; color: inherit; }
 .port-scope-legend em { font-style: normal; font-family: var(--font-label); font-size: var(--fs-xs); font-weight: 600; letter-spacing: .08em; color: var(--text-soft); border: 1px solid var(--border); border-radius: 999px; padding: 5px 11px; }
 
 /* ---- 고객 인터뷰: 자료 확보 전 축소 안내 (라이트) ---- */
-.intv-ph { max-width: 760px; }
-.intv-ph-lead { font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: var(--fw-semibold); line-height: 1.5; color: var(--on-light); letter-spacing: -.01em; word-break: keep-all; }
+/* 인터뷰 플레이스홀더 — '등록 예정' 흰 카드 + 담길 내용 흐름(문제→해결→결과) */
+.intv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; list-style: none; padding: 0; margin-top: 10px; }
+.intv-ph { position: relative; display: flex; flex-direction: column; max-width: 860px; padding: 28px 28px 26px; border: 1px solid var(--light-line); border-radius: 18px; background: #fff; color: var(--on-light); }
+.intv-ph::before { content: "등록 예정"; align-self: flex-start; font-family: var(--font-label); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .08em;
+  color: var(--color-primary); background: var(--color-primary-wash); border: 1px solid color-mix(in srgb, var(--color-primary) 28%, transparent); border-radius: 999px; padding: 5px 12px; margin-bottom: 18px; }
+.intv-ph-lead { font-size: clamp(1.05rem, 1.7vw, 1.3rem); font-weight: var(--fw-semibold); line-height: 1.5; color: var(--on-light); letter-spacing: -.01em; word-break: keep-all; }
 .intv-ph-lead b { color: var(--color-primary); }
-.intv-need { margin: 24px 0 26px; padding-top: 22px; border-top: 1px solid var(--light-line); }
-.intv-need-k { display: block; font-family: var(--font-label); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--on-light-muted); margin-bottom: 12px; }
-.intv-need ul { display: flex; flex-wrap: wrap; gap: 8px 10px; }
-.intv-need li { font-size: var(--fs-sm); color: var(--on-light-soft); border: 1px solid var(--light-line); border-radius: 999px; padding: 7px 14px; }
-.intv-more { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-label); font-size: var(--fs-base); font-weight: 600; color: var(--color-primary); }
+.intv-need { margin: 20px 0 24px; padding-top: 20px; border-top: 1px solid var(--light-line); }
+.intv-need-k { display: block; font-family: var(--font-label); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--on-light-muted); margin-bottom: 13px; }
+.intv-need ul { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 6px; list-style: none; padding: 0; margin: 0; }
+.intv-need li { font-size: var(--fs-sm); font-weight: 600; color: var(--on-light); }
+.intv-need li:not(:last-child)::after { content: "→"; color: var(--color-primary); font-weight: 700; margin-left: 6px; }
+.intv-more { display: inline-flex; align-items: center; gap: 9px; margin-top: auto; font-family: var(--font-label); font-size: var(--fs-base); font-weight: 600; color: var(--color-primary); }
 .intv-more i { font-style: normal; transition: transform var(--dur-mid) var(--ease-out); }
 .intv-more:hover i { transform: translateX(6px); }
+@media (max-width: 720px) { .intv-grid { grid-template-columns: 1fr; } }
 
 @media (max-width: 900px) {
   .port-ph-grid { grid-template-columns: 1fr; }
