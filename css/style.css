@@ -199,6 +199,12 @@ mark { background: none; color: inherit; }
 .step:last-child::after { display: none; }
 .step h3 { font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--text); letter-spacing: -.015em; margin-bottom: 7px; word-break: keep-all; }
 .step p { font-size: var(--fs-sm); line-height: 1.55; color: var(--text-soft); word-break: keep-all; }
+/* 라이트/페이퍼 섹션에서 밝은 배경에 맞춰 색 반전 — 흰 제목/연결선 안 보이는 문제 수정 */
+.light .step h3, .paper .step h3 { color: var(--on-light); }
+.light .step p, .paper .step p { color: var(--on-light-soft); }
+.light .step::after, .paper .step::after,
+.light .steps::before, .paper .steps::before { background: var(--light-line); }
+.light .step + .step, .paper .step + .step { border-top-color: var(--light-line); }
 
 @media (max-width: 1024px) {
   .steps { grid-template-columns: repeat(4, 1fr); gap: 30px 20px; }
@@ -404,7 +410,8 @@ mark { background: none; color: inherit; }
 .gov-block h4 { font-size: var(--fs-lg); margin-bottom: 10px; color: var(--on-light); }
 .gov-block p { color: var(--on-light-soft); font-size: var(--fs-base); }
 .gov-steps { display: flex; flex-direction: column; gap: 10px; counter-reset: g; }
-.gov-steps li { position: relative; padding-left: 32px; color: var(--on-light-soft); font-size: var(--fs-base); }
+.gov-steps li { position: relative; padding-left: 32px; color: var(--text-soft); font-size: var(--fs-base); } /* 다크 섹션 기본 */
+.light .gov-steps li, .paper .gov-steps li { color: var(--on-light-soft); } /* 라이트/페이퍼 섹션 적응 */
 .gov-steps li::before { counter-increment: g; content: counter(g); position: absolute; left: 0; top: -1px; width: 21px; height: 21px; border-radius: 50%; background: var(--color-primary); color: #fff; font-family: var(--font-label); font-size: .72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
 
 /* 칼럼 카테고리 필터 */
@@ -677,6 +684,15 @@ mark { background: none; color: inherit; }
 .port-ph-meta h3 { font-size: var(--fs-lg); color: var(--text); }
 .port-ph-fields { font-family: var(--font-label); font-size: var(--fs-xs); color: var(--text-muted); letter-spacing: .02em; }
 .port-ph-note { margin-top: 30px; text-align: center; color: var(--text-muted); font-size: var(--fs-sm); }
+/* 라이트 섹션(.reviews.light 등)에서 밝은 배경에 맞춰 색 반전 — 흰 글자/흰 선 안 보이는 문제 수정 */
+.light .port-ph { border-color: var(--light-line); background: var(--light-card); }
+.light .port-ph-media { background: repeating-linear-gradient(45deg, rgba(12,12,16,.05) 0 11px, transparent 11px 22px); }
+.light .port-ph-tag { color: var(--on-light-muted); border-color: var(--light-line); }
+.light .port-ph-meta h3 { color: var(--on-light); }
+.light .port-ph-fields { color: var(--on-light-muted); }
+.light .port-ph-note { color: var(--on-light-muted); }
+.light .port-ph:hover { border-color: var(--color-primary-line); background: rgba(232, 56, 23, .04); }
+.light .port-ph:hover .port-ph-tag { color: var(--color-primary); border-color: var(--color-primary-line); }
 
 /* ---- 포트폴리오: 자료 확보 전 축소 슬롯 3개 (다크) ---- */
 .pf-tag { font-family: var(--font-label); font-size: var(--fs-sm); font-weight: 600; letter-spacing: .03em;
@@ -688,6 +704,9 @@ mark { background: none; color: inherit; }
 .port-scope-legend { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .port-scope-legend span { font-size: var(--fs-sm); color: var(--text-muted); margin-right: 4px; }
 .port-scope-legend em { font-style: normal; font-family: var(--font-label); font-size: var(--fs-xs); font-weight: 600; letter-spacing: .08em; color: var(--text-soft); border: 1px solid var(--border); border-radius: 999px; padding: 5px 11px; }
+/* 라이트 섹션에서 범례 태그 대비 보정(회색 글자·안 보이는 선 → 짙은 회색·라이트 라인) */
+.light .port-scope-legend span { color: var(--on-light-muted); }
+.light .port-scope-legend em { color: var(--on-light-soft); border-color: var(--light-line); }
 
 /* ---- 고객 인터뷰: 자료 확보 전 축소 안내 (라이트) ---- */
 /* 인터뷰 플레이스홀더 — '등록 예정' 흰 카드 + 담길 내용 흐름(문제→해결→결과) */
@@ -719,12 +738,15 @@ mark { background: none; color: inherit; }
    ============================================================ */
 .spec-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px 30px; }
 .spec { position: relative; padding-top: 22px; }
-.spec::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: var(--light-line); }
+.spec::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: var(--border); }
+.light .spec::before, .paper .spec::before { background: var(--light-line); }
 .spec::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--color-primary); transform: scaleX(0); transform-origin: left; transition: transform var(--dur-mid) var(--ease-out); }
 .spec:hover::after { transform: scaleX(1); }
 .spec-k { font-family: var(--font-label); font-size: var(--fs-sm); font-weight: 700; color: var(--color-primary); letter-spacing: .04em; }
-.spec h3 { font-size: var(--fs-lg); color: var(--on-light); margin: 12px 0 8px; letter-spacing: -.01em; }
-.spec p { font-size: var(--fs-sm); color: var(--on-light-soft); line-height: 1.6; }
+.spec h3 { font-size: var(--fs-lg); color: var(--text); margin: 12px 0 8px; letter-spacing: -.01em; }
+.spec p { font-size: var(--fs-sm); color: var(--text-soft); line-height: 1.6; }
+.light .spec h3, .paper .spec h3 { color: var(--on-light); }
+.light .spec p, .paper .spec p { color: var(--on-light-soft); }
 
 @media (max-width: 900px) { .spec-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .spec-grid { grid-template-columns: 1fr; } }
