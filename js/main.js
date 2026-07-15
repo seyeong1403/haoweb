@@ -332,6 +332,7 @@
     if (typeof window.haowebTrack === "function") { try { window.haowebTrack(ev, data || {}); } catch (e2) {} }
   }
   window.haowebEmit = track; // 외부에서도 호출 가능
+  if (/portfolio-detail\.html/i.test(location.pathname)) track("portfolio_detail_view", {}); // 페이지뷰 훅
   // data-ev 속성이 있는 요소 클릭 → 자동 트래킹
   document.addEventListener("click", function (e) {
     var t = e.target.closest("a[data-ev], button[data-ev]"); // 폼(submit는 별도 처리)은 제외해 중복 방지
