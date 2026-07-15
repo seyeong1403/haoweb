@@ -1277,12 +1277,21 @@ body.gsap-on .diag-checklist li.on::before, .diag-checklist li.on::before { back
 .ptype-tag { margin-top: 18px; font-size: var(--fs-xs); font-family: var(--font-label); letter-spacing: .04em; color: var(--on-light-muted); text-transform: uppercase; }
 
 /* ---------- 자료가 부족해도 가능 (흐름) ---------- */
-.noassets-flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 12px; margin-top: clamp(26px, 4vw, 40px); }
-.na-stage { flex: 1 1 180px; background: #fff; border: 1px solid var(--light-line); border-radius: var(--r-md); padding: 20px 22px; position: relative; }
+.noassets-flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 48px; margin-top: clamp(26px, 4vw, 40px); }
+.na-stage { flex: 1 1 180px; background: #fff; border: 1px solid var(--light-line); border-radius: var(--r-lg); padding: 24px 26px; position: relative; }
 .na-stage h3 { font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--on-light); letter-spacing: -.01em; }
 .na-stage p { margin-top: 6px; font-size: var(--fs-sm); color: var(--on-light-soft); line-height: 1.55; word-break: keep-all; }
-.na-stage:not(:last-child)::after { content: "→"; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); z-index: 1; color: var(--color-primary); font-weight: 700; }
-@media (max-width: 720px) { .noassets-flow { flex-direction: column; } .na-stage:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -13px; transform: translateX(50%); } }
+/* 커넥터: 포인트 컬러 원 + 흰색 화살표 (카드 사이 간격 중앙) */
+.na-stage:not(:last-child)::after {
+  content: ""; position: absolute; right: -39px; top: 50%; transform: translateY(-50%);
+  width: 32px; height: 32px; border-radius: 50%; background-color: var(--color-primary);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><line x1='5' y1='12' x2='18' y2='12'/><polyline points='12 6 18 12 12 18'/></svg>");
+  background-repeat: no-repeat; background-position: center; background-size: 17px;
+  box-shadow: 0 5px 14px rgba(232, 56, 23, .32); z-index: 2; }
+@media (max-width: 720px) {
+  .noassets-flow { flex-direction: column; gap: 44px; }
+  .na-stage:not(:last-child)::after { right: 50%; top: auto; bottom: -38px; transform: translateX(50%) rotate(90deg); }
+}
 .na-links { margin: 22px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
 .na-links li { font-size: var(--fs-sm); color: var(--on-light-soft); padding: 8px 14px; border: 1px solid var(--light-line); border-radius: var(--r-pill); background: #fff; }
 .na-note { margin-top: 18px; font-size: var(--fs-sm); color: var(--on-light-muted); line-height: 1.6; }
