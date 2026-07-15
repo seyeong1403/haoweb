@@ -52,3 +52,24 @@
 ---
 ### 미확인/한계 항목 (후속 필요)
 - Blurr·Digitalists의 정확한 hover 이징·스크롤 스크럽 타이밍, 반응형 브레이크포인트별 정확한 크기 — WebFetch로는 JS 렌더/모션 완전 확인 불가. 필요 시 실제 브라우저에서 재확인.
+
+---
+## 2026-07-15 — 모션 시스템 통일 패스 (라이브 재확인)
+
+### 하오커뮤니케이션 웹구축센터 — https://leegunhee010.github.io/haod-new/web/ (재확인 2026-07-15)
+- **엔진**: 외부 모션 라이브러리 없음(GSAP/Lenis 미사용). 순수 CSS transition + IntersectionObserver/scroll.
+- **시그니처 easing**: `cubic-bezier(.16, 1, .3, 1)` (`--ease`) — 부드러운 감속. 브리프의 "cubic-bezier 감속"과 일치.
+- **duration 실측**: 짧은 UI/hover `.3s` · 메뉴 열림 `.25s` · 큰 텍스트/이동 transform **`.85s`** · 진행바 `.1s linear` · 헤더 배경 `.4s`.
+- **가져온 것(속도·연결 방식만)**: 감속 이징, 스크롤 단계 전환 `.85s` 리듬, hover `.3s`, 메뉴 `.25s`.
+- **안 가져온 것**: 레이아웃·문구·keyframes(heroZoom/curtain/noPop 등 시각효과는 복제 안 함).
+
+### 하오웹에 정의한 모션 토큰 (css/tokens.css)
+- `--ease: cubic-bezier(.16,1,.3,1)` / `--dur-hover .22s` / `--dur-ui .3s` / `--dur-content .64s` / `--dur-step .85s` / `--motion-rise 22px` / `--motion-scale 1.03`.
+
+### 적용 내역(이번 패스)
+- **차별점 3축(.axes3)**: 섹션 진입 시 상단 레드라인 좌→우 그리기(`--dur-step`) + 01→02→03 순차 활성화(IO, 300ms 간격) + 흐름 아이템 좌→우 순차 리빌 + 설명은 흐름 완성 후 등장 + 03 순환 힌트(↻). `body.gsap-on` 게이트로 JS 미동작 시 전체 표시.
+- **방문자 여정(.jrny, 8개 페이지 공통)**: 진입 시 01→N 순차로 단계 밝아짐 + 지나온 연결선 레드 진행(IO 130ms 간격). reduced-motion·no-JS 전체 표시.
+- **적용 파일**: `css/tokens.css`, `css/style.css`(.axes3/.axis3/.jrny), `js/main.js`.
+
+### 이번 세션 검증 한계
+- 프리뷰 렌더러가 GSAP rAF·CSS transition·IO를 얼려(frame 0) **모션 재생을 화면으로 확인 불가**. 클래스·목표값·트리거 등록은 DOM 측정으로 검증. 실제 배포본에서 재생 확인 필요.

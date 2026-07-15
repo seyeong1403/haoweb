@@ -716,18 +716,34 @@ body.gsap-on .port-ph { transition: border-color var(--dur-mid) var(--ease-out),
 .bi-grid { display: grid; grid-template-columns: minmax(0, .66fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 90px); align-items: start; }
 .bi-head { position: sticky; top: 116px; }
 .bi-title { font-size: clamp(1.8rem, 3.6vw, 3rem); font-weight: var(--fw-black); line-height: 1.2; letter-spacing: -.03em; color: var(--on-light); word-break: keep-all; margin: 16px 0 30px; }
-/* 핵심 3축 — 큰 번호 + 라벨 + 흐름(연결선) + 짧은 설명 (동일 카드 아님, 스크롤 활성화) */
-.axes3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 4vw, 54px); margin: clamp(30px, 4vw, 52px) 0 clamp(40px, 5vw, 68px); }
-.axis3 { position: relative; padding-top: 18px; border-top: 2px solid var(--light-line); transition: border-color var(--dur-mid) var(--ease-out); }
-.axis3.on { border-top-color: var(--color-primary); }
-.ax-no { display: block; font-family: var(--font-label); font-size: clamp(2.3rem, 3.4vw, 3.2rem); font-weight: var(--fw-black); line-height: 1; letter-spacing: -.02em; color: var(--on-light-muted); transition: color var(--dur-mid) var(--ease-out); }
+/* 핵심 3축 — 상단 진행 레드라인 + 01→02→03 순차 활성화(관계 유지). 다크/라이트 적응 */
+.axes3 { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(36px, 6vw, 84px); margin: clamp(34px, 4.5vw, 58px) 0 clamp(40px, 5vw, 68px); padding-top: 26px; color: inherit; }
+.axes3::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: color-mix(in srgb, currentColor 15%, transparent); } /* 회색 베이스 라인 */
+.axes3::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--color-primary); transform: scaleX(0); transform-origin: left; transition: transform var(--dur-step) var(--ease); } /* 진행 레드라인(좌→우) */
+.axes3.drawn::after { transform: scaleX(1); }
+.axis3 { position: relative; }
+.ax-no { display: block; font-family: var(--font-label); font-size: clamp(2.6rem, 4vw, 3.6rem); font-weight: var(--fw-black); line-height: 1; letter-spacing: -.03em; color: color-mix(in srgb, currentColor 34%, transparent); transition: color var(--dur-content) var(--ease); }
 .axis3.on .ax-no { color: var(--color-primary); }
-.ax-k { display: block; font-family: var(--font-label); font-size: var(--fs-xs); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--on-light-muted); margin: 14px 0 12px; }
-.axis3.on .ax-k { color: var(--on-light); }
-.ax-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0 0 14px; font-family: var(--font-label); font-size: var(--fs-sm); font-weight: 600; color: var(--on-light); }
-.ax-flow i { font-style: normal; color: var(--color-primary); }
-.ax-d { font-size: var(--fs-sm); line-height: 1.68; color: var(--on-light-soft); word-break: keep-all; }
-@media (max-width: 860px) { .axes3 { grid-template-columns: 1fr; gap: 22px; } }
+.ax-k { display: block; font-family: var(--font-label); font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: color-mix(in srgb, currentColor 42%, transparent); margin: 16px 0 10px; transition: color var(--dur-content) var(--ease); }
+.axis3.on .ax-k { color: inherit; }
+.ax-title { display: block; font-size: clamp(1.05rem, 1.5vw, 1.3rem); font-weight: var(--fw-bold); color: inherit; letter-spacing: -.01em; margin-bottom: 16px; word-break: keep-all; }
+.ax-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 0 0 15px; font-family: var(--font-label); font-size: var(--fs-sm); font-weight: 600; color: inherit; }
+.ax-flow i { font-style: normal; color: color-mix(in srgb, currentColor 40%, transparent); transition: color var(--dur-content) var(--ease); }
+.axis3.on .ax-flow i { color: var(--color-primary); }
+.ax-d { font-size: var(--fs-sm); line-height: 1.7; color: color-mix(in srgb, currentColor 72%, transparent); word-break: keep-all; max-width: 30ch; }
+.axis3.is-growth .ax-flow::after { content: "↻"; font-family: var(--font-label); color: var(--color-primary); font-weight: 700; } /* 03 순환/축적 힌트 */
+/* JS 동작 시에만 순차 리빌(미동작·reduced-motion 기본은 전체 표시 → JS fallback 보장) */
+body.gsap-on .axis3 .ax-flow > *, body.gsap-on .axis3 .ax-d { opacity: 0; transform: translateY(10px); transition: opacity var(--dur-content) var(--ease), transform var(--dur-content) var(--ease); }
+body.gsap-on .axis3.on .ax-flow > * { opacity: 1; transform: none; }
+body.gsap-on .axis3.on .ax-d { opacity: 1; transform: none; transition-delay: .34s; } /* 흐름 완성 후 설명 */
+body.gsap-on .axis3.on .ax-flow > *:nth-child(1){transition-delay:.02s} body.gsap-on .axis3.on .ax-flow > *:nth-child(2){transition-delay:.06s}
+body.gsap-on .axis3.on .ax-flow > *:nth-child(3){transition-delay:.10s} body.gsap-on .axis3.on .ax-flow > *:nth-child(4){transition-delay:.14s}
+body.gsap-on .axis3.on .ax-flow > *:nth-child(5){transition-delay:.18s} body.gsap-on .axis3.on .ax-flow > *:nth-child(6){transition-delay:.22s}
+body.gsap-on .axis3.on .ax-flow > *:nth-child(7){transition-delay:.26s} body.gsap-on .axis3.on .ax-flow > *:nth-child(8){transition-delay:.30s}
+body.gsap-on .axis3.on .ax-flow > *:nth-child(9){transition-delay:.34s} body.gsap-on .axis3.on .ax-flow > *:nth-child(10){transition-delay:.38s}
+body.gsap-on .axis3.on .ax-flow > *:nth-child(11){transition-delay:.42s}
+@media (max-width: 860px) { .axes3 { grid-template-columns: 1fr; gap: 30px; padding-top: 22px; } .ax-d { max-width: none; } }
+@media (prefers-reduced-motion: reduce) { .axes3::after { transition: none; } body.gsap-on .axis3 .ax-flow > *, body.gsap-on .axis3 .ax-d { opacity: 1; transform: none; transition: none; } }
 
 .bi-steps { position: relative; padding-left: 78px; max-width: 880px; }
 .bi-rail { position: absolute; left: 22px; top: 30px; bottom: 30px; width: 2px; background: var(--light-line); }
@@ -887,6 +903,12 @@ html:has(.page-nav) { scroll-padding-top: calc(var(--header-h) + 60px); }
   .jrny li::before { width: 48px; height: 48px; }
   .jrny li b { margin-bottom: 0; margin-right: 2px; }
 }
+/* 여정 진행 모션 — 진입 시 01→N 순서로 밝아지고, 지나온 연결선이 레드로 진행 (JS 동작 시만 · 미동작/reduced 전체 표시) */
+body.gsap-on .jrny li { opacity: .5; transition: opacity var(--dur-content) var(--ease); }
+body.gsap-on .jrny li.on { opacity: 1; }
+body.gsap-on .jrny li:not(:last-child)::after { transition: background var(--dur-content) var(--ease); }
+body.gsap-on .jrny li.on:not(:last-child)::after { background: var(--color-primary); }
+@media (prefers-reduced-motion: reduce) { body.gsap-on .jrny li { opacity: 1 !important; transition: none; } body.gsap-on .jrny li:not(:last-child)::after { transition: none; } }
 
 /* 정보구조 / 사이트맵 예시 — 태그형 목록 (섹션 톤 적응 칩) */
 .infostruct { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; padding: 0; list-style: none; color: inherit; }

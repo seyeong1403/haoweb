@@ -370,13 +370,26 @@
       gsap.to(".hero-copy", { yPercent: -5, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
     }
 
-    // 핵심 3축 — 스크롤 위치에 따라 활성화(번호·라벨 강조)
-    gsap.utils.toArray(".axis3").forEach(function (ax) {
-      ScrollTrigger.create({
-        trigger: ax, start: "top 78%", end: "bottom 40%",
-        onToggle: function (self) { ax.classList.toggle("on", self.isActive); }
+    // 핵심 3축 — 섹션 진입 시 상단 레드라인이 좌→우로 그려지며 01→02→03 순차 활성화(관계 유지, 재진입 재생)
+    var axes3 = document.querySelector(".axes3");
+    if (axes3 && "IntersectionObserver" in window) {
+      var a3items = [].slice.call(axes3.querySelectorAll(".axis3"));
+      var a3on = function () { axes3.classList.add("drawn"); a3items.forEach(function (it, i) { clearTimeout(it._t); it._t = setTimeout(function () { it.classList.add("on"); }, 160 + i * 300); }); };
+      var a3off = function () { axes3.classList.remove("drawn"); a3items.forEach(function (it) { clearTimeout(it._t); it.classList.remove("on"); }); };
+      var a3io = new IntersectionObserver(function (es) { es.forEach(function (e) { e.isIntersecting ? a3on() : a3off(); }); }, { threshold: 0, rootMargin: "0px 0px -14% 0px" });
+      a3io.observe(axes3); // threshold 0 → 완전히 화면 밖일 때만 리셋(안전)
+    }
+
+    // 방문자 여정(.jrny) — 진입 시 01→N 순서로 단계 활성화(연결선 레드 진행). 전 페이지 공통, 재진입 재생
+    if ("IntersectionObserver" in window) {
+      document.querySelectorAll(".jrny").forEach(function (jr) {
+        var steps = [].slice.call(jr.querySelectorAll("li"));
+        var jon = function () { steps.forEach(function (li, i) { clearTimeout(li._t); li._t = setTimeout(function () { li.classList.add("on"); }, i * 130); }); };
+        var joff = function () { steps.forEach(function (li) { clearTimeout(li._t); li.classList.remove("on"); }); };
+        var jio = new IntersectionObserver(function (es) { es.forEach(function (e) { e.isIntersecting ? jon() : joff(); }); }, { threshold: 0, rootMargin: "0px 0px -12% 0px" });
+        jio.observe(jr);
       });
-    });
+    }
 
     // 브랜드 통합 4단계 — 스크롤에 따라 현재 단계 활성화 + 연결선 진행
     var biSteps = gsap.utils.toArray(".bi-step");
