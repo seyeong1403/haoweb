@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>프로젝트 상세 (템플릿) | 포트폴리오 | 하오웹</title>
+  <meta name="description" content="프로젝트가 등록되면 개요·기존 문제·제작 목표·탐색 흐름·정보구조·콘텐츠 전략·디자인 방향·주요 기능·브랜딩/촬영/카탈로그/웹·앱 참여 범위·구축 화면·결과를 이 구조로 정리합니다. 가상의 회사명·수치는 사용하지 않는 포트폴리오 상세 템플릿." />
+  <link rel="canonical" href="https://haoweb.kr/portfolio-detail.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="프로젝트 상세 | 포트폴리오 | 하오웹" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <!-- ===== Header (공용 크롬) ===== -->
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="하오웹 홈">
+        <img class="brand-logo" src="assets/logo-original.png" alt="하오웹" width="107" height="60" />
+      </a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <ul class="nav-list">
+          <li class="nav-item has-sub">
+            <a href="index.html#services">제작 서비스</a>
+            <ul class="sub">
+              <li><a href="company.html">기업 홈페이지 제작</a></li>
+              <li><a href="hospital.html">병원 홈페이지 제작</a></li>
+              <li><a href="lawyer.html">변호사 홈페이지 제작</a></li>
+              <li><a href="shop.html">쇼핑몰 제작</a></li>
+              <li><a href="franchise.html">프랜차이즈 홈페이지 제작</a></li>
+              <li><a href="landing.html">랜딩페이지 제작</a></li>
+              <li><a href="app.html">앱 제작</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="portfolio.html">포트폴리오</a></li>
+          <li class="nav-item has-sub">
+            <a href="plan.html">제작안내</a>
+            <ul class="sub">
+              <li><a href="interview.html">고객 인터뷰</a></li>
+              <li><a href="plan.html">제작 플랜</a></li>
+              <li><a href="maintenance.html">유지보수</a></li>
+              <li><a href="about.html">제작팀 소개</a></li>
+            </ul>
+          </li>
+          <li class="nav-item has-sub">
+            <a href="columns.html">인사이트</a>
+            <ul class="sub">
+              <li><a href="columns.html">칼럼</a></li>
+              <li><a href="faq.html">FAQ</a></li>
+              <li><a href="search-ai.html">검색·AI 대응 홈페이지</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="government.html">지원사업</a></li>
+          <li class="nav-item has-sub">
+            <a href="faq.html">고객지원</a>
+            <ul class="sub">
+              <li><a href="inquiry.html">제작 문의</a></li>
+              <li><a href="diagnosis.html">홈페이지 진단</a></li>
+              <li><a href="site-plan.html">업종 구조안</a></li>
+              <li><a href="inquiry.html">상담 신청</a></li>
+              <li><a href="notice.html">공지사항</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary btn-sm nav-cta" href="inquiry.html">상담 신청</a>
+      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="모바일 메뉴" hidden>
+      <a href="index.html#services">제작 서비스</a>
+      <a href="portfolio.html">포트폴리오</a>
+      <a href="plan.html">제작안내 (플랜·유지보수·인터뷰)</a>
+      <a href="columns.html">인사이트 (칼럼·FAQ)</a>
+      <a href="government.html">지원사업</a>
+      <a href="faq.html">고객지원</a>
+      <a class="btn btn-primary btn-block" href="inquiry.html">상담 신청</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- 이 페이지는 '프로젝트가 등록되면 어떤 정보가 담기는지' 보여주는 상세 템플릿입니다.
+         실제 프로젝트 자료 확보 전이므로 가상의 회사명·고객명·수치·이미지는 사용하지 않습니다.
+         TODO(내부 확인): 실제 프로젝트 등록 시 각 섹션의 '등록 예정' 항목을 실제 자료로 교체 -->
+    <section class="page-hero">
+      <div class="hero-watermark" aria-hidden="true">PROJECT</div>
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="위치"><a href="index.html">홈</a><span>›</span><a href="portfolio.html">포트폴리오</a><span>›</span><b>프로젝트 상세</b></nav>
+        <p class="eyebrow">PROJECT · 업종 (등록 예정)</p>
+        <h1 class="page-hero-title">프로젝트 상세는<br /><span class="accent">이 구조로 정리</span>됩니다.</h1>
+        <p class="page-hero-lead">아래는 프로젝트가 등록되면 담길 정보의 틀입니다. 개요부터 문제·목표·탐색 흐름·정보구조·콘텐츠·디자인·기능·참여 범위·구축 화면·결과까지 하나의 순서로 정리합니다. 실제 자료가 확인되기 전까지 가상의 회사명·성과·이미지는 사용하지 않습니다.</p>
+        <p class="port-scope-legend reveal"><span>제작 범위 태그</span><em>BRANDING</em><em>PHOTOGRAPHY</em><em>CONTENT</em><em>CATALOG</em><em>EDITORIAL</em><em>WEB</em><em>SHOP</em><em>LANDING</em><em>APP</em></p>
+        <div class="hero-actions"><a class="btn btn-primary btn-lg" href="inquiry.html">비슷한 프로젝트 문의</a><a class="btn btn-ghost btn-lg" href="portfolio.html">목록으로</a></div>
+      </div>
+    </section>
+
+    <nav class="page-nav" aria-label="페이지 내 이동">
+      <div class="wrap page-nav-in">
+        <a href="#overview">개요</a><a href="#problem">문제·목표</a><a href="#journey">탐색·구조</a><a href="#content">콘텐츠·브랜드</a><a href="#scope">참여 범위</a><a href="#screens">화면·기능</a><a href="#operation">운영</a><a href="#difference">차별점 흐름</a><a href="#result">결과</a><a href="inquiry.html" class="page-nav-cta">상담</a>
+      </div>
+    </nav>
+
+    <!-- ===== 프로젝트 개요 ===== -->
+    <section class="section paper" id="overview">
+      <div class="wrap">
+        <div class="section-head-row"><div><p class="eyebrow reveal">OVERVIEW</p><h2 class="section-title reveal">프로젝트 개요.</h2></div><p class="section-sub right reveal">고객·업종·제작 목적과 범위를 한눈에 정리하는 자리입니다. 실제 자료 확인 후 채웁니다.</p></div>
+        <dl class="spec-grid">
+          <div class="spec reveal"><span class="spec-k">고객·업종</span><h3>등록 예정</h3><p>공개 가능한 고객명 또는 익명 표기와 업종이 들어갑니다.</p></div>
+          <div class="spec reveal"><span class="spec-k">제작 목적</span><h3>등록 예정</h3><p>이 프로젝트로 달성하려던 목표를 한 줄로 요약합니다.</p></div>
+          <div class="spec reveal"><span class="spec-k">제작 기간</span><h3>등록 예정</h3><p>기획·제작·오픈까지의 실제 소요 기간을 표기합니다.</p></div>
+          <div class="spec reveal"><span class="spec-k">제작 범위</span><h3>등록 예정</h3><p>페이지·기능·콘텐츠·촬영 등 함께 만든 범위를 표기합니다.</p></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===== 고객의 기존 문제 / 제작 목표 ===== -->
+    <section class="section light" id="problem">
+      <div class="wrap">
+        <div class="section-head-row"><div><p class="eyebrow reveal">PROBLEM · GOAL</p><h2 class="section-title reveal">고객의 기존 문제와<br />제작 목표.</h2></div><p class="section-sub right reveal">제작 전 고객이 겪던 문제와, 이 프로젝트로 이루려 한 목표를 나눠 정리합니다.</p></div>
+        <ul class="gov-benefits reveal">
+          <li><strong>고객의 기존 문제 (등록 예정)</strong>기존 홈페이지·자료·운영에서 고객이 겪던 어려움을 이곳에 정리합니다.</li>
+          <li><strong>제작 목표 (등록 예정)</strong>문제를 풀기 위해 이 프로젝트가 이루려 한 목표를 정리합니다.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 고객 탐색 흐름 (jrny 틀) ===== -->
+    <section class="section paper" id="journey">
+      <div class="wrap">
+        <div class="section-head-row"><div><p class="eyebrow reveal">JOURNEY</p><h2 class="section-title reveal">고객 탐색 흐름.</h2></div><p class="section-sub right reveal">방문자가 문의·거래를 결정하기까지 거치는 확인 과정입니다. 프로젝트별 실제 흐름은 이 틀에 맞춰 등록합니다.</p></div>
+        <ul class="jrny reveal">
+          <li><b>유입</b>검색·광고·소개로 진입</li>
+          <li><b>확인</b>회사·서비스 파악</li>
+          <li><b>검토</b>제품·근거 검토</li>
+          <li><b>신뢰</b>신뢰 형성</li>
+          <li><b>연결</b>문의·전환</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 정보구조 (infostruct 틀) ===== -->
+    <section class="section light" id="structure">
+      <div class="wrap">
+        <div class="section-head-row"><div><p class="eyebrow reveal">INFORMATION</p><h2 class="section-title reveal">정보구조.</h2></div><p class="section-sub right reveal">탐색 흐름에 맞춰 설계한 메뉴·페이지 구성입니다. 프로젝트별로 필요한 항목만 선택해 등록합니다.</p></div>
+        <ul class="infostruct reveal">
+          <li><b>·</b>메인</li>
+          <li><b>·</b>소개</li>
+          <li><b>·</b>사업·서비스</li>
+          <li><b>·</b>제품·상세</li>
+          <li><b>·</b>신뢰 근거</li>
+          <li><b>·</b>사례·실적</li>
+          <li><b>·</b>소식·자료</li>
+          <li><b>·</b>문의</li>
+          <li><b>·</b>(프로젝트별 항목 등록 예정)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 콘텐츠 전략 / 디자인 방향 ===== -->
+    <section class="section paper" id="content">
+      <div class="wrap">
+        <div class="section-head-row"><div><p class="eyebrow reveal">CONTENT · DESIGN</p><h2 class="section-title reveal">콘텐츠 전략과<br />디자인 방향.</h2></div><p class="section-sub right reveal">어떤 콘텐츠를 어떤 순서로 담고, 브랜드 기준에 맞춰 화면을 어떻게 잡았는지 정리합니다.</p></div>
+        <div class="prose reveal">
+          <p>이 자리에는 <b>콘텐츠 전략</b>이 들어갑니다. 고객이 가진 자료를 어떤 웹 콘텐츠로 재구성했는지, 원고·촬영·편집 중 무엇을 새로 제작했는지, 판단에 필요한 정보를 어떤 우선순위로 배치했는지를 실제 자료 확인 후 정리합니다.</p>
+        </div>
+        <dl class="deflist reveal">
+          <div><dt>콘텐츠 기획 (등록 예정)</dt><dd>고객 자료 중 무엇을 살리고 무엇을 새로 만들지, 판단에 필요한 정보를 어떤 순서로 배치했는지 기록합니다.</dd></div>
+          <div><dt>브랜드 방향 (등록 예정)</dt><dd>방향·핵심 메시지·톤 등 이 프로젝트의 브랜드 기준을 어떻게 잡았는지 기록합니다.</dd></div>
+          <div><dt>디자인 방향 (등록 예정)</dt><dd>브랜드 기준에 맞춘 타이포·레이아웃·화면 방향을 기록합니다.</dd></div>
+          <div><dt>콘텐츠 제작 범위 (등록 예정)</dt><dd>원고·촬영·편집 등 새로 제작한 콘텐츠 범위를 기록합니다.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===== 주요 기능 ===== -->
+    <section class="section light" id="features">
+      <div class="wrap">
+        <div class="section-head-row"><div><p class="eyebrow reveal">FEATURES</p><h2 class="section-title reveal">주요 기능.</h2></div><p class="section-sub right reveal">이 프로젝트에 들어간 기능 구성을 등록합니다. 필요한 기능만 선택해 표기합니다.</p></div>
+        <ul class="checklist reveal">
+          <li>기능 항목 ① (등록 예정)</li>
+          <li>기능 항목 ② (등록 예정)</li>
+          <li>기능 항목 ③ (등록 예정)</li>
+          <li>기능 항목 ④ (등록 예정)</li>
+          <li>기능 항목 ⑤ (등록 예정)</li>
+          <li>(프로젝트별 기능 등록 예정)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 참여 범위 (브랜딩/촬영/카탈로그·편집/웹·앱) ===== -->
+    <section class="section paper" id="scope">
+      <div class="wrap">
+        <div class="section-head-row"><div><p class="eyebrow reveal">SCOPE</p><h2 class="section-title reveal">하오웹의<br />참여 범위.</h2></div><p class="section-sub right reveal">이 프로젝트에서 함께 만든 범위를 표시합니다. 프로젝트마다 해당하는 태그만 활성화합니다.</p></div>
+        <p class="port-scope-legend reveal" style="color:var(--on-light)"><span style="color:var(--on-light-muted)">이 프로젝트의 제작 범위</span> <em>BRANDING</em><em>PHOTOGRAPHY</em><em>CONTENT</em><em>CATALOG</em><em>EDITORIAL</em><em>WEB</em><em>SHOP</em><em>LANDING</em><em>APP</em></p>
+        <p class="port-ph-note reveal" style="text-align:left;color:var(--on-light-muted)">위는 태그 표기 예시입니다. 실제 프로젝트에는 그 프로젝트에서 실제로 맡은 태그만 표시합니다.</p>
+        <dl class="deflist reveal">
+          <div><dt>브랜딩 참여 범위</dt><dd>방향·핵심 메시지·로고·아이덴티티 등 브랜드 정리에서 맡은 범위를 기록합니다. (등록 예정)</dd></div>
+          <div><dt>촬영 참여 범위</dt><dd>제품·공간·인물 등 촬영에서 맡은 범위와 컷 구성을 기록합니다. (등록 예정)</dd></div>
+          <div><dt>편집·카탈로그 참여 범위</dt><dd>카탈로그·브로슈어·인쇄물 등 편집디자인에서 맡은 범위를 기록합니다. (등록 예정)</dd></div>
+          <div><dt>홈페이지·앱 제작 범위</dt><dd>홈페이지·랜딩·쇼핑몰·앱 등 구축에서 맡은 범위와 기능을 기록합니다. (등록 예정)</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===== 메인 및 세부 화면 (port-ph 플레이스홀더, 다크) ===== -->
+    <section class="section portfolio" id="screens">
+      <div class="wrap">
+        <div class="section-head-row"><div><p class="eyebrow reveal">SCREENS</p><h2 class="section-title reveal">메인 및 세부 화면.</h2></div><p class="section-sub right reveal">실제 구축 화면 이미지를 등록 예정입니다. 가상의 목업은 넣지 않습니다.</p></div>
+        <div class="port-ph-grid">
+          <div class="port-ph reveal">
+            <span class="port-ph-media" aria-hidden="true"><span class="port-ph-tag">실제 화면 이미지 등록 예정</span></span>
+            <div class="port-ph-meta"><span class="port-ph-cat">SCREEN</span><h3>메인 화면</h3><span class="port-ph-fields">첫 화면 · 핵심 메시지</span></div>
+          </div>
+          <div class="port-ph reveal">
+            <span class="port-ph-media" aria-hidden="true"><span class="port-ph-tag">실제 화면 이미지 등록 예정</span></span>
+            <div class="port-ph-meta"><span class="port-ph-cat">SCREEN</span><h3>주요 세부 화면</h3><span class="port-ph-fields">서비스 · 상세 페이지</span></div>
+          </div>
+          <div class="port-ph reveal">
+            <span class="port-ph-media" aria-hidden="true"><span class="port-ph-tag">실제 화면 이미지 등록 예정</span></span>
+            <div class="port-ph-meta"><span class="port-ph-cat">SCREEN</span><h3>모바일 화면</h3><span class="port-ph-fields">반응형 · 모바일</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 오픈 이후 운영 방향 ===== -->
+    <section class="section light" id="operation">
+      <div class="wrap">
+        <div class="section-head-row"><div><p class="eyebrow reveal">OPERATION</p><h2 class="section-title reveal">오픈 이후<br />운영 방향.</h2></div><p class="section-sub right reveal">오픈은 끝이 아니라 시작점입니다. 어떤 콘텐츠를 어떤 주기로 쌓고, 어떤 채널로 넓혀갈지 정리하는 자리입니다.</p></div>
+        <ul class="gov-benefits reveal">
+          <li><strong>콘텐츠 축적 (등록 예정)</strong>새 실적·제품·소식 등 오픈 이후 어떤 콘텐츠를 쌓아갈지 정리합니다.</li>
+          <li><strong>운영·업데이트 (등록 예정)</strong>직접 운영과 유지관리 중 어떤 방식으로 이어갈지 정리합니다.</li>
+          <li><strong>채널 확장 (등록 예정)</strong>인쇄물·SNS·다국어 등 영업·홍보 채널로의 확장 방향을 정리합니다.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 차별점 흐름 (jrny 틀) ===== -->
+    <section class="section paper" id="difference">
+      <div class="wrap">
+        <div class="section-head-row"><div><p class="eyebrow reveal">HOW HAOWEB</p><h2 class="section-title reveal">하나의 기준으로<br />이어지는 흐름.</h2></div><p class="section-sub right reveal">브랜딩·콘텐츠·촬영·편집디자인·웹·앱을 따로 맡기지 않고, 하오웹이 하나의 기준으로 연결하는 방식입니다. 실제 흐름은 이 틀에 맞춰 등록합니다.</p></div>
+        <ul class="jrny reveal">
+          <li><b>기존 자료</b>회사소개·카탈로그 등 보유 자료에서 출발</li>
+          <li><b>브랜드·콘텐츠 정리</b>방향과 콘텐츠를 하나의 기준으로 정리</li>
+          <li><b>촬영·편집디자인</b>제품·공간 촬영과 편집물을 함께 제작</li>
+          <li><b>홈페이지·앱 구현</b>정리된 브랜드와 콘텐츠로 웹·앱 구축</li>
+          <li><b>채널 확장</b>영업·홍보 채널로 확장</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 구축 결과 ===== -->
+    <section class="section light" id="result">
+      <div class="wrap">
+        <div class="section-head-row"><div><p class="eyebrow reveal">RESULT</p><h2 class="section-title reveal">구축 결과.</h2></div><p class="section-sub right reveal">오픈 이후의 변화와 결과를 정리합니다. 검증되고 동의된 내용만 기재합니다.</p></div>
+        <ul class="gov-benefits reveal">
+          <li><strong>완성 결과 (등록 예정)</strong>오픈한 홈페이지와 함께 만든 결과물을 정리합니다.</li>
+          <li><strong>변화·성과 (등록 예정)</strong>검증 가능한 변화만, 고객 동의 아래 기재합니다.</li>
+        </ul>
+        <p class="port-ph-note reveal" style="text-align:left;color:var(--on-light-muted)">구축 결과(검증된 성과)는 고객 동의 아래 실제 자료가 확인된 뒤에만 표기하며, 가상의 수치는 사용하지 않습니다.</p>
+      </div>
+    </section>
+
+    <!-- ===== 관련 콘텐츠 (다크) ===== -->
+    <section class="section" id="related">
+      <div class="wrap">
+        <div class="section-head-row"><div><p class="eyebrow reveal">RELATED</p><h2 class="section-title reveal">관련 콘텐츠.</h2></div><p class="section-sub right reveal">비슷한 업종·범위의 프로젝트와 고객 인터뷰로 이어집니다.</p></div>
+        <div class="port-slots">
+          <a class="port-slot reveal" href="portfolio-detail.html"><span class="ps-media" aria-hidden="true"><span class="pf-tag">등록 예정</span></span><span class="ps-n">관련 프로젝트 01</span></a>
+          <a class="port-slot reveal" href="portfolio-detail.html"><span class="ps-media" aria-hidden="true"><span class="pf-tag">등록 예정</span></span><span class="ps-n">관련 프로젝트 02</span></a>
+          <a class="port-slot reveal" href="interview-detail.html"><span class="ps-media" aria-hidden="true"><span class="pf-tag">등록 예정</span></span><span class="ps-n">관련 고객 인터뷰</span></a>
+        </div>
+        <div class="band-inner reveal" style="margin-top:32px">
+          <div><h2 class="band-title">더 많은 제작 사례가 궁금하다면.</h2><p class="band-desc">업종별 전체 포트폴리오에서 프로젝트를 모아 보세요.</p></div>
+          <a class="btn btn-ghost btn-lg" href="portfolio.html">전체 포트폴리오 보기 →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta"><div class="wrap final-inner reveal">
+      <p class="final-eyebrow">CONTACT</p><h2>이런 프로젝트가 필요하신가요?</h2>
+      <p>업종과 목표만 알려주시면 구조와 방향부터 제안해 드립니다.</p>
+      <div class="cta-actions"><a class="btn btn-primary btn-lg" href="inquiry.html?topic=build" data-ev="inquiry_start">비슷한 프로젝트 상담하기</a></div>
+    </div></section>
+  </main>
+
+  <!-- ===== Footer (공용 크롬) ===== -->
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-brand">
+        <img class="footer-logo" src="assets/logo-original.png" alt="하오웹" width="107" height="60" />
+        <p>브랜드 통합형 홈페이지 제작.<br />브랜딩·콘텐츠부터 웹·앱까지 하나의 기준으로 설계합니다. 운영: 하오</p>
+      </div>
+      <div class="footer-col">
+        <h4>제작 서비스</h4>
+        <a href="company.html">기업 홈페이지</a>
+        <a href="hospital.html">병원 홈페이지</a>
+        <a href="lawyer.html">변호사 홈페이지</a>
+        <a href="shop.html">쇼핑몰</a>
+        <a href="franchise.html">프랜차이즈</a>
+        <a href="landing.html">랜딩페이지</a>
+        <a href="app.html">앱 제작</a>
+      </div>
+      <div class="footer-col">
+        <h4>신뢰</h4>
+        <a href="portfolio.html">포트폴리오</a>
+        <a href="interview.html">고객 인터뷰</a>
+        <a href="plan.html">제작 플랜</a>
+        <a href="maintenance.html">유지보수</a>
+        <a href="about.html">제작팀 소개</a>
+      </div>
+      <div class="footer-col">
+        <h4>콘텐츠</h4>
+        <a href="columns.html">칼럼</a>
+        <a href="government.html">정부지원사업</a>
+        <a href="faq.html">자주 묻는 질문</a>
+      </div>
+      <div class="footer-col">
+        <h4>고객지원</h4>
+        <a href="inquiry.html">제작 문의</a>
+        <a href="notice.html">공지사항</a>
+        <a href="privacy.html">개인정보처리방침</a>
+      </div>
+    </div>
+    <div class="wrap footer-base">
+      <span>© 2026 하오웹 (HAOWEB) · 하오. All rights reserved.</span>
+      <span class="footer-selfnote">검색과 AI가 이해하는 홈페이지, 하오웹.</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
