@@ -1130,7 +1130,8 @@ body.gsap-on .saeg-item.on .saeg-list li:nth-child(4){transition-delay:.18s} bod
   .qc-btn { padding: 12px 18px; font-size: var(--fs-sm); }
   .qc-fab { right: 12px; bottom: 12px; }
 }
-@media (prefers-reduced-motion: reduce) { .qc-fab.is-open .qc-menu { animation: none; } }
+.qc-fab.qc-hide { opacity: 0; visibility: hidden; transform: translateY(12px); pointer-events: none; transition: opacity var(--dur-ui) var(--ease), transform var(--dur-ui) var(--ease), visibility 0s linear var(--dur-ui); }
+@media (prefers-reduced-motion: reduce) { .qc-fab.is-open .qc-menu { animation: none; } .qc-fab.qc-hide { transition: none; } }
 
 /* ---------- 폼 공통 ---------- */
 .form { display: grid; gap: 20px; }

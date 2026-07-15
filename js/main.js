@@ -365,6 +365,18 @@
     btn.addEventListener("click", function () { setOpen(!fab.classList.contains("is-open")); });
     document.addEventListener("click", function (e) { if (!fab.contains(e.target)) setOpen(false); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
+    // 하단 CTA·푸터가 보이면 FAB 숨김(본문/동의/하단 버튼을 가리지 않게)
+    var tails = [document.querySelector(".final-cta"), document.querySelector(".site-footer")].filter(Boolean);
+    if (tails.length && "IntersectionObserver" in window) {
+      var visible = {};
+      var io = new IntersectionObserver(function (ents) {
+        ents.forEach(function (ent) { visible[ent.target.className] = ent.isIntersecting; });
+        var anyVisible = Object.keys(visible).some(function (k) { return visible[k]; });
+        fab.classList.toggle("qc-hide", anyVisible);
+        if (anyVisible) setOpen(false);
+      }, { threshold: 0.01 });
+      tails.forEach(function (t) { io.observe(t); });
+    }
     // TODO(내부 확인): 카카오톡 채널 URL·대표 전화번호 확정 후 .qc-soon → 실제 링크로 교체
   })();
 
