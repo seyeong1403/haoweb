@@ -528,6 +528,20 @@
     render();
   })();
 
+  /* ---------- 3h) 제작 유형 카드 — 터치/클릭 선택 강조(hover는 CSS) ---------- */
+  (function initPtypes() {
+    var cards = [].slice.call(document.querySelectorAll(".ptype"));
+    if (!cards.length) return;
+    cards.forEach(function (c) {
+      c.addEventListener("click", function () {
+        var on = c.classList.contains("is-active");
+        cards.forEach(function (x) { x.classList.remove("is-active"); });
+        if (!on) c.classList.add("is-active");
+      });
+      c.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); c.click(); } });
+    });
+  })();
+
   /* ---------- 4) 모션 ---------- */
   var hasGSAP = !!(window.gsap && window.ScrollTrigger);
 
