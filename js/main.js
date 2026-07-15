@@ -17,6 +17,32 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  /* ---------- 1a) 페이지 내비 스크롤 스파이 — 현재 섹션으로 포인트 컬러 라인 이동 ---------- */
+  document.querySelectorAll(".page-nav-in").forEach(function (nav) {
+    var links = [].slice.call(nav.querySelectorAll('a[href^="#"]'));
+    if (links.length < 2) return;
+    var marker = document.createElement("span");
+    marker.className = "page-nav-marker";
+    nav.appendChild(marker);
+    var targets = links.map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+    var cur = -1;
+    var place = function (a) { marker.style.transform = "translateX(" + a.offsetLeft + "px)"; marker.style.width = a.offsetWidth + "px"; };
+    var update = function () {
+      var pad = (parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 120) + 14;
+      var idx = 0;
+      for (var i = 0; i < targets.length; i++) { if (targets[i] && targets[i].getBoundingClientRect().top <= pad) idx = i; }
+      if (idx === cur) return;
+      cur = idx;
+      links.forEach(function (a, i) { a.classList.toggle("active", i === idx); });
+      var a = links[idx]; place(a);
+      nav.scrollTo({ left: Math.max(0, a.offsetLeft - nav.clientWidth / 2 + a.offsetWidth / 2), behavior: reduce ? "auto" : "smooth" }); // 활성 링크가 가로 스크롤 안에 보이게(창 스크롤 영향 없음)
+    };
+    var ticking = false;
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(function () { update(); ticking = false; }); } }, { passive: true });
+    window.addEventListener("resize", function () { if (links[cur]) place(links[cur]); });
+    update();
+  });
+
   /* ---------- 1b) 히어로 — 영상 2개 레이어 크로스페이드 + 영상별 카피 전환 ---------- */
   // 영상·카피를 하나의 데이터로 관리(영상 추가 시 slide 객체만 추가하면 됨)
   var heroSlides = [
