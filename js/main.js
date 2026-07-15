@@ -542,6 +542,47 @@
     });
   })();
 
+  /* ---------- 3i) 폼 프리필 — 30초 체크/진단 결과를 문의·구조안으로 이어받기 ---------- */
+  (function initPrefill() {
+    var params;
+    try { params = new URLSearchParams(window.location.search); } catch (e) { return; }
+    if (![].slice.call(params.keys()).length) return;
+    var get = function (k) { return params.get(k) || ""; };
+    // 1) 요약 배너
+    var summary = get("summary");
+    document.querySelectorAll("[data-prefill-summary]").forEach(function (el) {
+      if (summary) { el.textContent = "30초 프로젝트 체크 결과 · " + summary; el.hidden = false; }
+    });
+    // 2) 이름이 일치하는 필드 자동 채움(텍스트/셀렉트/라디오). 비어 있을 때만.
+    var fill = function (name, value) {
+      if (!value) return;
+      var els = document.querySelectorAll('[name="' + name + '"]');
+      if (!els.length) return;
+      var first = els[0];
+      if (first.type === "radio") {
+        [].forEach.call(els, function (r) { if (r.value === value) r.checked = true; });
+      } else if (first.tagName === "SELECT") {
+        [].forEach.call(first.options, function (o) { if (o.value === value) first.value = value; });
+      } else if (!first.value) { first.value = value; }
+    };
+    fill("industry", get("industry"));
+    fill("goal", get("goal"));
+    fill("mode", get("mode"));
+    fill("timing", get("timing"));
+    // 3) 상세 textarea 가 있으면 체크 결과 요약을 앞에 넣어 전달되게
+    var detail = document.querySelector('textarea[name="detail"], textarea[name="message"]');
+    if (detail && !detail.value && (summary || get("goal"))) {
+      var lines = ["[30초 프로젝트 체크 결과]"];
+      if (summary) lines.push("유형: " + summary);
+      if (get("goal")) lines.push("목표: " + get("goal"));
+      if (get("mode")) lines.push("구분: " + get("mode"));
+      if (get("needs")) lines.push("필요 업무: " + get("needs"));
+      if (get("assets")) lines.push("보유 자료: " + get("assets"));
+      if (get("timing")) lines.push("희망 일정: " + get("timing"));
+      detail.value = lines.join("\n") + "\n\n";
+    }
+  })();
+
   /* ---------- 4) 모션 ---------- */
   var hasGSAP = !!(window.gsap && window.ScrollTrigger);
 
