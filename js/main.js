@@ -583,6 +583,31 @@
     }
   })();
 
+  /* ---------- 3j) 문의 조건부 폼 — 유형 선택 시 해당 항목만 노출 ---------- */
+  (function initInquiryForm() {
+    var form = document.querySelector('form[name="inquiry"]');
+    if (!form) return;
+    var panels = [].slice.call(form.querySelectorAll("[data-inq-panel]"));
+    if (!panels.length) return;
+    var radios = [].slice.call(form.querySelectorAll('input[name="topic"]'));
+    var showPanel = function (topic) {
+      panels.forEach(function (p) {
+        var on = p.getAttribute("data-inq-panel") === topic;
+        p.hidden = !on;
+        // 숨김 패널 입력은 비활성화 → 검증·전송에서 제외(보이는 항목만 필수 처리)
+        [].forEach.call(p.querySelectorAll("input, select, textarea"), function (el) { el.disabled = !on; });
+      });
+    };
+    radios.forEach(function (r) { r.addEventListener("change", function () { if (r.checked) showPanel(r.value); }); });
+    // 초기 유형: ?topic= 우선, 없으면 checked 라디오
+    var initial = "";
+    try { initial = new URLSearchParams(window.location.search).get("topic") || ""; } catch (e) {}
+    var target = initial && radios.filter(function (r) { return r.value === initial; })[0];
+    if (target) { target.checked = true; }
+    var current = radios.filter(function (r) { return r.checked; })[0];
+    showPanel(current ? current.value : (panels[0].getAttribute("data-inq-panel")));
+  })();
+
   /* ---------- 4) 모션 ---------- */
   var hasGSAP = !!(window.gsap && window.ScrollTrigger);
 
