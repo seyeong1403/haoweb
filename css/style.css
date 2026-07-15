@@ -793,7 +793,7 @@ body.gsap-on .axis3.on .ax-flow > *:nth-child(11){transition-delay:.42s}
 
 /* 페이지 내 내비게이션 (헤더 아래 sticky) */
 html:has(.page-nav) { scroll-padding-top: calc(var(--header-h) + 60px); }
-.page-nav { position: sticky; top: var(--header-h); z-index: 40; background: var(--header-bg); backdrop-filter: saturate(150%) blur(16px); border-bottom: 1px solid var(--border); }
+.page-nav { position: sticky; top: var(--header-h); z-index: 40; background: var(--header-bg); backdrop-filter: saturate(150%) blur(16px); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .page-nav-in { position: relative; display: flex; gap: clamp(16px, 2.4vw, 34px); overflow-x: auto; scrollbar-width: none; }
 .page-nav-in::-webkit-scrollbar { display: none; }
 .page-nav-in a { flex: none; padding: 16px 2px; font-size: var(--fs-base); font-weight: var(--fw-medium); letter-spacing: -.01em; color: var(--text-muted); white-space: nowrap; transition: color var(--dur-ui) var(--ease); }
@@ -806,7 +806,7 @@ html:has(.page-nav) { scroll-padding-top: calc(var(--header-h) + 60px); }
   transition: transform .42s var(--ease), width .42s var(--ease); will-change: transform, width; }
 @media (prefers-reduced-motion: reduce) { .page-nav-marker { transition: none; } }
 /* 하단 라인에 포인트 컬러가 오른쪽→왼쪽으로 계속 흐르는 모션 */
-.page-nav::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; pointer-events: none; z-index: 0;
+.page-nav::after { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px; pointer-events: none; z-index: 0;
   background: linear-gradient(90deg, transparent 0%, color-mix(in srgb, var(--color-primary) 85%, transparent) 50%, transparent 100%);
   background-size: 42% 100%; background-repeat: no-repeat; animation: navLineFlow 3.6s linear infinite; }
 @keyframes navLineFlow { from { background-position: 142% 0; } to { background-position: -42% 0; } }
@@ -972,12 +972,12 @@ body.gsap-on .jrny li.on:not(:last-child)::after { background: var(--color-prima
 @media (max-width: 560px) { .method-item { grid-template-columns: 2.6rem 1fr; gap: 4px 16px; } }
 
 /* 관련 랜딩페이지 / 관련 콘텐츠 링크 목록 (섹션 톤 적응 카드) */
-.rel-links { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 18px; padding: 0; list-style: none; color: inherit; }
-.rel-link { display: block; padding: 20px 22px; border: 1px solid color-mix(in srgb, currentColor 18%, transparent); border-radius: 16px; background: color-mix(in srgb, currentColor 5%, transparent); transition: border-color var(--dur-mid) var(--ease-out), transform var(--dur-mid) var(--ease-out); }
+.rel-links { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 18px; padding: 0; list-style: none; color: inherit; align-items: stretch; }
+.rel-link { display: flex; flex-direction: column; height: 100%; padding: 20px 22px; border: 1px solid color-mix(in srgb, currentColor 18%, transparent); border-radius: 16px; background: color-mix(in srgb, currentColor 5%, transparent); transition: border-color var(--dur-mid) var(--ease-out), transform var(--dur-mid) var(--ease-out); }
 .rel-link:hover { border-color: var(--color-primary); transform: translateY(-2px); }
 .rel-link h3 { margin: 0 0 6px; font-size: var(--fs-lg); font-weight: var(--fw-bold); color: inherit; letter-spacing: -.01em; word-break: keep-all; }
 .rel-link p { margin: 0; font-size: var(--fs-sm); line-height: 1.6; color: color-mix(in srgb, currentColor 72%, transparent); word-break: keep-all; }
-.rel-link .rl-go { display: inline-block; margin-top: 12px; font-family: var(--font-label); font-size: var(--fs-sm); font-weight: 600; color: var(--color-primary); }
+.rel-link .rl-go { display: inline-block; margin-top: auto; padding-top: 14px; font-family: var(--font-label); font-size: var(--fs-sm); font-weight: 600; color: var(--color-primary); } /* 하단 정렬 → 카드 높이 통일 시 링크 위치 정렬 */
 
 /* 좁은 본문 리듬 — 긴 설명 문단 가독성 */
 .prose { max-width: 74ch; color: inherit; }
