@@ -491,27 +491,30 @@
       var cur = lw.querySelector(".lw-cur"), inc = lw.querySelector(".lw-inc"), bar = lw.querySelector(".lw-bar");
       if (words.length < 2 || !cur || !inc || !bar) return;
       var i = 0;
-      var setP = function (p) {
-        inc.style.clipPath = "inset(0 " + (100 - 100 * p).toFixed(2) + "% 0 0)"; // 새 글자: 좌→우로 드러남
-        cur.style.clipPath = "inset(0 0 0 " + (100 * p).toFixed(2) + "%)";        // 옛 글자: 좌→우로 지워짐
-        bar.style.left = (100 * p).toFixed(2) + "%";                              // 라인: 경계에서 이동
-        bar.style.opacity = (p > 0.02 && p < 0.98) ? "1" : "0";
+      // 라인·클립을 동일한 px 기준으로 구동 → 라인과 글자 전환이 정확히 일치. 실제 글자 폭까지만 쓸어 지나감(빈 공간 X)
+      var setP = function (p, curW, incW, extent) {
+        var b = p * extent;                                                          // 경계 위치(px, 글자 왼쪽 기준)
+        inc.style.clipPath = "inset(0 " + Math.max(0, incW - b).toFixed(1) + "px 0 0)"; // 새 글자: 좌→우로 드러남
+        cur.style.clipPath = "inset(0 0 0 " + b.toFixed(1) + "px)";                     // 옛 글자: 좌→우로 지워짐
+        bar.style.left = b.toFixed(1) + "px";                                          // 라인: 정확히 경계에
+        bar.style.opacity = (p > 0.015 && p < 0.985) ? "1" : "0";
       };
       var cycle = function () {
         var ni = (i + 1) % words.length;
         inc.textContent = words[ni];
-        setP(0);
+        var curW = cur.offsetWidth, incW = inc.offsetWidth, extent = Math.max(curW, incW); // 두 단어를 모두 덮는 실제 폭
+        setP(0, curW, incW, extent);
         var o = { p: 0 };
         gsap.to(o, {
-          p: 1, duration: 0.75, ease: "power3.inOut",
-          onUpdate: function () { setP(o.p); },
+          p: 1, duration: 0.9, ease: "power2.inOut", // 조금 느리고 균일한 감속(너무 빨리 지나가지 않게)
+          onUpdate: function () { setP(o.p, curW, incW, extent); },
           onComplete: function () {
             cur.textContent = words[ni];
             cur.style.clipPath = "none";
             inc.style.clipPath = "inset(0 100% 0 0)";
             bar.style.opacity = "0";
             i = ni;
-            gsap.delayedCall(1.7, cycle); // 정지(hold) 후 다음 단어
+            gsap.delayedCall(1.9, cycle); // 정지(hold) 후 다음 단어
           }
         });
       };
