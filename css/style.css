@@ -464,7 +464,9 @@ mark { background: none; color: inherit; }
 .feature-item { position: relative; padding: 22px 20px 24px; border-radius: 16px;
   border: 1px solid color-mix(in srgb, currentColor 14%, transparent); background: color-mix(in srgb, currentColor 4%, transparent);
   transition: transform var(--dur-ui) var(--ease), border-color var(--dur-ui) var(--ease); color: inherit; }
-.feature-item:hover { transform: translateY(-3px); }
+/* 아이콘 없는 카드도 아이콘 높이(30+13)만큼 상단 여백 확보 → 텍스트 시작 높이 통일 */
+.feature-item:not(:has(.feat-ic)):not(:has(.ic)) { padding-top: 65px; }
+.feature-item:hover { transform: translateY(-3px); border-color: var(--color-primary); } /* hover 시 외곽선 포인트 컬러 */
 .feature-item .ic { width: 26px; height: 26px; color: var(--color-primary); margin-bottom: 13px; }
 /* DB 아이콘(마스크로 브랜드 컬러 적용) */
 .feat-ic { display: block; width: 30px; height: 30px; background: var(--color-primary); margin-bottom: 13px;
