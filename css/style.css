@@ -1370,6 +1370,23 @@ body.gsap-on .diag-checklist li.on::before, .diag-checklist li.on::before { back
 .pf-links a { font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--on-light); display: inline-flex; align-items: center; gap: 5px; }
 .pf-links a.pf-more { color: var(--color-primary); }
 .pf-links a:hover { color: var(--color-primary); }
+
+/* ---------- 문의 성공 화면 (운영용 · 백엔드 연결 후 노출) ---------- */
+.success-card { background: #fff; color: var(--on-light); border: 1px solid var(--light-line); border-radius: var(--r-lg); padding: clamp(28px, 4vw, 52px); box-shadow: 0 24px 60px rgba(12,12,16,.10); position: relative; overflow: hidden; }
+.success-card::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover)); }
+.success-mark { width: 60px; height: 60px; border-radius: 50%; background: var(--color-primary-wash); border: 2px solid var(--color-primary-line); display: grid; place-items: center; color: var(--color-primary); font-size: 28px; font-weight: 800; margin-bottom: 18px; }
+.success-card > h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); letter-spacing: -.02em; color: var(--on-light); }
+.success-card > .success-lead { margin-top: 8px; color: var(--on-light-soft); font-size: var(--fs-lg); }
+.success-summary { margin: 26px 0 0; display: grid; gap: 0; border-top: 1px solid var(--light-line); }
+.success-summary > div { display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--light-line); }
+.success-summary dt { margin: 0; font-weight: var(--fw-semibold); color: var(--on-light); font-size: var(--fs-sm); }
+.success-summary dd { margin: 0; color: var(--on-light-soft); font-size: var(--fs-base); word-break: break-word; }
+.success-block { margin-top: 30px; }
+.success-block > h3 { font-size: var(--fs-lg); font-weight: var(--fw-bold); color: var(--on-light); margin-bottom: 14px; display: inline-flex; align-items: center; gap: 9px; }
+.success-block > h3::before { content: ""; width: 16px; height: 3px; border-radius: 2px; background: var(--color-primary); }
+.success-note { margin-top: 12px; font-size: var(--fs-sm); color: var(--on-light-muted); line-height: 1.6; background: var(--paper-bg); border: 1px solid var(--light-line); border-radius: var(--r-md); padding: 14px 16px; }
+.success-card .cta-actions { margin-top: 30px; }
+@media (max-width: 520px) { .success-summary > div { grid-template-columns: 1fr; gap: 3px; } }
 .light .cost-prep, .paper .cost-prep { color: var(--on-light); }
 .cost-prep h3 { font-size: var(--fs-lg); font-weight: var(--fw-bold); letter-spacing: -.01em; }
 .cost-prep p { font-size: var(--fs-sm); color: var(--on-light-muted); margin-top: 4px; }

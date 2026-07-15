@@ -646,6 +646,29 @@
     setActive(0);
   })();
 
+  /* ---------- 3l) 문의 성공 화면 — 운영용(백엔드 연결 후). ?view=success 로 노출 ---------- */
+  (function initSuccessView() {
+    var success = document.getElementById("inq-success");
+    if (!success) return;
+    var params;
+    try { params = new URLSearchParams(window.location.search); } catch (e) { return; }
+    if (params.get("view") !== "success") return; // 개발 상태에선 기본 숨김
+    // 폼 섹션 숨기고 성공 화면 노출
+    var formSec = document.getElementById("form");
+    if (formSec) formSec.hidden = true;
+    success.hidden = false;
+    // 요약 채우기(전달된 값이 있으면)
+    var topicMap = { diagnosis: "홈페이지 진단", siteplan: "업종 구조안", build: "제작 상담", maintenance: "유지관리 문의", government: "정부지원사업 문의" };
+    var set = function (key, val) { var el = success.querySelector('[data-sc="' + key + '"]'); if (el && val) el.textContent = val; };
+    set("topic", topicMap[params.get("topic")] || (params.get("topic") ? params.get("topic") : "제작 상담"));
+    var who = [params.get("company"), params.get("name")].filter(Boolean).join(" · ");
+    if (who) set("who", who);
+    var contact = params.get("phone") || params.get("email");
+    if (contact) set("contact", contact);
+    window.scrollTo(0, 0);
+    track("inquiry_success_view", { topic: params.get("topic") || "" });
+  })();
+
   /* ---------- 4) 모션 ---------- */
   var hasGSAP = !!(window.gsap && window.ScrollTrigger);
 
