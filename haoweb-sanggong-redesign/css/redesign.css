@@ -232,6 +232,32 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .rd-why-word{font-weight:700;font-size:clamp(6rem,18vw,17rem);line-height:.82;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(242,239,232,.16);text-stroke:1px rgba(242,239,232,.16);user-select:none}
 .rd-why-word em{font-style:normal;-webkit-text-stroke:1px rgba(232,56,23,.55);text-stroke:1px rgba(232,56,23,.55)}
 
+/* ---------- 06 · Brand Integration (비대칭 콜라주) ---------- */
+.rd-brand{background:var(--off);color:var(--ink);padding:clamp(92px,14vh,180px) 0}
+.rd-brand .rd-wrap{width:var(--wrap);margin-inline:auto}
+.rd-brand-head{margin-bottom:clamp(36px,5vh,60px)}
+.rd-brand-grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(128px,12.5vw,178px);gap:clamp(12px,1.4vw,20px);grid-auto-flow:dense}
+.rd-brand-lead{grid-column:span 3;grid-row:span 2;display:flex;flex-direction:column;justify-content:center;padding:4px clamp(16px,2vw,34px) 4px 0}
+.rd-brand-lead h2{font-weight:250;font-size:clamp(1.7rem,3.5vw,3rem);line-height:1.18;letter-spacing:-.035em}
+.rd-brand-lead h2 b{font-weight:600}
+.rd-brand-lead p{margin-top:18px;max-width:38ch;font-size:clamp(.98rem,1.15vw,1.08rem);line-height:1.7;color:var(--ink-soft)}
+.rd-brand-lead a{margin-top:22px}
+.rd-bt{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);padding:clamp(16px,1.6vw,24px);display:flex;flex-direction:column;justify-content:flex-end;transition:border-color .3s,transform .5s var(--ease)}
+.rd-bt:hover{border-color:rgba(232,56,23,.45);transform:translateY(-3px)}
+.rd-bt.big{grid-column:span 3;grid-row:span 2}
+.rd-bt.tall{grid-row:span 2}
+.rd-bt.w2{grid-column:span 2}
+.rd-bt .bt-name{position:relative;z-index:1;font-weight:600;font-size:clamp(1.05rem,1.5vw,1.35rem);letter-spacing:-.01em;color:var(--ink)}
+.rd-bt .bt-cap{position:relative;z-index:1;margin-top:6px;font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-mut)}
+.rd-bt .bt-mono{position:absolute;top:-6%;right:4%;font-family:var(--mono);font-weight:700;font-size:clamp(3rem,7vw,6rem);line-height:.8;color:rgba(22,19,14,.06);letter-spacing:-.04em}
+.bt-brand{background:radial-gradient(120% 120% at 75% 20%,#efe9e2,#f5f2ec)}
+.bt-content{background:radial-gradient(120% 120% at 25% 25%,#eae7e1,#f4f1ea)}
+.bt-photo{background:radial-gradient(120% 120% at 70% 75%,#e9e6df,#f3f0e9)}
+.bt-edit{background:radial-gradient(120% 120% at 30% 70%,#ece8e2,#f4f1ec)}
+.bt-catalog{background:radial-gradient(120% 120% at 80% 40%,#e7e4dd,#f2efe8)}
+.bt-web{background:radial-gradient(120% 120% at 20% 20%,#e6e9ea,#f1f3f1)}
+.bt-app{background:radial-gradient(120% 120% at 75% 80%,#e8e6ec,#f2f1f3)}
+
 @media (max-width:900px){
   :root{--hdr:70px}
   .rd-nav-r .lnk{display:none}
@@ -251,6 +277,11 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .rd-why-scene:nth-child(even) .rd-why-text{order:0}
   .rd-why-visual{order:-1;min-height:auto;justify-content:flex-start!important}
   .rd-why-word{font-size:clamp(4.5rem,26vw,8rem)}
+  .rd-brand-grid{grid-template-columns:1fr 1fr;grid-auto-rows:clamp(116px,30vw,150px)}
+  .rd-brand-lead{grid-column:1/-1;grid-row:auto;padding:0 0 6px}
+  .rd-bt.big{grid-column:1/-1;grid-row:span 1}
+  .rd-bt.tall{grid-row:span 1}
+  .rd-bt.w2{grid-column:span 1}
 }
 @media (max-width:390px){
   .rd-hlead{font-size:.98rem}
