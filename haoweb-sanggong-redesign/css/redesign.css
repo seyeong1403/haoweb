@@ -276,6 +276,31 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .rd-proc-stitle{font-weight:500;font-size:clamp(1.35rem,2.4vw,2rem);letter-spacing:-.02em;line-height:1.2}
 .rd-proc-sdesc{margin-top:12px;max-width:48ch;font-size:clamp(.98rem,1.15vw,1.08rem);line-height:1.7;color:rgba(242,239,232,.66)}
 
+/* ---------- 08 · Search & AI (실제 콘텐츠 · 미래지향 그래픽 없음) ---------- */
+.rd-sai{background:var(--off);color:var(--ink);padding:clamp(92px,14vh,180px) 0}
+.rd-sai .rd-wrap{width:var(--wrap);margin-inline:auto}
+.rd-sai-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,5vw,80px);align-items:center}
+.rd-sai-title{font-weight:250;font-size:clamp(1.9rem,4vw,3.5rem);line-height:1.16;letter-spacing:-.035em}
+.rd-sai-title b{font-weight:600}
+.rd-sai-desc{margin-top:24px;max-width:44ch;font-size:clamp(1rem,1.2vw,1.12rem);line-height:1.75;color:var(--ink-soft)}
+.rd-sai-points{list-style:none;margin-top:28px;display:grid;gap:13px}
+.rd-sai-points li{display:flex;align-items:baseline;gap:12px;font-size:clamp(.98rem,1.1vw,1.06rem);color:var(--ink)}
+.rd-sai-points li::before{content:"";flex:0 0 auto;width:6px;height:6px;margin-top:.42em;border-radius:50%;background:var(--red)}
+.rd-sai-note{margin-top:26px;padding-top:18px;border-top:1px solid var(--line);max-width:44ch;font-size:.92rem;line-height:1.65;color:var(--ink-mut)}
+/* 정보 구조 예시 패널(실제 콘텐츠 형태) */
+.rd-sai-ex{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:clamp(22px,2.6vw,36px);box-shadow:0 24px 60px rgba(22,19,14,.06)}
+.rd-sai-ex .ex-label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mut);display:flex;align-items:center;gap:9px;margin-bottom:22px}
+.rd-sai-ex .ex-label::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red)}
+.rd-sai-ex .ex-h1{font-weight:600;font-size:clamp(1.15rem,1.7vw,1.4rem);letter-spacing:-.02em;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.rd-sai-ex .ex-tree{list-style:none;margin:16px 0 4px;display:grid;gap:11px}
+.rd-sai-ex .ex-tree li{position:relative;padding-left:22px;font-size:clamp(.96rem,1.1vw,1.02rem);color:var(--ink-2)}
+.rd-sai-ex .ex-tree li::before{content:"";position:absolute;left:2px;top:.62em;width:9px;height:1px;background:var(--ink-mut)}
+.rd-sai-ex .ex-qa{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);display:grid;gap:8px}
+.rd-sai-ex .ex-q{font-weight:600;font-size:.98rem;display:flex;gap:9px}
+.rd-sai-ex .ex-q::before{content:"Q";font-family:var(--mono);color:var(--red);font-weight:700}
+.rd-sai-ex .ex-a{font-size:.96rem;line-height:1.6;color:var(--ink-soft);display:flex;gap:9px}
+.rd-sai-ex .ex-a::before{content:"A";font-family:var(--mono);color:var(--ink-mut);font-weight:700}
+
 @media (max-width:900px){
   :root{--hdr:70px}
   .rd-nav-r .lnk{display:none}
@@ -302,6 +327,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .rd-bt.w2{grid-column:span 1}
   .rd-proc-grid{grid-template-columns:1fr;gap:30px}
   .rd-proc-aside{position:static}
+  .rd-sai-grid{grid-template-columns:1fr;gap:34px}
 }
 @media (max-width:390px){
   .rd-hlead{font-size:.98rem}
