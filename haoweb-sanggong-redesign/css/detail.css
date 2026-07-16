@@ -262,6 +262,12 @@ body.rd-page{background:var(--off);color:var(--ink);overflow-x:hidden}
 .rd-page .screen-demo .uihero{padding:26px 22px 22px}
 .rd-page .screen-demo .uih-t{font-size:clamp(15px,1.8vw,22px)}
 .rd-page .screen-note{margin-top:22px;font-size:.9rem;color:var(--ink-mut)}
+/* landing: uiwin 단독 → 폭 넓게 */
+.rd-page .screen-demo:has(> .uiwin:only-child){aspect-ratio:16/9;max-width:760px}
+.rd-page .screen-demo > .uiwin:only-child{position:relative;width:100%}
+/* app: 폰 단독 중앙 */
+.rd-page .screen-demo-app{display:flex;justify-content:center;padding:8px 0 4px}
+.rd-page .screen-demo-app .uiphone.big{position:relative;right:auto;bottom:auto;width:min(240px,64%)}
 
 /* 스크롤 프로그레스(있으면 얇게) · skip-link */
 .rd-page .scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--red);z-index:100;width:0}
