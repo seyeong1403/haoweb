@@ -99,8 +99,29 @@ body.rd-page{background:var(--off);color:var(--ink)}
 .rd-page .spec-k{font-weight:600;color:var(--ink)}
 .rd-page .why-item{padding-top:20px;border-top:1px solid var(--line)}
 .rd-page .why-k{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:12px}
-.rd-page .choice{border:1px solid var(--line);border-radius:16px;padding:clamp(24px,3vw,40px);transition:border-color .3s,transform .4s var(--ease)}
-.rd-page .choice:hover{border-color:rgba(232,56,23,.5);transform:translateY(-3px)}
+/* ---------- Forms (inquiry / diagnosis / site-plan) ---------- */
+.rd-page .form-card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:clamp(24px,3.4vw,46px);box-shadow:0 24px 60px rgba(22,19,14,.05)}
+.rd-page .field{display:block;margin-bottom:22px}
+.rd-page .field-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.rd-page .field>label,.rd-page .field-legend{display:block;font-weight:600;font-size:.95rem;color:var(--ink);margin-bottom:10px}
+.rd-page .hint{font-weight:400;color:var(--ink-mut);font-size:.85em}
+.rd-page input[type=text],.rd-page input[type=email],.rd-page input[type=tel],.rd-page input[type=url],.rd-page input:not([type]),.rd-page select,.rd-page textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--off);border:1px solid var(--line);border-radius:10px;padding:13px 15px;transition:border-color .2s,background .2s}
+.rd-page input:focus,.rd-page select:focus,.rd-page textarea:focus{outline:none;border-color:var(--red);background:var(--white)}
+.rd-page textarea{min-height:130px;resize:vertical;line-height:1.6}
+.rd-page input[type=radio],.rd-page input[type=checkbox]{accent-color:var(--red);width:auto}
+/* 선택형 pill (choice / inq-type) */
+.rd-page .choice,.rd-page .inq-type{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:100px;padding:10px 15px;cursor:pointer;transition:border-color .2s,background .2s;font-size:.96rem;color:var(--ink)}
+.rd-page .inq-type{border-radius:12px;align-items:flex-start;padding:14px 16px}
+.rd-page .choice:hover,.rd-page .inq-type:hover{border-color:rgba(232,56,23,.5)}
+.rd-page .choice:has(:checked),.rd-page .inq-type:has(:checked){border-color:var(--red);background:rgba(232,56,23,.06)}
+.rd-page .inq-type span{display:flex;flex-direction:column;gap:3px}
+.rd-page .inq-type b{font-weight:600}.rd-page .inq-type em{font-style:normal;font-size:.85rem;color:var(--ink-mut)}
+.rd-page .inq-types{border:0;padding:0;margin:0 0 22px}
+.rd-page .inq-types .inq-grid,.rd-page fieldset .choices,.rd-page .choices{display:flex;flex-wrap:wrap;gap:10px}
+.rd-page fieldset{border:0;padding:0;margin:0}
+.rd-page .form-actions{margin-top:26px;display:flex;flex-direction:column;gap:14px}
+.rd-page .iform-note,.rd-page .form-note{font-size:.9rem;color:var(--ink-mut);line-height:1.6}
+.rd-page .field-legend .hint{margin-left:4px}
 
 /* 관련 칼럼 카드 */
 .rd-page .col-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(20px,2.5vw,36px)}
@@ -176,6 +197,7 @@ body.rd-page{background:var(--off);color:var(--ink)}
   .rd-page .deflist>div{grid-template-columns:1fr;gap:6px}
   .rd-page .spec>div,.rd-page .spec .spec-row{grid-template-columns:1fr;gap:6px}
   .rd-page .faq-wrap{grid-template-columns:1fr;gap:24px}
+  .rd-page .field-2{grid-template-columns:1fr}
   .rd-page .footer-grid{grid-template-columns:1fr 1fr}
   .rd-page .footer-brand{grid-column:1/-1}
 }
