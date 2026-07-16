@@ -120,6 +120,27 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 
 /* 리빌 게이트(JS) */
 .rd-js .rd-anim{opacity:0}
+/* 단어 분할(split-text) — 마스크 안에서 단어가 올라옴 */
+.rd-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.14em;margin-bottom:-.14em}
+.rd-wi{display:inline-block;will-change:transform;transition:transform .72s var(--ease)}
+.rd-js .rd-w .rd-wi{transform:translateY(110%)}
+.rd-js .rd-in .rd-wi{transform:translateY(0)}
+.rd-js .rd-reveal{opacity:0}
+
+/* ---------- 02 · HAOWEB Statement (대형 타이포 · 카드 없음) ---------- */
+.rd-statement{background:var(--off);color:var(--ink);padding:clamp(92px,15vh,190px) 0}
+.rd-statement .rd-wrap{width:var(--wrap);margin-inline:auto}
+.rd-eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:13px;margin-bottom:clamp(30px,5vh,54px)}
+.rd-eyebrow::before{content:"";width:38px;height:1px;background:var(--red)}
+.rd-stmt{font-weight:300;font-size:clamp(1.9rem,4.5vw,4.05rem);line-height:1.26;letter-spacing:-.025em;max-width:22ch}
+.rd-stmt b{font-weight:650}
+.rd-stmt em{font-style:normal;color:var(--red);font-weight:500}
+.rd-stmt-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-top:clamp(44px,7vh,80px);padding-top:30px;border-top:1px solid var(--line)}
+.rd-stmt-sub{max-width:42ch;font-size:clamp(1rem,1.25vw,1.14rem);line-height:1.75;color:var(--ink-soft)}
+.rd-textlink{font-weight:600;font-size:15.5px;color:var(--ink);display:inline-flex;align-items:center;gap:9px;white-space:nowrap;transition:gap .2s,color .2s}
+.rd-textlink span{color:var(--red);transition:transform .2s}
+.rd-textlink:hover{color:var(--red)}
+.rd-textlink:hover span{transform:translateX(5px)}
 
 @media (max-width:900px){
   :root{--hdr:70px}
@@ -141,4 +162,6 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .rd-hframe{transition:opacity .2s}
   .rd-marquee-track{animation:none}
   .rd-js .rd-anim{opacity:1}
+  .rd-js .rd-w .rd-wi{transform:none;transition:none}
+  .rd-js .rd-reveal{opacity:1}
 }

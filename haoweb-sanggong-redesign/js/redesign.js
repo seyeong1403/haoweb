@@ -10,6 +10,41 @@
   var reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
   var hasGSAP = typeof window.gsap !== "undefined";
 
+  /* ---------- 단어 분할(split-text): <br>·<b> 보존, 각 단어를 마스크 span으로 ---------- */
+  function splitWords(rootEl) {
+    var words = [], idx = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (ch) {
+        if (ch.nodeType === 3) {
+          var parts = ch.nodeValue.split(/(\s+)/);
+          var frag = document.createDocumentFragment();
+          parts.forEach(function (p) {
+            if (p === "") return;
+            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(" ")); return; }
+            var w = document.createElement("span"); w.className = "rd-w";
+            var wi = document.createElement("span"); wi.className = "rd-wi"; wi.textContent = p;
+            wi.style.transitionDelay = Math.min(idx * 0.04, 0.5) + "s"; idx++;
+            w.appendChild(wi); frag.appendChild(w); words.push(wi);
+          });
+          node.replaceChild(frag, ch);
+        } else if (ch.nodeType === 1 && ch.tagName !== "BR") {
+          walk(ch); // <b> 등 인라인 요소 안으로 재귀(굵기 유지)
+        }
+      });
+    })(rootEl);
+    return words;
+  }
+  // 단어 리빌 안전망: CSS transition이 진행되지 않으면(프리뷰 정지) transition 끄고 최종값 강제
+  function forceWords(words) {
+    setTimeout(function () {
+      words.forEach(function (w) {
+        var m = getComputedStyle(w).transform;
+        var ty = m === "none" ? 0 : parseFloat((m.match(/matrix\([^)]*,\s*([\-0-9.]+)\)\s*$/) || [])[1] || 0);
+        if (Math.abs(ty) > 2) { w.style.transition = "none"; w.style.transform = "translateY(0)"; }
+      });
+    }, 1400);
+  }
+
   /* ---------- Header: 스크롤 시 solid ---------- */
   var header = document.querySelector(".rd-header");
   function onScroll() {
@@ -91,6 +126,11 @@
   if (hero) {
     var slides = Array.prototype.slice.call(hero.querySelectorAll(".rd-hero-slide"));
     var frames = Array.prototype.slice.call(hero.querySelectorAll(".rd-hframe"));
+    // 각 슬라이드 헤드라인을 단어 단위로 분할(마스크 스태거용)
+    slides.forEach(function (s) {
+      var t = s.querySelector(".rd-htitle");
+      if (t) s._words = splitWords(t);
+    });
     var cur = document.querySelector("[data-count-cur]");
     var totalEl = document.querySelector("[data-count-total]");
     var progBar = document.querySelector(".rd-prog i");
@@ -125,24 +165,29 @@
       frameTimer = setTimeout(reconcileFrames, 900);
       if (cur) cur.textContent = ("0" + (idx + 1)).slice(-2);
     }
-    function show(items) {
-      items.forEach(function (el) { el.style.opacity = 1; el.style.transform = "none"; });
-    }
     function revealSlide(s, dir) {
-      var items = s.querySelectorAll(".rd-anim");
-      if (!hasGSAP || reduce) { show(items); return; }
-      window.gsap.killTweensOf(items);
-      window.gsap.fromTo(items,
-        { yPercent: dir < 0 ? -40 : 40, opacity: 0 },
-        { yPercent: 0, opacity: 1, duration: 0.85, ease: "power3.out", stagger: 0.08, overwrite: true }
-      );
-      // 안전망: 트윈이 진행되지 않으면(프리뷰 rAF 정지 등) 강제 노출
+      // 헤드라인 단어(CSS transition 마스크): 비활성 슬라이드는 리셋해 재진입 시 다시 애니메이션
+      slides.forEach(function (o) {
+        if (o === s) return;
+        var ot = o.querySelector(".rd-htitle"); if (ot) ot.classList.remove("rd-in");
+        (o._words || []).forEach(function (w) { w.style.transition = ""; w.style.transform = ""; });
+      });
+      var t = s.querySelector(".rd-htitle"); if (t) t.classList.add("rd-in");
+      if (!reduce) forceWords(s._words || []);
+
+      // 카테고리·리드·CTA (블록 페이드 — GSAP)
+      var blocks = s.querySelectorAll(".rd-anim");
+      if (!hasGSAP || reduce) { blocks.forEach(function (el) { el.style.opacity = 1; el.style.transform = "none"; }); return; }
+      window.gsap.killTweensOf(blocks);
+      window.gsap.fromTo(blocks,
+        { y: 18, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out", stagger: 0.08, delay: 0.18, overwrite: true });
       setTimeout(function () {
         if (!s.classList.contains("active")) return;
-        items.forEach(function (el) {
+        blocks.forEach(function (el) {
           if (parseFloat(getComputedStyle(el).opacity) < 0.05) { el.style.opacity = 1; el.style.transform = "none"; }
         });
-      }, 1200);
+      }, 1250);
     }
     function runProgress() {
       if (!progBar) return;
@@ -182,4 +227,46 @@
       });
     }, 1600);
   }
+
+  /* ---------- 스크롤 리빌: .rd-split(단어 스태거) · .rd-reveal(블록) ---------- */
+  var splitEls = Array.prototype.slice.call(document.querySelectorAll(".rd-split"));
+  splitEls.forEach(function (el) { el._words = splitWords(el); });
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".rd-reveal"));
+
+  function fireSplit(el) {
+    if (el._done) return; el._done = true;
+    el.classList.add("rd-in");                    // CSS transition 마스크 리빌
+    if (!reduce) forceWords(el._words || []);     // 프리뷰 정지 대비 안전망
+  }
+  function fireReveal(el) {
+    if (el._done) return; el._done = true;
+    if (!hasGSAP || reduce) { el.style.opacity = 1; el.style.transform = "none"; return; }
+    window.gsap.fromTo(el, { y: 26, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.7, ease: "power2.out", overwrite: true });
+    setTimeout(function () {
+      if (parseFloat(getComputedStyle(el).opacity) < 0.05) { window.gsap.killTweensOf(el); window.gsap.set(el, { y: 0, opacity: 1 }); }
+    }, 1300);
+  }
+
+  var allReveal = splitEls.concat(revealEls);
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        if (e.target.classList.contains("rd-split")) fireSplit(e.target); else fireReveal(e.target);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.18, rootMargin: "0px 0px -8% 0px" });
+    allReveal.forEach(function (el) { io.observe(el); });
+  } else {
+    allReveal.forEach(function (el) { el.classList.contains("rd-split") ? fireSplit(el) : fireReveal(el); });
+  }
+  // 안전망: IO가 얼어 발화하지 않는 프리뷰 환경 대비 — 뷰포트 근처 요소 강제 노출
+  setTimeout(function () {
+    allReveal.forEach(function (el) {
+      if (el._done) return;
+      var r = el.getBoundingClientRect();
+      if (r.top < innerHeight * 1.3) { el.classList.contains("rd-split") ? fireSplit(el) : fireReveal(el); }
+    });
+  }, 2200);
 })();
