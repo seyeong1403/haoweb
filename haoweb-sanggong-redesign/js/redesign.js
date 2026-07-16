@@ -225,6 +225,35 @@
     }, 1600);
   }
 
+  /* ---------- 03 Selected Projects: 스크롤 구동 장면 전환 ---------- */
+  var projTrack = document.querySelector("[data-proj-track]");
+  if (projTrack) {
+    var projItems = Array.prototype.slice.call(projTrack.querySelectorAll(".rd-proj-item"));
+    var projDots = Array.prototype.slice.call(projTrack.querySelectorAll(".rd-proj-dot"));
+    var projN = projItems.length, projCur = -1;
+    function projUpdate() {
+      if (matchMedia("(max-width:900px)").matches) { // 모바일: 세로 스택
+        if (projCur !== -2) { projItems.forEach(function (it) { it.classList.add("active"); }); projCur = -2; }
+        return;
+      }
+      var rect = projTrack.getBoundingClientRect();
+      var total = projTrack.offsetHeight - innerHeight;
+      var p = total > 0 ? (-rect.top) / total : 0;
+      p = Math.max(0, Math.min(0.999, p));
+      var idx = Math.min(projN - 1, Math.floor(p * projN));
+      if (idx === projCur) return;
+      projCur = idx;
+      projItems.forEach(function (it, k) { it.classList.toggle("active", k === idx); });
+      projDots.forEach(function (d, k) { d.classList.toggle("active", k === idx); });
+      // 안전망: clip 애니메이션이 프리뷰에서 얼려 가려지지 않도록 최종 노출 강제
+      var v = projItems[idx].querySelector(".rd-proj-vis");
+      if (v) setTimeout(function () { if (projItems[idx].classList.contains("active")) v.style.clipPath = "none"; }, 850);
+    }
+    window.addEventListener("scroll", projUpdate, { passive: true });
+    window.addEventListener("resize", projUpdate, { passive: true });
+    projUpdate();
+  }
+
   /* ---------- 04 Production Services: 목록 hover → 비주얼 반응 ---------- */
   var serv = document.querySelector(".rd-serv");
   if (serv) {
