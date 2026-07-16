@@ -279,11 +279,11 @@
   }
 
   /* ---------- 스크롤 리빌: 단어 분할(타이틀 전반) · 블록(그 외) ---------- */
-  // 전 페이지 타이틀을 단어별로 분할(마스크 스태거) — 세부페이지 .section-title / .page-hero-title 포함
-  var SPLIT_SEL = ".rd-split, .page-hero-title, .section-title, .rd-serv-name, .rd-work-name";
+  // 모션 절제(§12): 단어분할은 명시적으로 표시한 핵심 타이틀(.rd-split)에만, 본문·세부페이지는 즉시 표시
+  var SPLIT_SEL = ".rd-split";
   var splitEls = Array.prototype.slice.call(document.querySelectorAll(SPLIT_SEL));
   splitEls.forEach(function (el) { el._split = true; el._words = splitWords(el); });
-  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".rd-reveal, .reveal"))
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".rd-reveal"))
     .filter(function (el) { return !el._split; });
 
   function fireSplit(el) {

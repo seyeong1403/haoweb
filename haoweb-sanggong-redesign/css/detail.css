@@ -261,7 +261,7 @@ body.rd-page{background:var(--off);color:var(--ink);overflow-x:hidden}
 .rd-page .skip-link:focus{left:12px;top:12px;z-index:200;background:var(--ink);color:var(--off);padding:10px 16px;border-radius:6px}
 
 /* 리빌 게이트: 기존 .reveal 도 redesign.js가 처리 */
-.rd-js .rd-page .reveal{opacity:0}
+/* 모션 절제(§12): 세부페이지 본문(.reveal)은 등장 효과 없이 즉시 표시 */
 
 /* ---------- 반응형 ---------- */
 @media (max-width:900px){
