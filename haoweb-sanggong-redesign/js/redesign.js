@@ -254,7 +254,7 @@
   /* ---------- 스크롤 리빌: .rd-split(단어 스태거) · .rd-reveal(블록) ---------- */
   var splitEls = Array.prototype.slice.call(document.querySelectorAll(".rd-split"));
   splitEls.forEach(function (el) { el._words = splitWords(el); });
-  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".rd-reveal"));
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".rd-reveal, .reveal"));
 
   function fireSplit(el) {
     if (el._done) return; el._done = true;
@@ -266,9 +266,8 @@
     if (!hasGSAP || reduce) { el.style.opacity = 1; el.style.transform = "none"; return; }
     window.gsap.fromTo(el, { y: 26, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.7, ease: "power2.out", overwrite: true });
-    setTimeout(function () {
-      if (parseFloat(getComputedStyle(el).opacity) < 0.05) { window.gsap.killTweensOf(el); window.gsap.set(el, { y: 0, opacity: 1 }); }
-    }, 1300);
+    // 안전망: 애니메이션 시간 이후 최종값 무조건 스냅(실브라우저 no-op, 프리뷰 정지 대비)
+    setTimeout(function () { window.gsap.killTweensOf(el); window.gsap.set(el, { y: 0, opacity: 1 }); }, 1300);
   }
 
   var allReveal = splitEls.concat(revealEls);
