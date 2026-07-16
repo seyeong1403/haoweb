@@ -256,28 +256,46 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .uiwin-body.land{padding-bottom:16px}.uirow-land{padding-top:8px}
 .rd-serv-screen.app{}.rd-serv-screen .uiphone.big{position:relative;right:auto;bottom:auto;width:56%}
 
-/* ---------- 05 · Why HAOWEB (3개념 · 장면 교차, 카드 아님) ---------- */
-.rd-why{background:var(--black);color:var(--off);padding:clamp(96px,15vh,190px) 0;overflow:hidden}
-.rd-why .rd-wrap{width:var(--wrap);margin-inline:auto}
-.rd-why-head{max-width:30ch;margin-bottom:clamp(60px,10vh,130px)}
-.rd-why-lead{font-weight:250;font-size:clamp(1.9rem,4.4vw,3.9rem);line-height:1.16;letter-spacing:-.035em}
-.rd-why-lead b{font-weight:600}
-.rd-why-scenes{display:grid;gap:clamp(84px,15vh,180px)}
-.rd-why-scene{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(30px,5vw,72px);align-items:center}
-.rd-why-scene:nth-child(even) .rd-why-text{order:2}
-.rd-why-num{font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:12px;margin-bottom:24px}
-.rd-why-num::before{content:"";width:30px;height:1px;background:var(--red)}
-.rd-why-title{font-weight:250;font-size:clamp(1.8rem,3.7vw,3.2rem);line-height:1.16;letter-spacing:-.03em}
-.rd-why-title b{font-weight:600}
-.rd-why-desc{margin-top:24px;max-width:44ch;font-size:clamp(1rem,1.25vw,1.14rem);line-height:1.75;color:rgba(242,239,232,.72)}
-.rd-why-points{list-style:none;margin-top:30px;display:grid;gap:13px}
-.rd-why-points li{display:flex;align-items:baseline;gap:12px;font-size:clamp(.96rem,1.1vw,1.04rem);color:rgba(242,239,232,.82)}
-.rd-why-points li::before{content:"";flex:0 0 auto;width:6px;height:6px;margin-top:.42em;border-radius:50%;background:var(--red)}
-.rd-why-visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:clamp(220px,34vh,380px)}
-.rd-why-scene:nth-child(even) .rd-why-visual{justify-content:flex-start}
-.rd-why-scene:nth-child(odd) .rd-why-visual{justify-content:flex-end}
-.rd-why-word{font-weight:700;font-size:clamp(6rem,18vw,17rem);line-height:.82;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(242,239,232,.16);text-stroke:1px rgba(242,239,232,.16);user-select:none}
-.rd-why-word em{font-style:normal;-webkit-text-stroke:1px rgba(232,56,23,.55);text-stroke:1px rgba(232,56,23,.55)}
+/* ---------- 05 · Why HAOWEB (세 장면 서로 다른 표현) ---------- */
+.rd-why2{background:var(--black);color:var(--off);padding:clamp(90px,14vh,180px) 0;overflow:hidden}
+.rd-why2 .rd-wrap{width:var(--wrap);margin-inline:auto}
+.rd-why2-head{max-width:30ch;margin-bottom:clamp(56px,9vh,110px)}
+.rd-why2-lead{font-size:clamp(1.9rem,4.4vw,3.9rem);line-height:1.16;letter-spacing:-.035em}
+.rd-why2-lead b{font-weight:600}
+.rd-why2-scene{padding:clamp(46px,7vh,80px) 0;border-top:1px solid var(--line-d)}
+.wsc-lead{display:flex;gap:clamp(18px,3vw,40px);align-items:flex-start;margin-bottom:clamp(34px,5vh,56px)}
+.wsc-num{flex:0 0 auto;font-size:15px;color:var(--red);letter-spacing:.05em;padding-top:.35em}
+.wsc-lead h3{font-weight:400;font-size:clamp(1.5rem,3vw,2.5rem);line-height:1.22;letter-spacing:-.03em;max-width:22ch}
+/* 장면 01 — 좌우 비교 (카드 없음, 구분선) */
+.wsc-compare{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(18px,3vw,54px);align-items:start}
+.wsc-col .wsc-tag{display:inline-block;font-size:12px;letter-spacing:.1em;color:rgba(242,239,232,.6);padding-bottom:16px;border-bottom:1px solid var(--line-d);margin-bottom:20px}
+.wsc-col .wsc-tag.red{color:var(--red)}
+.wsc-col ol{list-style:none;counter-reset:w;display:grid;gap:0}
+.wsc-col li{counter-increment:w;position:relative;padding:15px 0 15px 34px;border-top:1px solid rgba(242,239,232,.08);font-size:clamp(1rem,1.3vw,1.2rem);color:var(--off)}
+.wsc-col li:first-child{border-top:0}
+.wsc-col li::before{content:counter(w);position:absolute;left:0;top:15px;font-size:13px;color:rgba(242,239,232,.4)}
+.wsc-mid{align-self:center;writing-mode:vertical-rl;text-orientation:mixed;font-size:11px;letter-spacing:.3em;color:rgba(242,239,232,.35);text-transform:uppercase}
+/* 장면 02 — Before → Edit → Web 흐름 */
+.wsc-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:clamp(12px,2vw,28px);align-items:center}
+.wfl{margin:0;display:flex;flex-direction:column;gap:16px}
+.wfl-k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.wfl-box{background:#161310;border:1px solid var(--line-d);border-radius:12px;aspect-ratio:4/3;padding:clamp(14px,1.6vw,22px);display:flex;flex-direction:column;justify-content:center;gap:8px}
+.wfl-box.messy s{display:block;height:7px;border-radius:4px;background:rgba(242,239,232,.14);transform:rotate(-1deg)}
+.wfl-box.messy s.w40{width:40%;transform:rotate(1.5deg)}.wfl-box.messy s.w60{width:60%}.wfl-box.messy s.w70{width:70%;transform:rotate(-2deg)}.wfl-box.messy s.w80{width:80%}
+.wfl-box.sorted{gap:12px}
+.wfl-box.sorted .grp{display:flex;gap:6px;padding-left:10px;border-left:2px solid var(--red)}
+.wfl-box.sorted .grp i{flex:1;height:8px;border-radius:4px;background:rgba(242,239,232,.2)}
+.wfl-box .uiwin.xs{position:relative;top:0;left:0;width:100%;box-shadow:none}
+.wfl figcaption{font-size:12.5px;color:rgba(242,239,232,.6)}
+.wfl-arrow{color:var(--red);font-size:22px;text-align:center}
+/* 장면 03 — 아카이브 축적 (타임라인) */
+.wsc-archive{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,26px);padding-left:4px}
+.warc-axis{position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,var(--red),transparent);display:none}
+.warc-item{border-top:2px solid rgba(242,239,232,.14);padding-top:14px}
+.warc-item b{display:block;font-weight:500;font-size:clamp(1rem,1.3vw,1.18rem);color:var(--off);margin-bottom:10px}
+.warc-item s{display:block;height:7px;border-radius:4px;background:rgba(242,239,232,.1)}
+.warc-item.add{border-top-color:var(--red)}
+.warc-item.add span{font-size:12px;color:var(--red)}
 
 /* ---------- 06 · Brand Integration (결과물 콜라주) ---------- */
 .rd-brandx{background:var(--off);color:var(--ink);padding:clamp(92px,14vh,180px) 0;overflow:hidden}
@@ -416,10 +434,13 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .rd-serv-screen{position:static!important;width:100%;opacity:1!important;visibility:visible!important;transform:none!important;padding:14px 0 26px;pointer-events:auto;justify-content:flex-start;transition:none!important}
   .rd-serv-screen .uiwin{box-shadow:0 20px 44px rgba(22,19,14,.12)}
   .rd-serv-screen .uiphone.big{width:44%}
-  .rd-why-scene{grid-template-columns:1fr;gap:26px}
-  .rd-why-scene:nth-child(even) .rd-why-text{order:0}
-  .rd-why-visual{order:-1;min-height:auto;justify-content:flex-start!important}
-  .rd-why-word{font-size:clamp(4.5rem,26vw,8rem)}
+  .wsc-lead{flex-direction:column;gap:14px}
+  .wsc-compare{grid-template-columns:1fr;gap:28px}
+  .wsc-mid{display:none}
+  .wsc-flow{grid-template-columns:1fr;gap:10px}
+  .wfl-arrow{transform:rotate(90deg);font-size:18px}
+  .wfl-box{aspect-ratio:16/7}
+  .wsc-archive{grid-template-columns:1fr 1fr}
   .rd-brandx-grid{grid-template-columns:1fr;gap:38px}
   .rd-brandx-collage{aspect-ratio:auto;display:grid;grid-template-columns:1fr 1fr;gap:30px 14px}
   .bx{position:static!important;inset:auto!important;width:auto!important;min-width:0;aspect-ratio:4/3;z-index:auto!important;overflow:hidden}
