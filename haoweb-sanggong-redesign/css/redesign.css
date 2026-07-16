@@ -209,6 +209,29 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .sv-land{background:radial-gradient(120% 110% at 80% 30%,#efe6de,#f6f1e9)}
 .sv-app{background:radial-gradient(120% 120% at 25% 80%,#e6e9ef,#f1f2f5)}
 
+/* ---------- 05 · Why HAOWEB (3개념 · 장면 교차, 카드 아님) ---------- */
+.rd-why{background:var(--black);color:var(--off);padding:clamp(96px,15vh,190px) 0;overflow:hidden}
+.rd-why .rd-wrap{width:var(--wrap);margin-inline:auto}
+.rd-why-head{max-width:30ch;margin-bottom:clamp(60px,10vh,130px)}
+.rd-why-lead{font-weight:250;font-size:clamp(1.9rem,4.4vw,3.9rem);line-height:1.16;letter-spacing:-.035em}
+.rd-why-lead b{font-weight:600}
+.rd-why-scenes{display:grid;gap:clamp(84px,15vh,180px)}
+.rd-why-scene{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(30px,5vw,72px);align-items:center}
+.rd-why-scene:nth-child(even) .rd-why-text{order:2}
+.rd-why-num{font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.rd-why-num::before{content:"";width:30px;height:1px;background:var(--red)}
+.rd-why-title{font-weight:250;font-size:clamp(1.8rem,3.7vw,3.2rem);line-height:1.16;letter-spacing:-.03em}
+.rd-why-title b{font-weight:600}
+.rd-why-desc{margin-top:24px;max-width:44ch;font-size:clamp(1rem,1.25vw,1.14rem);line-height:1.75;color:rgba(242,239,232,.72)}
+.rd-why-points{list-style:none;margin-top:30px;display:grid;gap:13px}
+.rd-why-points li{display:flex;align-items:baseline;gap:12px;font-size:clamp(.96rem,1.1vw,1.04rem);color:rgba(242,239,232,.82)}
+.rd-why-points li::before{content:"";flex:0 0 auto;width:6px;height:6px;margin-top:.42em;border-radius:50%;background:var(--red)}
+.rd-why-visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:clamp(220px,34vh,380px)}
+.rd-why-scene:nth-child(even) .rd-why-visual{justify-content:flex-start}
+.rd-why-scene:nth-child(odd) .rd-why-visual{justify-content:flex-end}
+.rd-why-word{font-weight:700;font-size:clamp(6rem,18vw,17rem);line-height:.82;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(242,239,232,.16);text-stroke:1px rgba(242,239,232,.16);user-select:none}
+.rd-why-word em{font-style:normal;-webkit-text-stroke:1px rgba(232,56,23,.55);text-stroke:1px rgba(232,56,23,.55)}
+
 @media (max-width:900px){
   :root{--hdr:70px}
   .rd-nav-r .lnk{display:none}
@@ -224,6 +247,10 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .rd-serv-body{grid-template-columns:1fr;gap:0}
   .rd-serv-visual{display:none}
   .rd-serv-item .rd-serv-arrow{opacity:1;transform:none;transition:none}
+  .rd-why-scene{grid-template-columns:1fr;gap:26px}
+  .rd-why-scene:nth-child(even) .rd-why-text{order:0}
+  .rd-why-visual{order:-1;min-height:auto;justify-content:flex-start!important}
+  .rd-why-word{font-size:clamp(4.5rem,26vw,8rem)}
 }
 @media (max-width:390px){
   .rd-hlead{font-size:.98rem}
