@@ -394,3 +394,17 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .rd-js .rd-w .rd-wi{transform:none;transition:none}
   .rd-js .rd-reveal{opacity:1}
 }
+
+/* ============================================================
+   굵기 통일: 타이틀 = Bold(700) · 본문 = Medium(500)
+   (버튼·네비·라벨 등 UI 크롬은 기능상 semibold 유지)
+   ============================================================ */
+body{font-weight:500}
+h1,h2,h3,h4{font-weight:700}
+.rd-htitle,.rd-stmt,.rd-work-title,.rd-work-name,.rd-serv-title,.rd-serv-name,
+.rd-why-lead,.rd-why-title,.rd-proc-h,.rd-proc-stitle,.rd-sai-title,
+.rd-choice-h,.rd-choice-title,.rd-final-h,.rd-brand-lead h2,.rd-mq .t,
+.rd-logo,.rd-foot-logo{font-weight:700}
+.rd-htitle b,.rd-stmt b,.rd-work-title b,.rd-serv-title b,.rd-why-lead b,.rd-why-title b,
+.rd-proc-h b,.rd-sai-title b,.rd-choice-h b,.rd-final-h b,.rd-brand-lead h2 b,
+h1 b,h2 b,h3 b,h4 b{font-weight:700}

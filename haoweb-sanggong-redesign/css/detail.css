@@ -276,3 +276,16 @@ body.rd-page{background:var(--off);color:var(--ink);overflow-x:hidden}
   .rd-page .footer-grid{grid-template-columns:1fr 1fr}
   .rd-page .footer-brand{grid-column:1/-1}
 }
+
+/* ============================================================
+   굵기 통일(세부페이지): 타이틀 = Bold(700) · 본문 = Medium(500)
+   ============================================================ */
+body.rd-page{font-weight:500}
+.rd-page h1,.rd-page h2,.rd-page h3,.rd-page h4,
+.rd-page .page-hero-title,.rd-page .section-title,.rd-page .spec h3,.rd-page .bc-item h3,
+.rd-page .step h3,.rd-page .feature-item h3,.rd-page .col-card h3,.rd-page .cost-prep h3,
+.rd-page .final-cta h2,.rd-page .saeg-title,.rd-page .faq-item summary,.rd-page .ps-n,
+.rd-page .intv-ph-lead,.rd-page .deflist dt{font-weight:700}
+.rd-page .page-hero-title b,.rd-page .section-title b,.rd-page .final-cta h2 b,
+.rd-page h1 b,.rd-page h2 b,.rd-page h3 b{font-weight:700}
+.rd-page .page-hero-lead,.rd-page .section-sub,.rd-page .lead-intro,.rd-page .prose p{font-weight:500}
