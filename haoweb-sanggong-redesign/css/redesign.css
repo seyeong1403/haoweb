@@ -258,6 +258,24 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .bt-web{background:radial-gradient(120% 120% at 20% 20%,#e6e9ea,#f1f3f1)}
 .bt-app{background:radial-gradient(120% 120% at 75% 80%,#e8e6ec,#f2f1f3)}
 
+/* ---------- 07 · Production Process (대형 텍스트 + Sticky) ---------- */
+.rd-proc{background:var(--black);color:var(--off);padding:clamp(92px,14vh,180px) 0}
+.rd-proc .rd-wrap{width:var(--wrap);margin-inline:auto}
+.rd-proc-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(40px,6vw,96px);align-items:start}
+.rd-proc-aside{position:sticky;top:calc(var(--hdr) + 40px)}
+.rd-proc-h{font-weight:250;font-size:clamp(2rem,4.4vw,3.9rem);line-height:1.12;letter-spacing:-.04em;margin-top:8px}
+.rd-proc-h b{font-weight:600}
+.rd-proc-lead{margin-top:22px;max-width:34ch;font-size:clamp(1rem,1.2vw,1.1rem);line-height:1.7;color:rgba(242,239,232,.66)}
+.rd-proc-aside .rd-textlink{margin-top:26px}
+.rd-proc-steps{display:grid}
+.rd-proc-step{display:grid;grid-template-columns:auto 1fr;column-gap:clamp(20px,3vw,48px);align-items:start;padding:clamp(28px,3.6vw,52px) 0;border-top:1px solid var(--line-d)}
+.rd-proc-step:last-child{border-bottom:1px solid var(--line-d)}
+.rd-proc-num{font-family:var(--mono);font-weight:700;font-size:clamp(2.2rem,4.4vw,4rem);line-height:.9;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px rgba(242,239,232,.34);text-stroke:1px rgba(242,239,232,.34)}
+.rd-proc-step:hover .rd-proc-num{-webkit-text-stroke-color:rgba(232,56,23,.75);text-stroke:1px rgba(232,56,23,.75)}
+.rd-proc-body{padding-top:.35em}
+.rd-proc-stitle{font-weight:500;font-size:clamp(1.35rem,2.4vw,2rem);letter-spacing:-.02em;line-height:1.2}
+.rd-proc-sdesc{margin-top:12px;max-width:48ch;font-size:clamp(.98rem,1.15vw,1.08rem);line-height:1.7;color:rgba(242,239,232,.66)}
+
 @media (max-width:900px){
   :root{--hdr:70px}
   .rd-nav-r .lnk{display:none}
@@ -282,6 +300,8 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .rd-bt.big{grid-column:1/-1;grid-row:span 1}
   .rd-bt.tall{grid-row:span 1}
   .rd-bt.w2{grid-column:span 1}
+  .rd-proc-grid{grid-template-columns:1fr;gap:30px}
+  .rd-proc-aside{position:static}
 }
 @media (max-width:390px){
   .rd-hlead{font-size:.98rem}
