@@ -228,6 +228,29 @@
     }, 1600);
   }
 
+  /* ---------- 04 Production Services: 목록 hover → 비주얼 반응 ---------- */
+  var serv = document.querySelector(".rd-serv");
+  if (serv) {
+    var sItems = Array.prototype.slice.call(serv.querySelectorAll(".rd-serv-item"));
+    var sFrames = Array.prototype.slice.call(serv.querySelectorAll(".rd-serv-frame"));
+    var activateServ = function (idx) {
+      sItems.forEach(function (it, k) { it.classList.toggle("on", k === idx); });
+      sFrames.forEach(function (f, k) { f.classList.toggle("active", k === idx); });
+      // 안전망(프리뷰 opacity transition 정지 대비)
+      setTimeout(function () {
+        sFrames.forEach(function (f) {
+          var want = f.classList.contains("active") ? "1" : "0";
+          if (getComputedStyle(f).opacity !== want) { f.style.transition = "none"; f.style.opacity = want; }
+        });
+      }, 600);
+    };
+    sItems.forEach(function (it, k) {
+      it.addEventListener("mouseenter", function () { activateServ(k); });
+      it.addEventListener("focusin", function () { activateServ(k); });
+    });
+    activateServ(0);
+  }
+
   /* ---------- 스크롤 리빌: .rd-split(단어 스태거) · .rd-reveal(블록) ---------- */
   var splitEls = Array.prototype.slice.call(document.querySelectorAll(".rd-split"));
   splitEls.forEach(function (el) { el._words = splitWords(el); });
@@ -249,24 +272,27 @@
   }
 
   var allReveal = splitEls.concat(revealEls);
+  function fireEl(el) { el.classList.contains("rd-split") ? fireSplit(el) : fireReveal(el); }
+
+  // 스크롤 기반 체크(주력 · IO가 얼리는 프리뷰에서도 확실 · 실브라우저에도 안전)
+  // rAF는 프리뷰에서 정지되므로 사용하지 않고 직접 호출(리스트는 완료분을 splice해 작게 유지)
+  function checkReveal() {
+    var vh = innerHeight;
+    for (var j = allReveal.length - 1; j >= 0; j--) {
+      var el = allReveal[j];
+      if (el._done) { allReveal.splice(j, 1); continue; }
+      if (el.getBoundingClientRect().top < vh * 0.88) { fireEl(el); allReveal.splice(j, 1); }
+    }
+  }
+  window.addEventListener("scroll", checkReveal, { passive: true });
+  window.addEventListener("resize", checkReveal, { passive: true });
+  // IO도 병행(지원 시)
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        if (e.target.classList.contains("rd-split")) fireSplit(e.target); else fireReveal(e.target);
-        io.unobserve(e.target);
-      });
+      entries.forEach(function (e) { if (e.isIntersecting) { fireEl(e.target); io.unobserve(e.target); } });
     }, { threshold: 0.18, rootMargin: "0px 0px -8% 0px" });
-    allReveal.forEach(function (el) { io.observe(el); });
-  } else {
-    allReveal.forEach(function (el) { el.classList.contains("rd-split") ? fireSplit(el) : fireReveal(el); });
+    allReveal.slice().forEach(function (el) { io.observe(el); });
   }
-  // 안전망: IO가 얼어 발화하지 않는 프리뷰 환경 대비 — 뷰포트 근처 요소 강제 노출
-  setTimeout(function () {
-    allReveal.forEach(function (el) {
-      if (el._done) return;
-      var r = el.getBoundingClientRect();
-      if (r.top < innerHeight * 1.3) { el.classList.contains("rd-split") ? fireSplit(el) : fireReveal(el); }
-    });
-  }, 2200);
+  checkReveal();                 // 초기(첫 화면) 즉시
+  setTimeout(checkReveal, 400);  // 폰트/레이아웃 안정 후 재확인
 })();
