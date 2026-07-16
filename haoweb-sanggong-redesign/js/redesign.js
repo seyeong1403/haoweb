@@ -251,15 +251,19 @@
     activateServ(0);
   }
 
-  /* ---------- 스크롤 리빌: .rd-split(단어 스태거) · .rd-reveal(블록) ---------- */
-  var splitEls = Array.prototype.slice.call(document.querySelectorAll(".rd-split"));
-  splitEls.forEach(function (el) { el._words = splitWords(el); });
-  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".rd-reveal, .reveal"));
+  /* ---------- 스크롤 리빌: 단어 분할(타이틀 전반) · 블록(그 외) ---------- */
+  // 전 페이지 타이틀을 단어별로 분할(마스크 스태거) — 세부페이지 .section-title / .page-hero-title 포함
+  var SPLIT_SEL = ".rd-split, .page-hero-title, .section-title, .rd-serv-name, .rd-work-name";
+  var splitEls = Array.prototype.slice.call(document.querySelectorAll(SPLIT_SEL));
+  splitEls.forEach(function (el) { el._split = true; el._words = splitWords(el); });
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".rd-reveal, .reveal"))
+    .filter(function (el) { return !el._split; });
 
   function fireSplit(el) {
     if (el._done) return; el._done = true;
-    el.classList.add("rd-in");                    // CSS transition 마스크 리빌
-    if (!reduce) forceWords(el._words || []);     // 프리뷰 정지 대비 안전망
+    el.style.opacity = 1;                          // .reveal opacity 게이트 해제(있어도)
+    el.classList.add("rd-in");                     // CSS transition 마스크 리빌
+    if (!reduce) forceWords(el._words || []);      // 프리뷰 정지 대비 안전망
   }
   function fireReveal(el) {
     if (el._done) return; el._done = true;
@@ -271,7 +275,7 @@
   }
 
   var allReveal = splitEls.concat(revealEls);
-  function fireEl(el) { el.classList.contains("rd-split") ? fireSplit(el) : fireReveal(el); }
+  function fireEl(el) { el._split ? fireSplit(el) : fireReveal(el); }
 
   // 스크롤 기반 체크(주력 · IO가 얼리는 프리뷰에서도 확실 · 실브라우저에도 안전)
   // rAF는 프리뷰에서 정지되므로 사용하지 않고 직접 호출(리스트는 완료분을 splice해 작게 유지)
