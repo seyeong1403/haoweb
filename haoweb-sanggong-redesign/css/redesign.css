@@ -319,6 +319,33 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .rd-choice-item:hover .rd-choice-cta{color:var(--red)}
 .rd-choice-item:hover .rd-choice-cta span{background:var(--red);border-color:var(--red);color:var(--white);transform:translateX(4px)}
 
+/* ---------- 10 · Final Contact (풀스크린 · 발광 없음) ---------- */
+.rd-final{background:var(--off);color:var(--ink);min-height:clamp(560px,86svh,900px);display:flex;align-items:center;padding:clamp(80px,12vh,150px) 0}
+.rd-final .rd-wrap{width:var(--wrap);margin-inline:auto}
+.rd-final-eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:13px;margin-bottom:clamp(28px,4vh,44px)}
+.rd-final-eyebrow::before{content:"";width:38px;height:1px;background:var(--red)}
+.rd-final-h{font-weight:250;font-size:clamp(2.4rem,6.8vw,6.2rem);line-height:1.05;letter-spacing:-.045em;max-width:15ch}
+.rd-final-h b{font-weight:550}
+.rd-final-sub{margin-top:28px;max-width:42ch;font-size:clamp(1.05rem,1.4vw,1.28rem);line-height:1.7;color:var(--ink-soft)}
+.rd-final-actions{margin-top:clamp(36px,5vh,52px);display:flex;gap:16px;flex-wrap:wrap}
+.rd-final .rd-btn.solid{background:var(--red);color:var(--white)}
+.rd-final .rd-btn.solid:hover{background:var(--ink)}
+.rd-final .rd-btn.ghost{border:1px solid var(--line);color:var(--ink)}
+.rd-final .rd-btn.ghost:hover{border-color:var(--red);color:var(--red)}
+
+/* ---------- 11 · Footer (에디토리얼) ---------- */
+.rd-foot{background:var(--black);color:var(--off);padding:clamp(66px,9vh,110px) 0 38px}
+.rd-foot .rd-wrap{width:var(--wrap);margin-inline:auto}
+.rd-foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:clamp(28px,3vw,48px);padding-bottom:clamp(40px,6vh,72px);border-bottom:1px solid var(--line-d)}
+.rd-foot-logo{font-weight:800;font-size:clamp(1.6rem,2.4vw,2.1rem);letter-spacing:-.02em}
+.rd-foot-logo b{color:var(--red)}
+.rd-foot-brand p{margin-top:16px;max-width:30ch;font-size:.98rem;line-height:1.7;color:rgba(242,239,232,.6)}
+.rd-foot-col h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,239,232,.5);margin-bottom:18px}
+.rd-foot-col a{display:block;padding:5px 0;font-size:.98rem;color:rgba(242,239,232,.78);transition:color .2s}
+.rd-foot-col a:hover{color:var(--red)}
+.rd-foot-bot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:30px;font-size:.86rem;color:var(--ink-mut)}
+.rd-foot-bot a{color:var(--ink-mut)}.rd-foot-bot a:hover{color:rgba(242,239,232,.8)}
+
 @media (max-width:900px){
   :root{--hdr:70px}
   .rd-nav-r .lnk{display:none}
@@ -349,6 +376,10 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .rd-choice-grid{grid-template-columns:1fr}
   .rd-choice-item + .rd-choice-item{border-left:0;border-top:1px solid var(--line-d)}
   .rd-choice-item{min-height:auto;gap:28px}
+  .rd-final{min-height:auto}
+  .rd-final-actions .rd-btn{flex:1 1 auto;text-align:center}
+  .rd-foot-top{grid-template-columns:1fr 1fr}
+  .rd-foot-brand{grid-column:1/-1}
 }
 @media (max-width:390px){
   .rd-hlead{font-size:.98rem}
