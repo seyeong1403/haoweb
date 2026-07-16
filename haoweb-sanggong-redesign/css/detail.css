@@ -255,6 +255,14 @@ body.rd-page{background:var(--off);color:var(--ink);overflow-x:hidden}
 .rd-page .review-note{margin-top:20px;font-size:.92rem;line-height:1.6;color:var(--ink-mut)}
 .rd-page .rel-links{list-style:none;display:grid}
 
+/* ---------- 서비스 페이지: 실제 화면 구조 데모(.uiwin 재사용) ---------- */
+.rd-page .screen-demo{position:relative;aspect-ratio:16/10;max-width:920px;margin-top:8px}
+.rd-page .screen-demo .uiwin{position:absolute;left:0;top:0;width:80%;box-shadow:0 34px 74px rgba(22,19,14,.15)}
+.rd-page .screen-demo .uiphone{position:absolute;right:0;bottom:0;width:21%}
+.rd-page .screen-demo .uihero{padding:26px 22px 22px}
+.rd-page .screen-demo .uih-t{font-size:clamp(15px,1.8vw,22px)}
+.rd-page .screen-note{margin-top:22px;font-size:.9rem;color:var(--ink-mut)}
+
 /* 스크롤 프로그레스(있으면 얇게) · skip-link */
 .rd-page .scroll-progress{position:fixed;top:0;left:0;height:2px;background:var(--red);z-index:100;width:0}
 .rd-page .skip-link{position:absolute;left:-9999px}
@@ -275,6 +283,9 @@ body.rd-page{background:var(--off);color:var(--ink);overflow-x:hidden}
   .rd-page .costbasis{grid-template-columns:1fr;gap:26px}
   .rd-page .footer-grid{grid-template-columns:1fr 1fr}
   .rd-page .footer-brand{grid-column:1/-1}
+  .rd-page .screen-demo{aspect-ratio:auto;padding-bottom:0}
+  .rd-page .screen-demo .uiwin{position:relative;width:100%}
+  .rd-page .screen-demo .uiphone{position:absolute;right:4px;bottom:-30px;width:26%;z-index:2}
 }
 
 /* ============================================================
