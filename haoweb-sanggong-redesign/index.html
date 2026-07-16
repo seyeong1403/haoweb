@@ -79,97 +79,101 @@
   </div>
 
   <main id="main">
-    <!-- ===================== 01 · Hero slider ===================== -->
+    <!-- ===================== 01 · Hero (좌 텍스트 / 우 정적 프로젝트 비주얼) ===================== -->
+    <!-- 영상 없음. 우측은 가짜 사명·수치 없이 '제작 유형'을 보여주는 데모 UI. -->
     <section class="rd-hero" aria-roledescription="캐러셀" aria-label="하오웹 소개">
-      <!-- 풀블리드 배경 영상 (상공형: 화면 전체를 영상이 채움) -->
-      <div class="rd-hero-bg" aria-hidden="true">
-        <!-- TODO(내부 확인): 실제 대표 제작 영상/이미지로 교체 -->
-        <div class="rd-hframe active">
-          <video src="assets/hero-1.mp4" poster="assets/hero-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
-        </div>
-        <div class="rd-hframe">
-          <video src="assets/hero-3.mp4" poster="assets/hero-poster.jpg" muted loop playsinline preload="none"></video>
-        </div>
-        <div class="rd-hframe skel"></div>
-      </div>
-      <div class="rd-hero-scrim" aria-hidden="true"></div>
-
-      <div class="rd-hero-content">
-        <!-- 상단: 회전 헤드라인 (영상 위 오버레이) -->
-        <div class="rd-hero-top">
+      <div class="rd-hero-grid">
+        <!-- 좌: 회전 텍스트 -->
+        <div class="rd-hero-left">
           <article class="rd-hero-slide active" aria-roledescription="슬라이드" aria-label="1 / 3">
-            <p class="rd-hcat rd-anim">Website Production</p>
+            <p class="rd-hcat">Website Production</p>
             <h1 class="rd-htitle">고객이 이해하고,<br /><b>신뢰한 뒤 문의하는</b> 홈페이지</h1>
-            <p class="rd-hlead rd-anim">업종과 고객을 분석하고, 필요한 콘텐츠와 정보 순서를 설계해 실제 문의로 이어질 수 있는 홈페이지를 제작합니다.</p>
-            <div class="rd-hactions rd-anim">
+            <p class="rd-hlead">업종과 고객을 분석하고 필요한 콘텐츠와 정보의 순서를 설계해, 실제 문의로 이어질 수 있는 홈페이지를 제작합니다.</p>
+            <div class="rd-hactions">
               <a class="rd-btn solid" href="company.html">제작서비스 보기</a>
-              <a class="rd-btn ghost" href="inquiry.html">제작 상담</a>
+              <a class="rd-btn ghost" href="inquiry.html">프로젝트 상담</a>
             </div>
           </article>
-
           <article class="rd-hero-slide" aria-roledescription="슬라이드" aria-label="2 / 3">
-            <p class="rd-hcat rd-anim">Brand Integration</p>
+            <p class="rd-hcat">Brand Integration</p>
             <h1 class="rd-htitle">브랜드부터 콘텐츠,<br />웹과 앱까지 <b>하나의 기준으로</b></h1>
-            <p class="rd-hlead rd-anim">브랜딩, 촬영, 카탈로그, 편집디자인과 홈페이지를 각각 따로 만들지 않고 하나의 브랜드 경험으로 연결합니다.</p>
-            <div class="rd-hactions rd-anim">
+            <p class="rd-hlead">브랜딩, 촬영, 카탈로그, 편집디자인과 홈페이지를 각각 따로 만들지 않고 하나의 브랜드 경험으로 연결합니다.</p>
+            <div class="rd-hactions">
               <a class="rd-btn solid" href="about.html">하오웹 제작 방식</a>
               <a class="rd-btn ghost" href="portfolio.html">포트폴리오 보기</a>
             </div>
           </article>
-
           <article class="rd-hero-slide" aria-roledescription="슬라이드" aria-label="3 / 3">
-            <p class="rd-hcat rd-anim">Industry Expertise</p>
+            <p class="rd-hcat">Industry Expertise</p>
             <h1 class="rd-htitle">업종이 다르면,<br />홈페이지의 <b>구조도 달라야</b> 합니다</h1>
-            <p class="rd-hlead rd-anim">기업·병원·변호사·쇼핑몰·프랜차이즈 등 고객이 정보를 찾고 판단하는 방식에 맞춰 콘텐츠와 기능을 설계합니다.</p>
-            <div class="rd-hactions rd-anim">
+            <p class="rd-hlead">기업·병원·변호사·쇼핑몰·프랜차이즈처럼 고객이 정보를 찾고 판단하는 방식에 맞춰 콘텐츠와 기능을 설계합니다.</p>
+            <div class="rd-hactions">
               <a class="rd-btn solid" href="company.html">업종별 제작서비스</a>
               <a class="rd-btn ghost" href="site-plan.html">우리 업종 구조안 확인하기</a>
             </div>
           </article>
         </div>
 
-        <!-- 시그니처: 대형 굵은 제작유형 롤링 (상공 재해석 — 실제 제작유형, 가짜 사례명 없음) -->
-        <div class="rd-marquee" role="list" aria-label="하오웹 제작 유형">
-          <div class="rd-marquee-track">
-            <!-- set A -->
-            <span class="rd-mq" role="listitem"><span class="t">기업 홈페이지</span><span class="c">정보 구조 설계</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" role="listitem"><span class="t">병원 홈페이지</span><span class="c">진료·신뢰 콘텐츠</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" role="listitem"><span class="t">변호사 홈페이지</span><span class="c">분야·상담 설계</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" role="listitem"><span class="t">쇼핑몰 구축</span><span class="c">상품·전환 흐름</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" role="listitem"><span class="t">프랜차이즈</span><span class="c">가맹·브랜드 통합</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" role="listitem"><span class="t">랜딩페이지</span><span class="c">캠페인 전환 설계</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" role="listitem"><span class="t">앱 제작</span><span class="c">웹·앱 연결</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" role="listitem"><span class="t">브랜드 통합</span><span class="c">브랜딩·콘텐츠·촬영</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <!-- set B (복제 · 무한루프용, 스크린리더 숨김) -->
-            <span class="rd-mq" aria-hidden="true"><span class="t">기업 홈페이지</span><span class="c">정보 구조 설계</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" aria-hidden="true"><span class="t">병원 홈페이지</span><span class="c">진료·신뢰 콘텐츠</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" aria-hidden="true"><span class="t">변호사 홈페이지</span><span class="c">분야·상담 설계</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" aria-hidden="true"><span class="t">쇼핑몰 구축</span><span class="c">상품·전환 흐름</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" aria-hidden="true"><span class="t">프랜차이즈</span><span class="c">가맹·브랜드 통합</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" aria-hidden="true"><span class="t">랜딩페이지</span><span class="c">캠페인 전환 설계</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" aria-hidden="true"><span class="t">앱 제작</span><span class="c">웹·앱 연결</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
-            <span class="rd-mq" aria-hidden="true"><span class="t">브랜드 통합</span><span class="c">브랜딩·콘텐츠·촬영</span></span>
-            <span class="rd-mq-sep" aria-hidden="true">/</span>
+        <!-- 우: 정적 비주얼 (슬라이드와 동기 교체) -->
+        <div class="rd-hero-right" aria-hidden="true">
+          <div class="rd-hvisual">
+
+            <!-- 비주얼 01 · 기업 홈페이지 데모 UI (TODO: 실제 프로젝트 이미지 교체) -->
+            <div class="rd-hvis active" data-vis="0">
+              <div class="uiwin">
+                <div class="uiwin-bar"><i></i><i></i><i></i><span class="uiwin-url">기업 홈페이지</span></div>
+                <div class="uiwin-body">
+                  <div class="uinav"><span class="uilogo">HAOWEB</span><span>회사소개</span><span>사업영역</span><span>제품·기술</span><span class="uinav-cta">문의</span></div>
+                  <div class="uihero">
+                    <p class="uih-t">기술로 신뢰를 만드는<br />기업 홈페이지</p>
+                    <p class="uih-s">사업과 기술을 고객이 이해하는 순서로 정리합니다.</p>
+                    <span class="uih-btn">문의하기</span>
+                  </div>
+                  <div class="uirow">
+                    <div class="uicell"><b>사업영역</b><s></s><s class="w70"></s></div>
+                    <div class="uicell"><b>제품·서비스</b><s></s><s class="w70"></s></div>
+                    <div class="uicell"><b>인증·실적</b><s></s><s class="w70"></s></div>
+                  </div>
+                </div>
+              </div>
+              <div class="uiphone">
+                <div class="uiphone-body">
+                  <div class="upnav"><span>HAOWEB</span><i></i></div>
+                  <div class="uph"><b>기업 홈페이지</b><s></s><span class="upbtn">문의</span></div>
+                  <div class="upcell">사업영역</div><div class="upcell">제품·서비스</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 비주얼 02 · 브랜드 통합 결과물 콜라주 (영문 약어 타일 없음) -->
+            <div class="rd-hvis" data-vis="1">
+              <div class="col-logo"><span class="cl-mark"></span><span class="cl-word">brand</span><em>로고 · 아이덴티티</em></div>
+              <div class="col-photo"><span>촬영</span></div>
+              <div class="col-catalog"><i></i><i></i><em>카탈로그</em></div>
+              <div class="col-web">
+                <div class="uiwin sm"><div class="uiwin-bar"><i></i><i></i><i></i></div><div class="uiwin-body"><div class="uinav mini"><span class="uilogo">HAOWEB</span><span></span><span></span></div><div class="uihero mini"><p class="uih-t">하나의 브랜드로</p><s></s></div></div></div>
+                <em>홈페이지</em>
+              </div>
+              <div class="col-mobile"><div class="uiphone sm"><div class="uiphone-body"><div class="upnav"><span>HAOWEB</span><i></i></div><div class="uph"><b></b><s></s></div></div></div><em>모바일</em></div>
+            </div>
+
+            <!-- 비주얼 03 · 업종별 구조 비교 (기업 · 병원 · 쇼핑몰) -->
+            <div class="rd-hvis" data-vis="2">
+              <div class="cmp3">
+                <div class="cmp-scr"><span class="cs-tag">기업</span><div class="cs-nav">회사소개 · 사업영역 · 문의</div><div class="cs-grid"><s></s><s></s><s></s><s></s></div></div>
+                <div class="cmp-scr"><span class="cs-tag">병원</span><div class="cs-nav">진료과 · 의료진 · 예약</div><div class="cs-list"><s></s><s></s><s></s></div><span class="cs-book">예약</span></div>
+                <div class="cmp-scr"><span class="cs-tag">쇼핑몰</span><div class="cs-nav">카테고리 · 상품 · 장바구니</div><div class="cs-shop"><s></s><s></s><s></s><s></s><s></s><s></s></div></div>
+              </div>
+              <p class="cmp-note">같은 홈페이지라도 업종에 따라 정보의 순서와 구조가 다릅니다.</p>
+            </div>
+
           </div>
         </div>
+      </div>
 
-        <!-- 하단 컨트롤 -->
-        <div class="rd-hero-foot">
+      <!-- 하단 컨트롤 -->
+      <div class="rd-hero-foot">
+        <div class="rd-hero-foot-in">
           <span class="rd-count"><b data-count-cur>01</b><s>/</s><span data-count-total>03</span></span>
           <span class="rd-prog" aria-hidden="true"><i></i></span>
           <div class="rd-arrows">

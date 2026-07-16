@@ -125,7 +125,7 @@
   var hero = document.querySelector(".rd-hero");
   if (hero) {
     var slides = Array.prototype.slice.call(hero.querySelectorAll(".rd-hero-slide"));
-    var frames = Array.prototype.slice.call(hero.querySelectorAll(".rd-hframe"));
+    var frames = Array.prototype.slice.call(hero.querySelectorAll(".rd-hvis"));
     // 각 슬라이드 헤드라인을 단어 단위로 분할(마스크 스태거용)
     slides.forEach(function (s) {
       var t = s.querySelector(".rd-htitle");
@@ -141,15 +141,12 @@
     if (totalEl) totalEl.textContent = ("0" + n).slice(-2);
 
     function reconcileFrames() {
-      // 실브라우저: 이 시점(0.9s)엔 이미 transition(0.7s) 완료 → 대개 no-op(페이드 유지)
-      // 프리뷰(transition 정지): 값이 안 넘어가면 transition을 끄고 최종값 강제
+      // 프리뷰(transition 정지) 대비: 클래스 기준 최종 상태 강제(opacity·visibility·scale)
       frames.forEach(function (f) {
-        var want = f.classList.contains("active") ? "1" : "0";
-        if (getComputedStyle(f).opacity !== want) {
-          f.style.transition = "none";
-          f.style.opacity = want;
-        }
-        f.style.transform = want === "1" ? "none" : "";
+        var on = f.classList.contains("active"), want = on ? "1" : "0";
+        if (getComputedStyle(f).opacity !== want) { f.style.transition = "none"; f.style.opacity = want; }
+        f.style.visibility = on ? "visible" : "hidden";
+        f.style.transform = on ? "scale(1)" : "";
       });
     }
 
