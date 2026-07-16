@@ -235,36 +235,26 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .rd-serv-title{font-weight:250;font-size:clamp(1.9rem,4.4vw,3.9rem);line-height:1.14;letter-spacing:-.035em}
 .rd-serv-title b{font-weight:600}
 .rd-serv-sub{margin-top:20px;font-size:clamp(1rem,1.2vw,1.1rem);line-height:1.7;color:var(--ink-soft)}
-.rd-serv-body{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,5vw,80px);align-items:start}
-.rd-serv-list{list-style:none}
-.rd-serv-item a{display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:clamp(16px,2vw,30px);padding:clamp(18px,2.3vw,30px) 4px;border-top:1px solid var(--line);transition:padding-left .3s var(--ease)}
-.rd-serv-item:last-child a{border-bottom:1px solid var(--line)}
-.rd-serv-num{font-family:var(--mono);font-size:13px;color:var(--ink-mut);letter-spacing:.05em}
-.rd-serv-name{font-weight:400;font-size:clamp(1.5rem,2.9vw,2.5rem);letter-spacing:-.03em;line-height:1.1;transition:color .25s}
+/* 데스크톱: 좌 이름목록 / 우 화면 프리뷰 레일 */
+.rd-serv-body{position:relative;min-height:clamp(440px,60vh,600px)}
+.rd-serv-list{list-style:none;width:48%}
+.rd-serv-item{border-top:1px solid var(--line)}
+.rd-serv-item:last-child{border-bottom:1px solid var(--line)}
+.rd-serv-item a{display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:clamp(16px,2vw,30px);padding:clamp(16px,2vw,26px) 4px;transition:padding-left .3s var(--ease)}
+.rd-serv-num{font-size:13px;color:var(--ink-mut);letter-spacing:.05em}
+.rd-serv-name{font-size:clamp(1.4rem,2.6vw,2.3rem);letter-spacing:-.03em;line-height:1.1;color:var(--ink-soft);transition:color .25s}
 .rd-serv-arrow{font-size:20px;color:var(--ink-mut);opacity:0;transform:translateX(-8px);transition:.3s var(--ease)}
-.rd-serv-item.on a{padding-left:16px}
+.rd-serv-item.on a{padding-left:14px}
 .rd-serv-item.on .rd-serv-name{color:var(--red)}
 .rd-serv-item.on .rd-serv-arrow{opacity:1;transform:none;color:var(--red)}
-.rd-serv-itemdesc{display:none}
-/* 우측 반응 비주얼 */
-.rd-serv-visual{position:sticky;top:calc(var(--hdr) + 30px);aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:var(--off-2);border:1px solid var(--line)}
-.rd-serv-frame{position:absolute;inset:0;opacity:0;transition:opacity .5s var(--ease);display:flex;flex-direction:column}
-.rd-serv-frame.active{opacity:1}
-.rd-serv-frame .sv-bar{height:38px;flex:0 0 auto;border-bottom:1px solid rgba(22,19,14,.08);display:flex;align-items:center;gap:7px;padding:0 16px}
-.rd-serv-frame .sv-bar i{width:9px;height:9px;border-radius:50%;background:rgba(22,19,14,.14)}
-.rd-serv-frame .sv-bar i:first-child{background:rgba(232,56,23,.55)}
-.rd-serv-frame .sv-body{position:relative;flex:1 1 auto;overflow:hidden}
-.rd-serv-frame .sv-mono{position:absolute;right:5%;bottom:-4%;font-family:var(--mono);font-weight:700;font-size:clamp(5rem,15vw,13rem);line-height:.8;color:rgba(22,19,14,.05);letter-spacing:-.04em}
-.rd-serv-frame .sv-lbl{position:absolute;left:8%;top:14%}
-.rd-serv-frame .sv-lbl b{display:block;font-weight:600;font-size:clamp(1.15rem,1.9vw,1.55rem);letter-spacing:-.02em;color:var(--ink)}
-.rd-serv-frame .sv-lbl span{display:block;margin-top:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mut)}
-.sv-corp{background:radial-gradient(120% 110% at 80% 15%,#eceadf,#f4f2ec)}
-.sv-hosp{background:radial-gradient(120% 110% at 20% 20%,#e5edee,#f2f4f2)}
-.sv-law{background:radial-gradient(120% 110% at 75% 80%,#eae7e0,#f3f1ea)}
-.sv-shop{background:radial-gradient(120% 120% at 70% 75%,#f0e6df,#f6f1eb)}
-.sv-fran{background:radial-gradient(120% 110% at 30% 25%,#ece7ec,#f4f1f2)}
-.sv-land{background:radial-gradient(120% 110% at 80% 30%,#efe6de,#f6f1e9)}
-.sv-app{background:radial-gradient(120% 120% at 25% 80%,#e6e9ef,#f1f2f5)}
+.rd-serv-desc{display:none}
+/* 화면 프리뷰: 데스크톱 우측 레일에 절대배치(활성만 노출) */
+.rd-serv-screen{position:absolute;right:0;top:0;bottom:0;width:48%;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .45s var(--ease),transform .55s var(--ease),visibility 0s .45s;pointer-events:none}
+.rd-serv-item.on .rd-serv-screen{opacity:1;visibility:visible;transform:none;transition:opacity .45s var(--ease),transform .55s var(--ease)}
+.rd-serv-screen .uiwin{position:relative;top:0;left:0;width:100%;box-shadow:0 34px 70px rgba(22,19,14,.16)}
+.rd-serv-screen .uihero{padding:20px}.rd-serv-screen .uih-t.big{font-size:clamp(18px,2.2vw,26px);font-weight:600}
+.uiwin-body.land{padding-bottom:16px}.uirow-land{padding-top:8px}
+.rd-serv-screen.app{}.rd-serv-screen .uiphone.big{position:relative;right:auto;bottom:auto;width:56%}
 
 /* ---------- 05 · Why HAOWEB (3개념 · 장면 교차, 카드 아님) ---------- */
 .rd-why{background:var(--black);color:var(--off);padding:clamp(96px,15vh,190px) 0;overflow:hidden}
@@ -419,9 +409,14 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .rd-proj-item{position:relative;inset:auto;opacity:1;visibility:visible;grid-template-columns:1fr;gap:22px;margin-bottom:clamp(56px,9vh,90px);animation:none}
   .rd-proj-item.active .rd-proj-vis{animation:none}
   .rd-proj-prog{display:none}
-  .rd-serv-body{grid-template-columns:1fr;gap:0}
-  .rd-serv-visual{display:none}
+  .rd-serv-body{min-height:auto}
+  .rd-serv-list{width:100%}
+  .rd-serv-item a{padding:20px 4px 12px}
   .rd-serv-item .rd-serv-arrow{opacity:1;transform:none;transition:none}
+  .rd-serv-desc{display:block;font-size:.92rem;color:var(--ink-soft);padding:0 4px 4px;line-height:1.55}
+  .rd-serv-screen{position:static!important;width:100%;opacity:1!important;visibility:visible!important;transform:none!important;padding:14px 0 26px;pointer-events:auto;justify-content:flex-start;transition:none!important}
+  .rd-serv-screen .uiwin{box-shadow:0 20px 44px rgba(22,19,14,.12)}
+  .rd-serv-screen .uiphone.big{width:44%}
   .rd-why-scene{grid-template-columns:1fr;gap:26px}
   .rd-why-scene:nth-child(even) .rd-why-text{order:0}
   .rd-why-visual{order:-1;min-height:auto;justify-content:flex-start!important}

@@ -258,17 +258,18 @@
   var serv = document.querySelector(".rd-serv");
   if (serv) {
     var sItems = Array.prototype.slice.call(serv.querySelectorAll(".rd-serv-item"));
-    var sFrames = Array.prototype.slice.call(serv.querySelectorAll(".rd-serv-frame"));
     var activateServ = function (idx) {
+      if (matchMedia("(max-width:900px)").matches) return; // 모바일: 화면 인라인 상시노출
       sItems.forEach(function (it, k) { it.classList.toggle("on", k === idx); });
-      sFrames.forEach(function (f, k) { f.classList.toggle("active", k === idx); });
-      // 안전망(프리뷰 opacity transition 정지 대비)
+      // 안전망(프리뷰 opacity/visibility transition 정지 대비): 활성 화면 강제 노출
       setTimeout(function () {
-        sFrames.forEach(function (f) {
-          var want = f.classList.contains("active") ? "1" : "0";
-          if (getComputedStyle(f).opacity !== want) { f.style.transition = "none"; f.style.opacity = want; }
+        sItems.forEach(function (it) {
+          var scr = it.querySelector(".rd-serv-screen"); if (!scr) return;
+          var on = it.classList.contains("on");
+          if (getComputedStyle(scr).opacity !== (on ? "1" : "0")) { scr.style.transition = "none"; scr.style.opacity = on ? "1" : "0"; }
+          scr.style.visibility = on ? "visible" : "hidden";
         });
-      }, 600);
+      }, 520);
     };
     sItems.forEach(function (it, k) {
       it.addEventListener("mouseenter", function () { activateServ(k); });
