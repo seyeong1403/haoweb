@@ -180,7 +180,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 /* ---------- 02 · HAOWEB Statement (대형 타이포 · 카드 없음) ---------- */
 .rd-statement{background:var(--off);color:var(--ink);padding:clamp(92px,15vh,190px) 0}
 .rd-statement .rd-wrap{width:var(--wrap);margin-inline:auto}
-.rd-eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:13px;margin-bottom:clamp(30px,5vh,54px)}
+.rd-eyebrow{font-size:13px;letter-spacing:.04em;color:var(--ink);display:flex;align-items:center;gap:13px;margin-bottom:clamp(30px,5vh,54px)}
 .rd-eyebrow::before{content:"";width:38px;height:1px;background:var(--red)}
 .rd-stmt{font-weight:300;font-size:clamp(1.9rem,4.5vw,4.05rem);line-height:1.26;letter-spacing:-.025em;max-width:22ch}
 .rd-stmt b{font-weight:650}
@@ -391,7 +391,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 /* ---------- 10 · Final Contact (풀스크린 · 발광 없음) ---------- */
 .rd-final{background:var(--off);color:var(--ink);min-height:clamp(560px,86svh,900px);display:flex;align-items:center;padding:clamp(80px,12vh,150px) 0}
 .rd-final .rd-wrap{width:var(--wrap);margin-inline:auto}
-.rd-final-eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:13px;margin-bottom:clamp(28px,4vh,44px)}
+.rd-final-eyebrow{font-size:13px;letter-spacing:.04em;color:var(--ink);display:flex;align-items:center;gap:13px;margin-bottom:clamp(28px,4vh,44px)}
 .rd-final-eyebrow::before{content:"";width:38px;height:1px;background:var(--red)}
 .rd-final-h{font-weight:250;font-size:clamp(2.4rem,6.8vw,6.2rem);line-height:1.05;letter-spacing:-.045em;max-width:15ch}
 .rd-final-h b{font-weight:550}
