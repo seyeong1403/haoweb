@@ -15,9 +15,9 @@
   --red:#E83817;        /* HAOWEB Red — 포인트만 */
   --line:rgba(22,19,14,.14);
   --line-d:rgba(242,239,232,.16);
-  --sans:"Pretendard","Pretendard Variable",-apple-system,system-ui,sans-serif;
-  /* 숫자·영문은 모노(크로스플랫폼), 한글은 글자단위 폴백으로 Pretendard 렌더 */
-  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono","Courier New","Pretendard","Pretendard Variable",monospace;
+  /* 전체 Pretendard 단일 체계 (영문 폰트·Google Fonts 미사용) */
+  --sans:"Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:var(--sans);   /* 라벨·숫자도 Pretendard로 통일 — 모노그램/tech 느낌 제거 */
   --ease:cubic-bezier(.16,1,.3,1);
   --ease-inout:cubic-bezier(.65,.05,.25,1);
   --wrap:min(1360px,92vw);
@@ -396,15 +396,20 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 }
 
 /* ============================================================
-   굵기 통일: 타이틀 = Bold(700) · 본문 = Medium(500)
-   (버튼·네비·라벨 등 UI 크롬은 기능상 semibold 유지)
+   타이포그래피 위계 (Pretendard · 기계적 통일 제거 · 편집 의도)
+   Hero제목300/강조650 · Statement350 · 섹션제목450 · 프로젝트명650
+   · 서비스명 300(활성600) · 본문400 · 메뉴/버튼500~600 · 부가400~500
    ============================================================ */
-body{font-weight:500}
-h1,h2,h3,h4{font-weight:700}
-.rd-htitle,.rd-stmt,.rd-work-title,.rd-work-name,.rd-serv-title,.rd-serv-name,
-.rd-why-lead,.rd-why-title,.rd-proc-h,.rd-proc-stitle,.rd-sai-title,
-.rd-choice-h,.rd-choice-title,.rd-final-h,.rd-brand-lead h2,.rd-mq .t,
-.rd-logo,.rd-foot-logo{font-weight:700}
-.rd-htitle b,.rd-stmt b,.rd-work-title b,.rd-serv-title b,.rd-why-lead b,.rd-why-title b,
-.rd-proc-h b,.rd-sai-title b,.rd-choice-h b,.rd-final-h b,.rd-brand-lead h2 b,
-h1 b,h2 b,h3 b,h4 b{font-weight:700}
+body{font-weight:400}
+.rd-htitle{font-weight:300}.rd-htitle b{font-weight:650}
+.rd-stmt{font-weight:350}.rd-stmt b{font-weight:600}
+.rd-work-title,.rd-serv-title,.rd-why-lead,.rd-why-title,.rd-proc-h,
+.rd-sai-title,.rd-choice-h,.rd-final-h,.rd-brand-lead h2{font-weight:450}
+.rd-work-title b,.rd-why-lead b,.rd-why-title b,.rd-proc-h b,.rd-sai-title b,
+.rd-choice-h b,.rd-final-h b,.rd-brand-lead h2 b{font-weight:650}
+.rd-work-name{font-weight:650}
+.rd-serv-name{font-weight:300}.rd-serv-item.on .rd-serv-name{font-weight:600}
+.rd-mq .t{font-weight:600}
+.rd-logo{font-weight:700}.rd-foot-logo{font-weight:700}
+.rd-eyebrow,.rd-hcat{font-weight:500}
+.rd-btn{font-weight:600}
