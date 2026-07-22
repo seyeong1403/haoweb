@@ -78,6 +78,13 @@ h3{font-size:clamp(1.12rem,1.7vw,1.35rem);line-height:1.4;font-weight:700;color:
 .accent{color:var(--red)}
 hr.divider{border:0;border-top:1px solid var(--line);margin:36px 0}
 
+/* 스크롤 리빌 — JS가 .rv를 붙일 때만 숨김(무JS·reduced-motion=항상 표시).
+   리빌 완료 후 JS가 클래스를 제거해 컴포넌트 고유 hover 트랜지션으로 복귀 */
+@media (prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(18px)!important;transition:opacity .6s cubic-bezier(.2,.6,.2,1),transform .6s cubic-bezier(.2,.6,.2,1)!important}
+  .rv.in{opacity:1;transform:none!important}
+}
+
 /* Hero(페이지 공통) */
 .page-hero{padding:88px 0 64px;background:linear-gradient(180deg,var(--off),#fff 82%)}
 .page-hero .lead{max-width:660px}
@@ -127,6 +134,17 @@ ol.steps li{counter-increment:s;position:relative;padding:20px 0 20px 52px;borde
 ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:20px;font-weight:800;color:var(--red);font-size:15px}
 ol.steps b{display:block;margin-bottom:4px;color:var(--ink);font-weight:700}
 ol.steps li:last-child{border-bottom:1px solid var(--line)}
+
+/* 제작 과정 스텝(실제 순서가 있는 공정 — 번호 표기) */
+ol.flow{list-style:none;counter-reset:f;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+ol.flow li{counter-increment:f;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow)}
+ol.flow li::before{content:counter(f,decimal-leading-zero);display:block;font-size:13px;font-weight:800;color:var(--red);margin-bottom:8px}
+ol.flow b{display:block;font-weight:700;color:var(--ink);font-size:1.02rem}
+ol.flow span{display:block;margin-top:4px;font-size:.88rem;color:var(--mut)}
+
+/* 언어·항목 칩 */
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.chips span{font-size:14px;font-weight:700;color:var(--ink-2);background:#fff;border:1px solid var(--line-d);border-radius:100px;padding:8px 17px}
 
 /* 2·3열 */
 .cols-2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
@@ -226,9 +244,11 @@ table.tbl{width:100%;min-width:560px;border-collapse:collapse;font-size:.95rem}
   .page-hero{padding:64px 0 48px}
   .hero-grid{grid-template-columns:1fr;gap:30px}
   .quote-grid{grid-template-columns:1fr}
+  ol.flow{grid-template-columns:1fr 1fr}
 }
 @media (max-width:480px){
   .cta-band .cta-grid{grid-template-columns:1fr}
+  ol.flow{grid-template-columns:1fr}
   .hero-actions .btn{flex:1 1 auto}
 }
 @media (prefers-reduced-motion:reduce){

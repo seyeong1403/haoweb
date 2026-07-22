@@ -25,4 +25,39 @@
       if (e.key === "Escape" && m.open) { m.open = false; sum.focus(); }
     });
   }
+
+  // 3) 스크롤 리빌 — 지원 브라우저·모션 허용 환경에서만.
+  //    리빌 완료 후 클래스를 제거해 각 컴포넌트의 hover 트랜지션으로 복귀한다.
+  if ("IntersectionObserver" in window &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var targets = document.querySelectorAll(
+      ".sec-head, .col-block, .path > a, .path > div, .quote-card, .demo-win," +
+      " ol.flow li, ol.steps li, .dl > div, details.faq, .form, .tbl-wrap, .cta-band .cta-grid a"
+    );
+    var settle = function (el) {
+      setTimeout(function () {
+        el.classList.remove("rv", "in");
+        el.style.transitionDelay = "";
+      }, 800);
+    };
+    targets.forEach(function (el) { el.classList.add("rv"); });
+    var io = new IntersectionObserver(function (entries) {
+      var i = 0;
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.style.transitionDelay = Math.min(i * 70, 350) + "ms";
+        e.target.classList.add("in");
+        io.unobserve(e.target);
+        settle(e.target);
+        i++;
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -6% 0px" });
+    targets.forEach(function (el) { io.observe(el); });
+    // 안전망: 어떤 이유로든 관찰이 누락되면 전부 표시
+    setTimeout(function () {
+      targets.forEach(function (el) {
+        if (el.classList.contains("rv")) { el.classList.add("in"); settle(el); }
+      });
+    }, 2500);
+  }
 })();
