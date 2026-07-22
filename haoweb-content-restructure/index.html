@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>하오웹 | 문의로 이어지는 홈페이지 제작 · 리뉴얼</title>
+  <meta name="description" content="하오웹은 신규 홈페이지 제작과 기존 홈페이지 리뉴얼을 중심으로, 고객이 회사를 이해하고 신뢰한 뒤 상담할 수 있도록 콘텐츠·정보구조·디자인·기능을 함께 설계합니다." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="css/restructure.css" />
+</head>
+<body>
+  <a href="#main" class="sr-only">본문 바로가기</a>
+
+  <!-- ===== Header (공용 크롬: GNB 8 + CTA 2) ===== -->
+  <header class="hd">
+    <div class="hd-in">
+      <a class="hd-logo" href="index.html">HAO<b>WEB</b></a>
+
+      <nav class="hd-nav" aria-label="주요 메뉴">
+        <div><a href="website.html">홈페이지 제작</a>
+          <div class="hd-sub">
+            <a href="website.html">홈페이지 제작센터</a>
+            <a href="company.html">기업 홈페이지</a>
+            <a href="hospital.html">병원 홈페이지</a>
+            <a href="lawyer.html">변호사 홈페이지</a>
+            <a href="shop.html">쇼핑몰</a>
+            <a href="franchise.html">프랜차이즈 홈페이지</a>
+            <a href="landing.html">랜딩페이지</a>
+            <a href="app.html">앱 제작</a>
+          </div>
+        </div>
+        <div><a href="renewal.html">홈페이지 리뉴얼</a>
+          <div class="hd-sub">
+            <a href="renewal.html">리뉴얼 안내</a>
+            <a href="diagnosis.html">현재 홈페이지 진단</a>
+            <a href="renewal-proposal.html">리뉴얼 개선안 신청</a>
+          </div>
+        </div>
+        <div><a href="search-ai.html">AI 검색 대응</a>
+          <div class="hd-sub">
+            <a href="search-ai.html">AI 검색 대응 안내</a>
+            <a href="seo.html">SEO</a>
+            <a href="aeo.html">AEO</a>
+            <a href="geo.html">GEO</a>
+            <a href="content-operation.html">콘텐츠 운영</a>
+          </div>
+        </div>
+        <div><a href="global.html">글로벌 홈페이지</a></div>
+        <div><a href="content-production.html">콘텐츠 제작</a>
+          <div class="hd-sub">
+            <a href="content-production.html">콘텐츠 제작 안내</a>
+            <a href="ai-content.html">전문 콘텐츠 제작</a>
+            <a href="graphic-design.html">그래픽·편집디자인</a>
+            <a href="studio.html">촬영</a>
+          </div>
+        </div>
+        <div><a href="portfolio.html">포트폴리오</a>
+          <div class="hd-sub">
+            <a href="portfolio.html">프로젝트</a>
+            <a href="interview.html">고객 인터뷰</a>
+          </div>
+        </div>
+        <div><a href="plan.html">제작 플랜</a>
+          <div class="hd-sub">
+            <a href="plan.html">플랜 안내</a>
+            <a href="free-proposal.html">무료 시안·제안서</a>
+            <a href="process.html">제작 과정</a>
+            <a href="price-guide.html">제작비 결정 기준</a>
+          </div>
+        </div>
+        <div><a href="faq.html">고객지원</a>
+          <div class="hd-sub">
+            <a href="maintenance.html">유지보수</a>
+            <a href="faq.html">자주 묻는 질문</a>
+            <a href="columns.html">칼럼</a>
+            <a href="government.html">정부지원사업</a>
+            <a href="notice.html">공지사항</a>
+            <a href="about.html">회사소개</a>
+            <p class="sub-note">상담: <a href="inquiry.html" style="display:inline;padding:0">제작 문의</a></p>
+          </div>
+        </div>
+      </nav>
+
+      <div class="hd-cta">
+        <a class="btn btn-ghost" href="free-proposal.html">무료 시안·제안서</a>
+        <a class="btn btn-primary" href="inquiry.html">제작 문의</a>
+      </div>
+
+      <!-- 모바일 메뉴: details 기반(JS 없이 동작) -->
+      <details class="m-menu">
+        <summary aria-controls="m-panel" aria-expanded="false">메뉴</summary>
+        <div class="m-panel" id="m-panel">
+          <div class="m-grp"><a href="website.html">홈페이지 제작</a>
+            <div class="m-sub">
+              <a href="company.html">기업 홈페이지</a><a href="hospital.html">병원 홈페이지</a>
+              <a href="lawyer.html">변호사 홈페이지</a><a href="shop.html">쇼핑몰</a>
+              <a href="franchise.html">프랜차이즈</a><a href="landing.html">랜딩페이지</a><a href="app.html">앱 제작</a>
+            </div>
+          </div>
+          <div class="m-grp"><a href="renewal.html">홈페이지 리뉴얼</a>
+            <div class="m-sub"><a href="diagnosis.html">현재 홈페이지 진단</a><a href="renewal-proposal.html">리뉴얼 개선안 신청</a></div>
+          </div>
+          <div class="m-grp"><a href="search-ai.html">AI 검색 대응</a>
+            <div class="m-sub"><a href="seo.html">SEO</a><a href="aeo.html">AEO</a><a href="geo.html">GEO</a><a href="content-operation.html">콘텐츠 운영</a></div>
+          </div>
+          <div class="m-grp"><a href="global.html">글로벌 홈페이지</a></div>
+          <div class="m-grp"><a href="content-production.html">콘텐츠 제작</a>
+            <div class="m-sub"><a href="ai-content.html">전문 콘텐츠</a><a href="graphic-design.html">그래픽·편집디자인</a><a href="studio.html">촬영</a></div>
+          </div>
+          <div class="m-grp"><a href="portfolio.html">포트폴리오</a>
+            <div class="m-sub"><a href="interview.html">고객 인터뷰</a></div>
+          </div>
+          <div class="m-grp"><a href="plan.html">제작 플랜</a>
+            <div class="m-sub"><a href="free-proposal.html">무료 시안·제안서</a><a href="process.html">제작 과정</a><a href="price-guide.html">제작비 결정 기준</a></div>
+          </div>
+          <div class="m-grp"><a href="faq.html">고객지원</a>
+            <div class="m-sub"><a href="maintenance.html">유지보수</a><a href="faq.html">자주 묻는 질문</a><a href="columns.html">칼럼</a><a href="government.html">정부지원사업</a><a href="about.html">회사소개</a></div>
+          </div>
+          <div class="m-cta">
+            <a class="btn btn-primary btn-block" href="inquiry.html">제작 문의</a>
+            <a class="btn btn-ghost btn-block" href="free-proposal.html">무료 시안·제안서</a>
+            <p class="m-maint">운영 중이신가요? <a href="maintenance.html">유지보수 바로가기</a></p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== 01 · Hero ===== -->
+    <section class="page-hero">
+      <div class="wrap">
+        <h1>문의로 이어질 수 있도록,<br />홈페이지의 <span class="accent">메시지와 구조</span>부터 설계합니다.</h1>
+        <p class="lead">하오웹은 신규 홈페이지 제작과 기존 홈페이지 리뉴얼을 중심으로, 고객이 회사를 이해하고 신뢰한 뒤 상담할 수 있도록 콘텐츠, 정보구조, 디자인과 기능을 함께 설계합니다.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" href="website.html">홈페이지 제작 알아보기</a>
+          <a class="btn btn-ghost btn-lg" href="renewal.html">기존 홈페이지 리뉴얼</a>
+          <a class="btn btn-ghost btn-lg" href="free-proposal.html">무료 시안·제안서 받기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 02 · 고객 상황 선택 ===== -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">어떤 상황이신가요?</p>
+          <h2>지금 필요한 것부터 선택하세요.</h2>
+        </div>
+        <div class="path">
+          <a href="website.html">
+            <span class="path-k">신규 제작</span>
+            <h3>새로운 홈페이지가 필요합니다</h3>
+            <p>홈페이지가 없거나, 새로운 사업·브랜드를 시작했거나, 기존 회사와 별도의 서비스 사이트가 필요한 경우. 기업·병원·변호사·쇼핑몰·프랜차이즈 홈페이지와 랜딩페이지·앱까지, 업종과 목적에 맞는 구조로 제작합니다.</p>
+            <span class="go">홈페이지 제작센터 →</span>
+          </a>
+          <a href="renewal.html">
+            <span class="path-k">리뉴얼</span>
+            <h3>기존 홈페이지를 바꾸고 싶습니다</h3>
+            <p>디자인이 오래됐거나, 모바일에서 불편하거나, 문의가 거의 없거나, 검색과 AI가 이해하기 어려운 구조인 경우. 디자인만 바꾸는 것이 아니라 메시지·콘텐츠·검색 구조·문의 동선을 다시 설계합니다.</p>
+            <span class="go">홈페이지 리뉴얼 확인하기 →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 03 · 홈페이지 제작센터 ===== -->
+    <section class="sec off">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">홈페이지 제작센터</p>
+          <h2>업종과 고객이 다르면, 홈페이지의 구조도 달라야 합니다.</h2>
+          <p class="sub">기업의 거래처는 기술과 실적을 먼저 확인하고, 병원의 환자는 진료과와 의료진을 먼저 찾습니다. 하오웹은 업종별로 고객이 정보를 찾고 판단하는 방식에 맞춰 콘텐츠와 기능을 설계합니다.</p>
+        </div>
+        <dl class="dl">
+          <div><dt><a href="company.html">기업 홈페이지</a></dt><dd>사업·기술·인증·실적을 고객이 이해하는 순서로 정리해 거래 문의로 연결합니다.</dd></div>
+          <div><dt><a href="hospital.html">병원 홈페이지</a></dt><dd>진료과·의료진·진료 안내를 명확히 보여주고 예약까지 한 흐름으로 안내합니다.</dd></div>
+          <div><dt><a href="lawyer.html">변호사 홈페이지</a></dt><dd>전문 분야와 업무 사례, 상담 절차를 정리해 신뢰와 상담으로 연결합니다.</dd></div>
+          <div><dt><a href="shop.html">쇼핑몰</a></dt><dd>상품 탐색과 비교, 구매까지 이어지는 흐름을 설계합니다.</dd></div>
+          <div><dt><a href="franchise.html">프랜차이즈 홈페이지</a></dt><dd>브랜드 소개부터 창업 절차, 가맹 문의까지 하나의 흐름으로 연결합니다.</dd></div>
+          <div><dt><a href="landing.html">랜딩페이지</a></dt><dd>하나의 목표에 집중해 캠페인·광고의 전환을 설계합니다.</dd></div>
+          <div><dt><a href="app.html">앱 제작</a></dt><dd>주요 기능과 사용자 동선, 운영 기능까지 웹과 연결해 만듭니다.</dd></div>
+        </dl>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="website.html">제작센터 전체 보기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 04 · 제작 철학 ===== -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">하오웹의 방식</p>
+          <h2>홈페이지는 원고를 배치하는 작업이 아닙니다.</h2>
+          <p class="sub">받은 자료를 보기 좋게 정리하는 일은 제작의 시작일 뿐입니다. 하오웹은 화면을 그리기 전에, 문의를 만드는 데 필요한 것부터 찾아냅니다.</p>
+        </div>
+        <div class="cols-3">
+          <div class="col-block red"><h3>핵심 메시지 도출</h3><p>회사가 고객에게 전달해야 할 한 문장을 먼저 정합니다. 좋은 홈페이지는 이 문장에서 시작합니다.</p></div>
+          <div class="col-block"><h3>방문자 질문 파악</h3><p>고객이 어떤 문제와 질문을 가지고 들어오는지 조사하고, 그 질문에 답하는 순서로 콘텐츠를 배치합니다.</p></div>
+          <div class="col-block"><h3>신뢰 근거 배치</h3><p>실적·인증·사례·과정 등 믿을 수 있는 근거를 판단 시점에 맞춰 보여줍니다.</p></div>
+          <div class="col-block"><h3>문의 동선 설계</h3><p>확인을 마친 방문자가 자연스럽게 상담으로 이동할 수 있는 동선을 설계합니다.</p></div>
+          <div class="col-block"><h3>콘텐츠 우선순위</h3><p>모든 정보를 나열하지 않습니다. 판단에 필요한 정보를 먼저, 나머지는 다음에 배치합니다.</p></div>
+          <div class="col-block"><h3>업종·고객 조사</h3><p>고객이 말한 내용을 정리하는 데서 끝내지 않고, 그 업종의 고객이 실제로 찾는 정보를 조사해 반영합니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 05 · 홈페이지 리뉴얼 ===== -->
+    <section class="sec off">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">홈페이지 리뉴얼</p>
+          <h2>겉보기에는 문제가 없어 보여도,<br />콘텐츠와 정보구조는 현재 검색·AI 환경에 맞지 않을 수 있습니다.</h2>
+          <p class="sub">많은 기존 홈페이지가 디자인 외의 구조적 문제를 가지고 있습니다. 하오웹의 리뉴얼은 디자인만 교체하는 것이 아니라 메시지, 콘텐츠, 검색 구조와 문의 동선을 다시 설계합니다.</p>
+        </div>
+        <ul class="list-plain list-check" style="max-width:640px">
+          <li>핵심 메시지와 정보구조 재정립</li>
+          <li>콘텐츠 순서·모바일 사용성·문의 동선 개선</li>
+          <li>SEO 구조 · AEO 질문·답변 콘텐츠 · GEO 정보 관계</li>
+          <li>FAQ·칼럼·사례 콘텐츠와 오픈 이후 운영 구조</li>
+        </ul>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="renewal.html">홈페이지 리뉴얼 확인하기</a>
+          <a class="btn btn-ghost" href="diagnosis.html">현재 홈페이지 진단하기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 06 · 검색·AI ===== -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">AI 검색 대응</p>
+          <h2>검색엔진과 AI가 이해하기 쉬운 홈페이지</h2>
+          <p class="sub">예전에는 광고와 블로그로 고객이 들어왔다면, 이제는 검색엔진과 생성형 AI가 홈페이지의 내용을 읽고 이해할 수 있어야 합니다. 하오웹은 검색·AI 대응을 별도 광고 상품이 아니라 제작 과정에 통합해 적용합니다.</p>
+        </div>
+        <div class="cols-3">
+          <div class="col-block red"><h3>SEO</h3><p>검색엔진이 페이지를 발견하고 주제를 이해할 수 있는 구조 — 페이지 제목, 서비스별 URL, 사이트 구조, 내부 링크.</p></div>
+          <div class="col-block red"><h3>AEO</h3><p>고객의 실제 질문에 명확하게 답하는 콘텐츠 — 질문·답변, 비용·기간·과정 안내, FAQ.</p></div>
+          <div class="col-block red"><h3>GEO</h3><p>회사·서비스·사례·근거의 관계를 AI가 이해하기 쉬운 정보구조.</p></div>
+        </div>
+        <p class="note" style="margin-top:20px">하오웹은 검색 순위나 AI 노출을 보장하지 않습니다. 이해하기 쉬운 구조를 갖추는 것이 하오웹의 역할입니다.</p>
+        <div class="hero-actions"><a class="btn btn-ghost" href="search-ai.html">AI 검색 대응 자세히 보기</a></div>
+      </div>
+    </section>
+
+    <!-- ===== 07 · 무료 시안·제안서 ===== -->
+    <section class="sec off">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">무료 시안·제안서</p>
+          <h2>제작을 결정하기 전에, 방향부터 받아보세요.</h2>
+          <p class="sub">신규 제작과 리뉴얼 모두 신청할 수 있습니다. 하오웹이 아래 항목을 검토해 제안합니다.</p>
+        </div>
+        <div class="cols-2">
+          <ul class="list-plain">
+            <li>현재 홈페이지 또는 신규 제작의 목적</li>
+            <li>권장 사이트맵</li>
+            <li>핵심 콘텐츠 방향</li>
+            <li>필요한 기능</li>
+          </ul>
+          <ul class="list-plain">
+            <li>검색·AI(SEO·AEO·GEO) 검토 항목</li>
+            <li>필요한 촬영·그래픽·콘텐츠 범위</li>
+            <li>적합한 제작 플랜</li>
+            <li>상담 시 확인할 내용</li>
+          </ul>
+        </div>
+        <!-- TODO: 무료 제공 범위 확정(DECISIONS_NEEDED #1) — 확정 전 범위 문구 추가 금지 -->
+        <div class="hero-actions"><a class="btn btn-primary" href="free-proposal.html">무료 시안·제안서 신청</a></div>
+      </div>
+    </section>
+
+    <!-- ===== 08 · 콘텐츠 제작 ===== -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">콘텐츠 제작</p>
+          <h2>콘텐츠가 부족해도 함께 제작할 수 있습니다.</h2>
+          <p class="sub">홈페이지에 들어갈 내용이 부족하다면, 메시지와 원고, 이미지와 편집물부터 함께 만듭니다.</p>
+        </div>
+        <ul class="list-plain" style="columns:2;column-gap:40px;max-width:720px">
+          <li>브랜드 메시지</li>
+          <li>원고와 콘텐츠</li>
+          <li>기업·제품·공간 촬영</li>
+          <li>그래픽·편집디자인</li>
+          <li>카탈로그·브로슈어</li>
+          <li>상세페이지</li>
+          <li>칼럼·FAQ·사례 콘텐츠</li>
+        </ul>
+        <div class="hero-actions"><a class="btn btn-ghost" href="content-production.html">콘텐츠 제작 자세히 보기</a></div>
+      </div>
+    </section>
+
+    <!-- ===== 09 · 제작 플랜 ===== -->
+    <section class="sec off">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">제작 플랜</p>
+          <h2>필요한 범위에 맞는 세 가지 플랜</h2>
+        </div>
+        <div class="cols-3">
+          <div class="col-block"><h3>베이직 — 기본 구축형</h3><p>정리된 자료가 있고, 필요한 구조의 홈페이지를 정확하게 구축하려는 고객을 위한 플랜입니다.</p></div>
+          <div class="col-block"><h3>프리미엄 — 콘텐츠 기획형</h3><p>원고와 콘텐츠 기획부터 함께 만들어야 하는 고객, 검색·AI 대응 콘텐츠까지 갖추려는 고객을 위한 플랜입니다.</p></div>
+          <div class="col-block"><h3>엔터프라이즈 — 브랜드 통합형</h3><p>브랜딩·촬영·편집디자인과 홈페이지를 하나의 기준으로 함께 만드는 고객을 위한 플랜입니다.</p></div>
+        </div>
+        <!-- TODO: 플랜별 가격·기간 확정(DECISIONS_NEEDED #2) — 임의 표기 금지 -->
+        <p class="note" style="margin-top:18px">제작비와 기간은 범위에 따라 달라집니다. <a href="price-guide.html" style="color:var(--red);font-weight:600">제작비 결정 기준</a>을 확인하거나 상담에서 안내드립니다.</p>
+        <div class="hero-actions"><a class="btn btn-ghost" href="plan.html">플랜 자세히 보기</a></div>
+      </div>
+    </section>
+
+    <!-- ===== 10 · 포트폴리오·인터뷰 ===== -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">포트폴리오 · 고객 인터뷰</p>
+          <h2>프로젝트와 고객의 이야기</h2>
+          <p class="sub">각 프로젝트는 업종·제작 범위와 함께 등록되며, 고객 인터뷰는 실제 고객의 동의를 받아 게재합니다. 가상의 후기나 성과 수치는 사용하지 않습니다.</p>
+        </div>
+        <!-- TODO: 실제 프로젝트명 입력 / 실제 프로젝트 이미지 교체 / 실제 고객 인터뷰 입력 -->
+        <div class="hero-actions">
+          <a class="btn btn-ghost" href="portfolio.html">포트폴리오 보기</a>
+          <a class="btn btn-ghost" href="interview.html">고객 인터뷰 보기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 11 · 글로벌 ===== -->
+    <section class="sec off">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">글로벌 홈페이지</p>
+          <h2>해외 고객에게도, 같은 기준으로.</h2>
+          <p class="sub">해외 진출을 준비하는 기업을 위해 베트남·중국·태국·일본·영문 홈페이지의 언어별 콘텐츠, 정보구조, 현지 고객 질문과 운영 방식을 검토해 제작합니다. 단순 번역과는 다릅니다.</p>
+        </div>
+        <div class="hero-actions"><a class="btn btn-ghost" href="global.html">글로벌 홈페이지 알아보기</a></div>
+      </div>
+    </section>
+
+    <!-- ===== 12 · 제작 과정 ===== -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">제작 과정</p>
+          <h2>상담부터 운영까지, 순서가 있습니다.</h2>
+        </div>
+        <p class="sub" style="max-width:760px">상담 → 목표와 고객 분석 → 정보구조 → 콘텐츠 기획 → 브랜드·촬영·그래픽 → 디자인 → 개발 → 검수와 오픈 → 콘텐츠 운영</p>
+        <div class="hero-actions"><a class="btn btn-ghost" href="process.html">제작 과정 자세히 보기</a></div>
+      </div>
+    </section>
+
+    <!-- ===== 13 · 오픈 이후 운영 ===== -->
+    <section class="sec off">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">오픈 이후</p>
+          <h2>오픈은 끝이 아니라 시작입니다.</h2>
+          <p class="sub">홈페이지는 콘텐츠가 쌓일수록 신뢰와 검색 접점이 커집니다. 하오웹은 오픈 이후의 운영까지 함께합니다.</p>
+        </div>
+        <ul class="list-plain" style="columns:2;column-gap:40px;max-width:640px">
+          <li>유지보수(수정·업데이트)</li>
+          <li>칼럼 운영</li>
+          <li>FAQ 관리</li>
+          <li>사례 콘텐츠 등록</li>
+          <li>서비스 업데이트</li>
+          <li>검색·AI 대응 콘텐츠 관리</li>
+        </ul>
+        <div class="hero-actions"><a class="btn btn-ghost" href="maintenance.html">유지보수 안내</a><a class="btn btn-ghost" href="content-operation.html">콘텐츠 운영 안내</a></div>
+      </div>
+    </section>
+
+    <!-- ===== 14 · 문의 CTA ===== -->
+    <section class="cta-band" id="contact">
+      <div class="wrap">
+        <h2>지금 상황에 맞는 방법으로 시작하세요.</h2>
+        <p class="sub">업종과 목표를 알려주시면, 필요한 홈페이지의 구조부터 함께 정리합니다. 준비된 자료가 없어도 괜찮습니다.</p>
+        <div class="cta-grid">
+          <a href="inquiry.html"><b>신규 제작 상담</b><span>새 홈페이지가 필요합니다</span></a>
+          <a href="diagnosis.html"><b>홈페이지 리뉴얼 진단</b><span>기존 홈페이지를 점검합니다</span></a>
+          <a href="free-proposal.html"><b>무료 시안·제안서</b><span>방향부터 받아봅니다</span></a>
+          <a href="maintenance.html"><b>유지보수 문의</b><span>운영 중인 홈페이지 관리</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer (공용) ===== -->
+  <footer class="ft">
+    <div class="wrap">
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <a class="hd-logo" href="index.html">HAO<b>WEB</b></a>
+          <p>고객이 이해하고 신뢰한 뒤 문의할 수 있도록, 메시지·콘텐츠·정보구조·기능을 설계하는 홈페이지 제작 브랜드.</p>
+        </div>
+        <nav aria-label="홈페이지 제작">
+          <h4>홈페이지 제작</h4>
+          <a href="website.html">제작센터</a><a href="company.html">기업</a><a href="hospital.html">병원</a><a href="lawyer.html">변호사</a><a href="shop.html">쇼핑몰</a><a href="franchise.html">프랜차이즈</a>
+        </nav>
+        <nav aria-label="리뉴얼과 검색">
+          <h4>리뉴얼 · AI 검색</h4>
+          <a href="renewal.html">홈페이지 리뉴얼</a><a href="diagnosis.html">홈페이지 진단</a><a href="search-ai.html">AI 검색 대응</a><a href="global.html">글로벌 홈페이지</a>
+        </nav>
+        <nav aria-label="플랜과 콘텐츠">
+          <h4>플랜 · 콘텐츠</h4>
+          <a href="plan.html">제작 플랜</a><a href="free-proposal.html">무료 시안·제안서</a><a href="process.html">제작 과정</a><a href="price-guide.html">제작비 기준</a><a href="content-production.html">콘텐츠 제작</a>
+        </nav>
+        <nav aria-label="고객지원">
+          <h4>고객지원</h4>
+          <a href="maintenance.html">유지보수</a><a href="faq.html">자주 묻는 질문</a><a href="columns.html">칼럼</a><a href="government.html">정부지원사업</a><a href="about.html">회사소개</a><a href="inquiry.html">제작 문의</a>
+        </nav>
+      </div>
+      <div class="ft-base">
+        <span>© 2026 HAOWEB. All rights reserved.</span>
+        <a href="privacy.html">개인정보처리방침</a>
+      </div>
+      <!-- TODO: 실제 연락처 입력(전화·이메일·카카오) / 사업자 정보 확정 시 추가 -->
+    </div>
+  </footer>
+
+  <script src="js/restructure.js"></script>
+</body>
+</html>
