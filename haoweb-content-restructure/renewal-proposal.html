@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>리뉴얼 개선안·제안서 신청 | 하오웹</title>
+  <meta name="description" content="현재 홈페이지를 검토해 문제 요약, 권장 사이트맵, 콘텐츠 방향, 검색·AI 검토 항목과 적합한 제작 플랜을 개선안으로 정리해 드립니다." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="css/restructure.css" />
+</head>
+<body>
+  <a href="#main" class="sr-only">본문 바로가기</a>
+
+  <!-- ===== Header (공용 크롬: GNB 8 + CTA 2) ===== -->
+  <header class="hd">
+    <div class="hd-in">
+      <a class="hd-logo" href="index.html">HAO<b>WEB</b></a>
+
+      <nav class="hd-nav" aria-label="주요 메뉴">
+        <div><a href="website.html">홈페이지 제작</a>
+          <div class="hd-sub">
+            <a href="website.html">홈페이지 제작센터</a>
+            <a href="company.html">기업 홈페이지</a>
+            <a href="hospital.html">병원 홈페이지</a>
+            <a href="lawyer.html">변호사 홈페이지</a>
+            <a href="shop.html">쇼핑몰</a>
+            <a href="franchise.html">프랜차이즈 홈페이지</a>
+            <a href="landing.html">랜딩페이지</a>
+            <a href="app.html">앱 제작</a>
+          </div>
+        </div>
+        <div><a href="renewal.html">홈페이지 리뉴얼</a>
+          <div class="hd-sub">
+            <a href="renewal.html">리뉴얼 안내</a>
+            <a href="diagnosis.html">현재 홈페이지 진단</a>
+            <a href="renewal-proposal.html">리뉴얼 개선안 신청</a>
+          </div>
+        </div>
+        <div><a href="search-ai.html">AI 검색 대응</a>
+          <div class="hd-sub">
+            <a href="search-ai.html">AI 검색 대응 안내</a>
+            <a href="seo.html">SEO</a>
+            <a href="aeo.html">AEO</a>
+            <a href="geo.html">GEO</a>
+            <a href="content-operation.html">콘텐츠 운영</a>
+          </div>
+        </div>
+        <div><a href="global.html">글로벌 홈페이지</a></div>
+        <div><a href="content-production.html">콘텐츠 제작</a>
+          <div class="hd-sub">
+            <a href="content-production.html">콘텐츠 제작 안내</a>
+            <a href="ai-content.html">전문 콘텐츠 제작</a>
+            <a href="graphic-design.html">그래픽·편집디자인</a>
+            <a href="studio.html">촬영</a>
+          </div>
+        </div>
+        <div><a href="portfolio.html">포트폴리오</a>
+          <div class="hd-sub">
+            <a href="portfolio.html">프로젝트</a>
+            <a href="interview.html">고객 인터뷰</a>
+          </div>
+        </div>
+        <div><a href="plan.html">제작 플랜</a>
+          <div class="hd-sub">
+            <a href="plan.html">플랜 안내</a>
+            <a href="free-proposal.html">무료 시안·제안서</a>
+            <a href="process.html">제작 과정</a>
+            <a href="price-guide.html">제작비 결정 기준</a>
+          </div>
+        </div>
+        <div><a href="faq.html">고객지원</a>
+          <div class="hd-sub">
+            <a href="maintenance.html">유지보수</a>
+            <a href="faq.html">자주 묻는 질문</a>
+            <a href="columns.html">칼럼</a>
+            <a href="government.html">정부지원사업</a>
+            <a href="notice.html">공지사항</a>
+            <a href="about.html">회사소개</a>
+            <p class="sub-note">상담: <a href="inquiry.html" style="display:inline;padding:0">제작 문의</a></p>
+          </div>
+        </div>
+      </nav>
+
+      <div class="hd-cta">
+        <a class="btn btn-ghost" href="free-proposal.html">무료 시안·제안서</a>
+        <a class="btn btn-primary" href="inquiry.html">제작 문의</a>
+      </div>
+
+      <!-- 모바일 메뉴: details 기반(JS 없이 동작) -->
+      <details class="m-menu">
+        <summary aria-controls="m-panel" aria-expanded="false">메뉴</summary>
+        <div class="m-panel" id="m-panel">
+          <div class="m-grp"><a href="website.html">홈페이지 제작</a>
+            <div class="m-sub">
+              <a href="company.html">기업 홈페이지</a><a href="hospital.html">병원 홈페이지</a>
+              <a href="lawyer.html">변호사 홈페이지</a><a href="shop.html">쇼핑몰</a>
+              <a href="franchise.html">프랜차이즈</a><a href="landing.html">랜딩페이지</a><a href="app.html">앱 제작</a>
+            </div>
+          </div>
+          <div class="m-grp"><a href="renewal.html">홈페이지 리뉴얼</a>
+            <div class="m-sub"><a href="diagnosis.html">현재 홈페이지 진단</a><a href="renewal-proposal.html">리뉴얼 개선안 신청</a></div>
+          </div>
+          <div class="m-grp"><a href="search-ai.html">AI 검색 대응</a>
+            <div class="m-sub"><a href="seo.html">SEO</a><a href="aeo.html">AEO</a><a href="geo.html">GEO</a><a href="content-operation.html">콘텐츠 운영</a></div>
+          </div>
+          <div class="m-grp"><a href="global.html">글로벌 홈페이지</a></div>
+          <div class="m-grp"><a href="content-production.html">콘텐츠 제작</a>
+            <div class="m-sub"><a href="ai-content.html">전문 콘텐츠</a><a href="graphic-design.html">그래픽·편집디자인</a><a href="studio.html">촬영</a></div>
+          </div>
+          <div class="m-grp"><a href="portfolio.html">포트폴리오</a>
+            <div class="m-sub"><a href="interview.html">고객 인터뷰</a></div>
+          </div>
+          <div class="m-grp"><a href="plan.html">제작 플랜</a>
+            <div class="m-sub"><a href="free-proposal.html">무료 시안·제안서</a><a href="process.html">제작 과정</a><a href="price-guide.html">제작비 결정 기준</a></div>
+          </div>
+          <div class="m-grp"><a href="faq.html">고객지원</a>
+            <div class="m-sub"><a href="maintenance.html">유지보수</a><a href="faq.html">자주 묻는 질문</a><a href="columns.html">칼럼</a><a href="government.html">정부지원사업</a><a href="about.html">회사소개</a></div>
+          </div>
+          <div class="m-cta">
+            <a class="btn btn-primary btn-block" href="inquiry.html">제작 문의</a>
+            <a class="btn btn-ghost btn-block" href="free-proposal.html">무료 시안·제안서</a>
+            <p class="m-maint">운영 중이신가요? <a href="maintenance.html">유지보수 바로가기</a></p>
+          </div>
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="crumbs"><a href="index.html">홈</a> › <a href="renewal.html">홈페이지 리뉴얼</a> › <b>리뉴얼 개선안 신청</b></p>
+        <h1>우리 홈페이지의<br /><span class="accent">개선안을 받아보세요.</span></h1>
+        <p class="lead">진단에서 확인한 문제를 바탕으로, 무엇을 어떤 순서로 바꾸면 좋은지 개선안으로 정리해 드립니다. 진단 없이 바로 신청해도 됩니다.</p>
+        <div class="hero-actions"><a class="btn btn-primary btn-lg" href="#apply">개선안 신청하기</a></div>
+      </div>
+    </section>
+
+    <!-- 개선안에 담기는 것 -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">개선안 구성</p>
+          <h2>개선안에 담기는 것</h2>
+        </div>
+        <div class="cols-2">
+          <ul class="list-plain">
+            <li>현재 홈페이지의 문제 요약</li>
+            <li>권장 사이트맵(메뉴·페이지 구조)</li>
+            <li>핵심 콘텐츠 방향</li>
+          </ul>
+          <ul class="list-plain">
+            <li>검색·AI(SEO·AEO·GEO) 검토 항목</li>
+            <li>필요한 제작 범위(콘텐츠·촬영·기능)</li>
+            <li>적합한 제작 플랜</li>
+          </ul>
+        </div>
+        <!-- TODO: 무료 제공 범위 확정(DECISIONS_NEEDED #1) — 확정 전 범위 문구 추가 금지 -->
+      </div>
+    </section>
+
+    <!-- 신청 대상 -->
+    <section class="sec off">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">신청 대상</p>
+          <h2>이런 경우 신청하세요.</h2>
+        </div>
+        <ul class="list-plain" style="max-width:680px">
+          <li>리뉴얼을 검토 중인데 어디서부터 시작할지 모르는 경우</li>
+          <li>디자인만 바꿀지 전체 구조를 바꿀지 판단이 필요한 경우</li>
+          <li>내부 보고를 위해 개선 방향 자료가 필요한 경우</li>
+          <li>여러 업체를 비교하기 전에 기준을 갖고 싶은 경우</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 진행 과정 -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">진행 과정</p>
+          <h2>신청부터 전달까지</h2>
+        </div>
+        <ol class="steps" style="max-width:680px">
+          <li><b>신청</b>현재 홈페이지 주소와 기본 정보를 알려주세요.</li>
+          <li><b>검토</b>6가지 진단 영역을 기준으로 현재 상태를 살펴봅니다.</li>
+          <li><b>개선안 작성</b>문제 요약과 개선 방향, 권장 구조를 정리합니다.</li>
+          <li><b>전달·상담</b>개선안을 전달하고, 원하시면 상담으로 이어집니다. 계약을 전제로 하지 않습니다.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 신청 폼 -->
+    <section class="sec off" id="apply">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow">신청</p>
+          <h2>리뉴얼 개선안 신청</h2>
+          <p class="sub"><span class="req">*</span> 표시는 필수 항목입니다.</p>
+        </div>
+        <!-- TODO: 상담 폼 API 연결 -->
+        <form class="form" novalidate>
+          <div class="field"><label for="rp-url">현재 홈페이지 주소 <span class="req">*</span></label><input id="rp-url" name="url" type="url" placeholder="https://" required /></div>
+          <div class="field-2">
+            <div class="field"><label for="rp-industry">업종 <span class="req">*</span></label>
+              <select id="rp-industry" name="industry" required><option value="">선택</option><option>기업(제조·B2B 등)</option><option>병원·의원</option><option>법률(변호사)</option><option>쇼핑몰·이커머스</option><option>프랜차이즈</option><option>기타</option></select></div>
+            <div class="field"><label for="rp-brand">회사·브랜드명 <span class="req">*</span></label><input id="rp-brand" name="brand" type="text" required /></div>
+          </div>
+          <div class="field"><label for="rp-goal">리뉴얼로 이루고 싶은 것</label><input id="rp-goal" name="goal" type="text" placeholder="예) 문의 확보, 브랜드 인상 개선, 모바일 개선" /></div>
+          <div class="field"><label for="rp-problem">지금 느끼는 문제</label><textarea id="rp-problem" name="problem"></textarea></div>
+          <div class="field-2">
+            <div class="field"><label for="rp-name">담당자명 <span class="req">*</span></label><input id="rp-name" name="name" type="text" required /></div>
+            <div class="field"><label for="rp-contact">연락처 <span class="req">*</span></label><input id="rp-contact" name="contact" type="tel" required /></div>
+          </div>
+          <fieldset class="field">
+            <label class="choice" style="border:0;padding:0"><input type="checkbox" name="privacy" required /> <span>개인정보 수집·이용에 동의합니다. <a href="privacy.html" style="color:var(--red)">개인정보처리방침</a> <span class="req">*</span></span></label>
+          </fieldset>
+          <button class="btn btn-primary btn-lg" type="submit">개선안 신청 제출</button>
+          <p class="form-note">제출 후 담당자가 확인 연락을 드립니다.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="wrap">
+        <h2>함께 보면 좋은 페이지</h2>
+        <div class="cta-grid">
+          <a href="diagnosis.html"><b>현재 홈페이지 진단</b><span>항목별 점검</span></a>
+          <a href="renewal.html"><b>리뉴얼 범위</b><span>무엇이 바뀌는지</span></a>
+          <a href="plan.html"><b>제작 플랜</b><span>범위 비교</span></a>
+          <a href="inquiry.html"><b>제작 문의</b><span>바로 상담</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer (공용) ===== -->
+  <footer class="ft">
+    <div class="wrap">
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <a class="hd-logo" href="index.html">HAO<b>WEB</b></a>
+          <p>고객이 이해하고 신뢰한 뒤 문의할 수 있도록, 메시지·콘텐츠·정보구조·기능을 설계하는 홈페이지 제작 브랜드.</p>
+        </div>
+        <nav aria-label="홈페이지 제작">
+          <h4>홈페이지 제작</h4>
+          <a href="website.html">제작센터</a><a href="company.html">기업</a><a href="hospital.html">병원</a><a href="lawyer.html">변호사</a><a href="shop.html">쇼핑몰</a><a href="franchise.html">프랜차이즈</a>
+        </nav>
+        <nav aria-label="리뉴얼과 검색">
+          <h4>리뉴얼 · AI 검색</h4>
+          <a href="renewal.html">홈페이지 리뉴얼</a><a href="diagnosis.html">홈페이지 진단</a><a href="search-ai.html">AI 검색 대응</a><a href="global.html">글로벌 홈페이지</a>
+        </nav>
+        <nav aria-label="플랜과 콘텐츠">
+          <h4>플랜 · 콘텐츠</h4>
+          <a href="plan.html">제작 플랜</a><a href="free-proposal.html">무료 시안·제안서</a><a href="process.html">제작 과정</a><a href="price-guide.html">제작비 기준</a><a href="content-production.html">콘텐츠 제작</a>
+        </nav>
+        <nav aria-label="고객지원">
+          <h4>고객지원</h4>
+          <a href="maintenance.html">유지보수</a><a href="faq.html">자주 묻는 질문</a><a href="columns.html">칼럼</a><a href="government.html">정부지원사업</a><a href="about.html">회사소개</a><a href="inquiry.html">제작 문의</a>
+        </nav>
+      </div>
+      <div class="ft-base">
+        <span>© 2026 HAOWEB. All rights reserved.</span>
+        <a href="privacy.html">개인정보처리방침</a>
+      </div>
+      <!-- TODO: 실제 연락처 입력(전화·이메일·카카오) / 사업자 정보 확정 시 추가 -->
+    </div>
+  </footer>
+
+  <script src="js/restructure.js"></script>
+</body>
+</html>
