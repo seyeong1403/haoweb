@@ -30,6 +30,8 @@ main{overflow-x:clip}
 .hd-in{width:var(--wrap);margin-inline:auto;display:flex;align-items:center;gap:18px;min-height:72px}
 .hd-logo{font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--ink)}
 .hd-logo b{color:var(--red)}
+.hd-logo img{height:42px;width:auto;display:block}
+.ft .hd-logo img{height:38px}
 .hd-nav{display:flex;align-items:center;gap:2px;margin-left:10px}
 .hd-nav>div{position:relative}
 .hd-nav>div>a{display:block;padding:24px 13px;font-size:15px;font-weight:600;color:var(--ink-2);white-space:nowrap}
@@ -99,6 +101,44 @@ hr.divider{border:0;border-top:1px solid var(--line);margin:36px 0}
   .rv{opacity:0;transform:translateY(18px)!important;transition:opacity .6s cubic-bezier(.2,.6,.2,1),transform .6s cubic-bezier(.2,.6,.2,1)!important}
   .rv.in{opacity:1;transform:none!important}
 }
+
+/* ---------- 잇다 모션 층(v4) — 전부 JS 게이트(.js-anim)·안전망·reduced-motion 존중 ---------- */
+/* 히어로 로드 시퀀스: JS가 .hs를 붙인 요소만 숨김 → .on 순차 등장 → 종료 후 클래스 제거 */
+@media (prefers-reduced-motion:no-preference){
+  html.js-anim .hs{opacity:0;transform:translateY(26px);transition:opacity .75s cubic-bezier(.2,.65,.2,1),transform .75s cubic-bezier(.2,.65,.2,1)}
+  html.js-anim .hs.on{opacity:1;transform:none}
+}
+/* 거대 키워드 글자 라이즈: .split 후 .pre 동안 숨김 → .go에서 글자별 상승 */
+.sec-kw.split{overflow:hidden}
+.sec-kw .ch{display:inline-block}
+@media (prefers-reduced-motion:no-preference){
+  html.js-anim .sec-kw .ch{transition:transform .65s cubic-bezier(.2,.65,.2,1),opacity .45s}
+  html.js-anim .sec-kw.pre .ch{transform:translateY(115%);opacity:0}
+  html.js-anim .sec-kw.pre.go .ch{transform:none;opacity:1}
+}
+/* 마퀴 밴드(잇다 무한 흐름 문법 — 장식, 서비스 키워드만) */
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:20px 0;background:#fff}
+.marquee .mq{display:flex;gap:0;width:max-content}
+.marquee .mq-g{display:flex;gap:64px;padding-right:64px}
+.marquee span{font-weight:800;font-size:clamp(1.25rem,2.1vw,1.8rem);letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
+.marquee b{color:var(--red)}
+@media (prefers-reduced-motion:no-preference){
+  .marquee .mq{animation:mq 30s linear infinite}
+  @keyframes mq{to{transform:translateX(-50%)}}
+}
+/* 플로팅 문의 필(잇다 contact!·start! 문법) */
+.float-cta{position:fixed;left:50%;bottom:22px;transform:translate(-50%,150%);z-index:70;display:flex;gap:4px;background:var(--ink);border-radius:100px;padding:6px;box-shadow:0 14px 40px rgba(6,6,6,.3);transition:transform .5s cubic-bezier(.2,.65,.2,1)}
+.float-cta.show{transform:translate(-50%,0)}
+.float-cta a{color:#fff;font-weight:700;font-size:14.5px;padding:10px 20px;border-radius:100px;white-space:nowrap}
+.float-cta a:first-child{background:var(--red)}
+.float-cta a:hover{background:#fff;color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.float-cta{transform:translate(-50%,150%)}.float-cta.show{transform:translate(-50%,0)}}
+/* 거대 타이포 리스트(잇다 포트폴리오명 문법 — 다크 섹션·업종 유형) */
+.giant-list{display:grid;margin-top:6px}
+.giant-list a{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 24px;padding:12px 0;font-size:clamp(2.3rem,6.8vw,5.8rem);font-weight:800;letter-spacing:-.05em;line-height:1.05;color:var(--red);word-break:keep-all;transition:color .18s;border-top:1px solid rgba(255,255,255,.14)}
+.giant-list a:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
+.giant-list a:hover{color:#fff}
+.giant-list .gl-meta{font-size:12.5px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.45)}
 
 /* Hero(페이지 공통) — 장식 없이 여백·레드 바(도루코 라인 문법)로 */
 .page-hero{padding:96px 0 72px;background:#fff;border-bottom:1px solid var(--line)}

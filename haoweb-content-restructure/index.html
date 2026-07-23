@@ -15,7 +15,7 @@
   <!-- ===== Header (공용 크롬: GNB 8 + CTA 2) ===== -->
   <header class="hd">
     <div class="hd-in">
-      <a class="hd-logo" href="index.html">HAO<b>WEB</b></a>
+      <a class="hd-logo" href="index.html" aria-label="하오웹 홈"><img src="assets/logo-original.png" alt="하오웹" width="107" height="60" /></a>
 
       <nav class="hd-nav" aria-label="주요 메뉴">
         <div><a href="website.html">홈페이지 제작</a>
@@ -161,6 +161,14 @@
         </div>
       </div>
     </section>
+
+    <!-- 흐르는 서비스 키워드(잇다 마퀴 문법 · 장식) -->
+    <div class="marquee" aria-hidden="true">
+      <div class="mq">
+        <div class="mq-g"><span>WEBSITE<b>.</b></span><span>RENEWAL<b>.</b></span><span>AI SEARCH<b>.</b></span><span>GLOBAL<b>.</b></span><span>CONTENT<b>.</b></span><span>PORTFOLIO<b>.</b></span><span>PLAN<b>.</b></span><span>CARE<b>.</b></span></div>
+        <div class="mq-g"><span>WEBSITE<b>.</b></span><span>RENEWAL<b>.</b></span><span>AI SEARCH<b>.</b></span><span>GLOBAL<b>.</b></span><span>CONTENT<b>.</b></span><span>PORTFOLIO<b>.</b></span><span>PLAN<b>.</b></span><span>CARE<b>.</b></span></div>
+      </div>
+    </div>
 
     <!-- ===== 02 · 고객 상황 선택 ===== -->
     <section class="sec">
@@ -336,8 +344,8 @@
       </div>
     </section>
 
-    <!-- ===== 10 · 포트폴리오·인터뷰 ===== -->
-    <section class="sec">
+    <!-- ===== 10 · 포트폴리오·인터뷰 (다크 · 거대 타이포 리스트) ===== -->
+    <section class="sec dark">
       <div class="wrap">
         <div class="sec-head">
           <p class="sec-kw" aria-hidden="true">PORTFOLIO<b>.</b></p>
@@ -345,21 +353,13 @@
           <h2>프로젝트와 고객의 이야기</h2>
           <p class="sub">각 프로젝트는 업종·제작 범위와 함께 등록되며, 고객 인터뷰는 실제 고객의 동의를 받아 게재합니다. 가상의 후기나 성과 수치는 사용하지 않습니다.</p>
         </div>
-        <!-- TODO: 실제 프로젝트명 입력 / 실제 프로젝트 이미지 교체 / 실제 고객 인터뷰 입력
-             아래 카드는 프로젝트가 등록되는 형식이며 특정 고객사의 실적 주장이 아님 -->
-        <div class="quote-grid">
-          <a class="quote-card" href="portfolio.html">
-            <span class="q-tag">기업 홈페이지</span>
-            <blockquote>사업과 기술을, 거래처가 이해하는 순서로 다시 쓴 프로젝트</blockquote>
-            <p class="q-scope">CONTENT · PHOTOGRAPHY · WEB</p>
-            <span class="q-go">포트폴리오 보기 →</span>
-          </a>
-          <a class="quote-card" href="portfolio.html">
-            <span class="q-tag">병원 홈페이지</span>
-            <blockquote>증상에서 진료과로, 진료과에서 예약으로 이어지는 동선을 만든 프로젝트</blockquote>
-            <p class="q-scope">CONTENT · WEB</p>
-            <span class="q-go">포트폴리오 보기 →</span>
-          </a>
+        <!-- TODO: 실제 프로젝트명 입력 시 아래 업종 유형을 실제 프로젝트명으로 교체
+             (잇다 거대 타이포 문법 — 아래는 고객사명이 아니라 제작 유형) -->
+        <div class="giant-list">
+          <a href="portfolio.html">기업 홈페이지<span class="gl-meta">CONTENT · PHOTOGRAPHY · WEB</span></a>
+          <a href="portfolio.html">병원 홈페이지<span class="gl-meta">CONTENT · WEB</span></a>
+          <a href="portfolio.html">프랜차이즈<span class="gl-meta">BRANDING · CATALOG · WEB</span></a>
+          <a href="portfolio.html">쇼핑몰<span class="gl-meta">CONTENT · DESIGN · WEB</span></a>
         </div>
         <div class="hero-actions">
           <a class="btn btn-ghost" href="portfolio.html">포트폴리오 전체 보기</a>
@@ -442,12 +442,18 @@
     </section>
   </main>
 
+  <!-- 플로팅 문의 필(공용 · 히어로 이탈 시 표시) -->
+  <nav class="float-cta" aria-label="빠른 문의">
+    <a href="inquiry.html">제작 문의</a>
+    <a href="free-proposal.html">무료 시안·제안서</a>
+  </nav>
+
   <!-- ===== Footer (공용) ===== -->
   <footer class="ft">
     <div class="wrap">
       <div class="ft-grid">
         <div class="ft-brand">
-          <a class="hd-logo" href="index.html">HAO<b>WEB</b></a>
+          <a class="hd-logo" href="index.html" aria-label="하오웹 홈"><img src="assets/logo-original.png" alt="하오웹" width="107" height="60" /></a>
           <p>고객이 이해하고 신뢰한 뒤 문의할 수 있도록, 메시지·콘텐츠·정보구조·기능을 설계하는 홈페이지 제작 브랜드.</p>
         </div>
         <nav aria-label="홈페이지 제작">
