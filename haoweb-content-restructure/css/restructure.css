@@ -203,6 +203,9 @@ textarea{min-height:110px;resize:vertical}
 .choice input{accent-color:var(--red)}
 .field-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .form-note{font-size:.88rem;color:var(--mut);margin-top:10px}
+/* 폼 + 진행 안내 사이드 */
+.form-grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:clamp(28px,4vw,56px);align-items:start}
+.form-aside{position:sticky;top:96px}
 
 /* CTA 밴드(다크 — 파이브프로 성과 밴드 문법, 수치 없이) */
 .cta-band{background:var(--dark);color:#fff;padding:72px 0;border-radius:0}
@@ -244,6 +247,8 @@ table.tbl{width:100%;min-width:560px;border-collapse:collapse;font-size:.95rem}
   .ft-grid{grid-template-columns:1fr 1fr}
   .ft-brand{grid-column:1/-1}
   .field-2{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .form-aside{position:static}
   .sec{padding:56px 0}
   .page-hero{padding:64px 0 48px}
   .hero-grid{grid-template-columns:1fr;gap:30px}
