@@ -85,8 +85,11 @@ hr.divider{border:0;border-top:1px solid var(--line);margin:36px 0}
   .rv.in{opacity:1;transform:none!important}
 }
 
-/* Hero(페이지 공통) */
-.page-hero{padding:88px 0 64px;background:linear-gradient(180deg,var(--off),#fff 82%)}
+/* Hero(페이지 공통) — 우측 상단 틴트 글로우 + 도트 그리드 장식(CSS만, 전 페이지) */
+.page-hero{padding:88px 0 64px;background:linear-gradient(180deg,var(--off),#fff 82%);position:relative;overflow:hidden}
+.page-hero .wrap{position:relative;z-index:1}
+.page-hero::before{content:"";position:absolute;top:-170px;right:-150px;width:560px;height:560px;border-radius:50%;background:radial-gradient(closest-side,var(--red-tint) 0%,rgba(253,235,229,0) 72%);pointer-events:none}
+.page-hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--line-d) 1.1px,transparent 1.1px);background-size:24px 24px;opacity:.4;-webkit-mask-image:linear-gradient(112deg,transparent 52%,#000 94%);mask-image:linear-gradient(112deg,transparent 52%,#000 94%);pointer-events:none}
 .page-hero .lead{max-width:660px}
 .hero-actions{margin-top:30px;display:flex;gap:10px;flex-wrap:wrap}
 .crumbs{font-size:13.5px;color:var(--mut);margin-bottom:20px}
@@ -115,6 +118,7 @@ hr.divider{border:0;border-top:1px solid var(--line);margin:36px 0}
 .demo-note{margin-top:14px;font-size:12.5px;color:var(--mut);text-align:right}
 /* 인용형 포트폴리오 카드(파이브프로 문법 — 실제 고객명 확보 전 업종 표기) */
 .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.quote-grid.q3{grid-template-columns:repeat(3,1fr)}
 .quote-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-card);padding:28px;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s;display:block}
 a.quote-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .quote-card .q-tag{display:inline-block;font-size:12.5px;font-weight:800;color:var(--red);background:var(--red-tint);border-radius:100px;padding:5px 13px;margin-bottom:16px}
@@ -243,7 +247,7 @@ table.tbl{width:100%;min-width:560px;border-collapse:collapse;font-size:.95rem}
   .sec{padding:56px 0}
   .page-hero{padding:64px 0 48px}
   .hero-grid{grid-template-columns:1fr;gap:30px}
-  .quote-grid{grid-template-columns:1fr}
+  .quote-grid,.quote-grid.q3{grid-template-columns:1fr}
   ol.flow{grid-template-columns:1fr 1fr}
 }
 @media (max-width:480px){
