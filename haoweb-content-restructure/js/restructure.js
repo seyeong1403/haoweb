@@ -92,6 +92,61 @@
       window.addEventListener("scroll", syncFloat, { passive: true });
       syncFloat();
     }
+
+    // 3-4) 스크럽 엔진(잇다 ScrollTrigger 문법) — 스크롤 위치에 실시간 연동.
+    //      히어로 블러·키워드 패럴랙스·핀 장면 전환. rAF가 막힌 환경 대비 인터벌 보조.
+    var clamp01 = function (v) { return Math.min(1, Math.max(0, v)); };
+    var heroVis = document.querySelector(".hero-grid > div[aria-hidden]");
+    var kwList = Array.prototype.slice.call(kws);
+    var pinSec = document.querySelector(".pin-sec");
+    var pinOn = pinSec && window.matchMedia("(min-width:961px)").matches;
+    var pinSpace = pinOn ? pinSec.querySelector(".pin-space") : null;
+    var pinItems = pinOn ? Array.prototype.slice.call(pinSec.querySelectorAll(".pin-item")) : [];
+    var pinNavs = pinOn ? Array.prototype.slice.call(pinSec.querySelectorAll(".pin-nav span")) : [];
+    if (pinItems.length) pinItems[0].classList.add("act");
+    var scrubTick = false;
+    var applyScrub = function () {
+      scrubTick = false;
+      var vh = window.innerHeight;
+      // 히어로 데모: 스크롤에 따라 블러+스케일+하강(잇다 히어로 이탈 연출)
+      if (heroVis && hero) {
+        var hp = clamp01(window.scrollY / Math.max(1, hero.offsetHeight));
+        if (hp === 0) { heroVis.style.filter = ""; heroVis.style.transform = ""; heroVis.style.opacity = ""; }
+        else {
+          heroVis.style.filter = "blur(" + (hp * 7).toFixed(2) + "px)";
+          heroVis.style.transform = "scale(" + (1 + hp * 0.05).toFixed(3) + ") translateY(" + (hp * 46).toFixed(1) + "px)";
+          heroVis.style.opacity = String(1 - hp * 0.55);
+        }
+      }
+      // 거대 키워드: 뷰포트 진행률에 따라 좌우 드리프트
+      kwList.forEach(function (kw) {
+        var r = kw.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        var pr = clamp01((vh - r.top) / (vh + r.height));
+        kw.classList.add("scrub-x");
+        kw.style.transform = "translateX(" + ((pr - 0.5) * -70).toFixed(1) + "px)";
+      });
+      // 핀 장면: 진행률로 업종 항목·인디케이터 전환
+      if (pinSpace && pinItems.length) {
+        var pr2 = pinSpace.getBoundingClientRect();
+        var total = pinSpace.offsetHeight - vh;
+        if (total > 0) {
+          var pp = clamp01(-pr2.top / total);
+          var idx = Math.min(pinItems.length - 1, Math.floor(pp * pinItems.length));
+          pinItems.forEach(function (el, i) { el.classList.toggle("act", i === idx); });
+          pinNavs.forEach(function (el, i) { el.classList.toggle("on", i === idx); });
+        }
+      }
+    };
+    var reqScrub = function () {
+      if (scrubTick) return;
+      scrubTick = true;
+      if (window.requestAnimationFrame) requestAnimationFrame(applyScrub); else setTimeout(applyScrub, 16);
+    };
+    window.addEventListener("scroll", reqScrub, { passive: true });
+    window.addEventListener("resize", reqScrub, { passive: true });
+    setInterval(applyScrub, 300); // rAF가 멈춘 환경(일부 내장 브라우저) 보조
+    setTimeout(applyScrub, 60);
     var targets = document.querySelectorAll(
       ".sec-head, .col-block, .path > a, .path > div, .quote-card, .demo-win, .giant-list a," +
       " ol.flow li, ol.steps li, .dl > div, details.faq, .form, .tbl-wrap, .cta-band .cta-grid a"
