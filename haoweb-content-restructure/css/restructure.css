@@ -64,13 +64,27 @@ main{overflow-x:clip}
 .m-maint a{color:var(--red);font-weight:700}
 
 /* ---------- 공통 섹션·타이포 (초대형 스케일 · 타이트 자간) ---------- */
-.sec{padding:100px 0}
+.sec{padding:110px 0}
 .sec.off{background:var(--off)}
+/* 다크 섹션(잇다 화이트·블랙 교차 문법) */
+.sec.dark{background:var(--dark);color:rgba(255,255,255,.72)}
+.sec.dark h2,.sec.dark h3,.sec.dark .eyebrow,.sec.dark .sec-kw{color:#fff}
+.sec.dark .sub,.sec.dark .col-block p{color:rgba(255,255,255,.66)}
+.sec.dark .note{color:rgba(255,255,255,.45)}
+.sec.dark .col-block{border-top-color:rgba(255,255,255,.85)}
+.sec.dark .col-block.red{border-top-color:var(--red)}
+.sec.dark .btn-ghost{color:#fff;border-color:#fff}
+.sec.dark .btn-ghost:hover{background:#fff;color:var(--ink)}
 .sec-head{max-width:860px;margin-bottom:48px}
 .eyebrow{font-size:14.5px;font-weight:800;letter-spacing:.02em;color:var(--ink);margin-bottom:18px}
 .eyebrow::before{content:"[ ";color:var(--red);font-weight:800}
 .eyebrow::after{content:" ]";color:var(--red);font-weight:800}
+h1,h2,h3{word-break:keep-all}
 h1{font-size:clamp(2.5rem,5.6vw,4.3rem);line-height:1.07;letter-spacing:-.04em;font-weight:800;color:var(--ink)}
+h1.xl{font-size:clamp(2.9rem,7vw,5.4rem);line-height:1.02;letter-spacing:-.045em}
+/* 섹션 키워드 디스플레이(잇다 문법 — 실제 서비스명 영문, 장식용) */
+.sec-kw{font-weight:800;font-size:clamp(2.6rem,6.3vw,5.6rem);letter-spacing:-.04em;line-height:.95;color:var(--ink);margin-bottom:20px}
+.sec-kw b{color:var(--red)}
 h2{font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.16;letter-spacing:-.035em;font-weight:800;color:var(--ink)}
 h3{font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.4;letter-spacing:-.02em;font-weight:700;color:var(--ink)}
 .lead{margin-top:20px;font-size:clamp(1.02rem,1.3vw,1.2rem);color:var(--ink-2);max-width:62ch}
@@ -214,6 +228,7 @@ textarea{min-height:110px;resize:vertical}
 /* CTA 밴드(순블랙 — 잇다 다크 섹션 문법) */
 .cta-band{background:var(--dark);color:#fff;padding:88px 0}
 .cta-band h2{color:#fff}
+.cta-band .sec-kw{color:#fff;margin-bottom:14px}
 .cta-band .sub{color:rgba(255,255,255,.68)}
 .cta-band .cta-grid{margin-top:32px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .cta-band .cta-grid a{background:none;border:1px solid rgba(255,255,255,.2);border-radius:0;padding:20px;display:block;transition:border-color .15s,background .15s}
