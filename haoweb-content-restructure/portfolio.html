@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>포트폴리오 | 프로젝트 — 하오웹</title>
-  <meta name="description" content="하오웹의 프로젝트 — 목표와 판단 과정, 제작 범위를 함께 보여드립니다." />
+  <title>포트폴리오 — 하오웹</title>
+  <meta name="description" content="하오웹의 제작 분야와 프로젝트 기록 방식을 안내합니다." />
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="stylesheet" href="css/restructure.css" />
@@ -57,12 +57,8 @@
             </div>
           </div>
         </div>
-        <div><a href="portfolio.html">포트폴리오</a>
-          <div class="hd-sub">
-            <a href="portfolio.html">프로젝트</a>
-            <a href="interview.html">고객 인터뷰</a>
-          </div>
-        </div>
+        <!-- 실제 인터뷰 확보 전 GNB에서 고객 인터뷰 비노출(템플릿 보존) -->
+        <div><a href="portfolio.html">포트폴리오</a></div>
         <div><a href="plan.html">제작 안내</a>
           <div class="hd-sub">
             <a href="plan.html">제작 플랜</a>
@@ -110,9 +106,7 @@
               <a href="studio.html">기업·제품·공간 촬영</a><a href="content-operation.html">콘텐츠 운영</a>
             </div>
           </div>
-          <div class="m-grp"><a href="portfolio.html">포트폴리오</a>
-            <div class="m-sub"><a href="interview.html">고객 인터뷰</a></div>
-          </div>
+          <div class="m-grp"><a href="portfolio.html">포트폴리오</a></div>
           <div class="m-grp"><a href="plan.html">제작 안내</a>
             <div class="m-sub"><a href="plan.html">제작 플랜</a><a href="process.html">제작 과정</a><a href="price-guide.html">제작비 결정 기준</a><a href="free-proposal.html">무료 제안받기</a><a href="faq.html">FAQ</a></div>
           </div>
@@ -133,57 +127,47 @@
     <section class="page-hero">
       <div class="wrap">
         <p class="crumbs"><a href="index.html">홈</a> › <b>포트폴리오</b></p>
-        <h1>프로젝트</h1>
-        <!-- 내부 원칙: 가상 고객사·후기·성과 수치 금지, 고객 동의 시에만 게재 -->
-        <p class="lead">프로젝트의 목표와 판단 과정, 제작 범위(콘텐츠·촬영·디자인·웹)를 함께 보여드립니다.</p>
+        <h1 class="mask-rv">포트폴리오</h1>
+        <p class="lead">프로젝트는 목표와 판단 과정, 제작 범위(콘텐츠 기획·촬영·디자인·홈페이지 구축)와 함께 기록합니다.</p>
       </div>
     </section>
 
+    <!-- TODO: 실제 프로젝트(프로젝트명·구축 화면·범위·목표·고객 동의) 확보 시 이 자리에 프로젝트 목록 게재.
+         확보 전에는 제작 유형을 프로젝트처럼 나열하지 않는다(가상 실적 오해 방지). portfolio-detail.html은 템플릿으로만 보존 -->
     <section class="sec">
       <div class="wrap">
-        <!-- TODO: 실제 프로젝트명 입력 / 실제 프로젝트 이미지 교체 / 실제 제작 범위 확인
-             아래 카드는 프로젝트 유형을 보여주는 형식이며 특정 고객사의 실적 주장이 아님 -->
-        <div class="sec-head"><p class="eyebrow">프로젝트</p><h2>하나의 프로젝트는, 하나의 이야기입니다.</h2>
-          <p class="sub">각 프로젝트는 업종·제작 범위와 함께, 무엇을 해결했는지 한 문장의 이야기로 등록됩니다.</p></div>
-        <div class="quote-grid">
-          <a class="quote-card" href="portfolio-detail.html">
-            <span class="q-tag">기업 홈페이지</span>
-            <blockquote>사업과 기술을, 거래처가 이해하는 순서로 다시 쓴 프로젝트</blockquote>
-            <p class="q-scope">콘텐츠 기획 · 촬영 · 홈페이지 구축</p>
-            <span class="q-go">상세 보기 →</span>
-          </a>
-          <a class="quote-card" href="portfolio-detail.html">
-            <span class="q-tag">병원 홈페이지</span>
-            <blockquote>증상에서 진료과로, 진료과에서 예약으로 이어지는 동선을 만든 프로젝트</blockquote>
-            <p class="q-scope">콘텐츠 기획 · 홈페이지 구축</p>
-            <span class="q-go">상세 보기 →</span>
-          </a>
-          <a class="quote-card" href="portfolio-detail.html">
-            <span class="q-tag">프랜차이즈 홈페이지</span>
-            <blockquote>브랜드 소개부터 가맹 문의까지, 하나의 흐름으로 연결한 프로젝트</blockquote>
-            <p class="q-scope">브랜딩 · 카탈로그 · 홈페이지 구축</p>
-            <span class="q-go">상세 보기 →</span>
-          </a>
-          <a class="quote-card" href="portfolio-detail.html">
-            <span class="q-tag">쇼핑몰</span>
-            <blockquote>탐색과 비교, 구매가 끊기지 않는 흐름을 설계한 프로젝트</blockquote>
-            <p class="q-scope">콘텐츠 기획 · 디자인 · 홈페이지 구축</p>
-            <span class="q-go">상세 보기 →</span>
-          </a>
+        <div class="sec-head">
+          <p class="eyebrow">제작 분야 안내</p>
+          <h2 class="mask-rv">하오웹이 만드는<br />홈페이지의 분야입니다.</h2>
+          <p class="sub">각 분야에서 어떤 구조와 콘텐츠를 설계하는지는 분야별 페이지에서 확인할 수 있습니다.</p>
         </div>
-        <!-- 내부 참고: 위 카드는 실제 프로젝트 확보 전 제작 유형 표기 — 확보 시 고객사(동의)·실제 화면으로 교체.
-             내부 원칙: 고객 동의하에만 게재, 가상 실적 표기 금지 -->
-        <p class="note" style="margin-top:20px">프로젝트 상세에서는 목표와 판단 과정, 제작 범위를 함께 확인할 수 있습니다.</p>
-        <div class="hero-actions"><a class="btn btn-primary" href="inquiry.html">비슷한 프로젝트 문의</a><a class="btn btn-ghost" href="interview.html">고객 인터뷰 보기</a></div>
+        <div class="svc-index">
+          <a href="company.html"><em>01</em><b>기업 홈페이지</b><span>사업 분야·기술과 제품·설비와 인증을 거래처 기준으로</span><i>→</i></a>
+          <a href="hospital.html"><em>02</em><b>병원 홈페이지</b><span>진료과목·의료진·예약을 환자 기준으로</span><i>→</i></a>
+          <a href="franchise.html"><em>03</em><b>프랜차이즈 홈페이지</b><span>브랜드·매장·창업 안내에서 가맹 문의까지</span><i>→</i></a>
+          <a href="shop.html"><em>04</em><b>쇼핑몰</b><span>상품 탐색·상세·구매 흐름</span><i>→</i></a>
+          <a href="website.html"><em>05</em><b>그 외 유형</b><span>변호사·랜딩페이지·앱 — 제작센터에서 전체 확인</span><i>→</i></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec off">
+      <div class="wrap">
+        <div class="sec-head"><p class="eyebrow">기록 방식</p><h2 class="mask-rv">프로젝트마다 함께 기록하는 것</h2></div>
+        <dl class="dl">
+          <div><dt>프로젝트 목표</dt><dd>어떤 문제를 해결하려 했는지</dd></div>
+          <div><dt>판단 과정</dt><dd>구조와 콘텐츠를 어떻게 정했는지</dd></div>
+          <div><dt>제작 범위</dt><dd>콘텐츠 기획 · 촬영 · 디자인 · 홈페이지 구축</dd></div>
+          <div><dt>관련 서비스</dt><dd>검색·AI 대응, 콘텐츠 운영 등 함께 진행한 범위</dd></div>
+        </dl>
       </div>
     </section>
 
     <section class="cta-band">
       <div class="wrap">
-        <h2>다음 프로젝트를 함께 만들어요.</h2>
-        <div class="cta-grid">
-          <a href="free-proposal.html"><b>무료 제안받기</b><span>방향 받아보기</span></a>
-          <a href="website.html"><b>홈페이지 제작</b><span>업종별 제작</span></a>
+        <h2>비슷한 홈페이지를 계획 중이신가요?</h2>
+        <div class="cta-grid" style="grid-template-columns:repeat(3,1fr)">
+          <a href="website.html"><b>홈페이지 제작</b><span>유형 선택</span></a>
           <a href="renewal.html"><b>홈페이지 리뉴얼</b><span>기존 사이트 개편</span></a>
           <a href="inquiry.html"><b>제작 문의</b><span>바로 상담</span></a>
         </div>
@@ -209,19 +193,19 @@
           <p>고객이 이해하고 신뢰한 뒤 문의할 수 있도록, 메시지·콘텐츠·정보구조·기능을 설계하는 홈페이지 제작 브랜드.</p>
         </div>
         <nav aria-label="홈페이지 제작">
-          <h4>홈페이지 제작</h4>
+          <p class="ft-title">홈페이지 제작</p>
           <a href="website.html">제작센터</a><a href="company.html">기업</a><a href="hospital.html">병원</a><a href="lawyer.html">변호사</a><a href="shop.html">쇼핑몰</a><a href="franchise.html">프랜차이즈</a>
         </nav>
         <nav aria-label="리뉴얼과 전문 서비스">
-          <h4>리뉴얼 · 전문 서비스</h4>
+          <p class="ft-title">리뉴얼 · 전문 서비스</p>
           <a href="renewal.html">홈페이지 리뉴얼</a><a href="diagnosis.html">홈페이지 진단</a><a href="search-ai.html">AI 검색 대응</a><a href="global.html">글로벌 홈페이지</a><a href="content-production.html">콘텐츠 제작</a>
         </nav>
         <nav aria-label="제작 안내">
-          <h4>제작 안내</h4>
+          <p class="ft-title">제작 안내</p>
           <a href="plan.html">제작 플랜</a><a href="process.html">제작 과정</a><a href="price-guide.html">제작비 결정 기준</a><a href="free-proposal.html">무료 제안받기</a><a href="faq.html">FAQ</a>
         </nav>
         <nav aria-label="하오웹">
-          <h4>하오웹</h4>
+          <p class="ft-title">하오웹</p>
           <a href="about.html">회사소개</a><a href="maintenance.html">유지관리</a><a href="columns.html">칼럼</a><a href="government.html">정부지원사업</a><a href="notice.html">공지사항</a><a href="inquiry.html">제작 문의</a>
         </nav>
       </div>

@@ -57,12 +57,8 @@
             </div>
           </div>
         </div>
-        <div><a href="portfolio.html">포트폴리오</a>
-          <div class="hd-sub">
-            <a href="portfolio.html">프로젝트</a>
-            <a href="interview.html">고객 인터뷰</a>
-          </div>
-        </div>
+        <!-- 실제 인터뷰 확보 전 GNB에서 고객 인터뷰 비노출(템플릿 보존) -->
+        <div><a href="portfolio.html">포트폴리오</a></div>
         <div><a href="plan.html">제작 안내</a>
           <div class="hd-sub">
             <a href="plan.html">제작 플랜</a>
@@ -110,9 +106,7 @@
               <a href="studio.html">기업·제품·공간 촬영</a><a href="content-operation.html">콘텐츠 운영</a>
             </div>
           </div>
-          <div class="m-grp"><a href="portfolio.html">포트폴리오</a>
-            <div class="m-sub"><a href="interview.html">고객 인터뷰</a></div>
-          </div>
+          <div class="m-grp"><a href="portfolio.html">포트폴리오</a></div>
           <div class="m-grp"><a href="plan.html">제작 안내</a>
             <div class="m-sub"><a href="plan.html">제작 플랜</a><a href="process.html">제작 과정</a><a href="price-guide.html">제작비 결정 기준</a><a href="free-proposal.html">무료 제안받기</a><a href="faq.html">FAQ</a></div>
           </div>
@@ -142,9 +136,9 @@
       <div class="wrap">
         <!-- TODO: 상담 폼 API 연결 — 연결 전에는 전송되지 않음. 실제 연락처(전화·이메일·카카오) 확정 시 폼 상단에 병기 -->
         <div class="form-grid">
-        <form class="form" novalidate>
+        <form class="form">
           <fieldset class="field">
-            <label>문의 유형 <span class="req">*</span></label>
+            <legend>문의 유형 <span class="req">*</span></legend>
             <div class="choices">
               <label class="choice"><input type="radio" name="topic" value="new" checked /> 신규 제작</label>
               <label class="choice"><input type="radio" name="topic" value="renewal" /> 홈페이지 리뉴얼</label>
@@ -167,17 +161,17 @@
             <div class="field"><label for="iq-contact">연락처 <span class="req">*</span></label><input id="iq-contact" name="contact" type="tel" autocomplete="tel" required /></div>
           </div>
           <fieldset class="field">
-            <label class="choice" style="border:0;padding:0"><input type="checkbox" name="privacy" required /> <span>개인정보 수집·이용에 동의합니다. <a href="privacy.html" style="color:var(--red)">개인정보처리방침</a> <span class="req">*</span></span></label>
+            <legend class="sr-only">개인정보 수집·이용 동의</legend><label class="choice" style="border:0;padding:0"><input type="checkbox" name="privacy" required /> <span>개인정보 수집·이용에 동의합니다. <a href="privacy.html" style="color:var(--red)">개인정보처리방침</a> <span class="req">*</span></span></label>
           </fieldset>
           <button class="btn btn-primary btn-lg" type="submit">상담 신청 제출</button>
-          <p class="form-note">제출 후 담당자가 확인 연락을 드립니다.</p>
+          <!-- TODO: 폼 API 연결 후 접수 안내 문구 확정 -->
         </form>
         <aside class="form-aside">
           <p class="eyebrow">진행 안내</p>
           <h2 style="font-size:1.35rem">제출 후 이렇게 진행됩니다.</h2>
           <ol class="steps" style="margin-top:18px">
             <li><b>접수 확인</b>담당자가 문의 내용을 확인합니다.</li>
-            <li><b>확인 연락</b>남겨주신 연락처로 연락드립니다.</li>
+            <li><b>내용 확인</b>문의 내용을 검토하고 필요한 사항을 정리합니다.</li>
             <li><b>상담</b>업종과 목표를 기준으로 필요한 범위를 함께 정리합니다.</li>
           </ol>
           <p class="note" style="margin-top:16px">방향을 먼저 받아보고 싶다면 <a href="free-proposal.html" style="color:var(--red);font-weight:700">무료 제안받기</a>를 이용하세요.</p>
@@ -216,19 +210,19 @@
           <p>고객이 이해하고 신뢰한 뒤 문의할 수 있도록, 메시지·콘텐츠·정보구조·기능을 설계하는 홈페이지 제작 브랜드.</p>
         </div>
         <nav aria-label="홈페이지 제작">
-          <h4>홈페이지 제작</h4>
+          <p class="ft-title">홈페이지 제작</p>
           <a href="website.html">제작센터</a><a href="company.html">기업</a><a href="hospital.html">병원</a><a href="lawyer.html">변호사</a><a href="shop.html">쇼핑몰</a><a href="franchise.html">프랜차이즈</a>
         </nav>
         <nav aria-label="리뉴얼과 전문 서비스">
-          <h4>리뉴얼 · 전문 서비스</h4>
+          <p class="ft-title">리뉴얼 · 전문 서비스</p>
           <a href="renewal.html">홈페이지 리뉴얼</a><a href="diagnosis.html">홈페이지 진단</a><a href="search-ai.html">AI 검색 대응</a><a href="global.html">글로벌 홈페이지</a><a href="content-production.html">콘텐츠 제작</a>
         </nav>
         <nav aria-label="제작 안내">
-          <h4>제작 안내</h4>
+          <p class="ft-title">제작 안내</p>
           <a href="plan.html">제작 플랜</a><a href="process.html">제작 과정</a><a href="price-guide.html">제작비 결정 기준</a><a href="free-proposal.html">무료 제안받기</a><a href="faq.html">FAQ</a>
         </nav>
         <nav aria-label="하오웹">
-          <h4>하오웹</h4>
+          <p class="ft-title">하오웹</p>
           <a href="about.html">회사소개</a><a href="maintenance.html">유지관리</a><a href="columns.html">칼럼</a><a href="government.html">정부지원사업</a><a href="notice.html">공지사항</a><a href="inquiry.html">제작 문의</a>
         </nav>
       </div>

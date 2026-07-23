@@ -8,14 +8,20 @@ $mainOpen = '<main id="main">'
 $headTpl = $idx.Substring(0, $idx.IndexOf($mainOpen) + $mainOpen.Length)
 $footTpl = $idx.Substring($idx.IndexOf('</main>'))
 
+# GNB 비노출·템플릿 페이지: 검색엔진 수집 차단(noindex)
+$noindex = @('seo.html','aeo.html','geo.html','renewal-proposal.html','portfolio-detail.html','interview-detail.html')
+
 Get-ChildItem (Join-Path $PSScriptRoot '_src\*.frag.html') | ForEach-Object {
   $lines = [IO.File]::ReadAllLines($_.FullName)
   $title = $lines[0]; $desc = $lines[1]
   $body  = ($lines | Select-Object -Skip 2) -join "`n"
   $head  = $headTpl -replace '<title>[^<]*</title>', ('<title>' + $title + '</title>')
   $head  = $head -replace '(<meta name="description" content=")[^"]*(")', ('${1}' + $desc + '${2}')
-  $out   = $head + "`n" + $body + "`n  " + $footTpl
   $name  = $_.Name -replace '\.frag\.html$', '.html'
+  if ($noindex -contains $name) {
+    $head = $head -replace '(<meta name="description"[^>]*/>)', ('$1' + "`n  " + '<meta name="robots" content="noindex, nofollow" />')
+  }
+  $out   = $head + "`n" + $body + "`n  " + $footTpl
   [IO.File]::WriteAllText((Join-Path $dir $name), $out, $enc)
   Write-Host "built: $name"
 }
