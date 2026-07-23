@@ -102,7 +102,7 @@ main{overflow-x:clip}
 .eyebrow b{color:var(--red)}
 h1,h2,h3{word-break:keep-all}
 h1{font-size:clamp(2.5rem,5.6vw,4.3rem);line-height:1.07;letter-spacing:-.04em;font-weight:800;color:var(--ink)}
-h1.xl{font-size:clamp(3rem,8vw,6.6rem);line-height:1.04;letter-spacing:-.045em}
+h1.xl{font-size:clamp(2.7rem,6vw,5rem);line-height:1.08;letter-spacing:-.04em}
 h2{font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.16;letter-spacing:-.035em;font-weight:800;color:var(--ink)}
 h3{font-size:clamp(1.12rem,1.7vw,1.3rem);line-height:1.4;letter-spacing:-.02em;font-weight:700;color:var(--ink)}
 .lead{margin-top:20px;font-size:clamp(1.02rem,1.3vw,1.2rem);color:var(--ink-2);max-width:62ch}
@@ -176,6 +176,14 @@ hr.divider{border:0;border-top:1px solid var(--line);margin:36px 0}
 
 /* ---------- 02 신규/리뉴얼 분할 선택 ---------- */
 .split-choice{display:grid;grid-template-columns:1fr 1fr}
+@media (min-width:961px) and (prefers-reduced-motion:no-preference){
+  .split-choice{transition:grid-template-columns .55s var(--ease)}
+  .split-choice:has(.sc-new:hover),.split-choice:has(.sc-new:focus-visible){grid-template-columns:1.14fr .86fr}
+  .split-choice:has(.sc-renew:hover),.split-choice:has(.sc-renew:focus-visible){grid-template-columns:.86fr 1.14fr}
+  .sc h2,.sc ul{transition:transform .55s var(--ease)}
+  .sc:hover h2,.sc:focus-visible h2{transform:translateX(10px)}
+  .sc:hover ul{transform:translateX(4px)}
+}
 .split-choice .sc{display:flex;flex-direction:column;justify-content:center;gap:22px;min-height:74vh;padding:clamp(40px,7vw,110px)}
 .sc-new{background:#fff;color:var(--ink-2);border-right:1px solid var(--line)}
 .sc-renew{background:var(--dark);color:rgba(255,255,255,.72)}
@@ -200,8 +208,19 @@ hr.divider{border:0;border-top:1px solid var(--line);margin:36px 0}
 .mth-steps li::before{content:counter(m,decimal-leading-zero);position:absolute;left:0;top:32px;font-weight:800;font-size:14px;letter-spacing:.06em;color:var(--red)}
 .mth-steps b{display:block;font-size:1.18rem;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:6px}
 .mth-steps p{font-size:.95rem;color:var(--ink-2)}
-html.js-anim .mth-steps.scrub li{opacity:.22}
+html.js-anim .mth-steps.scrub li{opacity:.45}
 html.js-anim .mth-steps.scrub li.act{opacity:1}
+html.js-anim .mth-steps.scrub li.act b{color:var(--red)}
+/* 단계별 예시 산출물 패널(가상 프로젝트 아님 — 작업 서식 예) */
+.mth-visual{margin-top:30px;border:1px solid var(--line-d);background:var(--off);position:relative;min-height:196px}
+.mv-panel{display:none;padding:22px 24px}
+.mv-panel.act{display:block}
+html.js-anim .mv-panel{display:block;position:absolute;inset:0;padding:22px 24px;opacity:0;transition:opacity .45s}
+html.js-anim .mv-panel.act{opacity:1}
+.mv-t{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--red);margin-bottom:14px}
+.mv-panel ul{list-style:none;display:grid}
+.mv-panel li{padding:9px 2px;border-top:1px solid var(--line-d);font-size:.92rem;color:var(--ink-2)}
+.mv-panel li:last-child{border-bottom:1px solid var(--line-d)}
 
 /* ---------- 04 제작 유형(비대칭 위계) ---------- */
 .type-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:0;border-top:1px solid var(--line-d);border-left:1px solid var(--line-d)}
@@ -212,6 +231,8 @@ html.js-anim .mth-steps.scrub li.act{opacity:1}
 .type-grid .tg-s h3{margin:0}
 .type-grid .tg-s p{margin:0;flex:1;padding-inline:18px}
 .type-grid p{font-size:.93rem;color:var(--mut)}
+.type-grid .tg-flow{font-size:12px;letter-spacing:.01em;color:var(--mut);border-top:1px solid var(--line);padding-top:10px;margin-top:8px}
+.type-grid .tg:hover .tg-flow{color:rgba(255,255,255,.65);border-top-color:rgba(255,255,255,.25)}
 .type-grid .tg-go{font-weight:700;font-size:.95rem;color:var(--ink);margin-top:auto}
 .type-grid .tg-go i{display:inline-block;font-style:normal;transition:transform .3s var(--ease)}
 .type-grid .tg:hover{background:var(--ink)}
@@ -231,9 +252,24 @@ html.js-anim .mth-steps.scrub li.act{opacity:1}
 .xr-under li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:1.5px;background:var(--red)}
 .xr-top{background:#fff;z-index:1}
 .xr-top .xr-tag{color:var(--mut)}
-.xr-skin s{display:block;height:14px;background:var(--off);border:1px solid var(--line);text-decoration:none;margin-bottom:12px}
-.xr-skin s:first-child{height:44px}
-.xr-skin .w60{width:60%}.xr-skin .w80{width:80%}.xr-skin .w40{width:40%}
+/* 표면: 실제 홈페이지처럼 보이는 화면 프레임 */
+.xr-page{border:1px solid var(--line);background:#fff}
+.xp-nav{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:11.5px;color:var(--mut)}
+.xp-nav b{color:var(--ink);font-size:12.5px;margin-right:auto}
+.xp-nav em{font-style:normal;background:var(--ink);color:#fff;border-radius:100px;padding:3px 11px;font-weight:700;font-size:11px}
+.xp-hero{padding:24px 18px 18px}
+.xp-hero s{display:block;height:15px;background:var(--off);border:1px solid var(--line);text-decoration:none;margin-bottom:10px}
+.xp-hero s:first-child{height:30px}
+.xp-hero .w60{width:60%}.xp-hero .w40{width:40%}
+.xp-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 18px 20px}
+.xp-row i{display:block;height:52px;background:var(--off);border:1px solid var(--line)}
+/* 개선 구조도(리뉴얼 상세용 — 계층 트리) */
+.xmap{border:1px solid var(--line-d);background:#fff;padding:24px 26px}
+.xmap .xr-tag{color:var(--red)}
+.xm-tree{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+.xm-tree .xm-root{grid-column:1/-1;font-weight:800;font-size:1.05rem;letter-spacing:-.02em;color:var(--ink);border-left:3px solid var(--red);padding:6px 0 6px 14px;margin-bottom:6px}
+.xm-tree li:not(.xm-root){font-size:.9rem;color:var(--ink-2);border-left:1px solid var(--line-d);padding:6px 0 6px 14px;position:relative}
+.xm-tree li:not(.xm-root)::before{content:"";position:absolute;left:0;top:50%;width:8px;height:1px;background:var(--line-d)}
 .renew-side .rs-lead{font-weight:700;color:var(--ink);margin-bottom:16px;letter-spacing:-.02em}
 .demo-note{margin-top:14px;font-size:12.5px;color:var(--mut);text-align:right}
 
@@ -254,7 +290,15 @@ html.js-anim .mth-steps.scrub li.act{opacity:1}
 .giant-list a{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 24px;padding:12px 0;font-size:clamp(2.3rem,6.8vw,5.8rem);font-weight:800;letter-spacing:-.05em;line-height:1.05;color:var(--red);word-break:keep-all;transition:color .18s;border-top:1px solid rgba(255,255,255,.14)}
 .giant-list a:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
 .giant-list a:hover{color:#fff}
-.giant-list .gl-meta{font-size:12.5px;font-weight:700;letter-spacing:.08em;color:rgba(255,255,255,.45)}
+.giant-list .gl-meta{font-size:12.5px;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.45)}
+/* 축소판(실제 자료 확보 전 유형 인덱스) */
+.giant-list.sm a{font-size:clamp(1.6rem,3.4vw,2.6rem);padding:18px 0;letter-spacing:-.035em}
+/* 전문 서비스 지원 범위(주종 구분) */
+.svc-sub{display:flex;align-items:baseline;gap:22px;flex-wrap:wrap;margin-top:22px;padding:16px 12px 0}
+.svc-sub p{font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--mut)}
+.svc-sub div{display:flex;gap:20px;flex-wrap:wrap}
+.svc-sub a{font-size:.95rem;font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--line-d);padding-bottom:2px;transition:color .2s,border-color .2s}
+.svc-sub a:hover{color:var(--ink);border-color:var(--ink)}
 
 /* ---------- 07 전문 서비스 인덱스 ---------- */
 .svc-index{display:grid}
@@ -297,12 +341,15 @@ html.js-anim .mth-steps.scrub li.act{opacity:1}
 .cta-rows a:hover i{transform:translateX(8px)}
 .cta-rows a:hover b{color:var(--red)}
 
-/* 플로팅 문의 필 */
-.float-cta{position:fixed;left:50%;bottom:22px;transform:translate(-50%,150%);z-index:70;display:flex;gap:4px;background:var(--ink);border-radius:100px;padding:6px;box-shadow:0 14px 40px rgba(6,6,6,.3);transition:transform .5s var(--ease)}
+/* 플로팅 상담 버튼(단일 + 선택 패널) */
+.float-cta{position:fixed;left:50%;bottom:20px;transform:translate(-50%,160%);z-index:70;transition:transform .5s var(--ease)}
 .float-cta.show{transform:translate(-50%,0)}
-.float-cta a{color:#fff;font-weight:700;font-size:14.5px;padding:10px 20px;border-radius:100px;white-space:nowrap}
-.float-cta a:first-child{background:var(--red)}
-.float-cta a:hover{background:#fff;color:var(--ink)}
+.fc-toggle{font:inherit;font-weight:700;font-size:14.5px;color:#fff;background:var(--ink);border:0;border-radius:100px;padding:12px 26px;cursor:pointer;box-shadow:0 12px 34px rgba(6,6,6,.28);white-space:nowrap;transition:background .2s}
+.fc-toggle:hover{background:var(--red)}
+.float-cta.open .fc-toggle{background:var(--red)}
+.fc-panel{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%);background:#fff;border:1px solid var(--line-d);box-shadow:0 12px 34px rgba(6,6,6,.18);min-width:190px;padding:6px}
+.fc-panel a{display:block;padding:11px 16px;font-weight:700;font-size:14.5px;color:var(--ink);white-space:nowrap}
+.fc-panel a:hover{background:var(--off);color:var(--red)}
 
 /* ---------- Footer ---------- */
 .ft{background:#fff;border-top:1px solid var(--line);padding:56px 0 28px;font-size:.93rem}
@@ -474,7 +521,8 @@ table.tbl{width:100%;min-width:560px;border-collapse:collapse;font-size:.95rem}
   .cta-band .cta-grid{grid-template-columns:1fr}
   .hero-actions .btn{flex:1 1 auto}
   ol.flow{grid-template-columns:1fr}
-  h1.xl{font-size:clamp(2.6rem,11vw,3.4rem)}
+  h1.xl{font-size:clamp(2.1rem,9vw,2.8rem)}
+  .fc-toggle{font-size:14px;padding:11px 22px}
 }
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important}

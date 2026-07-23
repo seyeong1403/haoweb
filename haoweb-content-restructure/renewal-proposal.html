@@ -189,7 +189,7 @@
           <li><b>신청</b>현재 홈페이지 주소와 기본 정보를 알려주세요.</li>
           <li><b>검토</b>6가지 진단 영역을 기준으로 현재 상태를 살펴봅니다.</li>
           <li><b>개선안 작성</b>문제 요약과 개선 방향, 권장 구조를 정리합니다.</li>
-          <li><b>전달·상담</b>개선안을 전달하고, 원하시면 상담으로 이어집니다. 계약을 전제로 하지 않습니다.</li>
+          <li><b>전달·상담</b>개선안을 전달하고, 원하시면 상담으로 이어집니다.</li>
         </ol>
       </div>
     </section>
@@ -238,11 +238,14 @@
     </section>
   </main>
 
-  <!-- 플로팅 문의 필(공용 · 히어로 이탈 시 표시) -->
-  <nav class="float-cta" aria-label="빠른 문의">
-    <a href="inquiry.html">제작 문의</a>
-    <a href="free-proposal.html">무료 제안받기</a>
-  </nav>
+  <!-- 플로팅 상담 버튼(공용 · 히어로 이탈 시 표시, 최종 CTA·푸터 구간 자동 숨김) -->
+  <div class="float-cta">
+    <button class="fc-toggle" type="button" aria-expanded="false" aria-controls="fc-panel">상담 시작</button>
+    <div class="fc-panel" id="fc-panel" hidden>
+      <a href="inquiry.html">제작 문의</a>
+      <a href="free-proposal.html">무료 제안받기</a>
+    </div>
+  </div>
 
   <!-- ===== Footer (공용) ===== -->
   <footer class="ft">

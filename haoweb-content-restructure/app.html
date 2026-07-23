@@ -137,7 +137,7 @@
         <p class="lead">앱은 기능 목록이 아니라 사용자가 반복해서 쓰는 흐름이 핵심입니다. 하오웹은 주요 기능·화면 목록·사용자 동선·운영 기능을 정리한 뒤 웹과 연결해 만듭니다.</p>
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="inquiry.html">앱 제작 상담</a>
-          <a class="btn btn-ghost btn-lg" href="free-proposal.html">무료 시안·제안서</a>
+          <a class="btn btn-ghost btn-lg" href="free-proposal.html">무료 제안받기</a>
         </div>
       </div>
     </section>
@@ -181,7 +181,7 @@
         <h2>기능 목록보다 동선부터 이야기해요.</h2>
         <div class="cta-grid">
           <a href="inquiry.html"><b>앱 제작 상담</b><span>바로 문의</span></a>
-          <a href="free-proposal.html"><b>무료 시안·제안서</b><span>방향 받아보기</span></a>
+          <a href="free-proposal.html"><b>무료 제안받기</b><span>방향 받아보기</span></a>
           <a href="website.html"><b>홈페이지 제작</b><span>웹과 함께</span></a>
           <a href="process.html"><b>제작 과정</b><span>아홉 단계</span></a>
         </div>
@@ -189,11 +189,14 @@
     </section>
   </main>
 
-  <!-- 플로팅 문의 필(공용 · 히어로 이탈 시 표시) -->
-  <nav class="float-cta" aria-label="빠른 문의">
-    <a href="inquiry.html">제작 문의</a>
-    <a href="free-proposal.html">무료 제안받기</a>
-  </nav>
+  <!-- 플로팅 상담 버튼(공용 · 히어로 이탈 시 표시, 최종 CTA·푸터 구간 자동 숨김) -->
+  <div class="float-cta">
+    <button class="fc-toggle" type="button" aria-expanded="false" aria-controls="fc-panel">상담 시작</button>
+    <div class="fc-panel" id="fc-panel" hidden>
+      <a href="inquiry.html">제작 문의</a>
+      <a href="free-proposal.html">무료 제안받기</a>
+    </div>
+  </div>
 
   <!-- ===== Footer (공용) ===== -->
   <footer class="ft">

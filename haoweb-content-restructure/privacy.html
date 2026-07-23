@@ -166,11 +166,14 @@
     </section>
   </main>
 
-  <!-- 플로팅 문의 필(공용 · 히어로 이탈 시 표시) -->
-  <nav class="float-cta" aria-label="빠른 문의">
-    <a href="inquiry.html">제작 문의</a>
-    <a href="free-proposal.html">무료 제안받기</a>
-  </nav>
+  <!-- 플로팅 상담 버튼(공용 · 히어로 이탈 시 표시, 최종 CTA·푸터 구간 자동 숨김) -->
+  <div class="float-cta">
+    <button class="fc-toggle" type="button" aria-expanded="false" aria-controls="fc-panel">상담 시작</button>
+    <div class="fc-panel" id="fc-panel" hidden>
+      <a href="inquiry.html">제작 문의</a>
+      <a href="free-proposal.html">무료 제안받기</a>
+    </div>
+  </div>
 
   <!-- ===== Footer (공용) ===== -->
   <footer class="ft">

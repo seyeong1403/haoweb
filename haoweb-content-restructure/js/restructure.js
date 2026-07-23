@@ -164,34 +164,72 @@
     kws.forEach(function (k) { kio.observe(k); });
     setTimeout(function () { kws.forEach(function (el) { el.classList.remove("pre", "go"); }); }, 3200);
 
-    // 4-C3) 플로팅 문의 필: 히어로를 지나면 표시
+    // 4-C3) 플로팅 상담 버튼: 히어로를 지나면 표시, 최종 CTA·푸터 구간과 폼 입력 중에는 숨김
     var fc = document.querySelector(".float-cta");
-    if (fc && hero) {
-      var syncFloat = function () {
-        fc.classList.toggle("show", window.scrollY > hero.offsetHeight + 80);
+    var fcToggle = fc ? fc.querySelector(".fc-toggle") : null;
+    var fcPanel = fc ? fc.querySelector(".fc-panel") : null;
+    var fcFormFocus = false;
+    if (fc && fcToggle && fcPanel) {
+      var fcClose = function () {
+        fc.classList.remove("open");
+        fcPanel.hidden = true;
+        fcToggle.setAttribute("aria-expanded", "false");
       };
+      fcToggle.addEventListener("click", function () {
+        var opening = fcPanel.hidden;
+        fcPanel.hidden = !opening;
+        fc.classList.toggle("open", opening);
+        fcToggle.setAttribute("aria-expanded", opening ? "true" : "false");
+      });
+      document.addEventListener("click", function (e) { if (!fc.contains(e.target)) fcClose(); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") fcClose(); });
+      document.addEventListener("focusin", function (e) {
+        fcFormFocus = /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName);
+        syncFloat();
+      });
+      document.addEventListener("focusout", function () { fcFormFocus = false; syncFloat(); });
+    }
+    var syncFloat = function () {
+      if (!fc || !hero) return;
+      var nearEnd = (document.documentElement.scrollHeight - (window.scrollY + window.innerHeight)) < 640;
+      var show = window.scrollY > hero.offsetHeight + 80 && !nearEnd && !fcFormFocus;
+      fc.classList.toggle("show", show);
+      if (!show && fcPanel && !fcPanel.hidden) {
+        fc.classList.remove("open"); fcPanel.hidden = true;
+        fcToggle.setAttribute("aria-expanded", "false");
+      }
+    };
+    if (fc && hero) {
       window.addEventListener("scroll", syncFloat, { passive: true });
       syncFloat();
     }
 
-    // 4-C4) 스크럽 엔진 — 스크롤 위치 실시간 연동(핀·하이라이트·클립 진행)
+    // 4-C4) 스크럽 엔진 — scroll 이벤트로 상태 갱신, rAF로 렌더링, IO로 활성 구간 판단.
+    //        (상시 인터벌 계산 없음 — 보이는 구간이 있을 때만 계산)
     var desktopMotion = window.matchMedia("(min-width:961px)").matches;
-    var pinSec = document.querySelector(".pin-sec");
-    var pinSpace = (pinSec && desktopMotion) ? pinSec.querySelector(".pin-space") : null;
-    var pinItems = pinSpace ? Array.prototype.slice.call(pinSec.querySelectorAll(".pin-item")) : [];
-    var pinNavs = pinSpace ? Array.prototype.slice.call(pinSec.querySelectorAll(".pin-nav span")) : [];
-    if (pinItems.length) pinItems[0].classList.add("act");
     var mth = document.querySelector(".mth-steps");
     var mthItems = [];
+    var mvPanels = Array.prototype.slice.call(document.querySelectorAll(".mv-panel"));
     if (mth && desktopMotion) { mth.classList.add("scrub"); mthItems = Array.prototype.slice.call(mth.children); }
     var xrTop = document.querySelector(".xr-top");
     var xrFrame = document.querySelector(".xr-frame");
     var kwList = Array.prototype.slice.call(kws);
+    // 활성 구간 게이트: 스크럽 대상이 화면에 있을 때만 계산
+    var zones = [];
+    var zoneVisible = 0;
+    [mth, xrFrame].concat(kwList).forEach(function (el) { if (el) zones.push(el); });
+    if (zones.length) {
+      var zio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { zoneVisible += e.isIntersecting ? 1 : -1; });
+        if (zoneVisible < 0) zoneVisible = 0;
+        if (zoneVisible > 0) reqScrub();
+      }, { rootMargin: "20% 0px 20% 0px" });
+      zones.forEach(function (z) { zio.observe(z); });
+    }
     var scrubTick = false;
     var applyScrub = function () {
       scrubTick = false;
       var vh = window.innerHeight;
-      // 거대 키워드 좌우 드리프트
       kwList.forEach(function (kw) {
         var r = kw.getBoundingClientRect();
         if (r.bottom < 0 || r.top > vh) return;
@@ -199,18 +237,7 @@
         kw.classList.add("scrub-x");
         kw.style.transform = "translateX(" + ((pr - 0.5) * -70).toFixed(1) + "px)";
       });
-      // 핀 장면: 진행률로 항목·인디케이터 전환
-      if (pinSpace && pinItems.length) {
-        var pr2 = pinSpace.getBoundingClientRect();
-        var total = pinSpace.offsetHeight - vh;
-        if (total > 0) {
-          var pp = clamp01(-pr2.top / total);
-          var idx = Math.min(pinItems.length - 1, Math.floor(pp * pinItems.length));
-          pinItems.forEach(function (el, i) { el.classList.toggle("act", i === idx); });
-          pinNavs.forEach(function (el, i) { el.classList.toggle("on", i === idx); });
-        }
-      }
-      // 제작 방식: 화면 중심에 가장 가까운 단계 하이라이트
+      // 제작 방식: 화면 중심에 가장 가까운 단계 하이라이트 + 예시 산출물 패널 동기화
       if (mthItems.length) {
         var best = -1, bestD = Infinity;
         mthItems.forEach(function (li, i) {
@@ -219,8 +246,9 @@
           if (d < bestD) { bestD = d; best = i; }
         });
         mthItems.forEach(function (li, i) { li.classList.toggle("act", i === best); });
+        mvPanels.forEach(function (p, i) { p.classList.toggle("act", i === best); });
       }
-      // 리뉴얼 X-ray: 진행률만큼 표면이 걷히고 내부 구조가 드러남
+      // X-ray: 진행률만큼 표면이 걷히고 아래 문제 구조가 드러남
       if (xrTop && xrFrame) {
         var r3 = xrFrame.getBoundingClientRect();
         var pr3 = clamp01((vh * 0.9 - r3.top) / (vh * 0.9));
@@ -228,13 +256,23 @@
       }
     };
     var reqScrub = function () {
-      if (scrubTick) return;
+      if (scrubTick || zoneVisible === 0) return;
       scrubTick = true;
       if (window.requestAnimationFrame) requestAnimationFrame(applyScrub); else setTimeout(applyScrub, 16);
     };
+    window.__haoScrub = applyScrub; // 검수용 수동 훅
     window.addEventListener("scroll", reqScrub, { passive: true });
     window.addEventListener("resize", reqScrub, { passive: true });
-    setInterval(applyScrub, 300); // rAF가 멈춘 환경(일부 내장 브라우저) 보조
     setTimeout(applyScrub, 60);
+
+    // 뒤로 가기(bfcache) 복귀: 숨김 상태로 남지 않게 강제 마감 + 상태 재계산
+    window.addEventListener("pageshow", function (e) {
+      if (!e.persisted) return;
+      document.querySelectorAll(".rv,.mask-rv.pre,.clip-rv.pre,.sec-kw.pre").forEach(function (el) {
+        el.classList.remove("rv", "in", "pre", "go");
+      });
+      applyScrub();
+      syncFloat();
+    });
   }
 })();

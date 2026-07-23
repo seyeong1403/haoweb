@@ -185,7 +185,7 @@
           <li><b>신청</b>홈페이지 주소와 업종, 느끼는 문제(선택)를 알려주세요.</li>
           <li><b>점검</b>6가지 영역을 항목별로 살펴봅니다.</li>
           <li><b>정리</b>무엇을 바꾸면 좋은지, 부분 개선으로 충분한지 전체 개편이 필요한지 정리해 안내드립니다.</li>
-          <li><b>다음 단계</b>원하시면 리뉴얼 개선안 또는 무료 시안·제안서로 이어집니다.</li>
+          <li><b>다음 단계</b>원하시면 무료 제안받기로 이어집니다.</li>
         </ol>
       </div>
     </section>
@@ -226,18 +226,21 @@
         <div class="cta-grid">
           <a href="renewal.html"><b>홈페이지 리뉴얼</b><span>범위와 방식 보기</span></a>
           <a href="renewal-proposal.html"><b>리뉴얼 개선안 신청</b><span>개선 방향 제안</span></a>
-          <a href="free-proposal.html"><b>무료 시안·제안서</b><span>신규·리뉴얼 공통</span></a>
+          <a href="free-proposal.html"><b>무료 제안받기</b><span>신규·리뉴얼 공통</span></a>
           <a href="inquiry.html"><b>제작 문의</b><span>바로 상담</span></a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- 플로팅 문의 필(공용 · 히어로 이탈 시 표시) -->
-  <nav class="float-cta" aria-label="빠른 문의">
-    <a href="inquiry.html">제작 문의</a>
-    <a href="free-proposal.html">무료 제안받기</a>
-  </nav>
+  <!-- 플로팅 상담 버튼(공용 · 히어로 이탈 시 표시, 최종 CTA·푸터 구간 자동 숨김) -->
+  <div class="float-cta">
+    <button class="fc-toggle" type="button" aria-expanded="false" aria-controls="fc-panel">상담 시작</button>
+    <div class="fc-panel" id="fc-panel" hidden>
+      <a href="inquiry.html">제작 문의</a>
+      <a href="free-proposal.html">무료 제안받기</a>
+    </div>
+  </div>
 
   <!-- ===== Footer (공용) ===== -->
   <footer class="ft">

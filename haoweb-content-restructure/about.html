@@ -169,7 +169,7 @@
       <div class="wrap">
         <h2>함께 시작해 보세요.</h2>
         <div class="cta-grid">
-          <a href="free-proposal.html"><b>무료 시안·제안서</b><span>방향 받아보기</span></a>
+          <a href="free-proposal.html"><b>무료 제안받기</b><span>방향 받아보기</span></a>
           <a href="inquiry.html"><b>제작 문의</b><span>바로 상담</span></a>
           <a href="portfolio.html"><b>포트폴리오</b><span>프로젝트 보기</span></a>
           <a href="process.html"><b>제작 과정</b><span>아홉 단계</span></a>
@@ -178,11 +178,14 @@
     </section>
   </main>
 
-  <!-- 플로팅 문의 필(공용 · 히어로 이탈 시 표시) -->
-  <nav class="float-cta" aria-label="빠른 문의">
-    <a href="inquiry.html">제작 문의</a>
-    <a href="free-proposal.html">무료 제안받기</a>
-  </nav>
+  <!-- 플로팅 상담 버튼(공용 · 히어로 이탈 시 표시, 최종 CTA·푸터 구간 자동 숨김) -->
+  <div class="float-cta">
+    <button class="fc-toggle" type="button" aria-expanded="false" aria-controls="fc-panel">상담 시작</button>
+    <div class="fc-panel" id="fc-panel" hidden>
+      <a href="inquiry.html">제작 문의</a>
+      <a href="free-proposal.html">무료 제안받기</a>
+    </div>
+  </div>
 
   <!-- ===== Footer (공용) ===== -->
   <footer class="ft">
