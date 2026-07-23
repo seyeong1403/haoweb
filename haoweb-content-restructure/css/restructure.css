@@ -34,7 +34,7 @@ main{overflow-x:clip}
 .hd-logo b{color:var(--red)}
 .hd-nav{display:flex;align-items:center;gap:2px;margin-left:10px}
 .hd-nav>div{position:relative}
-.hd-nav>div>a{display:block;padding:24px 13px;font-size:15px;font-weight:600;color:var(--ink-2)}
+.hd-nav>div>a{display:block;padding:24px 13px;font-size:15px;font-weight:600;color:var(--ink-2);white-space:nowrap}
 .hd-nav>div>a:hover,.hd-nav>div>a[aria-current="page"]{color:var(--red)}
 .hd-sub{position:absolute;left:50%;transform:translateX(-50%);top:100%;min-width:220px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-lg);padding:10px 8px;display:none}
 .hd-nav>div:hover .hd-sub,.hd-nav>div:focus-within .hd-sub{display:block}
@@ -43,6 +43,7 @@ main{overflow-x:clip}
 .hd-sub a[aria-current="page"]{color:var(--red);font-weight:700}
 .hd-sub .sub-note{padding:10px 14px 4px;font-size:12px;color:var(--mut);border-top:1px solid var(--line);margin-top:6px}
 .hd-cta{margin-left:auto;display:flex;align-items:center;gap:8px}
+.hd-cta .btn{white-space:nowrap}
 .btn{display:inline-block;font-weight:700;font-size:15px;padding:12px 20px;border-radius:var(--r-btn);border:1px solid transparent;cursor:pointer;text-align:center;transition:background .18s,color .18s,box-shadow .18s,transform .12s}
 .btn-primary{background:var(--red);color:#fff}
 .btn-primary:hover{background:var(--red-dark);box-shadow:0 6px 18px rgba(232,56,23,.28)}
@@ -137,6 +138,7 @@ ol.steps{list-style:none;counter-reset:s;display:grid;gap:0}
 ol.steps li{counter-increment:s;position:relative;padding:20px 0 20px 52px;border-top:1px solid var(--line)}
 ol.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:20px;font-weight:800;color:var(--red);font-size:15px}
 ol.steps b{display:block;margin-bottom:4px;color:var(--ink);font-weight:700}
+ol.steps .step-meta{display:block;margin-top:7px;font-size:.85rem;color:var(--mut)}
 ol.steps li:last-child{border-bottom:1px solid var(--line)}
 
 /* 제작 과정 스텝(실제 순서가 있는 공정 — 번호 표기) */
@@ -235,9 +237,14 @@ table.tbl{width:100%;min-width:560px;border-collapse:collapse;font-size:.95rem}
 .tbl tr:last-child td{border-bottom:0}
 
 /* ---------- 반응형 ---------- */
-@media (max-width:960px){
+/* GNB 8 + CTA 2가 한 줄에 온전히 들어가는 최소 폭이 약 1280px —
+   그 아래에서는 데스크톱 내비를 접고 모바일 메뉴로 전환한다 */
+@media (max-width:1279px){
   .hd-nav{display:none}
-  .m-menu{display:block;margin-left:auto}
+  .m-menu{display:block}
+}
+@media (max-width:960px){
+  .m-menu{margin-left:auto}
   .hd-cta{margin-left:0}
   .hd-cta .btn-ghost{display:none}
   .cols-3{grid-template-columns:1fr}
