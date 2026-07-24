@@ -175,6 +175,54 @@ hr.divider{border:0;border-top:1px solid var(--line);margin:36px 0}
 .hb-1{left:0;top:0;z-index:3}
 .hb-2{right:0;top:96px;z-index:2}
 .hb-3{left:6%;top:208px;z-index:1}
+
+/* ===== HOME v7 · Hero (잇다 언어: 초대형 타이포·블루프린트·[브래킷]·거대 아웃라인 워드) ===== */
+.hero-v7{position:relative;padding:clamp(64px,9vh,116px) 0 clamp(96px,14vh,168px);overflow:hidden}
+.hero-v7 .wrap{position:relative;z-index:2}
+.hv-grid{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:clamp(24px,4vw,60px);align-items:center}
+.hv-eye{font-size:13px;font-weight:700;letter-spacing:.01em;color:var(--ink);display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+.hv-eye .br{color:var(--red);font-weight:800}
+.hv-eye em{font-style:normal;font-size:11px;letter-spacing:.2em;color:var(--mut);font-weight:700}
+.hero-v7 h1.xl{font-size:clamp(2.7rem,7.6vw,6.1rem);line-height:1.0;font-weight:800;letter-spacing:-.045em;color:var(--ink)}
+.hero-v7 h1.xl .accent{color:var(--red)}
+.hv-sub{margin-top:30px;max-width:36ch;font-size:1.07rem;color:var(--ink-2);line-height:1.7}
+.hv-sub b{color:var(--ink);font-weight:700}
+.hero-v7 .hero-actions{margin-top:36px}
+/* side: 블루프린트 크로스헤어 + 세로 라벨 + 커넥터 주석 */
+.hv-side{position:relative;align-self:stretch;min-height:280px}
+.hv-cross{position:absolute;right:52px;top:-10px;bottom:-10px;width:1px;background:var(--line-d)}
+.hv-cross::before{content:"";position:absolute;top:42%;left:-52px;right:-40px;height:1px;background:var(--line-d)}
+.hv-cross::after{content:"";position:absolute;top:42%;right:52px;width:7px;height:7px;border-radius:100px;background:var(--red);transform:translate(50%,-50%)}
+.hv-vlabel{position:absolute;right:34px;top:50%;transform-origin:right center;transform:translateY(-50%) rotate(90deg);white-space:nowrap;font-size:11px;letter-spacing:.26em;font-weight:700;color:var(--mut)}
+.hv-annot{position:absolute;left:0;top:20%;max-width:190px;padding-left:18px}
+.hv-annot .hv-dot{position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:100px;background:var(--red)}
+.hv-annot .hv-dot::after{content:"";position:absolute;left:4px;top:7px;width:1px;height:26px;background:var(--line-d)}
+.hv-annot b{display:block;color:var(--ink);font-size:.94rem;font-weight:700;margin-bottom:3px;letter-spacing:-.01em}
+.hv-annot p{font-size:.8rem;color:var(--mut);line-height:1.55;margin:0}
+/* 거대 아웃라인 워드(하단) */
+.hv-giant{position:absolute;left:0;right:0;bottom:clamp(10px,3vh,30px);z-index:1;pointer-events:none;text-align:right;line-height:.72}
+.hv-giant span{font-size:clamp(3.4rem,15.5vw,13.5rem);font-weight:800;letter-spacing:-.055em;color:transparent;-webkit-text-stroke:1.4px var(--line-d);paint-order:stroke fill;padding-right:min(3vw,40px)}
+.hv-giant .accent{-webkit-text-stroke-color:var(--red);color:var(--red)}
+/* 로드 시퀀스 — js-anim 게이트(무JS·reduced-motion = 전부 표시) */
+html.js-anim .hv-eye{opacity:0;animation:hvUp .6s var(--ease) .1s forwards}
+html.js-anim .hv-sub{opacity:0;animation:hvUp .6s var(--ease) .5s forwards}
+html.js-anim .hero-v7 .hero-actions{opacity:0;animation:hvUp .6s var(--ease) .66s forwards}
+html.js-anim .hv-vlabel{opacity:0;animation:hvFade 1s var(--ease) .8s forwards}
+html.js-anim .hv-annot{opacity:0;animation:hvFade .9s var(--ease) 1s forwards}
+html.js-anim .hv-giant{opacity:0;animation:hvGiant 1.1s var(--ease) .35s forwards}
+@keyframes hvUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes hvFade{from{opacity:0}to{opacity:1}}
+@keyframes hvGiant{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@media (max-width:960px){
+  .hv-grid{grid-template-columns:1fr;gap:0}
+  .hv-side{display:none}
+  .hero-v7{padding-bottom:clamp(72px,20vw,120px)}
+  .hv-giant span{-webkit-text-stroke-width:1px}
+}
+@media (prefers-reduced-motion:reduce){
+  html.js-anim .hv-eye,html.js-anim .hv-sub,html.js-anim .hero-v7 .hero-actions,html.js-anim .hv-vlabel,html.js-anim .hv-annot,html.js-anim .hv-giant{opacity:1;animation:none}
+}
+
 .hero-actions{margin-top:34px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .hero-actions .tlink{margin-left:8px}
 .crumbs{font-size:13.5px;color:var(--mut);margin-bottom:26px}
