@@ -246,14 +246,7 @@
     }, { threshold: 0.2 });
     clips.forEach(function (el) { cio.observe(el); });
 
-    // 7-X) 홈 v8(.x-) 디자인 리빌 — .x-rv / .x-stag 에 .in 부여(안전망 포함)
-    var xrv = Array.prototype.slice.call(document.querySelectorAll(".x-rv, .x-stag"));
-    if (xrv.length) {
-      var xio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); xio.unobserve(e.target); } });
-      }, { threshold: 0.12 });
-      xrv.forEach(function (el) { xio.observe(el); });
-    }
+    // 7-X) 홈 v8(.x-) 리빌은 home.js가 스크롤 위치 기반으로 처리(관찰자 초기 오발화 회피)
 
     // 7-보조) 소형 요소 리빌(선택 적용 — 전 섹션 일괄 금지)
     var targets = Array.prototype.slice.call(document.querySelectorAll(
