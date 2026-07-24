@@ -32,8 +32,6 @@
   window.addEventListener("scroll", req, { passive: true });
   window.addEventListener("resize", req);
   window.addEventListener("load", req);
-  // 초기 실행: 폰트/레이아웃 안정화 대비 몇 차례
-  frame();
-  setTimeout(frame, 60);
-  setTimeout(frame, 300);
+  // 초기 실행: 레이아웃이 확정된 뒤(더블 rAF)에만 — 이른 호출로 아래쪽까지 등장되는 오발화 방지
+  requestAnimationFrame(function () { requestAnimationFrame(req); });
 })();
