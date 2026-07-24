@@ -142,6 +142,42 @@ a.x-col:hover .x-col__go{color:var(--red)}
 .x-state .r{color:var(--red)}
 .x-state .dim{color:var(--x-dmut)}
 
+/* ---------- 03 · AI 가시성 핀 씬(스크롤 스크럽) ---------- */
+.x-pin{height:280vh;padding:0;background:var(--x-dark);color:var(--x-dtext)}
+.x-pin__stage{position:sticky;top:0;height:100vh;min-height:600px;display:flex;align-items:center;overflow:hidden}
+.x-pin__stage::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(46% 50% at 78% 40%,rgba(232,56,23,.20),transparent 68%)}
+.x-pin__grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;width:min(1240px,92vw);margin-inline:auto}
+.x-pin__txt .x-state{margin-top:18px}
+.x-pin__kws{list-style:none;display:grid;gap:0;margin:26px 0 30px;border-top:1px solid var(--x-dline)}
+.x-pin__kws li{border-bottom:1px solid var(--x-dline);opacity:.34;transition:opacity .45s var(--x-ease),padding-left .45s var(--x-ease)}
+.x-pin__kws li.on{opacity:1;padding-left:14px}
+.x-pin__kws a{display:flex;align-items:baseline;gap:14px;padding:17px 4px}
+.x-pin__kws b{font-family:var(--x-mono);color:var(--red);font-size:14px;font-weight:800;flex:none}
+.x-pin__kws span{color:var(--x-dtext);font-size:1.04rem;font-weight:600;line-height:1.4}
+.x-pin__kws li.on span{color:#fff}
+.x-pin__vis{position:relative;display:flex;flex-direction:column;align-items:center;gap:16px}
+.x-pgraph{width:100%;max-width:430px;height:auto;overflow:visible}
+.x-pgraph .lk{stroke:var(--red);stroke-width:1.6;stroke-dasharray:210;stroke-dashoffset:calc(210 * (1 - var(--p,1)));opacity:.75}
+.x-pgraph .nd{opacity:calc(.28 + .72 * var(--p,1))}
+.x-pgraph .nd circle{fill:#5f5f6a;filter:drop-shadow(0 0 6px rgba(255,255,255,.32))}
+.x-pgraph .nd text{fill:rgba(255,255,255,.72);font-size:12px;font-weight:700;text-anchor:middle;font-family:var(--x-mono)}
+.x-pgraph .core circle{fill:var(--red);filter:drop-shadow(0 0 18px rgba(232,56,23,.95))}
+.x-pgraph .core text{fill:#fff;font-size:13px;font-weight:800}
+.x-pin__cap{font-family:var(--x-mono);font-size:12px;color:var(--x-dmut);letter-spacing:.04em}
+@media (max-width:960px){
+  .x-pin{height:auto}
+  .x-pin__stage{position:static;height:auto;min-height:0;padding:clamp(56px,12vw,90px) 0}
+  .x-pin__grid{grid-template-columns:1fr;gap:36px}
+  .x-pgraph{max-width:320px}
+}
+@media (prefers-reduced-motion:reduce){
+  .x-pin{height:auto}
+  .x-pin__stage{position:static;height:auto;min-height:0;padding:80px 0}
+  .x-pgraph .lk{stroke-dashoffset:0}
+  .x-pgraph .nd{opacity:1}
+  .x-pin__kws li{opacity:1}
+}
+
 /* ---------- 04 · 제작 유형(타일 그리드) ---------- */
 .x-types{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .x-type{position:relative;display:flex;flex-direction:column;background:var(--x-card);border:1px solid var(--x-line);border-radius:16px;overflow:hidden;transition:transform .32s var(--x-ease),box-shadow .32s var(--x-ease)}
