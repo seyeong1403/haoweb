@@ -246,6 +246,16 @@
     }, { threshold: 0.2 });
     clips.forEach(function (el) { cio.observe(el); });
 
+    // 7-X) 홈 v8(.x-) 디자인 리빌 — .x-rv / .x-stag 에 .in 부여(안전망 포함)
+    var xrv = Array.prototype.slice.call(document.querySelectorAll(".x-rv, .x-stag"));
+    if (xrv.length) {
+      var xio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); xio.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      xrv.forEach(function (el) { xio.observe(el); });
+      setTimeout(function () { xrv.forEach(function (el) { el.classList.add("in"); }); }, 1800);
+    }
+
     // 7-보조) 소형 요소 리빌(선택 적용 — 전 섹션 일괄 금지)
     var targets = Array.prototype.slice.call(document.querySelectorAll(
       ".col-block, .path > a, .path > div, .quote-card, .demo-win, .hb-doc," +
@@ -313,7 +323,7 @@
     // 숨김 유발 영역: 최종 CTA·CTA 밴드·푸터는 항상.
     // 제작 방식 Sticky·리뉴얼 X-ray 등 핵심 시각 장면은 버튼이 콘텐츠를 침범할 여지가 큰
     // 좁은 화면(≤1279px)에서만 추가(넓은 화면에서는 우하단 여백에 위치해 겹치지 않음).
-    var fcSel = ".cta-final, .cta-band, .ft";
+    var fcSel = ".cta-final, .cta-band, .x-cta, .ft";
     if (window.matchMedia("(max-width:1279px)").matches) fcSel += ", .method, .xray";
     var fcBlockEls = Array.prototype.slice.call(document.querySelectorAll(fcSel));
     // IO 콜백이 지연·미발화하는 환경 대비: 관찰 대상의 실제 겹침도 함께 판정(임의 px 기준 아님)

@@ -1,0 +1,219 @@
+/* ============================================================
+   HAOWEB · home.css — 메인 디자인 v8 (완전 신규)
+   유지: 레드 포인트(--red) + Pretendard(--sans) 만.
+   나머지(중성색·레이아웃·카드·모션·리듬) 전부 신규.
+   클래스는 .x- 네임스페이스 → 서브페이지 영향 없음.
+   ============================================================ */
+:root{
+  --x-paper:#EFEDE7; --x-paper-2:#F6F4EF; --x-card:#FBFAF7;
+  --x-ink:#0B0B0C; --x-ink-2:#3A3A40; --x-mut:#78766E;
+  --x-dark:#0C0C0E; --x-dark-2:#151519; --x-dark-card:#1A1A1F;
+  --x-line:#DED9CE; --x-line-2:#CDC8BB;
+  --x-dline:rgba(255,255,255,.14); --x-dtext:rgba(255,255,255,.66); --x-dmut:rgba(255,255,255,.42);
+  --x-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --x-ease:cubic-bezier(.16,1,.3,1);
+  --x-shadow:0 18px 50px -22px rgba(10,10,12,.4);
+}
+
+/* ---------- 공통 원자 ---------- */
+.x-wrap{width:min(1240px,92vw);margin-inline:auto}
+.x-kw{font-family:var(--x-mono);font-size:11.5px;font-weight:700;letter-spacing:.06em;color:var(--x-mut);display:inline-flex;align-items:center;gap:9px;text-transform:uppercase}
+.x-kw b{color:var(--red);font-weight:800}
+.x-kw--d{color:var(--x-dmut)}
+.x-rule{height:1px;background:var(--x-line);border:0;margin:0}
+.x-rule--d{background:var(--x-dline)}
+.x-h2{font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.06;font-weight:800;letter-spacing:-.035em;color:var(--x-ink);text-wrap:balance;margin:16px 0 0}
+.x-h2 .r{color:var(--red)}
+.x-lead{margin-top:20px;max-width:56ch;font-size:1.05rem;line-height:1.7;color:var(--x-ink-2)}
+.x-sec{position:relative;padding:clamp(64px,9vw,120px) 0;background:var(--x-paper);color:var(--x-ink)}
+.x-sec--white{background:#fff}
+.x-sec--dark{background:var(--x-dark);color:var(--x-dtext)}
+.x-sec--dark .x-h2{color:#fff}
+.x-sec--dark .x-lead{color:var(--x-dtext)}
+.x-head{margin-bottom:clamp(34px,4vw,56px)}
+.x-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:30px}
+
+/* 버튼 (레드/고스트) — home 전용 크기감 */
+.x-btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.98rem;padding:14px 26px;border-radius:100px;transition:transform .25s var(--x-ease),background .25s,border-color .25s,color .25s;border:1.5px solid transparent;white-space:nowrap}
+.x-btn:hover{transform:translateY(-2px)}
+.x-btn--fill{background:var(--red);color:#fff}
+.x-btn--fill:hover{background:var(--red-dark)}
+.x-btn--line{border-color:var(--x-line-2);color:var(--x-ink)}
+.x-btn--line:hover{border-color:var(--x-ink)}
+.x-sec--dark .x-btn--line,.x-hero .x-btn--line{border-color:rgba(255,255,255,.3);color:#fff}
+.x-sec--dark .x-btn--line:hover,.x-hero .x-btn--line:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.x-tlink{font-weight:700;font-size:.95rem;color:var(--red);display:inline-flex;align-items:center;gap:6px}
+.x-tlink:hover{gap:10px}
+
+/* ---------- 01 · HERO (다크 · 노드 그래프) ---------- */
+.x-hero{position:relative;background:var(--x-dark);color:var(--x-dtext);overflow:hidden;min-height:min(92vh,820px);display:flex;flex-direction:column;justify-content:center;padding:80px 0 0}
+.x-hero__glow{position:absolute;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(48% 44% at 82% 30%,rgba(232,56,23,.28),transparent 64%),
+  radial-gradient(40% 40% at 4% 96%,rgba(232,56,23,.10),transparent 70%)}
+.x-hero__dots{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:30px 30px;-webkit-mask-image:radial-gradient(76% 72% at 74% 36%,#000,transparent 84%);mask-image:radial-gradient(76% 72% at 74% 36%,#000,transparent 84%)}
+.x-hero .x-wrap{position:relative;z-index:2}
+.x-hero__grid{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:clamp(28px,4vw,64px);align-items:center}
+.x-hero__eye{margin-bottom:30px}
+.x-hero h1{font-size:clamp(2.9rem,7.4vw,6rem);line-height:.98;font-weight:800;letter-spacing:-.045em;color:#fff;margin:0}
+.x-hero h1 .r{color:var(--red)}
+.x-hero__sub{margin-top:30px;max-width:38ch;font-size:1.1rem;line-height:1.7;color:var(--x-dtext)}
+.x-hero__sub b{color:#fff;font-weight:700}
+.x-hero__actions{margin-top:38px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.x-hero__ticker{position:relative;z-index:2;margin-top:clamp(40px,6vw,72px);border-top:1px solid var(--x-dline);overflow:hidden}
+.x-hero__ticker .x-wrap{display:flex;gap:34px;padding:16px 0;font-family:var(--x-mono);font-size:12px;letter-spacing:.06em;color:var(--x-dmut);white-space:nowrap;flex-wrap:wrap}
+.x-hero__ticker b{color:var(--red)}
+/* 노드 그래프 */
+.x-graph{width:100%;max-width:400px;height:auto;overflow:visible;margin-inline:auto}
+.x-graph .lk{stroke:rgba(255,255,255,.2);stroke-width:1}
+.x-graph .lk2{stroke:rgba(255,255,255,.1);stroke-dasharray:3 4}
+.x-graph .nd circle{fill:#5a5a64;filter:drop-shadow(0 0 5px rgba(255,255,255,.28))}
+.x-graph .nd text{fill:rgba(255,255,255,.62);font-size:11px;font-weight:700;text-anchor:middle;font-family:var(--x-mono)}
+.x-graph .core circle{fill:var(--red);filter:drop-shadow(0 0 14px rgba(232,56,23,.95))}
+.x-graph .core text{fill:#fff;font-size:12px;font-weight:800}
+.x-graph .ring{fill:none;stroke:var(--red);stroke-width:1.5;transform-origin:200px 200px}
+
+/* ---------- 카드 공통 ---------- */
+.x-grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.x-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.x-card{position:relative;display:flex;flex-direction:column;background:var(--x-card);border:1px solid var(--x-line);border-radius:18px;padding:26px;transition:transform .34s var(--x-ease),box-shadow .34s var(--x-ease),border-color .34s}
+a.x-card:hover{transform:translateY(-6px);box-shadow:var(--x-shadow);border-color:var(--x-line-2)}
+.x-card__n{font-family:var(--x-mono);font-size:12px;font-weight:700;color:var(--red)}
+.x-card__t{font-size:1.24rem;font-weight:800;letter-spacing:-.02em;color:var(--x-ink);margin:12px 0 8px;display:flex;align-items:baseline;gap:9px}
+.x-card__t::before{content:"";width:8px;height:8px;border-radius:100px;background:var(--red);flex:none;position:relative;top:-1px}
+.x-card__d{font-size:.96rem;line-height:1.62;color:var(--x-ink-2);margin:0}
+.x-card__go{margin-top:auto;padding-top:18px;font-family:var(--x-mono);font-size:12px;font-weight:700;color:var(--x-mut);display:flex;align-items:center;justify-content:space-between}
+a.x-card:hover .x-card__go{color:var(--red)}
+/* 다크 카드 */
+.x-sec--dark .x-card{background:var(--x-dark-card);border-color:var(--x-dline)}
+.x-sec--dark .x-card__t{color:#fff}
+.x-sec--dark .x-card__d{color:var(--x-dtext)}
+.x-sec--dark a.x-card:hover{border-color:rgba(255,255,255,.28)}
+
+/* ---------- 02 · 신규/리뉴얼 스플릿(대형 카드) ---------- */
+.x-split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.x-split a{position:relative;display:flex;flex-direction:column;padding:clamp(30px,3.2vw,48px);border-radius:22px;background:var(--x-card);border:1px solid var(--x-line);overflow:hidden;transition:transform .34s var(--x-ease),box-shadow .34s var(--x-ease)}
+.x-split a:hover{transform:translateY(-6px);box-shadow:var(--x-shadow)}
+.x-split .b{grid-column:auto}
+.x-split__k{font-family:var(--x-mono);font-size:12px;font-weight:700;color:var(--red);letter-spacing:.04em}
+.x-split h3{font-size:clamp(1.5rem,2.2vw,2rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin:16px 0 18px;color:var(--x-ink)}
+.x-split ul{list-style:none;display:grid;gap:10px;margin:0 0 26px}
+.x-split li{position:relative;padding-left:20px;font-size:.98rem;color:var(--x-ink-2);line-height:1.55}
+.x-split li::before{content:"";position:absolute;left:2px;top:9px;width:7px;height:7px;border-radius:100px;background:var(--red)}
+.x-split__go{margin-top:auto;font-weight:800;color:var(--x-ink);display:flex;align-items:center;gap:8px}
+.x-split a:hover .x-split__go{color:var(--red)}
+.x-split__fig{margin-bottom:24px;padding:16px;border-radius:14px;background:var(--x-paper);border:1px dashed var(--x-line-2);font-family:var(--x-mono);font-size:12px;color:var(--x-mut);display:flex;flex-wrap:wrap;gap:8px 6px;align-items:center}
+.x-split__fig span{background:#fff;border:1px solid var(--x-line);padding:5px 10px;border-radius:8px;color:var(--x-ink)}
+.x-split__fig i{color:var(--red);font-style:normal}
+
+/* ---------- 03 · AI 가시성(다크 스테이트먼트 + 카드) ---------- */
+.x-state{font-size:clamp(1.8rem,4.4vw,3.4rem);line-height:1.12;font-weight:800;letter-spacing:-.03em;color:#fff;max-width:20ch;margin:22px 0 0;text-wrap:balance}
+.x-state .r{color:var(--red)}
+.x-state .dim{color:var(--x-dmut)}
+
+/* ---------- 04 · 제작 유형(타일 그리드) ---------- */
+.x-types{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.x-type{position:relative;display:flex;flex-direction:column;background:var(--x-card);border:1px solid var(--x-line);border-radius:16px;overflow:hidden;transition:transform .32s var(--x-ease),box-shadow .32s var(--x-ease)}
+.x-type:hover{transform:translateY(-6px);box-shadow:var(--x-shadow)}
+.x-type__tile{aspect-ratio:16/10;position:relative;display:flex;align-items:flex-end;padding:14px;background:
+  linear-gradient(135deg,#141418,#26262e);overflow:hidden}
+.x-type:nth-child(4n+1) .x-type__tile{background:linear-gradient(135deg,#2a1410,var(--red-dark))}
+.x-type:nth-child(4n+2) .x-type__tile{background:linear-gradient(135deg,#141418,#2b2b34)}
+.x-type:nth-child(4n+3) .x-type__tile{background:linear-gradient(135deg,#3a1a12,#8a2a17)}
+.x-type:nth-child(4n) .x-type__tile{background:linear-gradient(135deg,#16161a,#33333d)}
+.x-type__tile::after{content:"";position:absolute;top:12px;right:12px;width:9px;height:9px;border-radius:100px;background:var(--red);box-shadow:0 0 12px rgba(232,56,23,.9)}
+.x-type__tile b{position:relative;z-index:1;font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-.02em}
+.x-type__body{padding:16px 16px 18px}
+.x-type__flow{font-family:var(--x-mono);font-size:11px;color:var(--x-mut);line-height:1.6}
+.x-type__body p{font-size:.9rem;color:var(--x-ink-2);margin:0 0 10px;line-height:1.55}
+
+/* ---------- 08 · 플랜(가격 카드) ---------- */
+.x-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+.x-plan{display:flex;flex-direction:column;background:var(--x-card);border:1px solid var(--x-line);border-radius:20px;padding:30px}
+.x-plan--hot{background:var(--x-dark);border-color:var(--x-dark);color:var(--x-dtext);transform:scale(1.02)}
+.x-plan__k{font-family:var(--x-mono);font-size:12px;font-weight:700;color:var(--red)}
+.x-plan h3{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;margin:10px 0 6px;color:var(--x-ink)}
+.x-plan--hot h3{color:#fff}
+.x-plan__sub{font-size:.92rem;color:var(--x-mut);margin:0 0 18px;line-height:1.5}
+.x-plan--hot .x-plan__sub{color:var(--x-dmut)}
+.x-plan ul{list-style:none;display:grid;gap:10px;margin:0 0 24px;padding-top:18px;border-top:1px solid var(--x-line)}
+.x-plan--hot ul{border-top-color:var(--x-dline)}
+.x-plan li{position:relative;padding-left:22px;font-size:.94rem;color:var(--x-ink-2);line-height:1.5}
+.x-plan--hot li{color:var(--x-dtext)}
+.x-plan li::before{content:"";position:absolute;left:2px;top:7px;width:10px;height:6px;border-left:2px solid var(--red);border-bottom:2px solid var(--red);transform:rotate(-45deg)}
+.x-plan__cta{margin-top:auto}
+.x-plan__badge{align-self:flex-start;font-family:var(--x-mono);font-size:10.5px;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--red);padding:4px 10px;border-radius:100px;margin-bottom:14px}
+
+/* ---------- 무료제공·연계(svc 카드) 는 .x-grid3 + .x-card 재사용 ---------- */
+
+/* ---------- 07 · 포폴 쇼케이스(다크) ---------- */
+.x-show{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px}
+.x-show a{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--x-dline);background:var(--x-dark-card);padding:0;display:flex;flex-direction:column;min-height:230px;transition:transform .34s var(--x-ease),border-color .34s}
+.x-show a:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.3)}
+.x-show__top{flex:1;position:relative;background:linear-gradient(135deg,#17171c,#26262f);overflow:hidden}
+.x-show a:first-child .x-show__top{background:linear-gradient(135deg,#2a1410,#7a2415)}
+.x-show__top::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:22px 22px}
+.x-show__meta{padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.x-show__meta b{font-size:1.2rem;font-weight:800;color:#fff;letter-spacing:-.02em}
+.x-show__view{font-family:var(--x-mono);font-size:12px;font-weight:700;color:var(--x-dmut)}
+.x-show a:hover .x-show__view{color:var(--red)}
+
+/* ---------- 10 · 최종 CTA(다크 대형) ---------- */
+.x-cta{background:var(--x-dark);color:var(--x-dtext);text-align:center;padding:clamp(72px,10vw,140px) 0}
+.x-cta h2{font-size:clamp(2.2rem,5.4vw,4.2rem);font-weight:800;letter-spacing:-.04em;line-height:1.02;color:#fff;margin:18px 0 0;text-wrap:balance}
+.x-cta h2 .r{color:var(--red)}
+.x-cta__rows{max-width:760px;margin:44px auto 0;display:grid;gap:12px}
+.x-cta__rows a{display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;padding:22px 26px;border-radius:16px;background:var(--x-dark-card);border:1px solid var(--x-dline);transition:border-color .3s,transform .3s var(--x-ease),background .3s}
+.x-cta__rows a:hover{border-color:var(--red);transform:translateX(4px);background:#1e1216}
+.x-cta__txt{flex:1;min-width:0}
+.x-cta__rows b{display:block;font-size:1.16rem;font-weight:800;color:#fff;letter-spacing:-.02em}
+.x-cta__rows .x-cta__txt span{display:block;font-size:.9rem;color:var(--x-dmut);margin-top:3px}
+.x-cta__rows i{font-family:var(--x-mono);color:var(--red);font-style:normal;font-size:20px}
+
+/* ---------- 모션(스크롤 리빌 · js-anim 게이트) ---------- */
+html.js-anim .x-rv{opacity:0;transform:translateY(28px);transition:opacity .8s var(--x-ease),transform .8s var(--x-ease)}
+html.js-anim .x-rv.in{opacity:1;transform:none}
+html.js-anim .x-stag>*{opacity:0;transform:translateY(24px);transition:opacity .7s var(--x-ease),transform .7s var(--x-ease)}
+html.js-anim .x-stag.in>*{opacity:1;transform:none}
+html.js-anim .x-stag.in>*:nth-child(2){transition-delay:.08s}
+html.js-anim .x-stag.in>*:nth-child(3){transition-delay:.16s}
+html.js-anim .x-stag.in>*:nth-child(4){transition-delay:.24s}
+/* 히어로 로드 */
+html.js-anim .x-hero__eye,html.js-anim .x-hero__sub,html.js-anim .x-hero__actions{opacity:0;animation:xUp .7s var(--x-ease) forwards}
+html.js-anim .x-hero__sub{animation-delay:.45s}
+html.js-anim .x-hero__actions{animation-delay:.6s}
+html.js-anim .x-hero__eye{animation-delay:.1s}
+html.js-anim .x-graph .lk{stroke-dasharray:220;stroke-dashoffset:220;animation:xDraw 1s var(--x-ease) .2s forwards}
+html.js-anim .x-graph .nd{opacity:0;animation:xPop .5s var(--x-ease) forwards}
+html.js-anim .x-graph .nd:nth-child(1){animation-delay:.6s}
+html.js-anim .x-graph .nd:nth-child(2){animation-delay:.68s}
+html.js-anim .x-graph .nd:nth-child(3){animation-delay:.76s}
+html.js-anim .x-graph .nd:nth-child(4){animation-delay:.84s}
+html.js-anim .x-graph .nd:nth-child(5){animation-delay:.92s}
+html.js-anim .x-graph .nd:nth-child(6){animation-delay:1s}
+html.js-anim .x-graph .core{animation-delay:.4s}
+.x-graph{animation:xFloat 9s ease-in-out infinite}
+.x-graph .ring{animation:xPulse 2.6s ease-out infinite}
+@keyframes xUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes xDraw{to{stroke-dashoffset:0}}
+@keyframes xPop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+@keyframes xFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes xPulse{0%{transform:scale(1);opacity:.7}70%{transform:scale(2.7);opacity:0}100%{opacity:0}}
+
+/* ---------- 반응형 ---------- */
+@media (max-width:960px){
+  .x-hero__grid{grid-template-columns:1fr;gap:24px}
+  .x-graph{max-width:300px}
+  .x-split,.x-grid2,.x-grid3,.x-show,.x-plans{grid-template-columns:1fr}
+  .x-types{grid-template-columns:1fr 1fr}
+  .x-plan--hot{transform:none}
+}
+@media (max-width:560px){
+  .x-types{grid-template-columns:1fr}
+  .x-hero h1{font-size:clamp(2.3rem,10vw,3.2rem)}
+}
+@media (prefers-reduced-motion:reduce){
+  html.js-anim .x-rv,html.js-anim .x-stag>*,html.js-anim .x-hero__eye,html.js-anim .x-hero__sub,
+  html.js-anim .x-hero__actions,html.js-anim .x-graph .lk,html.js-anim .x-graph .nd{opacity:1;transform:none;stroke-dashoffset:0;animation:none}
+  .x-graph,.x-graph .ring{animation:none}
+  .x-btn:hover,a.x-card:hover,.x-split a:hover,.x-type:hover,.x-show a:hover{transform:none}
+}

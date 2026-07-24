@@ -243,6 +243,42 @@ html.js-anim .hv-cap{opacity:0;animation:hvFade .8s var(--ease) 1.05s forwards}
   .hv-graph,.hn-ring{animation:none}
 }
 
+/* ===== HOME v7 · Hero DARK (AI·테크 임팩트) ===== */
+.hero-ai{background:var(--dark);color:rgba(255,255,255,.72);min-height:min(88vh,760px);display:flex;align-items:center}
+.hero-ai>.wrap{width:var(--wrap);margin-inline:auto}
+.hero-ai .hv-glow{background:
+    radial-gradient(52% 48% at 82% 26%, rgba(232,56,23,.26), transparent 66%),
+    radial-gradient(42% 46% at 6% 92%, rgba(232,56,23,.10), transparent 70%);}
+.hero-ai::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:28px 28px;
+  -webkit-mask-image:radial-gradient(74% 70% at 72% 34%,#000,transparent 82%);mask-image:radial-gradient(74% 70% at 72% 34%,#000,transparent 82%)}
+.hero-ai .hv-grid{grid-template-columns:minmax(0,1fr) 380px}
+.hero-ai h1.xl{color:#fff}
+.hero-ai .hv-eye{color:#fff}
+.hero-ai .hv-eye em{color:var(--mut-2)}
+.hero-ai .hv-sub{color:rgba(255,255,255,.68)}
+.hero-ai .hv-sub b{color:#fff}
+.hero-ai .btn-ghost{border-color:rgba(255,255,255,.32);color:#fff;background:transparent}
+.hero-ai .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.hero-ai .tlink{color:rgba(255,255,255,.78)}
+.hero-ai .tlink:hover{color:#fff}
+/* 노드 그래프 — 다크 위 글로우 */
+.hero-ai .hv-graph{max-width:380px}
+.hero-ai .hv-links line{stroke:rgba(255,255,255,.2)}
+.hero-ai .hv-links .hv-link-2{stroke:rgba(255,255,255,.11)}
+.hero-ai .hv-nodes circle{fill:#565660}
+.hero-ai .hv-nodes .hn circle{filter:drop-shadow(0 0 5px rgba(255,255,255,.3))}
+.hero-ai .hv-nodes text{fill:rgba(255,255,255,.62)}
+.hero-ai .hn-core circle{fill:var(--red);filter:drop-shadow(0 0 12px rgba(232,56,23,.9))}
+.hero-ai .hn-core text{fill:#fff}
+.hero-ai .hv-cap{color:rgba(255,255,255,.6)}
+.hero-ai .hv-cap b{color:#fff}
+/* 다크 섹션 공통 — ghost 버튼 가시성(folio 등 포함 개선) */
+.sec.dark .btn-ghost{border-color:rgba(255,255,255,.32);color:#fff}
+.sec.dark .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.sec.dark .sub{color:rgba(255,255,255,.68)}
+.sec.dark.hsx-glow::before{background:radial-gradient(46% 60% at 80% 12%,rgba(232,56,23,.28),transparent 70%)}
+
 /* ===== HOME v7 · Sections (AI·테크 통일 키트 · .hsx 스코프 · 레거시 .hs와 분리) ===== */
 main{counter-reset:hsx 1}
 .hsx{position:relative}
