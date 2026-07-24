@@ -60,8 +60,12 @@
 .x-hero__sub b{color:#fff;font-weight:700}
 .x-hero__actions{margin-top:38px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .x-hero__ticker{position:relative;z-index:2;margin-top:clamp(40px,6vw,72px);border-top:1px solid var(--x-dline);overflow:hidden}
-.x-hero__ticker .x-wrap{display:flex;gap:34px;padding:16px 0;font-family:var(--x-mono);font-size:12px;letter-spacing:.06em;color:var(--x-dmut);white-space:nowrap;flex-wrap:wrap}
-.x-hero__ticker b{color:var(--red)}
+.x-marq{display:flex;width:max-content;animation:xMarq 28s linear infinite}
+.x-hero__ticker:hover .x-marq{animation-play-state:paused}
+.x-marq__g{display:flex;gap:34px;padding:16px 34px 16px 0;font-family:var(--x-mono);font-size:12px;letter-spacing:.06em;color:var(--x-dmut);white-space:nowrap}
+.x-marq__g b{color:var(--red)}
+@keyframes xMarq{to{transform:translateX(-50%)}}
+.x-hero__glow,.x-hero__dots{will-change:transform}
 /* 노드 그래프 */
 .x-graph{width:100%;max-width:400px;height:auto;overflow:visible;margin-inline:auto}
 .x-graph .lk{stroke:rgba(255,255,255,.2);stroke-width:1}
@@ -242,6 +246,7 @@ html.js-anim .x-graph .core{animation-delay:.4s}
 @media (prefers-reduced-motion:reduce){
   html.js-anim .x-rv,html.js-anim .x-stag>*,html.js-anim .x-hero__eye,html.js-anim .x-hero__sub,
   html.js-anim .x-hero__actions,html.js-anim .x-graph .lk,html.js-anim .x-graph .nd{opacity:1;transform:none;stroke-dashoffset:0;animation:none}
-  .x-graph,.x-graph .ring{animation:none}
+  .x-graph,.x-graph .ring,.x-marq{animation:none}
+  .x-hero__glow,.x-hero__dots{transform:none !important}
   .x-btn:hover,a.x-card:hover,.x-split a:hover,.x-type:hover,.x-show a:hover{transform:none}
 }
