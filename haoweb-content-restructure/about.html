@@ -202,8 +202,7 @@
           <div><dt>퍼블리싱·개발</dt><dd>반응형 구현, 문의 폼·게시판 등 필요한 기능</dd></div>
           <div><dt>촬영·편집디자인</dt><dd>홈페이지에 실제로 쓰일 사진과 인쇄·편집물</dd></div>
         </dl>
-        <!-- TODO: 직접 수행 업무 / 협력·외부 진행 업무 구분은 COMPANY_FACTS_REQUIRED §4 확정 후 이 자리에 명시.
-             확인 전에는 인력 구성·협력 구조를 임의로 표기하지 않는다 -->
+        <!-- 인력 구성·협력 구조는 실제 확인 전 임의 표기 금지(→ PENDING_FACTS_ONLY.md 팀·협력) -->
       </div>
     </section>
 
@@ -236,7 +235,7 @@
           <details class="faq"><summary>기능·제작</summary><div class="faq-a"><p><b>문서</b> 기능 목록, 촬영·그래픽 필요 항목<br /><b>결정</b> 무엇을 만들고 무엇을 찍을지<br /><b>고객 확인</b> 범위와 일정</p></div></details>
           <details class="faq"><summary>검색·운영</summary><div class="faq-a"><p><b>문서</b> 검색·AI 기본 구조 정리, 오픈 이후 콘텐츠 계획<br /><b>결정</b> 오픈 후 무엇을 이어갈지<br /><b>고객 확인</b> 운영 가능한 범위인지</p></div></details>
         </div>
-        <!-- TODO: 각 문서의 실제 전달 형식(파일·링크·미팅)은 COMPANY_FACTS_REQUIRED §5 확정 후 명시 -->
+        <!-- 각 문서의 실제 전달 형식은 확인 후 명시(임의 표기 금지) -->
       </div>
     </section>
 
@@ -249,10 +248,10 @@
           <p class="sub">회사의 서비스가 늘고 사례가 쌓여도 홈페이지가 그대로면, 고객이 보는 회사는 과거에 머뭅니다. 오픈 이후 필요한 수정과 콘텐츠 관리를 함께 진행할 수 있습니다.</p>
         </div>
         <div class="svc-index">
-          <a href="maintenance.html"><em>01</em><b>유지관리</b><span>문구·이미지 수정, 페이지 추가, 오류 점검</span><i>→</i></a>
-          <a href="maintenance.html"><em>02</em><b>콘텐츠 운영</b><span>칼럼·FAQ·사례를 이어서 발행</span><i>→</i></a>
+          <a href="maintenance.html"><em>01</em><b>유지보수</b><span>문구·이미지 수정, 페이지 추가, 오류 점검, 게시물 등록</span><i>→</i></a>
+          <a href="ai-content.html"><em>02</em><b>AI 콘텐츠</b><span>칼럼·FAQ·사례를 이어서 제작·발행</span><i>→</i></a>
         </div>
-        <!-- TODO: 오픈 후 무상 대응 기간·범위는 COMPANY_FACTS_REQUIRED §6 확정 후 표기 -->
+        <!-- 오픈 후 무상 대응 기간·범위는 확인 후 표기(임의 표기 금지) -->
         <p class="note" style="margin-top:18px">지원 방식과 범위는 홈페이지 규모와 필요에 따라 상담에서 정합니다.</p>
       </div>
     </section>
@@ -265,8 +264,7 @@
           <h2 class="mask-rv">먼저 이야기부터 나눠 보세요.</h2>
           <p class="sub">업종과 목표를 알려주시면 필요한 구조와 범위를 함께 정리합니다.</p>
         </div>
-        <!-- TODO: 회사 정보(운영 회사명·사업자명·대표자·사업자등록번호·주소·전화·이메일·업력·팀·협력 구조)는
-             COMPANY_FACTS_REQUIRED 확정 후 이 자리에 표기. 확인 전 임의 작성 금지 -->
+        <!-- 회사 정보(회사명·사업자·대표자·주소·전화·이메일·업력·팀·협력)는 site-config.js/PENDING_FACTS 확정 후 표기. 확인 전 임의 작성 금지 -->
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="inquiry.html">제작 문의</a>
           <a class="btn btn-ghost btn-lg" href="free-proposal.html">무료 시안·제안받기</a>
@@ -317,13 +315,13 @@
         </nav>
         <nav aria-label="회사">
           <p class="ft-title">회사</p>
-          <a href="about.html">회사소개</a><a href="columns.html">칼럼</a><a href="government.html">정부지원사업</a><a href="inquiry.html">제작 문의</a><a href="privacy.html">개인정보처리방침</a>
+          <a href="about.html">회사소개</a><a href="columns.html">칼럼</a><a href="government.html">정부지원사업</a><a href="inquiry.html">제작 문의</a>
         </nav>
       </div>
       <p class="ft-contact" data-cfg="footer-contact" hidden></p>
       <div class="ft-base">
         <span>© 2026 HAOWEB. All rights reserved.</span>
-        <a href="privacy.html">개인정보처리방침</a>
+        <a class="ft-privacy" href="privacy.html">개인정보처리방침</a>
       </div>
       <!-- 연락처·사업자 정보는 src/site-config.js(contact·company)에서 주입. 값이 비면 표시하지 않음 -->
     </div>

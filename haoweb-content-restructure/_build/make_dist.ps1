@@ -30,12 +30,11 @@ foreach ($d in $assets) { if (Test-Path (Join-Path $src $d)) { Copy-Item (Join-P
 if (Test-Path $dist) { Remove-Item $dist -Recurse -Force }
 New-Item -ItemType Directory -Force $dist | Out-Null
 
-# 미노출: 통합/폐기 페이지, 데이터 없는 상세 템플릿, 실데이터 없는 목록, 공지, 칼럼 상세 데모
+# 미노출: 통합/폐기 페이지, 칼럼 상세 데모, 공지(실공지 확보 전)
+# 포트폴리오·인터뷰(목록+상세 템플릿)는 데이터가 없어도 dist에 포함 → 링크 404 방지(콘텐츠 구조만 유지)
 # seo/aeo/geo는 AI 가시성 하위 실제 페이지로 공개. content-production/operation은 통합 후 리다이렉트
 $excludePages = @('renewal-proposal.html','content-production.html','content-operation.html',
-                  'portfolio-detail.html','interview-detail.html','column-detail.html','notice.html')
-if (-not $hasPortfolio) { $excludePages += 'portfolio.html' }
-if (-not $hasInterview) { $excludePages += 'interview.html' }
+                  'column-detail.html','notice.html')
 
 Get-ChildItem $src -File -Filter *.html | Where-Object { $excludePages -notcontains $_.Name } | Copy-Item -Destination $dist
 foreach ($d in $assets) { if (Test-Path (Join-Path $src $d)) { Copy-Item (Join-Path $src $d) (Join-Path $dist $d) -Recurse } }
@@ -59,6 +58,14 @@ function New-Redirect([string]$name, [string]$to) {
 New-Redirect 'renewal-proposal.html' 'free-proposal.html?type=renewal'
 New-Redirect 'content-production.html' 'ai-content.html'
 New-Redirect 'content-operation.html' 'maintenance.html'
+
+# 공개(dist)에서는 개인정보처리방침 실제 정보 확정 전까지 Footer 링크를 숨긴다.
+# privacy.html 파일 자체는 유지(폼 동의 링크가 참조) — Footer의 ft-privacy 앵커만 제거. review에는 그대로 노출.
+Get-ChildItem $dist -File -Filter *.html | ForEach-Object {
+  $t = [IO.File]::ReadAllText($_.FullName)
+  $t2 = $t -replace '<a class="ft-privacy" href="privacy\.html">개인정보처리방침</a>', ''
+  if ($t2 -ne $t) { [IO.File]::WriteAllText($_.FullName, $t2, $enc) }
+}
 
 $dcount = (Get-ChildItem $dist -Recurse -File).Count
 $rcount = (Get-ChildItem $review -Recurse -File).Count

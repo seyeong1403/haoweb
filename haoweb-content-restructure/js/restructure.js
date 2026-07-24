@@ -45,12 +45,17 @@
   var setCfg = function (sel, text) {
     document.querySelectorAll(sel).forEach(function (el) { el.textContent = text; });
   };
+  var showRow = function (sel) {
+    document.querySelectorAll(sel).forEach(function (el) { var li = el.closest("li"); if (li) li.hidden = false; });
+  };
   if (C.privacy) {
     if (C.privacy.officer && C.privacy.officerEmail) {
       setCfg('[data-cfg="officer"]', "개인정보 보호 담당자: " + C.privacy.officer + " (" + C.privacy.officerEmail + ")");
+      showRow('[data-cfg="officer"]');
     }
     if (C.privacy.effectiveDate) {
       setCfg('[data-cfg="effective"]', "본 방침은 " + C.privacy.effectiveDate + "부터 시행됩니다.");
+      showRow('[data-cfg="effective"]');
     }
     if (C.privacy.analytics === true) {
       setCfg('[data-cfg="analytics-line"]', "서비스 개선을 위해 방문 분석 도구를 사용하며, 관련 쿠키가 저장될 수 있습니다.");
