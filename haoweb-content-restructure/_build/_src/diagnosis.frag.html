@@ -69,24 +69,26 @@
           <h2>홈페이지 진단 신청</h2>
           <p class="sub"><span class="req">*</span> 표시는 필수 항목입니다.</p>
         </div>
-        <!-- TODO: 상담 폼 API 연결 -->
-        <form class="form">
-          <div class="field"><label for="dg-url">현재 홈페이지 주소 <span class="req">*</span></label><input id="dg-url" name="url" type="url" placeholder="https://" required /></div>
+        <!-- 접수 endpoint는 src/site-config.js(form.endpoint). 비어 있으면 확인 화면까지만 동작하고 전송하지 않음 -->
+        <form class="form" data-hao-form="diagnosis">
           <div class="field-2">
-            <div class="field"><label for="dg-industry">업종 <span class="req">*</span></label>
-              <select id="dg-industry" name="industry" required><option value="">선택</option><option>기업(제조·B2B 등)</option><option>병원·의원</option><option>법률(변호사)</option><option>쇼핑몰·이커머스</option><option>프랜차이즈</option><option>기타</option></select></div>
             <div class="field"><label for="dg-brand">회사·브랜드명 <span class="req">*</span></label><input id="dg-brand" name="brand" type="text" required /></div>
+            <div class="field"><label for="dg-name">담당자명 <span class="req">*</span></label><input id="dg-name" name="name" type="text" autocomplete="name" required /></div>
           </div>
-          <div class="field"><label for="dg-problem">지금 느끼는 문제</label><textarea id="dg-problem" name="problem" placeholder="예) 문의가 거의 없다, 모바일에서 보기 불편하다"></textarea></div>
           <div class="field-2">
-            <div class="field"><label for="dg-name">담당자명 <span class="req">*</span></label><input id="dg-name" name="name" type="text" required /></div>
-            <div class="field"><label for="dg-contact">연락처 <span class="req">*</span></label><input id="dg-contact" name="contact" type="tel" required /></div>
+            <div class="field"><label for="dg-contact">연락처 <span class="req">*</span></label><input id="dg-contact" name="contact" type="tel" autocomplete="tel" required /></div>
+            <div class="field"><label for="dg-email">이메일 <span class="req">*</span></label><input id="dg-email" name="email" type="email" autocomplete="email" required /></div>
           </div>
+          <div class="field"><label for="dg-url">현재 홈페이지 주소 <span class="req">*</span></label><input id="dg-url" name="url" type="url" placeholder="https://" required /></div>
+          <div class="field"><label for="dg-problem">지금 느끼는 문제</label><textarea id="dg-problem" name="problem" placeholder="예) 문의가 거의 없다, 모바일에서 보기 불편하다"></textarea></div>
+          <div class="field"><label for="dg-purpose">개선 목적</label><input id="dg-purpose" name="purpose" type="text" placeholder="예) 문의 확보, 예약 증대, 검색에서 잘 보이기" /></div>
+          <div class="field"><label for="dg-need">필요한 서비스</label><input id="dg-need" name="need" type="text" placeholder="예) 구조 개편, 원고, 촬영, 검색·AI 대응" /></div>
           <fieldset class="field">
             <legend class="sr-only">개인정보 수집·이용 동의</legend><label class="choice" style="border:0;padding:0"><input type="checkbox" name="privacy" required /> <span>개인정보 수집·이용에 동의합니다. <a href="privacy.html" style="color:var(--red)">개인정보처리방침</a> <span class="req">*</span></span></label>
           </fieldset>
-          <button class="btn btn-primary btn-lg" type="submit">진단 신청 제출</button>
-          <!-- TODO: 폼 API 연결 후 접수 안내 문구 확정 -->
+          <div class="form-msg" role="status" aria-live="polite" hidden></div>
+          <button class="btn btn-primary btn-lg" type="submit">진단 신청 확인</button>
+          <p class="form-note">신청 내용을 확인하는 화면이 먼저 표시됩니다. 최종 제출 전에 입력 내용을 다시 확인할 수 있습니다.</p>
         </form>
       </div>
     </section>

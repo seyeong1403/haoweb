@@ -1,17 +1,43 @@
-# 배포 폴더 생성기: 공개 파일만 dist/에 복사 (소스·기획 문서·백업과 분리)
-# - 제외: docs/, _build/, dist/, 백업·프래그먼트
-# - 템플릿(실데이터 전 비공개): portfolio-detail, interview-detail → dist 미포함
-# - GNB 비노출 통합 대상: seo/aeo/geo → search-ai 리다이렉트 스텁, renewal-proposal → free-proposal?type=renewal 스텁
+# 배포 폴더 생성기
+# - review/ : 대표님 검토용 전체 빌드(모든 페이지 포함, 검색엔진 비색인)
+# - dist/   : 실제 공개용(docs·_build·archive·백업·데이터 없는 상세·미노출 페이지 제외)
 $src  = Split-Path $PSScriptRoot -Parent
 $dist = Join-Path $src 'dist'
+$review = Join-Path $src 'review'
 $enc  = New-Object System.Text.UTF8Encoding($false)
 
+# 데이터 유무 판정(실제 데이터가 없으면 포트폴리오·인터뷰 공개 제외)
+function Has-Data([string]$rel) {
+  $p = Join-Path $src $rel
+  if (-not (Test-Path $p)) { return $false }
+  $t = ([IO.File]::ReadAllText($p)).Trim()
+  return ($t -ne '[]' -and $t.Length -gt 3)
+}
+$hasPortfolio = Has-Data 'src/data/portfolio.json'
+$hasInterview = Has-Data 'src/data/interview.json'
+
+$assets = @('css','js','assets','src')
+
+# ---------- review/ : 전체 ----------
+if (Test-Path $review) { Remove-Item $review -Recurse -Force }
+New-Item -ItemType Directory -Force $review | Out-Null
+Get-ChildItem $src -File -Filter *.html | Copy-Item -Destination $review
+foreach ($d in $assets) { if (Test-Path (Join-Path $src $d)) { Copy-Item (Join-Path $src $d) (Join-Path $review $d) -Recurse } }
+# review 전체 noindex 표식
+"User-agent: *`nDisallow: /" | Out-File (Join-Path $review 'robots.txt') -Encoding utf8
+
+# ---------- dist/ : 공개용 ----------
 if (Test-Path $dist) { Remove-Item $dist -Recurse -Force }
 New-Item -ItemType Directory -Force $dist | Out-Null
 
-$excludePages = @('portfolio-detail.html','interview-detail.html','seo.html','aeo.html','geo.html','renewal-proposal.html')
+# 미노출: 통합/폐기 페이지, 데이터 없는 상세 템플릿, 실데이터 없는 목록, 공지, 칼럼 상세 데모
+$excludePages = @('seo.html','aeo.html','geo.html','renewal-proposal.html',
+                  'portfolio-detail.html','interview-detail.html','column-detail.html','notice.html')
+if (-not $hasPortfolio) { $excludePages += 'portfolio.html' }
+if (-not $hasInterview) { $excludePages += 'interview.html' }
+
 Get-ChildItem $src -File -Filter *.html | Where-Object { $excludePages -notcontains $_.Name } | Copy-Item -Destination $dist
-foreach ($d in @('css','js','assets')) { Copy-Item (Join-Path $src $d) (Join-Path $dist $d) -Recurse }
+foreach ($d in $assets) { if (Test-Path (Join-Path $src $d)) { Copy-Item (Join-Path $src $d) (Join-Path $dist $d) -Recurse } }
 
 function New-Redirect([string]$name, [string]$to) {
   $html = @"
@@ -34,5 +60,8 @@ New-Redirect 'aeo.html' 'search-ai.html'
 New-Redirect 'geo.html' 'search-ai.html'
 New-Redirect 'renewal-proposal.html' 'free-proposal.html?type=renewal'
 
-$count = (Get-ChildItem $dist -Recurse -File).Count
-Write-Host "dist built: $count files (docs/_build/템플릿 제외, 리다이렉트 4)"
+$dcount = (Get-ChildItem $dist -Recurse -File).Count
+$rcount = (Get-ChildItem $review -Recurse -File).Count
+Write-Host "review built: $rcount files (전체)"
+Write-Host "dist built: $dcount files (portfolio=$hasPortfolio interview=$hasInterview, 리다이렉트 4)"
+Write-Host "dist 미노출: $($excludePages -join ', ')"
