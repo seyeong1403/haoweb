@@ -5,6 +5,13 @@
   if (!document.querySelector(".x-hero")) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+  // GSAP + ScrollTrigger 등록(씬 모션에서 사용). 로드 실패 시 조용히 스킵.
+  var HAS_GSAP = !!(window.gsap && window.ScrollTrigger);
+  if (HAS_GSAP) {
+    window.gsap.registerPlugin(window.ScrollTrigger);
+    window.addEventListener("load", function () { window.ScrollTrigger.refresh(); });
+  }
+
   var vh = function () { return window.innerHeight || document.documentElement.clientHeight || 800; };
   var rvs = Array.prototype.slice.call(document.querySelectorAll(".x-rv, .x-stag"));
   var glow = document.querySelector(".x-hero__glow");

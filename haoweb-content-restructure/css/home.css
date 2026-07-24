@@ -5,15 +5,21 @@
    클래스는 .x- 네임스페이스 → 서브페이지 영향 없음.
    ============================================================ */
 :root{
-  --x-paper:#EFEDE7; --x-paper-2:#F6F4EF; --x-card:#FBFAF7;
-  --x-ink:#0B0B0C; --x-ink-2:#3A3A40; --x-mut:#78766E;
-  --x-dark:#0C0C0E; --x-dark-2:#151519; --x-dark-card:#1A1A1F;
-  --x-line:#DED9CE; --x-line-2:#CDC8BB;
-  --x-dline:rgba(255,255,255,.14); --x-dtext:rgba(255,255,255,.66); --x-dmut:rgba(255,255,255,.42);
+  /* v9: 중성 그레이(누런 베이지 폐기) · Black/White/Gray/Red */
+  --x-paper:#F4F5F6; --x-paper-2:#FAFAFB; --x-card:#FFFFFF;
+  --x-ink:#0A0A0B; --x-ink-2:#33343A; --x-mut:#6E7076;
+  --x-dark:#0A0A0C; --x-dark-2:#131418; --x-dark-card:#17181D;
+  --x-line:#E3E5E8; --x-line-2:#D2D5DA;
+  --x-dline:rgba(255,255,255,.13); --x-dtext:rgba(255,255,255,.68); --x-dmut:rgba(255,255,255,.42);
   --x-mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  --x-display:"SUIT Variable","Pretendard",-apple-system,BlinkMacSystemFont,sans-serif;
+  --x-body:"Pretendard",-apple-system,BlinkMacSystemFont,sans-serif;
   --x-ease:cubic-bezier(.16,1,.3,1);
   --x-shadow:0 18px 50px -22px rgba(10,10,12,.4);
+  --x-r:6px;      /* 카드/버튼 기본 라운드 0~8px */
 }
+/* 디스플레이 폰트: 큰 제목류 */
+.x-hero h1,.x-h2,.x-state,.x-card__t,.x-split h3,.x-plan h3,.x-cta h2,.x-col__t,.x-list__t,.x-type__tile b{font-family:var(--x-display)}
 
 /* ---------- 공통 원자 ---------- */
 .x-wrap{width:min(1240px,92vw);margin-inline:auto}
@@ -34,7 +40,7 @@
 .x-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:30px}
 
 /* 버튼 (레드/고스트) — home 전용 크기감 */
-.x-btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.98rem;padding:14px 26px;border-radius:100px;transition:transform .25s var(--x-ease),background .25s,border-color .25s,color .25s;border:1.5px solid transparent;white-space:nowrap}
+.x-btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.98rem;padding:15px 28px;border-radius:var(--x-r);transition:transform .25s var(--x-ease),background .25s,border-color .25s,color .25s;border:1.5px solid transparent;white-space:nowrap}
 .x-btn:hover{transform:translateY(-2px)}
 .x-btn--fill{background:var(--red);color:#fff}
 .x-btn--fill:hover{background:var(--red-dark)}
