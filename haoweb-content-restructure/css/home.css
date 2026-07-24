@@ -52,7 +52,7 @@
   radial-gradient(40% 40% at 4% 96%,rgba(232,56,23,.10),transparent 70%)}
 .x-hero__dots{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:30px 30px;-webkit-mask-image:radial-gradient(76% 72% at 74% 36%,#000,transparent 84%);mask-image:radial-gradient(76% 72% at 74% 36%,#000,transparent 84%)}
 .x-hero .x-wrap{position:relative;z-index:2}
-.x-hero__grid{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:clamp(28px,4vw,64px);align-items:center}
+.x-hero__grid{display:block}
 .x-hero__eye{margin-bottom:30px}
 .x-hero h1{font-size:clamp(2.9rem,7.4vw,6rem);line-height:.98;font-weight:800;letter-spacing:-.045em;color:#fff;margin:0}
 .x-hero h1 .r{color:var(--red)}
