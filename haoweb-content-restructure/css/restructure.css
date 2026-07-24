@@ -238,6 +238,9 @@ html.js-anim .mth-steps.scrub li.act b{color:var(--red-dark)}
 .mv-panel li::before{content:"";position:absolute;left:2px;top:.95em;width:6px;height:1.5px;background:var(--red-dark)}
 .mv-panel li:last-child{border-bottom:0}
 .mv-note{padding:10px 16px 14px;font-size:.8rem;line-height:1.6;color:var(--mut);border-top:1px solid var(--line);background:var(--off)}
+/* 글로벌 국가 배지 */
+.gl-badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.02em;color:#fff;background:var(--red);border-radius:100px;padding:2px 10px;vertical-align:middle;margin-left:4px}
+.gl-badge.alt{background:var(--mut);color:#fff}
 /* 칼럼 본문 */
 .article{max-width:760px}
 .article > p{margin:0 0 20px;font-size:1.05rem;line-height:1.85;color:var(--ink-2)}
