@@ -253,7 +253,6 @@
         entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); xio.unobserve(e.target); } });
       }, { threshold: 0.12 });
       xrv.forEach(function (el) { xio.observe(el); });
-      setTimeout(function () { xrv.forEach(function (el) { el.classList.add("in"); }); }, 1800);
     }
 
     // 7-보조) 소형 요소 리빌(선택 적용 — 전 섹션 일괄 금지)
