@@ -243,6 +243,30 @@ html.js-anim .hv-cap{opacity:0;animation:hvFade .8s var(--ease) 1.05s forwards}
   .hv-graph,.hn-ring{animation:none}
 }
 
+/* ===== HOME v7 · Sections (AI·테크 통일 키트 · .hs 스코프) ===== */
+main{counter-reset:hs 1}
+.hs{position:relative}
+.hs .sec-head{position:relative;z-index:1}
+/* 모노 N° 아이브로 + 레드 넘버 */
+.hs .eyebrow{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:none;display:inline-flex;align-items:center;gap:9px}
+.hs .eyebrow::before{counter-increment:hs;content:"N°" counter(hs,decimal-leading-zero);color:var(--red);font-weight:800;letter-spacing:.01em}
+.hs.dark .eyebrow,.hs.cta-final .eyebrow{color:#fff}
+.hs.dark .eyebrow::before,.hs.cta-final .eyebrow::before{color:var(--red)}
+/* 소프트 레드 글로우(스타 섹션) */
+.hs-glow{overflow:hidden}
+.hs-glow::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(46% 60% at 80% 12%,rgba(232,56,23,.16),transparent 70%)}
+.hs-glow>.wrap{position:relative;z-index:1}
+/* cols-3 카드 — 레드 노드 도트 + 호버 리프트 */
+.hs .cols-3 .col-block h3{display:flex;align-items:baseline;gap:10px}
+.hs .cols-3 .col-block h3::before{content:"";width:8px;height:8px;border-radius:100px;background:var(--red);flex:none;position:relative;top:-1px}
+.hs a.col-block{transition:transform .32s var(--ease),border-top-color .32s var(--ease)}
+.hs a.col-block:hover{transform:translateY(-5px)}
+.hs.dark .cols-3 .col-block h3{color:#fff}
+/* svc-index — 모노 인덱스 넘버 */
+.hs .svc-index a em{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;color:var(--red);font-style:normal}
+/* 스크롤 리빌 진입 시 미세 상승(기존 .rv 시스템과 병행) */
+@media (prefers-reduced-motion:reduce){ .hs a.col-block:hover{transform:none} }
+
 .hero-actions{margin-top:34px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .hero-actions .tlink{margin-left:8px}
 .crumbs{font-size:13.5px;color:var(--mut);margin-bottom:26px}
