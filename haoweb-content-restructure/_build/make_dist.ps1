@@ -1,4 +1,4 @@
-# 배포 폴더 생성기
+﻿# 배포 폴더 생성기
 # - review/ : 대표님 검토용 전체 빌드(모든 페이지 포함, 검색엔진 비색인)
 # - dist/   : 실제 공개용(docs·_build·archive·백업·데이터 없는 상세·미노출 페이지 제외)
 $src  = Split-Path $PSScriptRoot -Parent
@@ -31,7 +31,8 @@ if (Test-Path $dist) { Remove-Item $dist -Recurse -Force }
 New-Item -ItemType Directory -Force $dist | Out-Null
 
 # 미노출: 통합/폐기 페이지, 데이터 없는 상세 템플릿, 실데이터 없는 목록, 공지, 칼럼 상세 데모
-$excludePages = @('seo.html','aeo.html','geo.html','renewal-proposal.html',
+# seo/aeo/geo는 AI 가시성 하위 실제 페이지로 공개. content-production/operation은 통합 후 리다이렉트
+$excludePages = @('renewal-proposal.html','content-production.html','content-operation.html',
                   'portfolio-detail.html','interview-detail.html','column-detail.html','notice.html')
 if (-not $hasPortfolio) { $excludePages += 'portfolio.html' }
 if (-not $hasInterview) { $excludePages += 'interview.html' }
@@ -55,13 +56,12 @@ function New-Redirect([string]$name, [string]$to) {
 "@
   [IO.File]::WriteAllText((Join-Path $dist $name), $html, $enc)
 }
-New-Redirect 'seo.html' 'search-ai.html'
-New-Redirect 'aeo.html' 'search-ai.html'
-New-Redirect 'geo.html' 'search-ai.html'
 New-Redirect 'renewal-proposal.html' 'free-proposal.html?type=renewal'
+New-Redirect 'content-production.html' 'ai-content.html'
+New-Redirect 'content-operation.html' 'maintenance.html'
 
 $dcount = (Get-ChildItem $dist -Recurse -File).Count
 $rcount = (Get-ChildItem $review -Recurse -File).Count
 Write-Host "review built: $rcount files (전체)"
-Write-Host "dist built: $dcount files (portfolio=$hasPortfolio interview=$hasInterview, 리다이렉트 4)"
+Write-Host "dist built: $dcount files (portfolio=$hasPortfolio interview=$hasInterview, 리다이렉트 3)"
 Write-Host "dist 미노출: $($excludePages -join ', ')"

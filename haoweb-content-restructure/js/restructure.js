@@ -8,12 +8,13 @@
 
   // 1) 현재 페이지 + 부모 GNB 활성(route map)
   var ROUTES = {
-    "website.html": ["website.html", "company.html", "hospital.html", "lawyer.html", "shop.html", "franchise.html", "landing.html", "app.html"],
+    "website.html": ["website.html", "company.html", "hospital.html", "lawyer.html", "shop.html", "franchise.html", "landing.html", "app.html", "graphic-design.html", "studio.html", "content-production.html"],
     "renewal.html": ["renewal.html", "diagnosis.html", "renewal-proposal.html"],
-    "search-ai.html": ["search-ai.html", "seo.html", "aeo.html", "geo.html", "global.html", "content-production.html", "ai-content.html", "graphic-design.html", "studio.html", "content-operation.html"],
+    "search-ai.html": ["search-ai.html", "seo.html", "aeo.html", "geo.html", "ai-content.html", "content-operation.html"],
+    "global.html": ["global.html", "global-vn.html", "global-cn.html", "global-th.html", "global-jp.html", "global-en.html"],
     "portfolio.html": ["portfolio.html", "portfolio-detail.html", "interview.html", "interview-detail.html"],
-    "plan.html": ["plan.html", "process.html", "price-guide.html", "free-proposal.html", "faq.html"],
-    "about.html": ["about.html", "maintenance.html", "columns.html", "column-detail.html", "government.html", "notice.html", "inquiry.html", "privacy.html"]
+    "plan.html": ["plan.html", "process.html", "price-guide.html"],
+    "faq.html": ["faq.html", "free-proposal.html", "maintenance.html", "inquiry.html", "about.html", "columns.html", "column-detail.html", "column-prepare.html", "column-renewal.html", "column-search.html", "column-after.html", "government.html", "notice.html", "privacy.html"]
   };
   document.querySelectorAll('.hd a[href], .m-panel a[href]').forEach(function (a) {
     if (a.getAttribute("href") === here) a.setAttribute("aria-current", "page");
