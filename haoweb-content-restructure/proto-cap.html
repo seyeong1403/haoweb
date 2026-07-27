@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>하오웹 · 리디자인 프로토타입</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css" />
+<style>
+:root{
+  --ink:#08080A; --ink-2:#101014; --paper:#F3F1EC; --white:#fff;
+  --red:#E83817; --red-2:#ff4a25;
+  --dim:rgba(255,255,255,.5); --dim-2:rgba(255,255,255,.32); --line:rgba(255,255,255,.14);
+  --disp:"SUIT Variable","Pretendard",sans-serif; --body:"Pretendard",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--body);background:var(--ink);color:#fff;line-height:1.7;word-break:keep-all;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{width:min(1320px,90vw);margin-inline:auto}
+::selection{background:var(--red);color:#fff}
+
+/* header */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:22px min(5vw,44px);mix-blend-mode:difference}
+.nav__logo{font-family:var(--disp);font-weight:800;font-size:20px;letter-spacing:-.03em;color:#fff}
+.nav__logo b{color:var(--red)}
+.nav__menu{display:flex;gap:30px;font-size:13.5px;font-weight:600;color:#fff}
+.nav__menu a:hover{opacity:.6}
+.nav__cta{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.02em;color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:100px;padding:9px 18px}
+@media(max-width:880px){.nav__menu{display:none}}
+
+/* hero */
+.hero{position:relative;min-height:780px;display:flex;flex-direction:column;justify-content:flex-end;padding:0 min(5vw,44px) 5vh;overflow:hidden}
+.hero__canvas{position:absolute;inset:0;z-index:0;opacity:.9}
+.hero__glow{position:absolute;z-index:0;inset:0;background:radial-gradient(50% 45% at 78% 34%,rgba(232,56,23,.32),transparent 62%)}
+.hero__in{position:relative;z-index:2;width:100%}
+.hero__eye{font-family:var(--mono);font-size:12.5px;letter-spacing:.14em;color:var(--dim);margin-bottom:26px;text-transform:uppercase}
+.hero__eye b{color:var(--red)}
+.hero h1{font-family:var(--disp);font-weight:800;font-size:clamp(3.2rem,12.5vw,13rem);line-height:.86;letter-spacing:-.055em;color:#fff}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln>span{display:block}
+.hero h1 .r{color:var(--red)}
+.hero__foot{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-top:44px;flex-wrap:wrap}
+.hero__sub{max-width:46ch;font-size:1.06rem;line-height:1.7;color:var(--dim)}
+.hero__sub b{color:#fff;font-weight:600}
+.hero__act{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.btn{font-family:var(--body);font-weight:700;font-size:.98rem;padding:16px 30px;border-radius:100px;background:var(--red);color:#fff;transition:transform .3s var(--ease),background .3s;white-space:nowrap}
+.btn:hover{transform:translateY(-3px);background:var(--red-2)}
+.tl{font-weight:600;font-size:.95rem;color:#fff;display:inline-flex;gap:7px;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:3px}
+.tl:hover{color:var(--red);border-color:var(--red)}
+.scrollcue{position:absolute;bottom:5vh;right:min(5vw,44px);z-index:2;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--dim-2);writing-mode:vertical-rl}
+
+/* statement */
+.stmt{padding:clamp(90px,16vh,190px) 0}
+.stmt-t{font-family:var(--disp);font-weight:800;font-size:clamp(1.9rem,5vw,4.6rem);line-height:1.08;letter-spacing:-.04em}
+.stmt-t .r{color:var(--red)}
+.stmt-t .dim{color:var(--dim-2)}
+.word{display:inline-block;overflow:hidden;vertical-align:top}
+.word>span{display:inline-block}
+
+/* section shell */
+.sec{padding:clamp(80px,12vh,150px) 0;position:relative}
+.sec--paper{background:var(--paper);color:var(--ink)}
+.eye{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:10px}
+.sec--paper .eye{color:var(--red)}
+.h2{font-family:var(--disp);font-weight:800;font-size:clamp(2rem,5.2vw,4.4rem);line-height:1.0;letter-spacing:-.04em;margin:20px 0 0}
+.h2 .r{color:var(--red)}
+.lead{max-width:58ch;font-size:1.08rem;line-height:1.75;color:var(--dim);margin-top:24px}
+.sec--paper .lead{color:#43434a}
+
+/* choice split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);margin-top:clamp(40px,6vh,70px);border-block:1px solid var(--line)}
+.split a{background:var(--ink);padding:clamp(34px,5vw,64px) clamp(28px,3.5vw,52px);min-height:44vh;display:flex;flex-direction:column;justify-content:space-between;transition:background .4s}
+.split a:hover{background:#141418}
+.split .k{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--red);letter-spacing:.06em}
+.split h3{font-family:var(--disp);font-weight:800;font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.04;letter-spacing:-.035em;margin:18px 0}
+.split ul{list-style:none;display:grid;gap:10px;margin-top:auto}
+.split li{font-size:.98rem;color:var(--dim);padding-left:20px;position:relative}
+.split li::before{content:"";position:absolute;left:0;top:12px;width:9px;height:1.5px;background:var(--red)}
+.split .go{margin-top:24px;font-weight:800;display:inline-flex;gap:8px}
+.split a:hover .go{color:var(--red)}
+@media(max-width:820px){.split{grid-template-columns:1fr}}
+
+/* AI 3 */
+.ai-rows{margin-top:clamp(40px,6vh,64px);border-top:1px solid var(--line)}
+.ai-row{display:grid;grid-template-columns:170px 1fr auto;gap:30px;align-items:baseline;padding:34px 0;border-bottom:1px solid var(--line);transition:padding-left .4s var(--ease)}
+.ai-row:hover{padding-left:16px}
+.ai-row .n{font-family:var(--disp);font-weight:800;font-size:2rem;letter-spacing:-.03em}
+.ai-row .n b{color:var(--red)}
+.ai-row .d{max-width:60ch;color:var(--dim);font-size:1.02rem}
+.ai-row .go{font-family:var(--mono);font-size:20px;color:var(--dim-2)}
+.ai-row:hover .go{color:var(--red)}
+@media(max-width:720px){.ai-row{grid-template-columns:1fr;gap:8px}.ai-row .go{display:none}}
+
+/* horizontal pin gallery */
+.hpin{overflow:hidden;background:var(--ink)}
+.htrack{display:flex;gap:26px;padding:0 min(5vw,44px);width:max-content;align-items:stretch}
+.hcard{width:min(38vw,460px);flex:none;border:1px solid var(--line);border-radius:4px;padding:34px 32px;display:flex;flex-direction:column;justify-content:space-between;min-height:60vh;background:linear-gradient(160deg,#111116,#0b0b0e);transition:border-color .4s}
+.hcard:hover{border-color:rgba(255,255,255,.4)}
+.hcard .hn{font-family:var(--mono);font-size:13px;color:var(--red);font-weight:700}
+.hcard h3{font-family:var(--disp);font-weight:800;font-size:clamp(2rem,3vw,3.2rem);letter-spacing:-.03em;line-height:1;margin:auto 0 14px}
+.hcard p{color:var(--dim);font-size:.98rem}
+.hcard .flow{font-family:var(--mono);font-size:12px;color:var(--dim-2);margin-top:16px;letter-spacing:.02em}
+.hpin__head{padding:clamp(70px,10vh,120px) min(5vw,44px) 40px}
+
+/* marquee */
+.marq{padding:clamp(36px,6vw,72px) 0;overflow:hidden;border-block:1px solid var(--line);background:var(--ink)}
+.marq__t{display:flex;align-items:center;width:max-content;white-space:nowrap;will-change:transform}
+.marq__t span{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,6.4vw,5.4rem);letter-spacing:-.035em;padding:0 .34em;line-height:1}
+.marq__t .out{color:transparent;-webkit-text-stroke:1.3px rgba(255,255,255,.45)}
+.marq__t i{color:var(--red);font-style:normal;font-size:clamp(2.2rem,6.4vw,5.4rem)}
+
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);margin-top:clamp(40px,6vh,64px);border:1px solid var(--line)}
+.plan{background:var(--ink);padding:36px 30px;display:flex;flex-direction:column}
+.plan--hot{background:#15070a}
+.plan .pk{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--red);letter-spacing:.06em}
+.plan h3{font-family:var(--disp);font-size:1.7rem;font-weight:800;margin:10px 0 6px}
+.plan .ps{color:var(--dim);font-size:.92rem;min-height:44px}
+.plan ul{list-style:none;margin:20px 0;display:grid;gap:9px;padding-top:18px;border-top:1px solid var(--line)}
+.plan li{font-size:.93rem;color:var(--dim);padding-left:18px;position:relative}
+.plan li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--red)}
+.plan .badge{align-self:flex-start;font-family:var(--mono);font-size:10.5px;font-weight:800;letter-spacing:.08em;background:var(--red);color:#fff;border-radius:100px;padding:4px 10px;margin-bottom:12px}
+.plan .go{margin-top:auto;font-weight:800;display:inline-flex;gap:8px}
+.plan:hover .go{color:var(--red)}
+@media(max-width:820px){.plans{grid-template-columns:1fr}}
+
+/* free / cta */
+.free{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;margin-top:clamp(40px,6vh,60px)}
+.free__main{background:var(--red);color:#fff;border-radius:6px;padding:clamp(34px,4vw,54px);display:flex;flex-direction:column}
+.free__main h3{font-family:var(--disp);font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;letter-spacing:-.03em;margin-bottom:14px}
+.free__main .incl{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 26px}
+.free__main .incl li{font-size:.9rem;font-weight:600;border:1px solid rgba(255,255,255,.5);border-radius:100px;padding:7px 14px}
+.free__btn{align-self:flex-start;margin-top:auto;background:#fff;color:var(--ink);font-weight:800;padding:15px 28px;border-radius:100px}
+.free__side{display:grid;grid-template-rows:1fr 1fr;gap:24px}
+.free__row{border:1px solid var(--line);border-radius:6px;padding:28px 30px;display:flex;flex-direction:column;justify-content:center;transition:border-color .3s}
+.free__row:hover{border-color:rgba(255,255,255,.4)}
+.free__row b{font-size:1.15rem;font-weight:800}
+.free__row span{color:var(--dim);font-size:.92rem;margin-top:4px}
+@media(max-width:820px){.free{grid-template-columns:1fr}}
+
+.final{text-align:center;padding:clamp(100px,16vh,200px) 0}
+.final h2{font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,8vw,7rem);line-height:.94;letter-spacing:-.05em}
+.final h2 .r{color:var(--red)}
+.final .btn{margin-top:40px;font-size:1.1rem;padding:20px 42px}
+
+.foot{padding:60px min(5vw,44px);border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;color:var(--dim-2);font-size:13px}
+
+/* reveal states (JS on) */
+html.anim .rv{opacity:0;transform:translateY(48px)}
+html.anim .hero h1 .ln>span{transform:translateY(105%)}
+@media (prefers-reduced-motion:reduce){
+  html.anim .rv{opacity:1!important;transform:none!important}
+  html.anim .hero h1 .ln>span{transform:none!important}
+  .marq__t{animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav__logo" href="#">HAO<b>.</b></a>
+  <nav class="nav__menu">
+    <a href="#new">제작</a><a href="#ai">AI 가시성</a><a href="#scope">제작 범위</a><a href="#plan">플랜</a><a href="#free">무료 제안</a>
+  </nav>
+  <a class="nav__cta" href="#free">무료 시안·제안받기</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas class="hero__canvas" id="hcv"></canvas>
+  <div class="hero__glow"></div>
+  <div class="hero__in">
+    <p class="hero__eye"><b>N.01</b> &nbsp;SEO · AEO · GEO — AI VISIBILITY</p>
+    <h1>
+      <span class="ln"><span>고객이 이해하고,</span></span>
+      <span class="ln"><span>신뢰하고,</span></span>
+      <span class="ln"><span class="r">문의하는</span></span>
+      <span class="ln"><span>홈페이지<span class="r">.</span></span></span>
+    </h1>
+    <div class="hero__foot">
+      <p class="hero__sub">이제 홈페이지는 사람만이 아니라 <b>검색엔진과 AI가 함께</b> 읽습니다. 하오웹은 신규 제작과 리뉴얼에서 AI 가시성까지 설계해, 고객이 정보를 찾고 문의에 이르는 구조를 만듭니다.</p>
+      <div class="hero__act">
+        <a class="btn" href="#free">무료 시안·제안받기</a>
+        <a class="tl" href="#new">신규 제작 / 리뉴얼 →</a>
+      </div>
+    </div>
+  </div>
+  <div class="scrollcue">SCROLL ↓</div>
+</section>
+
+<!-- STATEMENT -->
+<section class="stmt">
+  <div class="wrap">
+    <p class="stmt-t"><span class="dim">잘 만든 홈페이지도</span> 검색과 AI가 이해하지 못하면 <span class="r">고객에게 닿지 않습니다.</span> 하오웹은 제작·리뉴얼 단계부터 발견되는 구조를 설계합니다.</p>
+  </div>
+</section>
+
+<!-- NEW / RENEWAL -->
+<section class="sec" id="new">
+  <div class="wrap">
+    <p class="eye rv">N.02 — 어디서 시작하시나요</p>
+    <h2 class="h2 rv">신규 제작과 <span class="r">리뉴얼.</span></h2>
+  </div>
+  <div class="split">
+    <a href="#" class="rv">
+      <div><span class="k">신규 제작</span><h3>새로 시작하는<br>홈페이지</h3></div>
+      <ul><li>사업·서비스를 처음 구조화</li><li>사이트맵·콘텐츠 설계</li><li>기업의 첫인상과 문의 동선</li></ul>
+      <span class="go">홈페이지 제작센터 →</span>
+    </a>
+    <a href="#" class="rv">
+      <div><span class="k">리뉴얼</span><h3>있지만 문의가<br>오지 않는 홈페이지</h3></div>
+      <ul><li>모바일·콘텐츠 구조가 오래됨</li><li>검색·AI가 읽기 어려움</li><li>사업 내용과 홈페이지 불일치</li></ul>
+      <span class="go">홈페이지 리뉴얼 →</span>
+    </a>
+  </div>
+</section>
+
+<!-- AI -->
+<section class="sec" id="ai">
+  <div class="wrap">
+    <p class="eye rv">N.03 — 핵심 차별점</p>
+    <h2 class="h2 rv">검색엔진과 AI가 <span class="r">읽는 구조.</span></h2>
+    <div class="ai-rows">
+      <div class="ai-row rv"><div class="n"><b>SEO</b></div><div class="d">검색엔진이 페이지를 정확히 읽고 색인하도록 정보구조·시맨틱·속도를 설계합니다.</div><span class="go">→</span></div>
+      <div class="ai-row rv"><div class="n"><b>AEO</b></div><div class="d">고객이 던지는 질문에 답하도록 콘텐츠를 구성해, 검색엔진과 일부 생성형 AI가 참고하기 쉽게 정리합니다.</div><span class="go">→</span></div>
+      <div class="ai-row rv"><div class="n"><b>GEO</b></div><div class="d">회사·서비스·근거의 관계를 연결해 AI가 맥락과 신뢰를 파악하도록 돕습니다.</div><span class="go">→</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HORIZONTAL PIN: 제작 범위 -->
+<section class="hpin" id="scope">
+  <div class="hpin__head">
+    <p class="eye rv">N.04 — 제작 범위</p>
+    <h2 class="h2 rv">업종이 다르면, <span class="r">구조가 다릅니다.</span></h2>
+  </div>
+  <div class="htrack" id="htrack">
+    <article class="hcard"><span class="hn">01 · 기업</span><h3>기업<br>홈페이지</h3><div><p>사업·기술·제품·실적을 거래처 기준으로.</p><p class="flow">사업 → 기술·제품 → 인증 → 문의</p></div></article>
+    <article class="hcard"><span class="hn">02 · 병원</span><h3>병원<br>홈페이지</h3><div><p>진료과목·의료진·진료 방식을 환자 눈으로.</p><p class="flow">진료과목 → 의료진 → 예약·상담</p></div></article>
+    <article class="hcard"><span class="hn">03 · 커머스</span><h3>쇼핑몰</h3><div><p>탐색부터 구매까지의 흐름 설계.</p><p class="flow">탐색 → 상세 → 장바구니 → 결제</p></div></article>
+    <article class="hcard"><span class="hn">04 · 프랜차이즈</span><h3>프랜차이즈</h3><div><p>브랜드에서 가맹 문의까지.</p><p class="flow">브랜드 → 매장 → 가맹 문의</p></div></article>
+    <article class="hcard"><span class="hn">05 · 글로벌</span><h3>글로벌<br>홈페이지</h3><div><p>베트남·중국·태국 현지 사무실과 연결.</p><p class="flow">현지 커뮤니케이션 + 국내 제작</p></div></article>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<section class="marq">
+  <div class="marq__t" id="marq">
+    <span>문의가 오는 홈페이지</span><i>·</i><span class="out">READ BY SEARCH &amp; AI</span><i>·</i><span>검색과 AI가 읽는 구조</span><i>·</i><span class="out">SEO AEO GEO</span><i>·</i>
+    <span>문의가 오는 홈페이지</span><i>·</i><span class="out">READ BY SEARCH &amp; AI</span><i>·</i><span>검색과 AI가 읽는 구조</span><i>·</i><span class="out">SEO AEO GEO</span><i>·</i>
+  </div>
+</section>
+
+<!-- PLANS -->
+<section class="sec" id="plan">
+  <div class="wrap">
+    <p class="eye rv">N.05 — 제작 플랜</p>
+    <h2 class="h2 rv">필요한 범위만큼, <span class="r">정해진 순서대로.</span></h2>
+    <div class="plans">
+      <div class="plan rv"><span class="pk">BASIC</span><h3>베이직</h3><p class="ps">정리된 자료로 필요한 구조를 정확히</p><ul><li>기본 정보구조·맞춤 메인</li><li>반응형·문의 폼</li><li>AI 가시성 기본 구조</li></ul><span class="go">플랜 보기 →</span></div>
+      <div class="plan plan--hot rv"><span class="badge">RECOMMENDED</span><span class="pk">PREMIUM</span><h3>프리미엄</h3><p class="ps">원고·콘텐츠 기획부터 함께</p><ul><li>고객·업종 조사, 콘텐츠 기획</li><li>주요 원고·맞춤 전체 디자인</li><li>AI 가시성 + 촬영 기획</li></ul><span class="go">플랜 보기 →</span></div>
+      <div class="plan rv"><span class="pk">ENTERPRISE</span><h3>엔터프라이즈</h3><p class="ps">브랜드·촬영·편집까지 하나로</p><ul><li>심층 조사·콘텐츠 전략</li><li>브랜드 시각체계·다국어</li><li>AI 가시성 확장·운영 설계</li></ul><span class="go">플랜 보기 →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE -->
+<section class="sec" id="free">
+  <div class="wrap">
+    <p class="eye rv">N.06 — 무료 시안·제안</p>
+    <h2 class="h2 rv">결정하기 전에, <span class="r">제안서부터.</span></h2>
+    <div class="free">
+      <div class="free__main rv">
+        <h3>무료 시안·제안받기</h3>
+        <p>업종과 목표를 알려주시면, 실제 받게 될 제안서 형태로 방향과 시안을 먼저 정리해 드립니다.</p>
+        <ul class="incl"><li>메인 첫 화면 시안 1종</li><li>권장 사이트맵</li><li>핵심 콘텐츠 방향</li><li>SEO·AEO·GEO 개선 항목</li><li>적합한 플랜·견적 방향</li></ul>
+        <a class="free__btn" href="#">무료로 신청하기 →</a>
+      </div>
+      <div class="free__side">
+        <a class="free__row rv"><b>현재 홈페이지 진단</b><span>구조·콘텐츠·AI 가시성을 점검</span></a>
+        <a class="free__row rv"><b>제작 상담·문의</b><span>무엇부터 정할지 함께 정리</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="final">
+  <div class="wrap">
+    <h2 class="rv">지금 상황에 맞게<br><span class="r">시작하세요.</span></h2>
+    <a class="btn" href="#free">무료 시안·제안받기</a>
+  </div>
+</section>
+
+<footer class="foot">
+  <span>© 2026 HAOWEB — 리디자인 프로토타입</span>
+  <span>검색과 AI가 읽는 홈페이지</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* hero canvas: 검색/AI가 읽는 데이터 필드 (원본 코드) */
+  (function(){
+    var cv=document.getElementById("hcv"); if(!cv) return;
+    var ctx=cv.getContext("2d"), W,H,pts=[], DPR=Math.min(window.devicePixelRatio||1,2);
+    function size(){ W=cv.width=innerWidth*DPR; H=cv.height=innerHeight*DPR; cv.style.width=innerWidth+"px"; cv.style.height=innerHeight+"px"; }
+    size();
+    var N=Math.min(90, Math.floor(innerWidth/16));
+    for(var i=0;i<N;i++){ pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.12*DPR,vy:(Math.random()-.5)*.12*DPR,r:Math.random()<.12?2.2*DPR:1.1*DPR,red:Math.random()<.12}); }
+    var raf;
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<pts.length;i++){var p=pts[i];p.x+=p.vx;p.y+=p.vy;
+        if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+        for(var j=i+1;j<pts.length;j++){var q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=dx*dx+dy*dy,m=(150*DPR)*(150*DPR);
+          if(d<m){ctx.globalAlpha=(1-d/m)*.16;ctx.strokeStyle="#fff";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}}
+      }
+      for(var k=0;k<pts.length;k++){var pp=pts[k];ctx.globalAlpha=pp.red?.95:.5;ctx.fillStyle=pp.red?"#E83817":"#fff";ctx.beginPath();ctx.arc(pp.x,pp.y,pp.r,0,6.29);ctx.fill();}
+      ctx.globalAlpha=1; raf=requestAnimationFrame(draw);
+    }
+    if(!reduce) draw(); else { /* 정적 1프레임 */ ctx.globalAlpha=.5;ctx.fillStyle="#fff";pts.forEach(function(p){ctx.fillRect(p.x,p.y,p.r,p.r);}); }
+    addEventListener("resize",function(){size();});
+  })();
+
+  if(reduce){ return; } // 모션 없음: 콘텐츠는 CSS 기본값으로 전부 표시
+  document.documentElement.classList.add("anim");
+  if(!window.gsap){ document.documentElement.classList.remove("anim"); return; }
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Lenis 부드러운 스크롤 (GSAP와 정식 연동) */
+  if(window.Lenis){
+    var lenis=new Lenis({lerp:.09,wheelMultiplier:1});
+    lenis.on("scroll",ScrollTrigger.update);
+    gsap.ticker.add(function(t){lenis.raf(t*1000);});
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  /* 히어로 헤드라인 마스크 리빌 (CSS translateY(105%)를 GSAP 상태로 정규화 후 리빌) */
+  gsap.set(".hero h1 .ln>span",{yPercent:105,y:0});
+  gsap.to(".hero h1 .ln>span",{yPercent:0,duration:1.15,ease:"expo.out",stagger:.09,delay:.15});
+  gsap.from(".hero__eye,.hero__foot",{opacity:0,y:20,duration:.9,ease:"expo.out",stagger:.12,delay:.7});
+
+  /* 스크롤 리빌 */
+  gsap.utils.toArray(".rv").forEach(function(el){
+    gsap.to(el,{opacity:1,y:0,duration:1,ease:"expo.out",scrollTrigger:{trigger:el,start:"top 86%"}});
+  });
+
+  /* 스테이트먼트: 단어 순차 강조 */
+  ScrollTrigger.create({trigger:".stmt",start:"top 70%",once:true,onEnter:function(){
+    gsap.fromTo(".stmt-t",{opacity:.25},{opacity:1,duration:1.2,ease:"power2.out"});
+  }});
+
+  /* 가로 핀 스크롤 */
+  var track=document.getElementById("htrack");
+  if(track){
+    var amount=function(){return track.scrollWidth-innerWidth+ (innerWidth*0.05);};
+    gsap.to(track,{x:function(){return -amount();},ease:"none",
+      scrollTrigger:{trigger:"#scope",start:"top top",end:function(){return "+="+amount();},scrub:1,pin:true,invalidateOnRefresh:true,anticipatePin:1}});
+  }
+
+  /* 마퀴 무한 루프 */
+  var marq=document.getElementById("marq");
+  if(marq){ gsap.to(marq,{xPercent:-50,repeat:-1,duration:26,ease:"none"}); }
+
+  addEventListener("load",function(){ScrollTrigger.refresh();});
+})();
+</script>
+</body>
+</html>

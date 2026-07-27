@@ -28,7 +28,7 @@
 .x-kw--d{color:var(--x-dmut)}
 .x-rule{height:1px;background:var(--x-line);border:0;margin:0}
 .x-rule--d{background:var(--x-dline)}
-.x-h2{font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.06;font-weight:800;letter-spacing:-.035em;color:var(--x-ink);text-wrap:balance;margin:16px 0 0}
+.x-h2{font-size:clamp(2.1rem,4.4vw,3.7rem);line-height:1.0;font-weight:800;letter-spacing:-.04em;color:var(--x-ink);text-wrap:balance;margin:16px 0 0}
 .x-h2 .r{color:var(--red)}
 .x-lead{margin-top:20px;max-width:56ch;font-size:1.05rem;line-height:1.7;color:var(--x-ink-2)}
 .x-sec{position:relative;padding:clamp(64px,9vw,120px) 0;background:var(--x-paper);color:var(--x-ink)}
@@ -85,7 +85,7 @@
     radial-gradient(62% 58% at 60% 42%,rgba(232,56,23,.28),transparent 72%)}
 }
 .x-hero__eye{margin-bottom:30px}
-.x-hero h1{font-size:clamp(2.9rem,7.4vw,6rem);line-height:.98;font-weight:800;letter-spacing:-.045em;color:#fff;margin:0}
+.x-hero h1{font-size:clamp(3.1rem,8.2vw,7rem);line-height:.9;font-weight:800;letter-spacing:-.052em;color:#fff;margin:0}
 .x-hero h1 .r{color:var(--red)}
 .x-hero__sub{margin-top:30px;max-width:38ch;font-size:1.1rem;line-height:1.7;color:var(--x-dtext)}
 .x-hero__sub b{color:#fff;font-weight:700}
@@ -367,7 +367,8 @@ html.js-anim .x-graph .core{animation-delay:.4s}
 @media (prefers-reduced-motion:reduce){
   html.js-anim .x-rv,html.js-anim .x-stag>*,html.js-anim .x-hero__eye,html.js-anim .x-hero__sub,
   html.js-anim .x-hero__actions,html.js-anim .x-hero h1{opacity:1;transform:none;animation:none}
-  .x-graph,.x-graph .ring,.x-marq{animation:none}
+  html.js-anim .x-rv .x-h2,html.js-anim .x-rv .x-state{clip-path:none;transition:none}
+  .x-graph,.x-graph .ring,.x-marq,.x-banner__track{animation:none}
   .x-hero__glow,.x-hero__dots{transform:none !important}
   .x-btn:hover,a.x-card:hover,.x-split a:hover,.x-type:hover,.x-show a:hover{transform:none}
 }
@@ -409,6 +410,21 @@ html.js-anim .x-graph .core{animation-delay:.4s}
 .x-free__row span{font-size:.93rem;color:var(--x-ink-2);line-height:1.5}
 .x-free__row i{position:absolute;right:24px;top:26px;font-family:var(--x-mono);font-style:normal;color:var(--x-mut);font-size:18px}
 .x-free__row:hover i{color:var(--red)}
+
+/* ── 시그니처 · 풀블리드 초대형 타이포 마퀴 스테이트먼트(Digitalists 이식) ── */
+.x-banner{background:var(--x-dark);color:#fff;padding:clamp(38px,5.5vw,74px) 0;overflow:hidden;border-top:1px solid var(--x-dline);border-bottom:1px solid var(--x-dline)}
+.x-banner__track{display:flex;align-items:center;width:max-content;animation:xBanner 34s linear infinite;white-space:nowrap}
+.x-banner:hover .x-banner__track{animation-play-state:paused}
+.x-banner__track>span{font-family:var(--x-display);font-size:clamp(2.3rem,6.6vw,5.6rem);font-weight:800;letter-spacing:-.035em;line-height:1;padding:0 .34em}
+.x-banner__track>span.out{color:transparent;-webkit-text-stroke:1.3px rgba(255,255,255,.46);text-stroke:1.3px rgba(255,255,255,.46)}
+.x-banner__track i{font-style:normal;color:var(--red);font-size:clamp(2.3rem,6.6vw,5.6rem);line-height:1;padding:0 .06em}
+@keyframes xBanner{to{transform:translateX(-50%)}}
+
+/* ── 헤딩 마스크 리빌(기존 .in 토글로 구동 · JS 추가 없음) ── */
+html.js-anim .x-rv .x-h2,html.js-anim .x-rv .x-state{clip-path:inset(0 0 108% 0);transition:clip-path 1.05s var(--x-ease) .08s}
+html.js-anim .x-rv.in .x-h2,html.js-anim .x-rv.in .x-state{clip-path:inset(0 0 -14% 0)}
+/* 아이브로 좌측 레드 라인 드로우 */
+.x-head .x-kw{position:relative}
 
 /* 반응형 — .x-cols 계열은 기존에 모바일 규칙이 없어 함께 보강 */
 @media (max-width:960px){

@@ -1,7 +1,8 @@
-﻿# 페이지 조립기: index.html의 헤더/푸터 크롬 + _src/*.frag.html 본문 → 완성 페이지
+﻿# 페이지 조립기: _build/_chrome.html(서브페이지 공용 크롬) + _src/*.frag.html 본문 → 완성 페이지
+# (index.html은 2026-07-27 새 디자인으로 승격되어 크롬 소스에서 분리됨. 서브 크롬은 _chrome.html이 기준)
 # frag 형식: 1행=<title>, 2행=meta description, 3행~=main 내부 HTML
 $dir  = Split-Path $PSScriptRoot -Parent
-$idx  = [IO.File]::ReadAllText((Join-Path $dir 'index.html'))
+$idx  = [IO.File]::ReadAllText((Join-Path $PSScriptRoot '_chrome.html'))
 $enc  = New-Object System.Text.UTF8Encoding($false)
 
 $mainOpen = '<main id="main">'
