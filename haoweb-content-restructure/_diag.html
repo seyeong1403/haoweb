@@ -406,5 +406,20 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="js/home.js?v=97"></script>
+<div id="__diag" style="position:fixed;left:0;top:0;z-index:99999;background:#000;color:#0f0;font:11px/1.45 monospace;padding:8px;max-width:100%;white-space:pre-wrap"></div>
+<script>
+window.addEventListener("load",function(){setTimeout(function(){
+  var W=document.documentElement.clientWidth,out=[],all=document.querySelectorAll("body *");
+  out.push("clientW="+W+" scrollW="+document.documentElement.scrollWidth);
+  for(var i=0;i<all.length;i++){var e=all[i],r=e.getBoundingClientRect();
+    if(r.width===0&&r.height===0)continue;
+    if(r.right>W+1||r.left<-1){
+      var c=(typeof e.className==="string"&&e.className.trim())?"."+e.className.trim().split(/\s+/).join("."):"";
+      out.push((e.tagName.toLowerCase()+c).slice(0,58)+" L="+Math.round(r.left)+" R="+Math.round(r.right));
+    }
+  }
+  document.getElementById("__diag").textContent=out.slice(0,26).join("\n");
+},700)});
+</script>
 </body>
 </html>

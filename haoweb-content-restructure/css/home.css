@@ -60,41 +60,29 @@
 .x-hero .x-wrap{position:relative;z-index:2}
 .x-hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:center}
 
-/* ===== Hero 장면: 홈페이지 화면 + 사이트맵 + 문서 + 연결선 ===== */
-.x-stage{position:relative;height:clamp(380px,46vw,520px);width:100%}
-.x-stage__svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1}
-.x-stage__svg path{fill:none;stroke:var(--red);stroke-width:1.4;opacity:.85}
-/* 사이트 화면 프레임 */
-.hs-frame{position:absolute;left:12%;top:16%;width:62%;background:#fff;border-radius:var(--x-r);overflow:hidden;box-shadow:0 30px 70px -24px rgba(0,0,0,.7);z-index:2}
-.hs-bar{display:flex;align-items:center;gap:5px;padding:8px 10px;background:#EDEEF0;border-bottom:1px solid #DDE0E4}
-.hs-bar i{width:7px;height:7px;border-radius:50%;background:#C9CDD3}
-.hs-bar span{margin-left:8px;font-size:9px;color:#8A8F97;font-family:var(--x-mono)}
-.hs-body{padding:12px 13px 15px}
-.hs-nav{display:flex;align-items:center;gap:7px;margin-bottom:12px}
-.hs-nav b{font-size:9.5px;font-weight:800;color:#111}
-.hs-nav s{flex:none;width:22px;height:4px;background:#E1E4E8;text-decoration:none;border-radius:2px}
-.hs-nav em{margin-left:auto;font-style:normal;font-size:8.5px;font-weight:800;color:#fff;background:var(--red);padding:3px 7px;border-radius:3px}
-.hs-hero s{display:block;height:9px;background:#DCE0E5;border-radius:3px;margin-bottom:6px;text-decoration:none}
-.hs-hero s.w70{width:70%}.hs-hero s.w45{width:45%}
-.hs-hero u{display:inline-block;margin-top:8px;text-decoration:none;font-size:9px;font-weight:800;color:#fff;background:var(--red);padding:5px 11px;border-radius:3px}
-.hs-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:13px}
-.hs-cards i{height:34px;background:#F0F2F4;border:1px solid #E4E7EB;border-radius:3px}
-/* 커서 */
-.hs-cursor{position:absolute;left:44%;top:63%;z-index:4;width:14px;height:20px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5))}
-/* 주변 노드(문서·검색·문의) */
-.hs-node{position:absolute;z-index:3;background:var(--x-dark-card);border:1px solid var(--x-dline);border-radius:var(--x-r);padding:9px 12px;min-width:96px}
-.hs-node b{display:block;font-size:11.5px;font-weight:800;color:#fff;letter-spacing:-.01em}
-.hs-node span{display:block;font-size:9.5px;color:var(--x-dmut);margin-top:2px;font-family:var(--x-mono)}
-.hs-node--serp{left:0;top:2%}
-.hs-node--q{left:2%;bottom:4%}
-.hs-node--proof{right:2%;bottom:12%}
-.hs-node--cta{right:-2%;top:26%;border-color:var(--red);background:rgba(232,56,23,.14)}
-.hs-node--cta b{color:#fff}
-.hs-dot{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 10px rgba(232,56,23,.9);z-index:3}
+/* ===== Hero 장면: 실제 영상 슬롯(우측 블리드) ===== */
+.x-stage{position:relative;height:clamp(380px,46vw,540px);width:calc(100% + clamp(20px,5vw,90px));margin-right:calc(-1 * clamp(20px,5vw,90px))}
+/* 좌측은 배경으로 흡수되므로 라운드 없음(라운드 시 배경과의 명도차로 모서리 선이 드러남) */
+.x-vid{position:absolute;inset:0;overflow:hidden;background:var(--x-dark)}
+.x-vid__v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  /* 브랜드 컬러(블랙·화이트·레드) 체계에 맞추기 위해 원본의 청록 톤을 탈색 */
+  filter:grayscale(1) contrast(1.16) brightness(.82)}
+/* 그레이딩: 좌측은 배경(다크)으로 흡수, 우상단에 브랜드 레드를 얹음 */
+.x-vid__grade{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(90deg,var(--x-dark) 0%,rgba(10,10,12,.55) 22%,transparent 52%),
+  linear-gradient(0deg,rgba(10,10,12,.72) 0%,transparent 46%),
+  radial-gradient(58% 52% at 66% 40%,rgba(232,56,23,.30),transparent 70%)}
+.x-vid__cap{position:absolute;left:clamp(16px,2.2vw,28px);bottom:clamp(16px,2.2vw,26px);z-index:2;padding-left:12px;border-left:2px solid var(--red)}
+.x-vid__cap b{display:block;font-family:var(--x-mono);font-size:10.5px;letter-spacing:.16em;color:#fff}
+.x-vid__cap span{display:block;margin-top:5px;font-size:12.5px;color:var(--x-dtext)}
 @media (max-width:960px){
-  .x-hero__grid{grid-template-columns:1fr;gap:34px}
-  .x-stage{height:340px}
-  .hs-frame{width:72%;left:8%}
+  /* minmax(0,…) 유지 — 1fr만 두면 grid item의 min-width:auto로 가로 오버플로가 생긴다 */
+  .x-hero__grid{grid-template-columns:minmax(0,1fr);gap:34px}
+  .x-stage{height:300px;width:100%;margin-right:0}
+  .x-vid{border-radius:var(--x-r)}
+  .x-vid__grade{background:
+    linear-gradient(0deg,rgba(10,10,12,.78) 0%,transparent 52%),
+    radial-gradient(62% 58% at 60% 42%,rgba(232,56,23,.28),transparent 72%)}
 }
 .x-hero__eye{margin-bottom:30px}
 .x-hero h1{font-size:clamp(2.9rem,7.4vw,6rem);line-height:.98;font-weight:800;letter-spacing:-.045em;color:#fff;margin:0}
@@ -136,7 +124,52 @@ a.x-card:hover .x-card__go{color:var(--red)}
 .x-sec--dark .x-card__d{color:var(--x-dtext)}
 .x-sec--dark a.x-card:hover{border-color:rgba(255,255,255,.28)}
 
-/* ---------- 02 · 신규/리뉴얼 스플릿(대형 카드) ---------- */
+/* ---------- 02 · 신규/리뉴얼 풀블리드 분할(카드 아님) ---------- */
+.x-sp{display:flex;min-height:min(82vh,760px);width:100%}
+.x-sp .sp{position:relative;flex:1 1 50%;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:clamp(32px,4vw,64px);transition:flex-grow .65s var(--x-ease),background-color .45s;text-decoration:none}
+.x-sp .sp--new{background:#fff;color:var(--x-ink);border-right:1px solid var(--x-line)}
+.x-sp .sp--renew{background:var(--x-dark);color:var(--x-dtext)}
+@media (hover:hover){ .x-sp .sp:hover{flex-grow:1.85} }
+.sp__k{font-family:var(--x-mono);font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--red)}
+.sp__t{font-family:var(--x-display);font-size:clamp(1.7rem,3vw,2.6rem);font-weight:800;letter-spacing:-.035em;line-height:1.08;margin:14px 0 20px}
+.sp--renew .sp__t{color:#fff}
+.x-sp ul{list-style:none;margin:0 0 26px;display:grid;gap:9px;max-width:34ch}
+.x-sp li{position:relative;padding-left:18px;font-size:.97rem;line-height:1.5;color:var(--x-ink-2)}
+.sp--renew li{color:var(--x-dtext)}
+.x-sp li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:1.5px;background:var(--red)}
+.sp__go{font-weight:800;font-size:1rem;display:inline-flex;align-items:center;gap:8px;color:inherit}
+.x-sp .sp:hover .sp__go{color:var(--red)}
+/* 상단 연출 영역 */
+.sp__vis{position:absolute;left:clamp(32px,4vw,64px);right:clamp(32px,4vw,64px);top:clamp(30px,5vh,64px);height:clamp(150px,22vh,220px);pointer-events:none}
+.sp__vis i{position:absolute;display:block;border-radius:3px;transition:transform .7s var(--x-ease),opacity .7s var(--x-ease)}
+/* 신규: 빈 화면 → 블록이 쌓임 */
+.sp--new .sp__vis{border:1px dashed var(--x-line-2);border-radius:var(--x-r)}
+.sp--new .sp__vis i{background:#E8EAED;left:8%;opacity:0;transform:translateY(14px)}
+.sp--new .sp__vis i:nth-child(1){top:12%;width:44%;height:12px}
+.sp--new .sp__vis i:nth-child(2){top:32%;width:70%;height:10px}
+.sp--new .sp__vis i:nth-child(3){top:50%;width:56%;height:10px}
+.sp--new .sp__vis i:nth-child(4){top:70%;width:26%;height:22px;background:var(--red);border-radius:4px}
+.x-sp .sp--new.in .sp__vis i,.x-sp .sp--new:hover .sp__vis i{opacity:1;transform:none}
+.sp--new .sp__vis i:nth-child(2){transition-delay:.09s}
+.sp--new .sp__vis i:nth-child(3){transition-delay:.18s}
+.sp--new .sp__vis i:nth-child(4){transition-delay:.27s}
+/* 리뉴얼: 흐트러진 블록 → 정렬 */
+.sp--renew .sp__vis{border:1px solid var(--x-dline);border-radius:var(--x-r);background:rgba(255,255,255,.02)}
+.sp--renew .sp__vis i{background:#3A3B42;left:8%}
+.sp--renew .sp__vis i:nth-child(1){top:12%;width:52%;height:12px;transform:translateX(26px) rotate(-1.6deg)}
+.sp--renew .sp__vis i:nth-child(2){top:32%;width:38%;height:10px;transform:translateX(-16px) rotate(1.2deg)}
+.sp--renew .sp__vis i:nth-child(3){top:50%;width:64%;height:10px;transform:translateX(34px) rotate(-.8deg)}
+.sp--renew .sp__vis i:nth-child(4){top:70%;width:24%;height:22px;background:var(--red);border-radius:4px;transform:translateX(-24px) rotate(2deg);opacity:.55}
+.x-sp .sp--renew:hover .sp__vis i{transform:none;opacity:1}
+@media (max-width:960px){
+  .x-sp{flex-direction:column;min-height:0}
+  .x-sp .sp{flex:none;min-height:520px}
+  .x-sp .sp--new{border-right:0;border-bottom:1px solid var(--x-line)}
+  .x-sp .sp--new .sp__vis i{opacity:1;transform:none}
+}
+
+/* ---------- (구) 02 스플릿 카드 — 미사용 ---------- */
 .x-split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .x-split a{position:relative;display:flex;flex-direction:column;padding:clamp(30px,3.2vw,48px);border-radius:22px;background:var(--x-card);border:1px solid var(--x-line);overflow:hidden;transition:transform .34s var(--x-ease),box-shadow .34s var(--x-ease)}
 .x-split a:hover{transform:translateY(-6px);box-shadow:var(--x-shadow)}
@@ -297,8 +330,7 @@ html.js-anim .x-stag.in>*:nth-child(8){transition-delay:.72s}
 /* 히어로 로드 */
 /* Hero 로드 모션은 GSAP가 관장(html.gsap-ready). GSAP 미로드 시 그대로 표시됨 */
 html.gsap-ready .x-hero h1 .li{display:block}
-html.gsap-ready .x-stage .hs-frame{clip-path:inset(0 100% 0 0)}
-html.gsap-ready .x-stage .hs-node,html.gsap-ready .x-stage .hs-cursor{opacity:0}
+html.gsap-ready .x-stage .x-vid{clip-path:inset(0 100% 0 0)}
 .x-hero h1 .ln{display:block;overflow:hidden}
 .x-hero__sweep{position:absolute;left:0;top:0;height:2px;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left;z-index:5}
 html.js-anim .x-graph .lk{stroke-dasharray:220;stroke-dashoffset:220;animation:xDraw 1s var(--x-ease) .2s forwards}
