@@ -12,7 +12,9 @@
   --dark:#0A0A0B; --dark-2:#161618;
   --sans:"Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --wrap:min(1200px,92vw);
-  --r-el:8px; --r-btn:100px;
+  /* 통일 디자인 시스템(2026-07-27): 메인(home.css .x-*)과 서브(restructure.css)가
+     같은 최대폭·버튼 반경을 공유한다. 버튼은 pill(100px)에서 편집형 8px로 통일. */
+  --r-el:8px; --r-btn:8px;
   --shadow:0 10px 34px rgba(6,6,6,.08);
   --ease:cubic-bezier(.16,1,.3,1);
 }
@@ -798,3 +800,64 @@ table.tbl{width:100%;min-width:560px;border-collapse:collapse;font-size:.95rem}
   *{transition:none!important}
   html{scroll-behavior:auto}
 }
+
+/* ============================================================
+   공통 컴포넌트 · Diagnostic Report (2026-07-27)
+   진단 리포트 = 하나의 점검표(작은 카드 8개 분리 금지 / 가짜 점수 금지).
+   항목명 · 지금 확인하는 것 · 개선 방향의 3열 구조. renewal·diagnosis 재사용.
+   ============================================================ */
+.diag-report{border:1px solid var(--line-d);border-radius:14px;overflow:hidden;background:var(--bg)}
+.diag-report__head{display:grid;grid-template-columns:1.1fr 1.35fr 1.35fr;gap:24px;padding:15px 28px;background:var(--ink)}
+.diag-report__head .dr-col{font-size:12.5px;font-weight:700;letter-spacing:.01em;color:rgba(255,255,255,.72)}
+.diag-report__list{list-style:none;margin:0;padding:0}
+.dr-row{display:grid;grid-template-columns:1.1fr 1.35fr 1.35fr;gap:24px;align-items:baseline;padding:20px 28px;border-top:1px solid var(--line)}
+.dr-c{font-size:.95rem;line-height:1.6;color:var(--ink-2)}
+.dr-c--name{display:flex;align-items:baseline;gap:12px}
+.dr-c--name b{font-size:1.08rem;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.dr-no{font-family:ui-monospace,Consolas,monospace;font-size:12px;font-weight:700;color:var(--red);flex:none}
+.dr-c--fix{color:var(--ink);font-weight:600}
+.dr-c--fix::before{content:"→ ";color:var(--red);font-weight:800}
+.dr-foot{margin:0;padding:16px 28px;border-top:1px solid var(--line);background:var(--off);font-size:.86rem;line-height:1.6;color:var(--mut)}
+.dr-foot a{color:var(--red);font-weight:700}
+@media (max-width:860px){
+  .diag-report__head{display:none}
+  .dr-row{grid-template-columns:1fr;gap:7px;padding:18px 20px}
+  .dr-c{font-size:.92rem}
+  .dr-c--fix::before{content:"개선 방향 → ";font-size:.82rem}
+}
+
+/* ============================================================
+   공통 컴포넌트 · Proposal Preview (2026-07-27)
+   무료 제안서 미리보기 = 실제 받게 될 제안서 문서형 레이아웃.
+   가짜 회사명·분석 결과 금지, 항목 구성만 제시.
+   ============================================================ */
+.proposal-preview{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px;align-items:start}
+.pp-doc{border:1px solid var(--line-d);border-radius:14px;background:var(--bg);box-shadow:var(--shadow);overflow:hidden}
+.pp-cover{padding:26px 28px;background:var(--ink)}
+.pp-kicker{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;font-weight:700;letter-spacing:.1em;color:var(--red)}
+.pp-title{font-size:1.32rem;font-weight:800;letter-spacing:-.02em;color:#fff;margin:10px 0 8px}
+.pp-tag{font-size:12.5px;color:rgba(255,255,255,.6)}
+.pp-toc{list-style:none;margin:0;padding:0}
+.pp-toc li{display:flex;gap:16px;align-items:baseline;padding:15px 28px;border-top:1px solid var(--line)}
+.pp-no{font-family:ui-monospace,Consolas,monospace;font-size:12px;font-weight:700;color:var(--red);flex:none}
+.pp-toc b{display:block;font-size:1.02rem;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.pp-toc span{display:block;font-size:.9rem;color:var(--mut);margin-top:2px}
+.pp-foot{margin:0;padding:16px 28px;border-top:1px solid var(--line);background:var(--off);font-size:.88rem;line-height:1.55;color:var(--ink-2)}
+
+@media (max-width:860px){ .proposal-preview{grid-template-columns:1fr} }
+
+/* free-proposal · 조건부 필드 그룹 */
+.fp-grp[hidden]{display:none}
+
+/* free-proposal · 신청 폼 사이드 요약(스티키 = .form-aside) */
+.fa-box{border:1px solid var(--line);border-radius:12px;padding:22px 24px;margin-bottom:16px;background:var(--bg)}
+.fa-title{font-size:.95rem;font-weight:800;color:var(--ink);margin:0 0 12px;letter-spacing:-.01em}
+.fa-list li{font-size:.92rem;margin-bottom:6px}
+.fa-steps{list-style:none;margin:0;padding:0;counter-reset:fa}
+.fa-steps li{position:relative;padding:0 0 14px 30px;counter-increment:fa}
+.fa-steps li:last-child{padding-bottom:0}
+.fa-steps li::before{content:counter(fa,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:ui-monospace,Consolas,monospace;font-size:11px;font-weight:700;color:var(--red)}
+.fa-steps b{display:block;font-size:.98rem;font-weight:800;color:var(--ink)}
+.fa-steps span{display:block;font-size:.86rem;color:var(--mut)}
+.fa-note{margin:4px 0 0;font-size:.86rem}
+.fa-note a{color:var(--red);font-weight:700}

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/variable/woff2/SUIT-Variable.css" />
   <link rel="stylesheet" href="css/restructure.css" />
-  <link rel="stylesheet" href="css/home.css?v=97" />
+  <link rel="stylesheet" href="css/home.css?v=98" />
   <script src="src/site-config.js"></script>
 </head>
 <body>
@@ -155,7 +155,6 @@
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="free-proposal.html?type=renewal#apply">무료 시안·제안받기</a>
           <a class="btn btn-ghost btn-lg" href="diagnosis.html">현재 홈페이지 진단</a>
-          <a class="tlink" href="inquiry.html">리뉴얼 상담 →</a>
         </div>
       </div>
     </section>
@@ -185,51 +184,31 @@
       </div>
     </section>
 
-    <!-- 03 · 겉보기와 내부 구조의 차이 -->
+    <!-- 03 · 하오웹이 진단하는 항목(진단 리포트 · 가짜 UI 없음) -->
     <section class="sec off">
       <div class="wrap">
         <div class="sec-head">
-          <p class="eyebrow">겉보기와 내부 구조</p>
-          <h2 class="mask-rv">문제는 화면만이 아니라,<br />화면 아래의 구조에도 있습니다<span class="accent">.</span></h2>
+          <p class="eyebrow">하오웹이 진단하는 것</p>
+          <h2 class="mask-rv">문제는 화면만이 아니라,<br />화면 아래 구조까지 <span class="accent">점검합니다</span><span class="accent">.</span></h2>
+          <p class="sub">리뉴얼 전, 하오웹이 실제로 확인하는 항목입니다. 항목마다 지금 무엇을 보는지와 리뉴얼이 바꾸는 방향을 함께 정리합니다.</p>
         </div>
-        <div class="renew-grid">
-          <div class="xray" aria-hidden="true">
-            <div class="xr-frame">
-              <div class="xr-layer xr-under">
-                <p class="xr-tag">화면 아래의 문제</p>
-                <ul>
-                  <li>오래되거나 복잡한 메뉴</li>
-                  <li>부족한 서비스 설명</li>
-                  <li>모바일 사용성 문제</li>
-                  <li>분리된 문의 경로</li>
-                  <li>FAQ·칼럼·사례 부족</li>
-                  <li>검색과 AI가 이해하기 어려운 정보 관계</li>
-                </ul>
-              </div>
-              <div class="xr-layer xr-top">
-                <p class="xr-tag">겉보기 — 문제없어 보이는 화면</p>
-                <div class="xr-page">
-                  <div class="xp-nav"><b>회사명</b><span>회사소개</span><span>제품</span><span>고객지원</span><em>문의</em></div>
-                  <div class="xp-hero"><s class="w60"></s><s class="w40"></s></div>
-                  <div class="xp-row"><i></i><i></i><i></i></div>
-                </div>
-                <div class="xp-phone"><b></b><s></s><s class="w60"></s><i></i></div>
-              </div>
-            </div>
+        <div class="diag-report">
+          <div class="diag-report__head" aria-hidden="true">
+            <span class="dr-col">점검 항목</span>
+            <span class="dr-col">지금 확인하는 것</span>
+            <span class="dr-col">리뉴얼이 바꾸는 방향</span>
           </div>
-          <div class="xmap clip-rv" aria-hidden="true">
-            <p class="xr-tag">리뉴얼 후 — 개선 구조</p>
-            <ul class="xm-tree">
-              <li class="xm-root">핵심 메시지</li>
-              <li>명확한 메뉴</li>
-              <li>질문에 답하는 콘텐츠</li>
-              <li>신뢰 근거</li>
-              <li>모바일 구조</li>
-              <li>문의 경로</li>
-              <li>검색·AI 기본 구조</li>
-              <li>오픈 이후 콘텐츠 운영</li>
-            </ul>
-          </div>
+          <ol class="diag-report__list">
+            <li class="dr-row"><div class="dr-c dr-c--name"><span class="dr-no">01</span><b>모바일 사용성</b></div><div class="dr-c">글자 크기·터치·반응 속도가 지금 기기에 맞는지</div><div class="dr-c dr-c--fix">현재 기기 기준으로 화면·조작을 재구성</div></li>
+            <li class="dr-row"><div class="dr-c dr-c--name"><span class="dr-no">02</span><b>핵심 콘텐츠 구조</b></div><div class="dr-c">회사·서비스가 한눈에 전달되는지</div><div class="dr-c dr-c--fix">방문자 판단 순서로 메시지·페이지 재배치</div></li>
+            <li class="dr-row"><div class="dr-c dr-c--name"><span class="dr-no">03</span><b>문의 동선</b></div><div class="dr-c">확인을 마친 방문자가 상담으로 이어지는지</div><div class="dr-c dr-c--fix">이해 → 신뢰 → 문의로 이어지는 경로 설계</div></li>
+            <li class="dr-row"><div class="dr-c dr-c--name"><span class="dr-no">04</span><b>검색 노출 구조</b></div><div class="dr-c">검색엔진이 페이지를 발견·이해하는 구조인지</div><div class="dr-c dr-c--fix">정보구조·시맨틱 마크업·속도 정비</div></li>
+            <li class="dr-row"><div class="dr-c dr-c--name"><span class="dr-no">05</span><b>AI 가독성</b></div><div class="dr-c">AI가 회사·서비스·근거를 파악하는 구조인지</div><div class="dr-c dr-c--fix">정보의 관계와 근거를 명확히 정리</div></li>
+            <li class="dr-row"><div class="dr-c dr-c--name"><span class="dr-no">06</span><b>페이지 속도·기술 상태</b></div><div class="dr-c">로딩 속도·웹표준·오류 여부</div><div class="dr-c dr-c--fix">기술 기반을 점검하고 개선</div></li>
+            <li class="dr-row"><div class="dr-c dr-c--name"><span class="dr-no">07</span><b>관리자 사용 편의성</b></div><div class="dr-c">직접 수정·운영이 쉬운 구조인지</div><div class="dr-c dr-c--fix">운영 가능한 관리 구조로 정리</div></li>
+            <li class="dr-row"><div class="dr-c dr-c--name"><span class="dr-no">08</span><b>사업과 콘텐츠의 일치</b></div><div class="dr-c">지금 사업 내용과 홈페이지가 맞는지</div><div class="dr-c dr-c--fix">현재 사업 기준으로 콘텐츠 재정렬</div></li>
+          </ol>
+          <p class="dr-foot">실제 진단은 사이트별로 진행되며, 임의의 점수·백분율은 표기하지 않습니다. 항목별 상태는 <a href="diagnosis.html">현재 홈페이지 진단</a>에서 확인합니다.</p>
         </div>
       </div>
     </section>
@@ -326,8 +305,8 @@
         <h2>우리 홈페이지, 지금 상태부터 확인하세요.</h2>
         <p class="sub">현재 홈페이지 주소와 기본적인 제작 목적을 알려주시면 검토를 시작합니다. 방향을 먼저 검토받고 싶다면 <a href="free-proposal.html?type=renewal#apply" style="color:#fff;font-weight:700;border-bottom:1px solid rgba(255,255,255,.5)">무료 시안·제안받기</a>도 가능합니다.</p>
         <div class="cta-grid" style="grid-template-columns:repeat(2,1fr)">
+          <a href="free-proposal.html?type=renewal#apply"><b>무료 시안·제안받기</b><span>방향·시안을 먼저 검토</span></a>
           <a href="diagnosis.html"><b>현재 홈페이지 진단</b><span>항목별 상태 점검</span></a>
-          <a href="inquiry.html"><b>리뉴얼 상담</b><span>바로 문의</span></a>
         </div>
       </div>
     </section>
@@ -379,6 +358,6 @@
   <script src="js/restructure.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="js/home.js?v=97"></script>
+  <script src="js/home.js?v=98"></script>
 </body>
 </html>

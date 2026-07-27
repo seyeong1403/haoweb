@@ -129,3 +129,52 @@
   window.addEventListener("load", req);
   // 초기 1회는 'load'(모든 리소스·폰트 로드 후, 레이아웃 확정)에서만 처리
 })();
+
+/* ===== 포트폴리오·고객 인터뷰: 실데이터 있을 때만 노출 =====
+   portfolio.json·interview.json이 비어 있거나(로컬 file:// 등에서) 로드 실패면
+   섹션(#showcase)은 hidden 그대로 → 빈 카드·가짜 데이터 노출 방지.
+   실제 데이터가 들어오면 자동으로 카드가 렌더되고 섹션이 표시된다. */
+(function () {
+  var grid = document.getElementById("showcase-grid");
+  var sec = document.getElementById("showcase");
+  if (!grid || !sec) return;
+
+  function load(url) {
+    if (!url) return Promise.resolve([]);
+    return fetch(url).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; });
+  }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function card(href, title, sub) {
+    return '<a href="' + esc(href) + '">' +
+      '<span class="x-show__top"></span>' +
+      '<span class="x-show__meta"><b>' + esc(title) + '</b>' +
+      '<span class="x-show__view">[ VIEW ]</span></span></a>';
+  }
+
+  Promise.all([load(grid.getAttribute("data-portfolio")), load(grid.getAttribute("data-interview"))])
+    .then(function (res) {
+      var pf = Array.isArray(res[0]) ? res[0] : [];
+      var iv = Array.isArray(res[1]) ? res[1] : [];
+      if (!pf.length && !iv.length) return; // 데이터 없음 → 섹션 숨김 유지
+
+      var html = "";
+      pf.slice(0, 4).forEach(function (p) {
+        var href = p.url || ("portfolio-detail.html" + (p.id ? "?id=" + encodeURIComponent(p.id) : ""));
+        html += card(href, p.title || p.name || "프로젝트", p.summary || p.client || "");
+      });
+      iv.slice(0, 2).forEach(function (v) {
+        var href = v.url || ("interview-detail.html" + (v.id ? "?id=" + encodeURIComponent(v.id) : ""));
+        html += card(href, v.company || v.name || "고객 인터뷰", v.summary || v.quote || "");
+      });
+      grid.innerHTML = html;
+      sec.hidden = false;
+      sec.removeAttribute("aria-hidden");
+      // 스크롤 리빌 게이트가 이미 지나갔을 수 있으니 즉시 표시 상태로
+      var rvs = sec.querySelectorAll(".x-rv, .x-stag");
+      for (var i = 0; i < rvs.length; i++) rvs[i].classList.add("in");
+    });
+})();

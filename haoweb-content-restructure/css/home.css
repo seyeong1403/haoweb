@@ -16,13 +16,13 @@
   --x-body:"Pretendard",-apple-system,BlinkMacSystemFont,sans-serif;
   --x-ease:cubic-bezier(.16,1,.3,1);
   --x-shadow:0 18px 50px -22px rgba(10,10,12,.4);
-  --x-r:6px;      /* 카드/버튼 기본 라운드 0~8px */
+  --x-r:8px;      /* 통일: 서브페이지(--r-btn)와 동일한 편집형 8px */
 }
 /* 디스플레이 폰트: 큰 제목류 */
 .x-hero h1,.x-h2,.x-state,.x-card__t,.x-split h3,.x-plan h3,.x-cta h2,.x-col__t,.x-list__t,.x-type__tile b{font-family:var(--x-display)}
 
 /* ---------- 공통 원자 ---------- */
-.x-wrap{width:min(1240px,92vw);margin-inline:auto}
+.x-wrap{width:min(1200px,92vw);margin-inline:auto}  /* 통일: 서브페이지 --wrap와 동일 최대폭 */
 .x-kw{font-family:var(--x-mono);font-size:11.5px;font-weight:700;letter-spacing:.06em;color:var(--x-mut);display:inline-flex;align-items:center;gap:9px;text-transform:uppercase}
 .x-kw b{color:var(--red);font-weight:800}
 .x-kw--d{color:var(--x-dmut)}
@@ -370,4 +370,55 @@ html.js-anim .x-graph .core{animation-delay:.4s}
   .x-graph,.x-graph .ring,.x-marq{animation:none}
   .x-hero__glow,.x-hero__dots{transform:none !important}
   .x-btn:hover,a.x-card:hover,.x-split a:hover,.x-type:hover,.x-show a:hover{transform:none}
+}
+
+/* ============================================================
+   2026-07-27 · 메인 재정렬/전환 개선 추가 컴포넌트
+   ============================================================ */
+/* 03 방식 · 4열 라인 컬럼 */
+.x-cols--4{grid-template-columns:repeat(4,1fr);gap:30px 34px}
+
+/* Hero 액션 — 1차 버튼 + 2차 텍스트링크(경쟁 완화) */
+.x-hero__or{font-size:.86rem;color:var(--x-dmut);margin:0 2px 0 4px}
+.x-hero__actions .x-tlink{color:#fff}
+.x-hero__actions .x-tlink:hover{color:var(--red)}
+
+/* 05 제작 범위 — 연계 서비스 인라인 + 전체보기 */
+.x-scope{margin-top:36px;padding-top:26px;border-top:1px solid var(--x-line);display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+.x-scope__label{font-family:var(--x-mono);font-size:12px;font-weight:700;color:var(--x-mut);letter-spacing:.04em}
+.x-scope__links{display:flex;flex-wrap:wrap;gap:10px 18px}
+.x-scope__links a{font-weight:700;font-size:.97rem;color:var(--x-ink);border-bottom:1.5px solid var(--x-line-2);padding-bottom:2px;transition:border-color .25s,color .25s}
+.x-scope__links a:hover{color:var(--red);border-color:var(--red)}
+.x-scope__all{margin-left:auto}
+
+/* 08 무료 시안·제안 — 강조 블록(좌 메인 / 우 보조) */
+.x-free{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:20px;align-items:stretch}
+.x-free__main{background:var(--x-ink);color:#fff;border-radius:16px;padding:clamp(30px,3.4vw,48px);display:flex;flex-direction:column}
+.x-free__tag{align-self:flex-start;font-family:var(--x-mono);font-size:11px;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--red);padding:5px 12px;border-radius:100px}
+.x-free__t{font-family:var(--x-display);font-size:clamp(1.6rem,2.6vw,2.3rem);font-weight:800;letter-spacing:-.03em;color:#fff;margin:18px 0 10px}
+.x-free__d{font-size:1rem;line-height:1.65;color:rgba(255,255,255,.72);margin:0}
+.x-incl{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 6px}
+.x-incl li{font-size:.9rem;font-weight:600;color:#fff;border:1px solid rgba(255,255,255,.24);border-radius:100px;padding:7px 14px}
+.x-free__main .x-actions{margin-top:auto;padding-top:26px}
+.x-free__main .x-tlink{color:#fff}
+.x-free__main .x-tlink:hover{color:var(--red)}
+.x-free__side{display:grid;grid-template-rows:1fr 1fr;gap:20px}
+.x-free__row{display:flex;flex-direction:column;justify-content:center;gap:5px;position:relative;background:var(--x-card);border:1px solid var(--x-line);border-radius:16px;padding:26px 56px 26px 28px;transition:border-color .3s,transform .3s var(--x-ease),box-shadow .3s}
+.x-free__row:hover{border-color:var(--x-line-2);transform:translateY(-4px);box-shadow:var(--x-shadow)}
+.x-free__row b{font-size:1.14rem;font-weight:800;letter-spacing:-.02em;color:var(--x-ink)}
+.x-free__row span{font-size:.93rem;color:var(--x-ink-2);line-height:1.5}
+.x-free__row i{position:absolute;right:24px;top:26px;font-family:var(--x-mono);font-style:normal;color:var(--x-mut);font-size:18px}
+.x-free__row:hover i{color:var(--red)}
+
+/* 반응형 — .x-cols 계열은 기존에 모바일 규칙이 없어 함께 보강 */
+@media (max-width:960px){
+  .x-cols{grid-template-columns:1fr 1fr;gap:28px 34px}
+  .x-cols--4{grid-template-columns:1fr 1fr}
+  .x-free{grid-template-columns:1fr}
+  .x-scope{gap:14px}
+  .x-scope__all{margin-left:0}
+}
+@media (max-width:560px){
+  .x-cols,.x-cols--4{grid-template-columns:1fr}
+  .x-free__side{grid-template-rows:auto}
 }

@@ -424,3 +424,29 @@
     });
   }
 })();
+
+/* ===== free-proposal · 조건부 필드(신규/리뉴얼) =====
+   신규 → 주요 사업 우선(필수) / 리뉴얼 → 현재 홈페이지 주소 우선(필수).
+   숨겨진 그룹의 대표 필드는 required를 해제해 폼 검증을 막지 않는다.
+   (?type=renewal 프리셋은 restructure.js 본체가 처리 → 여기서 초기 상태 반영) */
+(function () {
+  var form = document.querySelector('form[data-hao-form="free-proposal"]');
+  if (!form) return;
+  var groups = form.querySelectorAll(".fp-grp[data-for]");
+  if (!groups.length) return;
+
+  function apply() {
+    var checked = form.querySelector('input[name="type"]:checked');
+    var type = checked ? checked.value : "new";
+    for (var i = 0; i < groups.length; i++) {
+      var g = groups[i];
+      var on = g.getAttribute("data-for") === type;
+      g.hidden = !on;
+      var primary = g.querySelector("[data-fp-primary]");
+      if (primary) primary.required = on; // 보일 때만 필수
+    }
+  }
+  var radios = form.querySelectorAll('input[name="type"]');
+  for (var j = 0; j < radios.length; j++) radios[j].addEventListener("change", apply);
+  apply();
+})();
