@@ -163,6 +163,21 @@
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .sr-only:focus{position:fixed;top:8px;left:8px;width:auto;height:auto;padding:10px 16px;background:var(--red);color:#fff;z-index:100;clip:auto;white-space:normal}
 
+/* ── AI 가시성 관계 다이어그램(SEO·AEO·GEO = 하나의 구조 · 세 관점) ── */
+.airel{margin-top:46px;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#101014}
+.airel__src{position:relative;padding:26px 30px;border-bottom:1px solid var(--line)}
+.airel__src::before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:var(--red)}
+.airel__srck{display:inline-block;font-family:var(--disp);font-weight:800;font-size:clamp(1.2rem,2.2vw,1.6rem);letter-spacing:-.02em}
+.airel__src p{color:var(--dim);margin-top:8px;max-width:60ch;line-height:1.7}
+.airel__lens{position:relative;display:grid;grid-template-columns:120px 1fr;gap:clamp(16px,3vw,40px);align-items:baseline;padding:24px 30px;border-top:1px solid var(--line);transition:background .25s}
+.airel__lens:first-of-type{border-top:0}
+.airel__lens::before{content:"";position:absolute;left:59px;top:-1px;width:1px;height:24px;background:var(--line)}
+.airel__lens:hover{background:rgba(255,255,255,.03)}
+.airel__k{font-family:var(--mono);font-weight:800;font-size:1.05rem;letter-spacing:.08em;color:var(--red)}
+.airel__lens h4{font-family:var(--disp);font-weight:800;font-size:1.15rem;letter-spacing:-.01em}
+.airel__lens p{color:var(--dim);font-size:.95rem;margin-top:6px;line-height:1.6;max-width:56ch}
+@media(max-width:600px){.airel__lens{grid-template-columns:1fr;gap:6px}.airel__lens::before{display:none}}
+
 /* ── 유틸 ── */
 .sec-note{color:var(--dim-2);font-size:.88rem;line-height:1.6;margin-top:18px;max-width:66ch}
 .sec-note a{color:var(--red);font-weight:600}
