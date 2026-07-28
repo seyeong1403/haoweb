@@ -52,7 +52,7 @@
 
 /* ── 준비중(PREP) 상태 — 빈 화면/스켈레톤 금지. 편집형 완성 장면 ── */
 .prep{border:1px solid var(--line);border-radius:6px;background:linear-gradient(180deg,#111116,#0b0b0e);padding:clamp(40px,7vw,88px) clamp(26px,5vw,72px);margin-top:46px;position:relative;overflow:hidden}
-.prep::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent) -40% 0/38% 100% no-repeat,rgba(232,56,23,.28);animation:gnbSweep 2.4s linear infinite}
+.prep::before{content:"";position:absolute;left:0;top:0;width:56px;height:2px;background:var(--red)}
 .prep__label{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.16em;color:var(--red);text-transform:uppercase}
 .prep__label::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red)}
 .prep h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.6rem,3.6vw,2.8rem);line-height:1.14;letter-spacing:-.03em;margin-top:20px;max-width:22ch}

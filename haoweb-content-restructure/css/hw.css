@@ -3,7 +3,7 @@
   --red:#E83817;
   --dim:rgba(255,255,255,.5); --dim-2:rgba(255,255,255,.3); --line:rgba(255,255,255,.14);
   /* 디스플레이 서체도 Pretendard로 통일(SUIT 미사용) */
-  --disp:"Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --body:"Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --disp:"Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --body:"SUIT Variable","Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   /* 모노스페이스 폐지 — 라벨류도 Pretendard(자간·대문자로 라벨 느낌 유지) */
   --mono:"Pretendard",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --wrap:min(1180px,88vw);
@@ -41,32 +41,20 @@ a{color:inherit;text-decoration:none}
 .mnav>a.is-current{color:var(--red)}
 /* 드롭다운: 레이아웃 유지 + 페이드/슬라이드 리빌(블러·그림자) */
 .gnb__d{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(12px);background:rgba(13,13,17,.97);backdrop-filter:blur(12px);border:1px solid var(--line);padding:14px 10px;display:flex;flex-direction:column;min-width:186px;opacity:0;visibility:hidden;pointer-events:none;box-shadow:0 30px 70px -24px rgba(0,0,0,.8);transition:opacity .32s var(--e-out),transform .32s var(--e-out),visibility .32s}
-/* 드롭다운 상단 라인: 왼→오 반복 스윕(은은한 레드 베이스 + 밝은 하이라이트 이동) */
-.gnb__d::before{content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#ff7355,transparent) -45% 0/40% 100% no-repeat,rgba(232,56,23,.32);animation:gnbSweep 2.1s linear infinite}
-@keyframes gnbSweep{0%{background-position:-45% 0,0 0}100%{background-position:145% 0,0 0}}
+/* 드롭다운 상단 라인: 정적 얇은 레드 액센트(반복 스윕 제거 — 과한 인상 정리) */
+.gnb__d::before{content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:var(--red);opacity:.85}
 .gnb__d--wide{width:544px;left:0;transform:translateY(12px);flex-flow:row wrap}
 .gnb__i:hover .gnb__d{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
 .gnb__i:hover .gnb__d--wide{transform:translateY(0)}
 /* 항목: 스태거 등장 + 호버 시 레드 화살표 슬라이드 */
-.gnb__d a{position:relative;color:var(--dim);font-size:14px;font-weight:500;padding:10px 16px 10px 30px;white-space:nowrap;border-radius:6px;opacity:0;transform:translateY(9px);transition:color .2s,background .2s,opacity .4s var(--e-out),transform .4s var(--e-out)}
+.gnb__d a{position:relative;color:var(--dim);font-size:14px;font-weight:500;padding:9px 16px;white-space:nowrap;border-radius:6px;opacity:0;transform:translateY(6px);transition:color .2s,background .2s,opacity .28s var(--e-out),transform .28s var(--e-out)}
 .gnb__d--wide a{width:50%}
-.gnb__d a::before{content:"→";position:absolute;left:12px;color:var(--red);opacity:0;transform:translateX(-7px);transition:opacity .2s,transform .25s var(--e-out)}
 .gnb__d a:hover{color:#fff;background:rgba(255,255,255,.06)}
-.gnb__d a:hover::before{opacity:1;transform:none}
 .gnb__i:hover .gnb__d a{opacity:1;transform:none}
 /* 드롭다운 소그룹 라벨(제작 플랜 등) */
 .gnb__d .gnb__g{width:100%;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim-2);padding:13px 16px 5px;margin-top:4px;border-top:1px solid var(--line);opacity:0;transition:opacity .4s var(--e-out)}
 .gnb__d .gnb__g:first-child{border-top:0;margin-top:0;padding-top:2px}
 .gnb__i:hover .gnb__d .gnb__g{opacity:1}
-.gnb__i:hover .gnb__d a:nth-child(2){transition-delay:.03s}
-.gnb__i:hover .gnb__d a:nth-child(3){transition-delay:.06s}
-.gnb__i:hover .gnb__d a:nth-child(4){transition-delay:.09s}
-.gnb__i:hover .gnb__d a:nth-child(5){transition-delay:.12s}
-.gnb__i:hover .gnb__d a:nth-child(6){transition-delay:.15s}
-.gnb__i:hover .gnb__d a:nth-child(7){transition-delay:.18s}
-.gnb__i:hover .gnb__d a:nth-child(8){transition-delay:.21s}
-.gnb__i:hover .gnb__d a:nth-child(9){transition-delay:.24s}
-.gnb__i:hover .gnb__d a:nth-child(10){transition-delay:.27s}
 @media(prefers-reduced-motion:reduce){
   .gnb__d,.gnb__d a{transition-duration:.01s}
   .gnb__i:hover .gnb__d a{transition-delay:0s}
@@ -208,12 +196,35 @@ html.anim .stmt__t .w{opacity:.22}
 .page-hero h1 .r{color:var(--red)}
 .page-hero .lead{max-width:64ch;font-size:1.1rem;line-height:1.75;color:var(--dim);margin-top:30px}
 .p-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:36px}
-.p-btn{font-weight:700;font-size:1rem;padding:15px 30px;border-radius:100px;background:var(--red);color:#fff;transition:transform .3s var(--e-out),background .3s}
+.p-btn{font-weight:700;font-size:1rem;padding:15px 30px;border-radius:6px;background:var(--red);color:#fff;transition:transform .3s var(--e-out),background .3s}
 .p-btn:hover{transform:translateY(-3px);background:var(--red-2,#ff4a25)}
 .p-btn--ghost{background:transparent;border:1px solid var(--dim)}
 .p-btn--ghost:hover{background:transparent;border-color:#fff}
 .psec{padding:clamp(70px,11vh,140px) 0}
-.psec--off{background:#111116}
+.psec--off{background:#16161d}
+/* 오프화이트 섹션 — 명암 리듬(본문 검정 전환) · 서브페이지에서 호흡 지점으로 사용 */
+.psec--light{background:var(--light);color:var(--light-ink)}
+.psec--light .p-eye{color:var(--red)}
+.psec--light .p-h2,.psec--light .s-h2{color:var(--light-ink)}
+.psec--light .p-h2 .dim,.psec--light .s-h2 .dim{color:#8f8d84}
+.psec--light .p-lead,.psec--light p{color:#4b4a44}
+.psec--light .feat,.psec--light .flow,.psec--light .deflist,.psec--light .idx{border-color:rgba(20,20,20,.14)}
+.psec--light .feat>li,.psec--light .flow__row,.psec--light .deflist>div,.psec--light .idx a{border-color:rgba(20,20,20,.14)}
+.psec--light .feat__b h3,.psec--light .flow__b h3,.psec--light .deflist dt{color:var(--light-ink)}
+.psec--light .feat__b p,.psec--light .flow__b p,.psec--light .deflist dd,.psec--light .drow .now{color:#57564f}
+.psec--light .feat__b ul li,.psec--light .flow__b li{border-color:rgba(20,20,20,.18);color:#57564f}
+.psec--light .p-check li{color:#4b4a44}
+.psec--light .trio,.psec--light .trio>div{border-color:rgba(20,20,20,.14)}
+.psec--light .trio>div{background:#eae8e1}
+.psec--light .trio p{color:#57564f}
+.psec--light .sec-note{color:#6d6b63}
+.psec--light .flow__no{-webkit-text-stroke-color:rgba(20,20,20,.28)}
+.psec--light .idx .t{color:#a9a79e}
+.psec--light .idx a:hover .t{color:var(--light-ink)}
+
+/* 접근성 — 키보드 포커스 가시화(§28) */
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
+.psec--light a:focus-visible,.light a:focus-visible{outline-color:var(--red)}
 .p-eye{font-family:var(--mono);font-size:13.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
 .p-h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.7rem,3.8vw,3rem);line-height:1.12;letter-spacing:-.04em;margin-top:16px}
 .p-h2 .r{color:var(--red)}
