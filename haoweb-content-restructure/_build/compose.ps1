@@ -9,9 +9,10 @@ $mainOpen = '<main id="main">'
 $headTpl = $idx.Substring(0, $idx.IndexOf($mainOpen) + $mainOpen.Length)
 $footTpl = $idx.Substring($idx.IndexOf('</main>'))
 
-# GNB 비노출·템플릿·통합 대상 페이지: 검색엔진 수집 차단(noindex)
-# seo/aeo/geo는 AI 가시성 하위 실제 페이지로 복원 → noindex 해제
-$noindex = @('renewal-proposal.html','portfolio-detail.html','interview-detail.html','content-production.html','content-operation.html')
+# 템플릿·데이터 없는 상세: 검색엔진 수집 차단(noindex)
+# content-production/operation은 GNB 실 메뉴(AI 가시성)로 복원 → noindex 해제
+# portfolio/interview 목록·상세는 실데이터 확보 전까지 noindex(가짜 사례 색인 방지)
+$noindex = @('renewal-proposal.html','portfolio.html','portfolio-detail.html','interview.html','interview-detail.html')
 
 Get-ChildItem (Join-Path $PSScriptRoot '_src\*.frag.html') | ForEach-Object {
   $lines = [IO.File]::ReadAllLines($_.FullName)

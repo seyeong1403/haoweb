@@ -30,11 +30,13 @@ foreach ($d in $assets) { if (Test-Path (Join-Path $src $d)) { Copy-Item (Join-P
 if (Test-Path $dist) { Remove-Item $dist -Recurse -Force }
 New-Item -ItemType Directory -Force $dist | Out-Null
 
-# 미노출: 통합/폐기 페이지, 칼럼 상세 데모, 공지(실공지 확보 전)
-# 포트폴리오·인터뷰(목록+상세 템플릿)는 데이터가 없어도 dist에 포함 → 링크 404 방지(콘텐츠 구조만 유지)
-# seo/aeo/geo는 AI 가시성 하위 실제 페이지로 공개. content-production/operation은 통합 후 리다이렉트
-$excludePages = @('renewal-proposal.html','content-production.html','content-operation.html',
-                  'column-detail.html','notice.html')
+# 공개 빌드에서 제외(소스는 유지):
+#  - renewal-proposal.html : free-proposal?type=renewal 로 리다이렉트(통합)
+#  - column-detail.html     : 칼럼 상세 생성용 템플릿(실제 글 아님)
+#  - _diag.html             : 내부 진단 도구
+#  - haoweb-concept.html    : 내부 디자인 참조(플레이스홀더)
+# content-production/operation은 AI 가시성 실 메뉴로 공개. notice/portfolio/interview는 공개하되 noindex(빈 상태).
+$excludePages = @('renewal-proposal.html','column-detail.html','_diag.html','haoweb-concept.html')
 
 Get-ChildItem $src -File -Filter *.html | Where-Object { $excludePages -notcontains $_.Name } | Copy-Item -Destination $dist
 foreach ($d in $assets) { if (Test-Path (Join-Path $src $d)) { Copy-Item (Join-Path $src $d) (Join-Path $dist $d) -Recurse } }
@@ -56,8 +58,6 @@ function New-Redirect([string]$name, [string]$to) {
   [IO.File]::WriteAllText((Join-Path $dist $name), $html, $enc)
 }
 New-Redirect 'renewal-proposal.html' 'free-proposal.html?type=renewal'
-New-Redirect 'content-production.html' 'ai-content.html'
-New-Redirect 'content-operation.html' 'maintenance.html'
 
 # 공개(dist)에서는 개인정보처리방침 실제 정보 확정 전까지 Footer 링크를 숨긴다.
 # privacy.html 파일 자체는 유지(폼 동의 링크가 참조) — Footer의 ft-privacy 앵커만 제거. review에는 그대로 노출.
@@ -70,5 +70,5 @@ Get-ChildItem $dist -File -Filter *.html | ForEach-Object {
 $dcount = (Get-ChildItem $dist -Recurse -File).Count
 $rcount = (Get-ChildItem $review -Recurse -File).Count
 Write-Host "review built: $rcount files (전체)"
-Write-Host "dist built: $dcount files (portfolio=$hasPortfolio interview=$hasInterview, 리다이렉트 3)"
+Write-Host "dist built: $dcount files (portfolio=$hasPortfolio interview=$hasInterview, 리다이렉트 1: renewal-proposal)"
 Write-Host "dist 미노출: $($excludePages -join ', ')"

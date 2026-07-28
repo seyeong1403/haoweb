@@ -4,26 +4,21 @@
 (function () {
   "use strict";
 
-  var here = (location.pathname.split("/").pop() || "index.html");
+  var here = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  var norm = function (h) { return (h || "").split("#")[0].split("?")[0].split("/").pop().toLowerCase(); };
 
-  // 1) 현재 페이지 + 부모 GNB 활성(route map)
-  var ROUTES = {
-    "website.html": ["website.html", "company.html", "hospital.html", "lawyer.html", "shop.html", "franchise.html", "landing.html", "app.html", "graphic-design.html", "studio.html", "content-production.html"],
-    "renewal.html": ["renewal.html", "diagnosis.html", "renewal-proposal.html"],
-    "search-ai.html": ["search-ai.html", "seo.html", "aeo.html", "geo.html", "ai-content.html", "content-operation.html"],
-    "global.html": ["global.html", "global-vn.html", "global-cn.html", "global-th.html", "global-jp.html", "global-en.html"],
-    "portfolio.html": ["portfolio.html", "portfolio-detail.html", "interview.html", "interview-detail.html"],
-    "plan.html": ["plan.html", "process.html", "price-guide.html"],
-    "faq.html": ["faq.html", "free-proposal.html", "maintenance.html", "inquiry.html", "about.html", "columns.html", "column-detail.html", "column-prepare.html", "column-renewal.html", "column-search.html", "column-after.html", "government.html", "notice.html", "privacy.html"]
-  };
+  // 1) 현재 페이지 + 부모 GNB 활성 — 주입된 GNB(_build/nav.json)에서 자동 판정(라우트맵 하드코딩 없음)
   document.querySelectorAll('.hd a[href], .m-panel a[href]').forEach(function (a) {
-    if (a.getAttribute("href") === here) a.setAttribute("aria-current", "page");
+    if (norm(a.getAttribute("href")) === here) a.setAttribute("aria-current", "page");
   });
-  Object.keys(ROUTES).forEach(function (parent) {
-    if (ROUTES[parent].indexOf(here) < 0) return;
-    document.querySelectorAll('.hd-nav > div > a[href="' + parent + '"], .m-panel .m-grp > a[href="' + parent + '"]').forEach(function (a) {
-      if (!a.hasAttribute("aria-current")) a.setAttribute("aria-current", "true");
-    });
+  document.querySelectorAll('.hd-nav > div, .m-panel .m-grp').forEach(function (grp) {
+    var on = false;
+    grp.querySelectorAll('a[href]').forEach(function (a) { if (norm(a.getAttribute("href")) === here) on = true; });
+    if (on) {
+      grp.classList.add("is-current");
+      var top = grp.querySelector("a");
+      if (top && !top.hasAttribute("aria-current")) top.setAttribute("aria-current", "true");
+    }
   });
 
   // 2) 모바일 메뉴(details) aria-expanded 동기화 + 링크 클릭 시 닫기 + ESC

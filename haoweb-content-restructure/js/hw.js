@@ -10,6 +10,19 @@
     mnav.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){mnav.classList.remove("open");mnav.hidden=true;burger.textContent="MENU";burger.setAttribute("aria-expanded","false");});});
   }
 
+  /* 현재 페이지 표시(aria-current) · GNB 대메뉴 중 현재 파일을 포함한 항목 활성 */
+  (function(){
+    var here=(location.pathname.split("/").pop()||"index.html").toLowerCase();
+    document.querySelectorAll(".gnb__i,.mnav>a[data-key]").forEach(function(it){
+      var links=it.matches("a")?[it]:it.querySelectorAll("a[href]"),on=false;
+      Array.prototype.forEach.call(links,function(a){
+        var f=(a.getAttribute("href")||"").split("#")[0].split("?")[0].split("/").pop().toLowerCase();
+        if(f&&f===here) on=true;
+      });
+      if(on){ it.classList.add("is-current"); var top=it.matches("a")?it:it.querySelector("a"); if(top) top.setAttribute("aria-current","page"); }
+    });
+  })();
+
   /* 포트폴리오·인터뷰: 실데이터 있을 때만 노출(모션과 무관, 항상 실행) */
   (function(){
     var grid=document.getElementById("showcase-grid"), sec=document.getElementById("showcase");

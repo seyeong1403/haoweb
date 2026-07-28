@@ -36,6 +36,9 @@ a{color:inherit;text-decoration:none}
 .gnb__i>a{position:relative;color:var(--dim);transition:color .25s;padding:24px 2px;display:inline-block}
 /* 호버 시 메뉴 텍스트만 포인트 컬러로(언더라인 없음) */
 .gnb__i:hover>a{color:var(--red)}
+/* 현재 페이지에 해당하는 대메뉴 표시 */
+.gnb__i.is-current>a{color:#fff}
+.mnav>a.is-current{color:var(--red)}
 /* 드롭다운: 레이아웃 유지 + 페이드/슬라이드 리빌(블러·그림자) */
 .gnb__d{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(12px);background:rgba(13,13,17,.97);backdrop-filter:blur(12px);border:1px solid var(--line);padding:14px 10px;display:flex;flex-direction:column;min-width:186px;opacity:0;visibility:hidden;pointer-events:none;box-shadow:0 30px 70px -24px rgba(0,0,0,.8);transition:opacity .32s var(--e-out),transform .32s var(--e-out),visibility .32s}
 /* 드롭다운 상단 라인: 왼→오 반복 스윕(은은한 레드 베이스 + 밝은 하이라이트 이동) */

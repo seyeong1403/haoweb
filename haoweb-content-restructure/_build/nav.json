@@ -1,0 +1,59 @@
+{
+  "_comment": "하오웹 GNB 단일 원본(Single Source of Truth). 이 파일만 수정하고 _build/gen-nav.ps1을 실행하면 index.html·renewal.html(신 디자인)과 _build/_chrome.html(구 디자인→서브페이지)에 동일하게 주입된다. cond 항목은 src/data/<cond>.json 에 실데이터가 있을 때만 노출된다.",
+  "ui": { "aria": "주요 메뉴", "ctaPrimary": "무료 시안·제안받기", "ctaGhost": "제작 문의" },
+  "primary": [
+    { "label": "홈페이지 제작", "href": "website.html", "key": "make", "wide": true, "children": [
+      { "label": "홈페이지 제작센터", "href": "website.html" },
+      { "label": "기업 홈페이지", "href": "company.html" },
+      { "label": "병원 홈페이지", "href": "hospital.html" },
+      { "label": "프랜차이즈 홈페이지", "href": "franchise.html" },
+      { "label": "쇼핑몰", "href": "shop.html" },
+      { "label": "전문가·법률 홈페이지", "href": "lawyer.html" },
+      { "label": "랜딩페이지", "href": "landing.html" },
+      { "label": "앱 제작", "href": "app.html" },
+      { "label": "제작 과정", "href": "process.html" },
+      { "label": "제작비 안내", "href": "price-guide.html" }
+    ]},
+    { "label": "리뉴얼", "href": "renewal.html", "key": "renew", "children": [
+      { "label": "홈페이지 리뉴얼", "href": "renewal.html" },
+      { "label": "현재 홈페이지 진단", "href": "diagnosis.html" },
+      { "label": "무료 시안·제안", "href": "free-proposal.html?type=renewal" }
+    ]},
+    { "label": "AI 가시성", "href": "search-ai.html", "key": "ai", "children": [
+      { "label": "AI 가시성", "href": "search-ai.html" },
+      { "label": "SEO", "href": "seo.html" },
+      { "label": "AEO", "href": "aeo.html" },
+      { "label": "GEO", "href": "geo.html" },
+      { "label": "AI 콘텐츠", "href": "ai-content.html" },
+      { "label": "콘텐츠 제작", "href": "content-production.html" },
+      { "label": "콘텐츠 운영", "href": "content-operation.html" }
+    ]},
+    { "label": "글로벌", "href": "global.html", "key": "global", "children": [
+      { "label": "글로벌 홈페이지", "href": "global.html" },
+      { "label": "베트남", "href": "global-vn.html" },
+      { "label": "중국", "href": "global-cn.html" },
+      { "label": "태국", "href": "global-th.html" },
+      { "label": "일본", "href": "global-jp.html" },
+      { "label": "영문 홈페이지", "href": "global-en.html" }
+    ]},
+    { "label": "사례·인사이트", "href": "columns.html", "key": "insight", "hrefWhenData": { "portfolio": "portfolio.html" }, "children": [
+      { "label": "포트폴리오", "href": "portfolio.html", "cond": "portfolio" },
+      { "label": "고객 인터뷰", "href": "interview.html", "cond": "interview" },
+      { "label": "칼럼", "href": "columns.html" }
+    ]},
+    { "label": "제작 플랜", "href": "plan.html", "key": "plan", "children": [
+      { "label": "제작 플랜", "href": "plan.html" },
+      { "label": "그래픽·편집디자인", "href": "graphic-design.html" },
+      { "label": "사진·영상 촬영", "href": "studio.html" },
+      { "label": "유지보수", "href": "maintenance.html" },
+      { "label": "정부지원사업", "href": "government.html" }
+    ]},
+    { "label": "고객지원", "href": "faq.html", "key": "support", "children": [
+      { "label": "무료 시안·제안", "href": "free-proposal.html" },
+      { "label": "제작 문의", "href": "inquiry.html" },
+      { "label": "FAQ", "href": "faq.html" },
+      { "label": "공지사항", "href": "notice.html" },
+      { "label": "회사소개", "href": "about.html" }
+    ]}
+  ]
+}
