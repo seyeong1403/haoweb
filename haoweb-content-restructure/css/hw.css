@@ -150,6 +150,24 @@ a.cue:hover::after{color:#fff;transform:translateX(6px)}
 .idx a:hover .go{color:var(--red)}
 @media(max-width:640px){.idx a{grid-template-columns:64px 1fr auto;gap:14px}}
 
+/* 다크 씬의 오프화이트 변형(index/renewal 명암 리듬용) */
+.scene--light{background:var(--light);color:var(--light-ink)}
+.scene--light .kick{color:var(--red)}
+.scene--light .kick .g{color:#8f8d84}
+.scene--light .s-h2{color:var(--light-ink)}
+.scene--light .s-h2 .r{color:var(--red)}
+.scene--light .s-h2 .dim{color:#a9a79e}
+.scene--light .p-lead,.scene--light>.wrap>p{color:#4b4a44}
+.scene--light .flow{border-color:rgba(20,20,20,.14)}
+.scene--light .flow__row{border-color:rgba(20,20,20,.14)}
+.scene--light .flow__no{-webkit-text-stroke-color:rgba(20,20,20,.26)}
+.scene--light .flow__row:hover .flow__no{-webkit-text-stroke-color:var(--red)}
+.scene--light .flow__b h3{color:var(--light-ink)}
+.scene--light .flow__b p{color:#57564f}
+.scene--light .flow__b li{border-color:rgba(20,20,20,.18);color:#57564f}
+.scene--light a.cue{color:var(--light-ink);border-color:var(--red)}
+.scene--light a.cue:hover{background:var(--red);color:#fff}
+
 /* ── 5 · LIGHT BREAK (밝은 대비 · 비대칭 우측 정렬) ── */
 .light{background:var(--light);color:var(--light-ink);padding:clamp(96px,18vh,220px) 0}
 .light .wrap{display:grid;grid-template-columns:1fr;justify-items:end}
