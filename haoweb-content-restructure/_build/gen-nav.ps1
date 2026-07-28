@@ -24,9 +24,15 @@ function Is-Visible($c) {
   if ($c.PSObject.Properties.Name -contains 'cond' -and $c.cond) { return [bool]$has[$c.cond] }
   return $true
 }
-function Sub-Links($item) {   # returns concatenated <a> for visible children
-  $s = ''
-  foreach ($c in $item.children) { if (Is-Visible $c) { $s += ('<a href="' + $c.href + '">' + $c.label + '</a>') } }
+function Sub-Links($item) {   # returns <a> (+ group labels) for visible children
+  $s = ''; $lastG = ''
+  foreach ($c in $item.children) {
+    if (-not (Is-Visible $c)) { continue }
+    $g = ''
+    if ($c.PSObject.Properties.Name -contains 'group' -and $c.group) { $g = $c.group }
+    if ($g -and $g -ne $lastG) { $s += ('<p class="gnb__g">' + $g + '</p>'); $lastG = $g }
+    $s += ('<a href="' + $c.href + '">' + $c.label + '</a>')
+  }
   return $s
 }
 function Top-Href($item) {     # conditional landing (e.g. insight -> portfolio.html when data exists)

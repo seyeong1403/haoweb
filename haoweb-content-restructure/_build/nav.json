@@ -34,21 +34,21 @@
       { "label": "전문가·법률 홈페이지", "href": "lawyer.html" },
       { "label": "랜딩페이지", "href": "landing.html" },
       { "label": "앱 제작", "href": "app.html" },
+      { "label": "홈페이지 콘텐츠 제작", "href": "content-production.html" },
       { "label": "제작 과정", "href": "process.html" },
       { "label": "제작비 안내", "href": "price-guide.html" }
     ]},
     { "label": "리뉴얼", "href": "renewal.html", "key": "renew", "children": [
       { "label": "홈페이지 리뉴얼", "href": "renewal.html" },
       { "label": "현재 홈페이지 진단", "href": "diagnosis.html" },
-      { "label": "무료 시안·제안", "href": "free-proposal.html?type=renewal" }
+      { "label": "무료 리뉴얼 시안·제안", "href": "free-proposal.html?type=renewal" }
     ]},
     { "label": "AI 가시성", "href": "search-ai.html", "key": "ai", "children": [
       { "label": "AI 가시성", "href": "search-ai.html" },
       { "label": "SEO", "href": "seo.html" },
       { "label": "AEO", "href": "aeo.html" },
       { "label": "GEO", "href": "geo.html" },
-      { "label": "AI 콘텐츠", "href": "ai-content.html" },
-      { "label": "콘텐츠 제작", "href": "content-production.html" },
+      { "label": "AI 활용 전문 콘텐츠", "href": "ai-content.html" },
       { "label": "콘텐츠 운영", "href": "content-operation.html" }
     ]},
     { "label": "글로벌", "href": "global.html", "key": "global", "children": [
@@ -59,17 +59,17 @@
       { "label": "일본", "href": "global-jp.html" },
       { "label": "영문 홈페이지", "href": "global-en.html" }
     ]},
-    { "label": "사례·인사이트", "href": "portfolio.html", "key": "insight", "children": [
+    { "label": "사례·인사이트", "href": "columns.html", "key": "insight", "children": [
       { "label": "포트폴리오", "href": "portfolio.html" },
       { "label": "고객 인터뷰", "href": "interview.html" },
-      { "label": "칼럼", "href": "columns.html" }
+      { "label": "하오웹 인사이트", "href": "columns.html" }
     ]},
     { "label": "제작 플랜", "href": "plan.html", "key": "plan", "children": [
-      { "label": "제작 플랜", "href": "plan.html" },
-      { "label": "그래픽·편집디자인", "href": "graphic-design.html" },
-      { "label": "사진·영상 촬영", "href": "studio.html" },
-      { "label": "유지보수", "href": "maintenance.html" },
-      { "label": "정부지원사업", "href": "government.html" }
+      { "label": "제작 플랜", "href": "plan.html", "group": "플랜" },
+      { "label": "그래픽·편집디자인", "href": "graphic-design.html", "group": "연계 제작" },
+      { "label": "사진·영상 촬영", "href": "studio.html", "group": "연계 제작" },
+      { "label": "유지보수", "href": "maintenance.html", "group": "오픈 이후" },
+      { "label": "정부지원사업", "href": "government.html", "group": "제작 지원" }
     ]},
     { "label": "고객지원", "href": "faq.html", "key": "support", "children": [
       { "label": "무료 시안·제안", "href": "free-proposal.html" },
