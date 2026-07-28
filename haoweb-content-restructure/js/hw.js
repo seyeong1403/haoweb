@@ -28,6 +28,67 @@
   })();
 
   var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* 몰입 문장 배경 · 커서 반발 파티클 필드(데스크톱·모션 허용 시에만, GSAP과 무관) */
+  (function(){
+    if(reduce || !matchMedia("(pointer:fine)").matches) return;
+    var cv=document.querySelector(".imm__field");
+    if(!cv || !cv.getContext) return;
+    var ctx=cv.getContext("2d"); if(!ctx) return;
+    var stage=cv.parentElement, imm=stage.closest(".imm")||stage;
+    var W=0,H=0,DPR=Math.min(2, window.devicePixelRatio||1);
+    var PAL=[
+      {hi:"#ff9166",base:"#E83817",edge:"#7c1a0b"},   /* red */
+      {hi:"#ffffff",base:"#e7e5dc",edge:"#8d8a80"},   /* white */
+      {hi:"#34343d",base:"#1a1a21",edge:"#0b0b0f"},   /* dark(깊이) */
+      {hi:"#34343d",base:"#1a1a21",edge:"#0b0b0f"}
+    ];
+    var ps=[], mx=null, my=null, raf=0, active=false, t0=0;
+    function build(){
+      ps=[];
+      var count=Math.min(52, Math.max(22, Math.round(W/28)));
+      for(var i=0;i<count;i++){
+        var r=6+Math.pow(Math.random(),1.7)*26, bx=Math.random()*W, by=Math.random()*H;
+        ps.push({bx:bx,by:by,x:bx,y:by,vx:0,vy:0,r:r,
+          amp:14+Math.random()*28, ph:Math.random()*6.28, sp:.3+Math.random()*.5,
+          col:PAL[(Math.random()*PAL.length)|0], a:.4+Math.random()*.42});
+      }
+    }
+    function size(){
+      var rc=stage.getBoundingClientRect(); W=rc.width; H=rc.height;
+      cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); build();
+    }
+    function ball(p){
+      var g=ctx.createRadialGradient(p.x-p.r*.35,p.y-p.r*.42,p.r*.1,p.x,p.y,p.r);
+      g.addColorStop(0,p.col.hi); g.addColorStop(.5,p.col.base); g.addColorStop(1,p.col.edge);
+      ctx.globalAlpha=p.a; ctx.fillStyle=g;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.2832); ctx.fill();
+    }
+    function frame(t){
+      if(!t0)t0=t; var tt=t-t0; ctx.clearRect(0,0,W,H); var R=150;
+      for(var i=0;i<ps.length;i++){
+        var p=ps[i];
+        var hx=p.bx+Math.sin(tt*.0004*p.sp+p.ph)*p.amp, hy=p.by+Math.cos(tt*.0005*p.sp+p.ph)*p.amp;
+        var ax=(hx-p.x)*.012, ay=(hy-p.y)*.012;
+        if(mx!==null){
+          var dx=p.x-mx, dy=p.y-my, d2=dx*dx+dy*dy;
+          if(d2<R*R){ var d=Math.sqrt(d2)||1, f=(1-d/R)*3.2; ax+=(dx/d)*f; ay+=(dy/d)*f; }
+        }
+        p.vx=(p.vx+ax)*.86; p.vy=(p.vy+ay)*.86; p.x+=p.vx; p.y+=p.vy; ball(p);
+      }
+      ctx.globalAlpha=1; raf=requestAnimationFrame(frame);
+    }
+    function start(){ if(active)return; active=true; t0=0; raf=requestAnimationFrame(frame); }
+    function stop(){ active=false; cancelAnimationFrame(raf); }
+    stage.addEventListener("mousemove",function(e){ var rc=cv.getBoundingClientRect(); mx=e.clientX-rc.left; my=e.clientY-rc.top; },{passive:true});
+    stage.addEventListener("mouseleave",function(){ mx=my=null; });
+    addEventListener("resize",size,{passive:true});
+    size();
+    if("IntersectionObserver" in window){
+      new IntersectionObserver(function(es){ es.forEach(function(en){ en.isIntersecting?start():stop(); }); },{threshold:.01}).observe(imm);
+    } else start();
+  })();
+
   /* CDN(gsap/ScrollTrigger) 로드 실패나 reduced-motion이면 모션 미적용 —
      콘텐츠는 무JS 기준 CSS로 전부 표시되므로 숨겨지지 않음 */
   if(reduce||!window.gsap||!window.ScrollTrigger) return;
