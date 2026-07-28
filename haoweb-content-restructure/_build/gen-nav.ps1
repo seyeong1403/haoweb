@@ -53,11 +53,16 @@ foreach ($it in $nav.primary) {
 }
 $gnbX = '<nav class="gnb" id="gnb" aria-label="' + $ui.aria + '">' + "`n" + ($gnbLines -join "`n") + "`n" + '  </nav>'
 
-# ---------- New design: .mnav ----------
-$mtopLines = @()
-foreach ($it in $nav.primary) { $mtopLines += ('<a href="' + (Top-Href $it) + '" data-key="' + $it.key + '">' + $it.label + '</a>') }
-$mnavX = '<div class="mnav" id="mnav" hidden>' + "`n  " + ($mtopLines -join '') + "`n" +
-         '  <a class="mnav__cta" href="free-proposal.html">' + $ui.ctaPrimary + '</a>' + "`n" + '</div>'
+# ---------- New design: .mnav (2Depth 아코디언) ----------
+$mgroups = @()
+foreach ($it in $nav.primary) {
+  $subs = ''
+  foreach ($c in $it.children) { if (Is-Visible $c) { $subs += ('<a href="' + $c.href + '">' + $c.label + '</a>') } }
+  $mgroups += ('    <details class="mnav__g" data-key="' + $it.key + '"><summary><span>' + $it.label + '</span></summary><div class="mnav__sub">' + $subs + '</div></details>')
+}
+$mnavX = '<div class="mnav" id="mnav" hidden>' + "`n" +
+  '  <div class="mnav__scroll">' + "`n" + ($mgroups -join "`n") + "`n" + '  </div>' + "`n" +
+  '  <a class="mnav__cta" href="free-proposal.html">' + $ui.ctaPrimary + '</a>' + "`n" + '</div>'
 
 # ---------- Old design: .hd-nav ----------
 $hdLines = @()

@@ -3,23 +3,25 @@
   var nav=document.getElementById("nav"),burger=document.getElementById("burger"),mnav=document.getElementById("mnav");
   if(nav) addEventListener("scroll",function(){nav.classList.toggle("nav--solid",(window.scrollY||0)>30);},{passive:true});
   if(burger&&mnav){
-    burger.addEventListener("click",function(){
-      var o=mnav.classList.toggle("open"); mnav.hidden=!o;
+    var setMenu=function(o){
+      mnav.classList.toggle("open",o); mnav.hidden=!o;
       burger.setAttribute("aria-expanded",o); burger.textContent=o?"CLOSE":"MENU";
-    });
-    mnav.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){mnav.classList.remove("open");mnav.hidden=true;burger.textContent="MENU";burger.setAttribute("aria-expanded","false");});});
+      document.documentElement.style.overflow=o?"hidden":"";
+      if(o){ var f=mnav.querySelector("summary"); if(f) f.focus(); }
+    };
+    burger.addEventListener("click",function(){ setMenu(!mnav.classList.contains("open")); });
+    mnav.querySelectorAll(".mnav__sub a,.mnav__cta").forEach(function(a){a.addEventListener("click",function(){ setMenu(false); });});
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&mnav.classList.contains("open")){ setMenu(false); burger.focus(); }});
   }
 
-  /* 현재 페이지 표시(aria-current) · GNB 대메뉴 중 현재 파일을 포함한 항목 활성 */
+  /* 현재 페이지 표시(aria-current) · GNB 대메뉴 + 모바일 아코디언에서 현재 파일 포함 항목 활성 */
   (function(){
     var here=(location.pathname.split("/").pop()||"index.html").toLowerCase();
-    document.querySelectorAll(".gnb__i,.mnav>a[data-key]").forEach(function(it){
-      var links=it.matches("a")?[it]:it.querySelectorAll("a[href]"),on=false;
-      Array.prototype.forEach.call(links,function(a){
-        var f=(a.getAttribute("href")||"").split("#")[0].split("?")[0].split("/").pop().toLowerCase();
-        if(f&&f===here) on=true;
-      });
-      if(on){ it.classList.add("is-current"); var top=it.matches("a")?it:it.querySelector("a"); if(top) top.setAttribute("aria-current","page"); }
+    var norm=function(h){return (h||"").split("#")[0].split("?")[0].split("/").pop().toLowerCase();};
+    document.querySelectorAll(".gnb__i,.mnav__g").forEach(function(it){
+      var on=false;
+      it.querySelectorAll("a[href]").forEach(function(a){ if(norm(a.getAttribute("href"))===here){ on=true; a.setAttribute("aria-current","page"); }});
+      if(on){ it.classList.add("is-current"); if(it.tagName==="DETAILS") it.open=true; var top=it.querySelector(":scope>a"); if(top&&!top.hasAttribute("aria-current")) top.setAttribute("aria-current","page"); }
     });
   })();
 

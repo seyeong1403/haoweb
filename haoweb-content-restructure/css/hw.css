@@ -63,10 +63,19 @@ a{color:inherit;text-decoration:none}
 .nav__cta{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:#fff;border:1px solid var(--dim);padding:11px 18px;transition:.25s;white-space:nowrap}
 .nav__cta:hover{background:var(--red);border-color:var(--red)}
 .nav__burger{display:none;background:none;border:1px solid var(--line);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:10px 14px;cursor:pointer}
-.mnav{position:fixed;inset:70px 0 0;z-index:55;background:var(--ink);flex-direction:column;padding:24px clamp(20px,6vw,64px);display:none}
+.mnav{position:fixed;inset:64px 0 0;z-index:55;background:var(--ink);flex-direction:column;padding:0;display:none}
 .mnav.open{display:flex}
-.mnav a{font-family:var(--disp);font-weight:800;font-size:clamp(1.7rem,6vw,2.4rem);letter-spacing:-.03em;padding:14px 0;border-bottom:1px solid var(--line)}
-.mnav__cta{color:var(--red)!important;border-bottom:0!important}
+.mnav__scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:6px clamp(20px,6vw,48px) 16px}
+.mnav__g{border-bottom:1px solid var(--line)}
+.mnav__g summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:19px 2px;font-family:var(--disp);font-weight:800;font-size:clamp(1.45rem,6vw,1.95rem);letter-spacing:-.03em;color:#fff}
+.mnav__g summary::-webkit-details-marker{display:none}
+.mnav__g summary::after{content:"+";color:var(--red);font-size:1.4rem;font-weight:400;line-height:1}
+.mnav__g[open] summary::after{content:"\2013"}
+.mnav__g.is-current summary>span{color:var(--red)}
+.mnav__sub{display:grid;gap:1px;padding:0 2px 15px}
+.mnav__sub a{font-family:var(--body);font-weight:500;font-size:1.02rem;letter-spacing:0;color:var(--dim);padding:11px 2px}
+.mnav__sub a[aria-current]{color:var(--red)}
+.mnav__cta{margin:14px clamp(20px,6vw,48px);margin-bottom:calc(18px + env(safe-area-inset-bottom));display:block;text-align:center;background:var(--red);color:#fff!important;font-weight:700;border-radius:6px;padding:16px;border-bottom:0!important}
 @media(max-width:1080px){.gnb,.nav__cta{display:none}.nav__burger{display:inline-block}}
 
 /* ── index rail (좌측 세로 라벨 · 비대칭 그리드 장치) ── */
