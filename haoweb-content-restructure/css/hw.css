@@ -123,9 +123,10 @@ a.cue:hover::after{color:#fff;transform:translateX(6px)}
 .htrack{display:flex;gap:0;width:max-content}
 .hpanel{width:min(78vw,720px);flex:none;border-left:1px solid var(--line);padding:clamp(40px,7vh,90px) clamp(28px,4vw,64px);min-height:60vh;display:flex;flex-direction:column;justify-content:space-between}
 .hpanel:last-child{border-right:1px solid var(--line)}
-.hpanel .no{align-self:flex-start;font-family:var(--body);font-weight:800;font-size:clamp(4rem,9vw,8.5rem);line-height:.92;letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1.4px var(--dim-2);transition:-webkit-text-stroke-color .45s var(--e-out),color .45s}
+/* 회색 아웃라인 → 호버 시 왼→오로 컬러가 그어지듯 채워짐(잉크 필) */
+.hpanel .no{align-self:flex-start;font-family:var(--body);font-weight:800;font-size:clamp(4rem,9vw,8.5rem);line-height:.92;letter-spacing:-.02em;color:transparent;-webkit-text-fill-color:transparent;-webkit-text-stroke:1.4px var(--dim-2);background:linear-gradient(90deg,var(--red),var(--red)) left center/0% 100% no-repeat;-webkit-background-clip:text;background-clip:text;transition:background-size .6s var(--e-out),-webkit-text-stroke-color .4s ease}
 /* 활성(스크롤로 중앙에 온) 패널의 숫자만 레드 — 모션 따라 이동 */
-.hpanel.is-active .no{-webkit-text-stroke-color:var(--red)}
+.hpanel .no:hover,.hpanel:hover .no{background-size:100% 100%;-webkit-text-stroke-color:var(--red)}
 .hpanel h3{font-family:var(--disp);font-weight:800;font-size:clamp(1.5rem,2.4vw,2.2rem);letter-spacing:-.03em;margin-top:auto}
 .hpanel p{color:var(--dim);font-size:1rem;margin-top:12px;max-width:36ch}
 @media(max-width:820px){
