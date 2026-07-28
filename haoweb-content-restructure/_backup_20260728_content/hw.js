@@ -10,27 +10,8 @@
     mnav.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){mnav.classList.remove("open");mnav.hidden=true;burger.textContent="MENU";burger.setAttribute("aria-expanded","false");});});
   }
 
-  /* 포트폴리오·인터뷰: 실데이터 있을 때만 노출(모션과 무관, 항상 실행) */
-  (function(){
-    var grid=document.getElementById("showcase-grid"), sec=document.getElementById("showcase");
-    if(!grid||!sec) return;
-    function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
-    function load(u){return u?fetch(u).then(function(r){return r.ok?r.json():[];}).catch(function(){return[];}):Promise.resolve([]);}
-    function card(href,t,s){return '<a href="'+esc(href)+'"><b>'+esc(t)+'</b>'+(s?'<span>'+esc(s)+'</span>':'')+'</a>';}
-    Promise.all([load(grid.getAttribute("data-portfolio")),load(grid.getAttribute("data-interview"))]).then(function(r){
-      var pf=Array.isArray(r[0])?r[0]:[], iv=Array.isArray(r[1])?r[1]:[];
-      if(!pf.length&&!iv.length) return; /* 데이터 없음 → 섹션 숨김 유지 */
-      var h="";
-      pf.slice(0,2).forEach(function(p){h+=card(p.url||"portfolio.html",p.title||p.name||"프로젝트",p.summary||p.client||"");});
-      iv.slice(0,2).forEach(function(v){h+=card(v.url||"interview.html",v.company||v.name||"고객 인터뷰",v.summary||v.quote||"");});
-      grid.innerHTML=h; sec.hidden=false; sec.removeAttribute("aria-hidden");
-    });
-  })();
-
   var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  /* CDN(gsap/ScrollTrigger) 로드 실패나 reduced-motion이면 모션 미적용 —
-     콘텐츠는 무JS 기준 CSS로 전부 표시되므로 숨겨지지 않음 */
-  if(reduce||!window.gsap||!window.ScrollTrigger) return;
+  if(reduce||!window.gsap) return;
   document.documentElement.classList.add("anim");
   gsap.registerPlugin(ScrollTrigger);
 
@@ -63,17 +44,13 @@
   mm.add("(min-width:821px)",function(){
     var track=document.getElementById("htrack");
     if(!track) return; /* 서브페이지엔 가로핀 없음 — 가드 */
-    var hpin=track.closest(".hpin");
-    var dist=function(){return Math.max(0, track.scrollWidth - track.parentElement.clientWidth);};
-    if(dist()<=0) return; /* 넘칠 게 없으면 핀 불필요(가로 스크롤도 발생 안 함) */
-    if(hpin) hpin.classList.add("is-pinned"); /* 핀 활성일 때만 overflow 숨김(콘텐츠 갇힘 방지) */
+    var dist=function(){return track.scrollWidth-track.parentElement.clientWidth;};
     var htween=gsap.to(track,{x:function(){return -dist();},ease:"none",
       scrollTrigger:{trigger:".hpin",start:"top top",end:function(){return "+="+dist();},scrub:1,pin:true,invalidateOnRefresh:true,anticipatePin:1}});
     /* 패널 넘버: 가로 스크롤(containerAnimation)에 연동해 등장 */
     gsap.utils.toArray(".hpanel .no").forEach(function(no){
       gsap.from(no,{opacity:0,x:50,ease:"none",scrollTrigger:{trigger:no,containerAnimation:htween,start:"left 88%"}});
     });
-    return function(){ if(hpin) hpin.classList.remove("is-pinned"); }; /* 미디어 이탈 시 정리 */
   });
 
   /* 6 · 문장 단어 순차 밝아짐 */
