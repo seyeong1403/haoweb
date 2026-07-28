@@ -239,6 +239,38 @@ html.anim .stmt__t .w{opacity:.22}
 .psec--light .flow__no{-webkit-text-stroke-color:rgba(20,20,20,.28)}
 .psec--light .idx .t{color:#a9a79e}
 .psec--light .idx a:hover .t{color:var(--light-ink)}
+/* light 변형 — 나머지 컴포넌트도 안전하게(어느 섹션이든 밝게 전환 가능) */
+.psec--light .faq{border-color:rgba(20,20,20,.14)}
+.psec--light .faq details{border-color:rgba(20,20,20,.14)}
+.psec--light .faq summary{color:var(--light-ink)}
+.psec--light .faq .a{color:#57564f}
+.psec--light .steps{border-color:rgba(20,20,20,.14);background:rgba(20,20,20,.14)}
+.psec--light .steps>li{background:var(--light)}
+.psec--light .steps h3{color:var(--light-ink)}
+.psec--light .steps p{color:#57564f}
+.psec--light .dreport{border-color:rgba(20,20,20,.16)}
+.psec--light .dreport__head{background:#e7e5dc;color:#6d6b63}
+.psec--light .drow{border-color:rgba(20,20,20,.14)}
+.psec--light .drow__name b{color:var(--light-ink)}
+.psec--light .drow .fix{color:var(--light-ink)}
+.psec--light .dreport__foot{background:#e7e5dc;color:#6d6b63}
+.psec--light .prose p,.psec--light .prose li{color:#33322e}
+.psec--light .prose h2,.psec--light .prose h3,.psec--light .prose strong{color:var(--light-ink)}
+.psec--light .prose blockquote{color:var(--light-ink)}
+.psec--light .prose a{color:var(--light-ink)}
+.psec--light .rel a{color:var(--light-ink);border-color:rgba(20,20,20,.2)}
+.psec--light .rel a:hover{border-color:var(--red)}
+.psec--light .cat-row a{color:#57564f;border-color:rgba(20,20,20,.2)}
+.psec--light .p-btn--ghost{border-color:rgba(20,20,20,.35);color:var(--light-ink)}
+.psec--light .p-btn--ghost:hover{border-color:var(--light-ink)}
+.psec--light a.cue{color:var(--light-ink);border-color:var(--red)}
+.psec--light a.cue:hover{background:var(--red);color:#fff}
+.psec--light .col-aside .lbl{color:#8f8d84}
+.psec--light .col-aside a{color:#57564f;border-color:rgba(20,20,20,.14)}
+.psec--light .prep{background:#e9e7e0;border-color:rgba(20,20,20,.14)}
+.psec--light .prep h2{color:var(--light-ink)}
+.psec--light .prep p{color:#57564f}
+.psec--light .prep__list li{color:#57564f}
 
 /* 접근성 — 키보드 포커스 가시화(§28) */
 a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:3px;border-radius:2px}
