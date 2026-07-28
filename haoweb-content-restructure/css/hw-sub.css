@@ -1,0 +1,167 @@
+/* ============================================================
+   hw-sub.css · 하오웹 서브페이지 공용 컴포넌트 (2026-07-28)
+   전제: hw.css(토큰·nav·page-hero·psec·flow·deliver·plans2·faq·idx·s-h2 등) 위에 얹힘.
+   목적: 46개 서브페이지를 index/renewal과 같은 디자인 언어로 확장.
+   원칙: 카드 남용/회색 가짜 UI/의미 없는 영문 장식 금지. 선·여백·타이포 중심.
+   ============================================================ */
+
+/* ── 페이지 히어로 보조 ── */
+.page-hero .eyebrow{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:18px}
+.page-hero .lead b{color:#fff;font-weight:700}
+.page-hero--tight{padding-top:130px}
+.page-hero__meta{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:30px;font-size:.92rem;color:var(--dim-2)}
+.page-hero__meta b{color:#fff;font-weight:600}
+
+/* ── 섹션 리드 그리드(제목 좌 / 설명 우) ── */
+.psplit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,5vw,72px);align-items:end}
+.psplit .p-lead{margin-top:0}
+@media(max-width:860px){.psplit{grid-template-columns:1fr;align-items:start;gap:18px}}
+
+/* ── 피처 리스트(편집형 · 카드 아님) : 대상/문제/제공범위 등 ── */
+.feat{list-style:none;border-top:1px solid var(--line);margin-top:46px}
+.feat>li{display:grid;grid-template-columns:150px 1fr;gap:clamp(18px,4vw,52px);padding:clamp(26px,4vh,44px) 0;border-bottom:1px solid var(--line);align-items:start}
+.feat__k{font-family:var(--mono);font-size:12.5px;font-weight:700;letter-spacing:.1em;color:var(--red);text-transform:uppercase;padding-top:6px}
+.feat__b h3{font-family:var(--disp);font-weight:800;font-size:clamp(1.3rem,2.4vw,1.9rem);letter-spacing:-.02em;line-height:1.16}
+.feat__b p{color:var(--dim);margin-top:10px;max-width:64ch;line-height:1.7}
+.feat__b ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:16px}
+.feat__b ul li{font-size:.88rem;color:var(--dim);border:1px solid var(--line);border-radius:100px;padding:6px 14px}
+@media(max-width:720px){.feat>li{grid-template-columns:1fr;gap:10px}}
+
+/* ── 3열 개념 그리드(가벼운 라인 · 업종/서비스 특성용) ── */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+.trio>div{background:var(--ink);padding:clamp(24px,3vw,36px)}
+.trio--off>div{background:#111116}
+.trio .n{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--red);letter-spacing:.08em}
+.trio h3{font-family:var(--disp);font-weight:800;font-size:1.35rem;letter-spacing:-.02em;margin:10px 0 8px}
+.trio p{color:var(--dim);font-size:.95rem;line-height:1.65}
+@media(max-width:860px){.trio{grid-template-columns:1fr}}
+
+/* ── 절차/스텝 인라인(process 요약) ── */
+.steps{counter-reset:s;list-style:none;display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px}
+.steps>li{counter-increment:s;background:var(--ink);display:grid;grid-template-columns:64px 1fr;gap:20px;padding:22px 26px;align-items:baseline}
+.steps>li::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-weight:700;font-size:1.25rem;color:var(--red)}
+.steps h3{font-family:var(--disp);font-weight:800;font-size:1.2rem;letter-spacing:-.02em}
+.steps p{color:var(--dim);font-size:.94rem;margin-top:6px;line-height:1.6}
+
+/* ── 관련 페이지 인라인 링크군 ── */
+.rel{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:16px}
+.rel a{display:inline-flex;align-items:center;gap:8px;font-size:.95rem;color:#fff;border:1px solid var(--line);border-radius:100px;padding:9px 18px;transition:border-color .25s,background .25s}
+.rel a::after{content:"→";color:var(--red);transition:transform .25s var(--e-out)}
+.rel a:hover{border-color:var(--red)}
+.rel a:hover::after{transform:translateX(5px)}
+
+/* ── 준비중(PREP) 상태 — 빈 화면/스켈레톤 금지. 편집형 완성 장면 ── */
+.prep{border:1px solid var(--line);border-radius:6px;background:linear-gradient(180deg,#111116,#0b0b0e);padding:clamp(40px,7vw,88px) clamp(26px,5vw,72px);margin-top:46px;position:relative;overflow:hidden}
+.prep::before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent) -40% 0/38% 100% no-repeat,rgba(232,56,23,.28);animation:gnbSweep 2.4s linear infinite}
+.prep__label{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.16em;color:var(--red);text-transform:uppercase}
+.prep__label::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red)}
+.prep h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.6rem,3.6vw,2.8rem);line-height:1.14;letter-spacing:-.03em;margin-top:20px;max-width:22ch}
+.prep h2 .r{color:var(--red)}
+.prep p{color:var(--dim);font-size:1.05rem;line-height:1.75;max-width:60ch;margin-top:18px}
+.prep__list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;margin-top:30px;max-width:760px}
+.prep__list li{position:relative;padding-left:24px;color:var(--dim);line-height:1.55}
+.prep__list li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1.5px;background:var(--red)}
+.prep .p-actions{margin-top:34px}
+@media(prefers-reduced-motion:reduce){.prep::before{animation:none}}
+@media(max-width:640px){.prep__list{grid-template-columns:1fr}}
+
+/* ── 준비중(index 절제형 · 한 장면) ── */
+.prep-min{display:flex;flex-direction:column;align-items:flex-start;gap:18px;margin-top:36px;padding:clamp(30px,5vw,56px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.prep-min .prep__label{font-size:11.5px}
+.prep-min p{color:var(--dim);font-size:1.06rem;max-width:52ch;line-height:1.7}
+
+/* ── 정보 정의 리스트(회사/운영 안내) ── */
+.deflist{border-top:1px solid var(--line);margin-top:40px}
+.deflist>div{display:grid;grid-template-columns:220px 1fr;gap:clamp(16px,3vw,44px);padding:22px 0;border-bottom:1px solid var(--line)}
+.deflist dt{font-family:var(--disp);font-weight:800;font-size:1.05rem;letter-spacing:-.01em}
+.deflist dd{color:var(--dim);line-height:1.7}
+.deflist dd.pending{color:var(--dim-2)}
+.deflist dd.pending::before{content:"준비중 · ";color:var(--red);font-weight:700}
+@media(max-width:720px){.deflist>div{grid-template-columns:1fr;gap:6px}}
+
+/* ── 칼럼 프로즈(읽기 편한 본문) ── */
+.prose{max-width:72ch;margin-top:8px}
+.prose>*+*{margin-top:22px}
+.prose p{color:#d9d8d2;font-size:1.075rem;line-height:1.9}
+.prose h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:-.02em;line-height:1.2;margin-top:52px}
+.prose h3{font-family:var(--disp);font-weight:800;font-size:1.25rem;letter-spacing:-.01em;margin-top:36px}
+.prose ul,.prose ol{padding-left:2px;list-style:none;display:grid;gap:12px}
+.prose li{position:relative;padding-left:26px;color:#d9d8d2;line-height:1.8}
+.prose ul li::before{content:"";position:absolute;left:0;top:14px;width:11px;height:1.5px;background:var(--red)}
+.prose ol{counter-reset:pl}
+.prose ol li{counter-increment:pl}
+.prose ol li::before{content:counter(pl);position:absolute;left:0;top:0;font-family:var(--mono);font-weight:700;color:var(--red)}
+.prose blockquote{border-left:2px solid var(--red);padding:6px 0 6px 24px;color:#fff;font-family:var(--disp);font-weight:700;font-size:1.25rem;line-height:1.5;letter-spacing:-.01em}
+.prose strong{color:#fff;font-weight:700}
+.prose a{color:#fff;border-bottom:1px solid var(--red)}
+.prose .note{color:var(--dim-2);font-size:.9rem;line-height:1.6}
+
+/* 칼럼 레이아웃(본문 + 우측 관련) */
+.col-wrap{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:clamp(30px,5vw,72px);align-items:start}
+.col-aside{position:sticky;top:100px;display:grid;gap:22px}
+.col-aside .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--dim-2);text-transform:uppercase}
+.col-aside a{display:block;color:var(--dim);border-bottom:1px solid var(--line);padding-bottom:10px;transition:color .2s}
+.col-aside a:hover{color:var(--red)}
+@media(max-width:900px){.col-wrap{grid-template-columns:1fr}.col-aside{position:static}}
+
+/* 칼럼 목록 인덱스(idx 재사용 + 카테고리 태그) */
+.cat-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.cat-row a{font-size:.85rem;color:var(--dim);border:1px solid var(--line);border-radius:100px;padding:7px 15px;transition:.2s}
+.cat-row a:hover,.cat-row a[aria-current]{color:#fff;border-color:var(--red)}
+
+/* ── 폼(전환 페이지) ── */
+.formx{margin-top:44px;max-width:720px}
+.formx .field{margin-bottom:22px}
+.formx label{display:block;font-size:.92rem;font-weight:600;color:#fff;margin-bottom:9px}
+.formx label .req{color:var(--red);margin-left:3px}
+.formx input,.formx select,.formx textarea{width:100%;background:#111116;border:1px solid var(--line);border-radius:8px;color:#fff;font-family:inherit;font-size:1rem;padding:14px 16px;transition:border-color .2s}
+.formx input:focus,.formx select:focus,.formx textarea:focus{outline:none;border-color:var(--red)}
+.formx textarea{min-height:130px;resize:vertical}
+.formx .row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.formx .radios{display:flex;gap:10px;flex-wrap:wrap}
+.formx .radios label{display:flex;align-items:center;gap:8px;font-weight:500;border:1px solid var(--line);border-radius:100px;padding:10px 18px;cursor:pointer;margin:0}
+.formx .radios input{width:auto}
+.formx .radios input:checked+span{color:var(--red)}
+.formx .consent{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:var(--dim)}
+.formx .consent input{width:auto;margin-top:4px}
+.formx .form-msg{margin-top:8px;padding:16px 18px;border-radius:8px;font-size:.95rem;line-height:1.6}
+.formx .form-msg.is-info{background:#15080b;border:1px solid rgba(232,56,23,.4);color:#ffd3c8}
+.formx .form-msg.is-ok{background:#0c1a10;border:1px solid #1e6b3a;color:#c8ffd8}
+.formx .form-msg.is-error{background:#1a0c0c;border:1px solid #7a2020;color:#ffcccc}
+.formx .form-msg.is-confirm{background:#111116;border:1px solid var(--line)}
+.formx .fc-dl{display:grid;gap:10px;margin-top:12px}
+.formx .fc-dl>div{display:grid;grid-template-columns:130px 1fr;gap:12px}
+.formx .fc-dl dt{color:var(--dim-2);font-size:.86rem}
+.formx .fc-dl dd{color:#fff}
+.formx .fc-title{font-weight:700;color:#fff;margin-bottom:4px}
+.formx .form-note{color:var(--dim-2);font-size:.86rem;margin-top:14px;line-height:1.6}
+@media(max-width:640px){.formx .row2{grid-template-columns:1fr}}
+.form-side{border:1px solid var(--line);border-radius:8px;padding:24px;background:#0f0f13;display:grid;gap:16px;align-content:start}
+.form-side a{display:grid;gap:2px}
+.form-side b{color:#fff}
+.form-side span{color:var(--dim);font-size:.9rem}
+.form-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.9fr);gap:clamp(28px,5vw,60px);align-items:start;margin-top:8px}
+@media(max-width:860px){.form-grid{grid-template-columns:1fr}}
+
+/* ── 풀 푸터(공용) ── */
+.hw-foot{border-top:1px solid var(--line);padding:clamp(56px,8vh,90px) clamp(20px,6vw,64px) 40px;background:var(--ink-2)}
+.hw-foot__grid{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:clamp(24px,3vw,48px);max-width:1280px;margin-inline:auto}
+.hw-foot__brand p{color:var(--dim);font-size:.92rem;line-height:1.7;max-width:34ch;margin-top:14px}
+.hw-foot__brand .foot-contact{margin-top:16px;font-size:.9rem;color:var(--dim);line-height:1.7}
+.hw-foot__brand .foot-contact .pending{color:var(--dim-2)}
+.hw-foot nav{display:grid;gap:11px;align-content:start}
+.hw-foot .ft-title{font-family:var(--disp);font-weight:800;font-size:.98rem;margin-bottom:5px}
+.hw-foot nav a{color:var(--dim);font-size:.9rem;transition:color .2s}
+.hw-foot nav a:hover{color:var(--red)}
+.hw-foot__base{max-width:1280px;margin:clamp(36px,5vh,56px) auto 0;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem;color:var(--dim-2)}
+.hw-foot__base a:hover{color:var(--red)}
+.hw-foot__base .pending{color:var(--dim-2)}
+@media(max-width:900px){.hw-foot__grid{grid-template-columns:1fr 1fr}.hw-foot__brand{grid-column:1/-1}}
+@media(max-width:560px){.hw-foot__grid{grid-template-columns:1fr}}
+
+/* ── 유틸 ── */
+.sec-note{color:var(--dim-2);font-size:.88rem;line-height:1.6;margin-top:18px;max-width:66ch}
+.sec-note a{color:var(--red);font-weight:600}
+.anchor{scroll-margin-top:90px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,56px)}
+@media(max-width:760px){.two-col{grid-template-columns:1fr}}

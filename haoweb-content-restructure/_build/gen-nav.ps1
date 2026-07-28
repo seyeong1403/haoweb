@@ -75,6 +75,30 @@ $mcta = '          <div class="m-cta">' + "`n" +
         '          </div>'
 $mPanel = '<div class="m-panel" id="m-panel">' + "`n" + ($mpLines -join "`n") + "`n" + $mcta + "`n" + '        </div>'
 
+# ---------- full footer (.hw-foot) ----------
+$ft = $nav.footer
+$colHtml = @()
+foreach ($c in $ft.columns) {
+  $links = ''
+  foreach ($l in $c.links) { $links += ('<a href="' + $l.href + '">' + $l.label + '</a>') }
+  $colHtml += ('      <nav aria-label="' + $c.title + '"><p class="ft-title">' + $c.title + '</p>' + $links + '</nav>')
+}
+$footer = '<footer class="hw-foot">' + "`n" +
+  '  <div class="hw-foot__grid">' + "`n" +
+  '    <div class="hw-foot__brand">' + "`n" +
+  '      <a class="nav__l" href="index.html" aria-label="HAOWEB"><img class="foot__logo" src="assets/logo.png" alt="HAOWEB" /></a>' + "`n" +
+  '      <p>' + $ft.tagline + '</p>' + "`n" +
+  '      <p class="foot-contact" data-foot-contact></p>' + "`n" +
+  '    </div>' + "`n" +
+  ($colHtml -join "`n") + "`n" +
+  '  </div>' + "`n" +
+  '  <div class="hw-foot__base">' + "`n" +
+  '    <span>' + $ft.copyright + '</span>' + "`n" +
+  '    <span class="pending" data-cfg="company.bizNo" data-pending="' + $ft.bizPending + '"></span>' + "`n" +
+  '    <a href="' + $ft.privacyHref + '">' + $ft.privacyLabel + '</a>' + "`n" +
+  '  </div>' + "`n" +
+  '</footer>'
+
 # ---------- inject ----------
 function Put([string]$file, [string]$marker, [string]$content, [string]$seed, [string]$seedTail) {
   $path = Join-Path $root $file
@@ -91,11 +115,18 @@ function Put([string]$file, [string]$marker, [string]$content, [string]$seed, [s
   Write-Host "injected: $file [$marker]"
 }
 
-Put 'index.html'          'GNB'    $gnbX   '<nav class="gnb"[\s\S]*?</nav>'   ''
-Put 'index.html'          'MNAV'   $mnavX  '<div class="mnav"[\s\S]*?</div>'  ''
-Put 'renewal.html'        'GNB'    $gnbX   '<nav class="gnb"[\s\S]*?</nav>'   ''
-Put 'renewal.html'        'MNAV'   $mnavX  '<div class="mnav"[\s\S]*?</div>'  ''
-Put '_build/_chrome.html' 'HDNAV'  $hdNav  '<nav class="hd-nav"[\s\S]*?</nav>' ''
-Put '_build/_chrome.html' 'MPANEL' $mPanel '<div class="m-panel" id="m-panel">[\s\S]*?</div>\s*</details>' "`n      </details>"
+Put 'index.html'            'GNB'    $gnbX   '<nav class="gnb"[\s\S]*?</nav>'   ''
+Put 'index.html'            'MNAV'   $mnavX  '<div class="mnav"[\s\S]*?</div>'  ''
+Put 'index.html'            'FOOTER' $footer '<footer class="foot"[\s\S]*?</footer>' ''
+Put 'renewal.html'          'GNB'    $gnbX   '<nav class="gnb"[\s\S]*?</nav>'   ''
+Put 'renewal.html'          'MNAV'   $mnavX  '<div class="mnav"[\s\S]*?</div>'  ''
+Put 'renewal.html'          'FOOTER' $footer '<footer class="foot"[\s\S]*?</footer>' ''
+# 신 디자인 서브 공용 크롬(compose 전환 후 46종 반영)
+Put '_build/_chrome-x.html' 'GNB'    $gnbX   ''  ''
+Put '_build/_chrome-x.html' 'MNAV'   $mnavX  ''  ''
+Put '_build/_chrome-x.html' 'FOOTER' $footer ''  ''
+# 구 크롬(전환 전까지 유지)
+Put '_build/_chrome.html'   'HDNAV'  $hdNav  '<nav class="hd-nav"[\s\S]*?</nav>' ''
+Put '_build/_chrome.html'   'MPANEL' $mPanel '<div class="m-panel" id="m-panel">[\s\S]*?</div>\s*</details>' "`n      </details>"
 
 Write-Host ("done. portfolio={0} interview={1}" -f $has.portfolio, $has.interview)
