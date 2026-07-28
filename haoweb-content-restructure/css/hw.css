@@ -57,12 +57,12 @@ a{color:inherit;text-decoration:none}
 /* ── scene shell ── */
 .scene{position:relative;padding:clamp(96px,16vh,190px) 0}
 .scene .wrap{position:relative}
-.kick{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--red);text-transform:uppercase}
+.kick{font-family:var(--mono);font-size:13.5px;letter-spacing:.16em;color:var(--red);text-transform:uppercase}
 .kick .g{color:var(--dim-2)}
 
 /* ── 1 · HERO (비대칭: 좌측 초대형 타이포 + 우측 라인 모티프) ── */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:110px clamp(20px,6vw,64px) 8vh;overflow:clip}
-.hero__meta{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--dim-2);margin-bottom:26px}
+.hero__meta{font-family:var(--mono);font-size:13px;letter-spacing:.14em;color:var(--dim-2);margin-bottom:26px}
 .hero__meta b{color:var(--red)}
 .hero h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.5rem,8vw,8.4rem);line-height:1.02;letter-spacing:-.05em;max-width:16ch}
 .hero h1 .ln{display:block;overflow:hidden}
@@ -115,11 +115,11 @@ a.cue:hover::after{color:#fff;transform:translateX(6px)}
 .idx{border-top:1px solid var(--line)}
 .idx a{display:grid;grid-template-columns:120px 1fr auto;align-items:center;gap:28px;padding:clamp(24px,4vh,46px) 0;border-bottom:1px solid var(--line);transition:padding-left .5s var(--e-out),color .3s}
 .idx a:hover{padding-left:24px}
-.idx .n{font-family:var(--mono);font-size:13px;color:var(--dim-2)}
+.idx .n{font-family:var(--mono);font-size:15px;font-weight:600;color:var(--dim-2)}
 .idx a:hover .n{color:var(--red)}
 .idx .t{font-family:var(--disp);font-weight:800;font-size:clamp(1.6rem,3.6vw,3rem);letter-spacing:-.03em;color:var(--dim-2);transition:color .3s}
 .idx a:hover .t{color:#fff}
-.idx .go{font-family:var(--mono);font-size:12px;color:var(--dim-2)}
+.idx .go{font-family:var(--mono);font-size:17px;color:var(--dim-2)}
 .idx a:hover .go{color:var(--red)}
 @media(max-width:640px){.idx a{grid-template-columns:64px 1fr auto;gap:14px}}
 
@@ -163,7 +163,7 @@ html.anim .stmt__t .w{opacity:.22}
    서브페이지 컴포넌트 (2026-07-28) · 새 다크 디자인 언어
    ============================================================ */
 .page-hero{padding:150px clamp(20px,6vw,64px) clamp(60px,9vh,110px);border-bottom:1px solid var(--line)}
-.crumbs{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--dim-2);margin-bottom:26px}
+.crumbs{font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--dim-2);margin-bottom:26px}
 .crumbs a:hover{color:var(--red)}
 .page-hero h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,5.6vw,4.8rem);line-height:1.04;letter-spacing:-.05em;max-width:18ch}
 .page-hero h1 .r{color:var(--red)}
@@ -175,7 +175,7 @@ html.anim .stmt__t .w{opacity:.22}
 .p-btn--ghost:hover{background:transparent;border-color:#fff}
 .psec{padding:clamp(70px,11vh,140px) 0}
 .psec--off{background:#111116}
-.p-eye{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.p-eye{font-family:var(--mono);font-size:13.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
 .p-h2{font-family:var(--disp);font-weight:800;font-size:clamp(1.7rem,3.8vw,3rem);line-height:1.12;letter-spacing:-.04em;margin-top:16px}
 .p-h2 .r{color:var(--red)}
 .p-lead{max-width:60ch;font-size:1.06rem;line-height:1.75;color:var(--dim);margin-top:22px}
