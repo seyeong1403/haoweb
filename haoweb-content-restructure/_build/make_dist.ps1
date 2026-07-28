@@ -21,7 +21,8 @@ $assets = @('css','js','assets','src')
 # ---------- review/ : 전체 ----------
 if (Test-Path $review) { Remove-Item $review -Recurse -Force }
 New-Item -ItemType Directory -Force $review | Out-Null
-Get-ChildItem $src -File -Filter *.html | Copy-Item -Destination $review
+$internal = @('_diag.html','haoweb-concept.html')   # 내부 전용: review·dist 모두 제외(소스는 유지)
+Get-ChildItem $src -File -Filter *.html | Where-Object { $internal -notcontains $_.Name } | Copy-Item -Destination $review
 foreach ($d in $assets) { if (Test-Path (Join-Path $src $d)) { Copy-Item (Join-Path $src $d) (Join-Path $review $d) -Recurse } }
 # review 전체 noindex 표식
 "User-agent: *`nDisallow: /" | Out-File (Join-Path $review 'robots.txt') -Encoding utf8

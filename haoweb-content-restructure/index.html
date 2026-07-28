@@ -138,7 +138,7 @@
       <a href="hospital.html"><span class="n">병원</span><span class="t">진료과목·의료진·예약 동선</span><span class="go">→</span></a>
       <a href="franchise.html"><span class="n">프랜차이즈</span><span class="t">브랜드·매장·가맹 문의</span><span class="go">→</span></a>
       <a href="shop.html"><span class="n">쇼핑몰</span><span class="t">탐색·상세·구매 흐름</span><span class="go">→</span></a>
-      <a href="government.html"><span class="n">공공기관</span><span class="t">정보 접근성과 신뢰</span><span class="go">→</span></a>
+      <a href="website.html#public-sector"><span class="n">공공기관·협회</span><span class="t">정보 접근성과 신뢰</span><span class="go">→</span></a>
       <a href="lawyer.html"><span class="n">전문·법률</span><span class="t">업무 분야·절차·상담</span><span class="go">→</span></a>
     </nav>
     <div class="caps-line" data-rv>
@@ -165,12 +165,22 @@
   </div>
 </section>
 
-<!-- 8 · 포트폴리오·인터뷰 (실데이터 있을 때만 JS가 노출) -->
+<!-- 8 · 사례 (실데이터 있으면 JS가 그리드 노출 / 없으면 아래 절제된 준비중 한 장면) -->
 <section class="scene showcase" id="showcase" hidden aria-hidden="true">
   <div class="wrap">
     <p class="kick">WORK <span class="g">— 포트폴리오 · 고객 인터뷰</span></p>
     <h2 class="s-h2">프로젝트와 <span class="r">고객의 이야기.</span></h2>
     <div class="showcase__grid" id="showcase-grid" data-portfolio="src/data/portfolio.json" data-interview="src/data/interview.json"></div>
+  </div>
+</section>
+<section class="scene" data-hide-when-data>
+  <div class="wrap">
+    <p class="kick" data-rv>WORK <span class="g">— 사례</span></p>
+    <div class="prep-min" data-rv>
+      <span class="prep__label">In preparation · 사례 준비중</span>
+      <p>실제 프로젝트와 고객 인터뷰를 정리하고 있습니다. 공개 동의가 완료된 사례부터 순차적으로 공개합니다.</p>
+      <div class="p-actions"><a class="cue" href="portfolio.html">포트폴리오</a><a class="cue" href="interview.html">고객 인터뷰</a></div>
+    </div>
   </div>
 </section>
 

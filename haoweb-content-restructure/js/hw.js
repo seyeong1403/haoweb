@@ -37,6 +37,7 @@
       pf.slice(0,2).forEach(function(p){h+=card(p.url||"portfolio.html",p.title||p.name||"프로젝트",p.summary||p.client||"");});
       iv.slice(0,2).forEach(function(v){h+=card(v.url||"interview.html",v.company||v.name||"고객 인터뷰",v.summary||v.quote||"");});
       grid.innerHTML=h; sec.hidden=false; sec.removeAttribute("aria-hidden");
+      document.querySelectorAll("[data-hide-when-data]").forEach(function(el){el.hidden=true;}); /* 실데이터 들어오면 준비중 블록 자동 숨김 */
     });
   })();
 

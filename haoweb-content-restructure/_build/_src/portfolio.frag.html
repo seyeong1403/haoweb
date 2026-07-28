@@ -1,52 +1,61 @@
-포트폴리오 — 하오웹
-하오웹의 제작 분야와 프로젝트 기록 방식을 안내합니다.
+포트폴리오 | 프로젝트 사례 — 하오웹
+하오웹이 제작·리뉴얼한 프로젝트 사례를 준비하고 있습니다. 공개 동의가 완료된 프로젝트부터 제작 배경·과제·화면·범위와 함께 순차적으로 공개합니다.
 
-    <section class="page-hero">
+    <section class="page-hero page-hero--tight">
       <div class="wrap">
-        <p class="crumbs"><a href="index.html">홈</a> › <b>포트폴리오</b></p>
-        <h1 class="mask-rv">포트폴리오</h1>
-        <p class="lead">프로젝트는 목표와 판단 과정, 제작 범위(콘텐츠 기획·촬영·디자인·홈페이지 구축)와 함께 기록합니다.</p>
+        <p class="crumbs"><a href="index.html">홈</a> · <a href="portfolio.html">사례·인사이트</a> · <b>포트폴리오</b></p>
+        <p class="eyebrow">Portfolio</p>
+        <h1>프로젝트는 결과가 아니라,<br /><span class="r">과정과 함께</span> 기록합니다.</h1>
+        <p class="lead">하오웹은 완성된 화면만이 아니라, 어떤 문제에서 출발해 어떤 판단으로 구조와 콘텐츠를 설계했는지를 프로젝트마다 함께 정리합니다. 공개 동의가 완료된 사례부터 순차적으로 게재합니다.</p>
       </div>
     </section>
 
-    <!-- TODO: 실제 프로젝트(프로젝트명·구축 화면·범위·목표·고객 동의) 확보 시 이 자리에 프로젝트 목록 게재.
-         확보 전에는 제작 유형을 프로젝트처럼 나열하지 않는다(가상 실적 오해 방지). portfolio-detail.html은 템플릿으로만 보존 -->
-    <section class="sec">
+    <!-- 실데이터가 있으면 hw.js가 이 그리드를 채우고 준비중 블록을 숨긴다. 없으면 준비중 블록만 노출(가짜 카드 금지). -->
+    <section class="psec anchor" id="showcase" hidden aria-hidden="true">
       <div class="wrap">
-        <div class="sec-head">
-          <p class="eyebrow">제작 분야 안내</p>
-          <h2 class="mask-rv">하오웹이 만드는<br />홈페이지의 분야입니다.</h2>
-          <p class="sub">각 분야에서 어떤 구조와 콘텐츠를 설계하는지는 분야별 페이지에서 확인할 수 있습니다.</p>
+        <p class="p-eye">Projects</p>
+        <h2 class="p-h2">공개된 <span class="r">프로젝트</span></h2>
+        <div class="showcase__grid" id="showcase-grid" data-portfolio="src/data/portfolio.json"></div>
+      </div>
+    </section>
+
+    <section class="psec" data-hide-when-data>
+      <div class="wrap">
+        <div class="prep">
+          <span class="prep__label">Projects in preparation · 사례 준비중</span>
+          <h2>실제 프로젝트 사례를<br /><span class="r">정리하고 있습니다.</span></h2>
+          <p>프로젝트 공개 동의와 실제 화면, 제작 범위, 진행 과정이 정리되는 대로 순차적으로 공개합니다. 실적 수를 부풀리거나 가상의 프로젝트를 만들지 않습니다.</p>
+          <div class="p-actions">
+            <a class="p-btn" href="free-proposal.html">무료 시안·제안받기</a>
+            <a class="cue" href="website.html">신규 제작</a>
+            <a class="cue" href="renewal.html">리뉴얼</a>
+          </div>
         </div>
-        <div class="svc-index">
-          <a href="company.html"><em>01</em><b>기업 홈페이지</b><span>사업 분야·기술과 제품·설비와 인증을 거래처 기준으로</span><i>→</i></a>
-          <a href="hospital.html"><em>02</em><b>병원 홈페이지</b><span>진료과목·의료진·예약을 환자 기준으로</span><i>→</i></a>
-          <a href="franchise.html"><em>03</em><b>프랜차이즈 홈페이지</b><span>브랜드·매장·창업 안내에서 가맹 문의까지</span><i>→</i></a>
-          <a href="shop.html"><em>04</em><b>쇼핑몰</b><span>상품 탐색·상세·구매 흐름</span><i>→</i></a>
-          <a href="website.html"><em>05</em><b>그 외 유형</b><span>변호사·랜딩페이지·앱 — 제작센터에서 전체 확인</span><i>→</i></a>
-        </div>
       </div>
     </section>
 
-    <section class="sec off">
+    <section class="psec psec--off">
       <div class="wrap">
-        <div class="sec-head"><p class="eyebrow">기록 방식</p><h2 class="mask-rv">프로젝트마다 함께 기록하는 것</h2></div>
-        <dl class="dl">
-          <div><dt>프로젝트 목표</dt><dd>어떤 문제를 해결하려 했는지</dd></div>
-          <div><dt>판단 과정</dt><dd>구조와 콘텐츠를 어떻게 정했는지</dd></div>
-          <div><dt>제작 범위</dt><dd>콘텐츠 기획 · 촬영 · 디자인 · 홈페이지 구축</dd></div>
-          <div><dt>관련 서비스</dt><dd>검색·AI 대응, 콘텐츠 운영 등 함께 진행한 범위</dd></div>
-        </dl>
+        <p class="p-eye">What we record</p>
+        <h2 class="p-h2">각 프로젝트에서<br /><span class="r">함께 공개할 정보.</span></h2>
+        <p class="p-lead">사례가 공개될 때 아래 항목을 프로젝트별로 함께 정리해, 결과 화면만이 아니라 판단의 근거까지 확인할 수 있게 합니다.</p>
+        <ul class="feat">
+          <li><span class="feat__k">Context</span><div class="feat__b"><h3>제작 배경과 고객의 과제</h3><p>어떤 상황과 목표에서 프로젝트가 시작되었는지, 고객이 풀어야 했던 핵심 과제는 무엇이었는지 정리합니다.</p></div></li>
+          <li><span class="feat__k">Structure</span><div class="feat__b"><h3>사이트맵과 콘텐츠 방향</h3><p>방문자의 판단 순서로 어떤 페이지와 메시지를 설계했는지, 정보구조를 어떻게 잡았는지 보여줍니다.</p></div></li>
+          <li><span class="feat__k">Screens</span><div class="feat__b"><h3>Desktop · Mobile 실제 화면</h3><p>실제 구축된 PC·모바일 화면을 함께 게재합니다. 목업이 아닌 실제 결과물만 사용합니다.</p></div></li>
+          <li><span class="feat__k">Scope</span><div class="feat__b"><h3>제작 범위와 관련 인터뷰</h3><p>콘텐츠·촬영·디자인·개발 등 실제 제작 범위와, 공개 동의가 된 경우 고객 인터뷰를 연결합니다.</p></div></li>
+        </ul>
+        <div class="rel"><a href="interview.html">고객 인터뷰</a><a href="website.html">제작 분야 보기</a><a href="columns.html">칼럼</a></div>
       </div>
     </section>
 
-    <section class="cta-band">
-      <div class="wrap">
-        <h2>비슷한 홈페이지를 계획 중이신가요?</h2>
-        <div class="cta-grid" style="grid-template-columns:repeat(3,1fr)">
-          <a href="website.html"><b>홈페이지 제작</b><span>유형 선택</span></a>
-          <a href="renewal.html"><b>홈페이지 리뉴얼</b><span>기존 사이트 개편</span></a>
-          <a href="inquiry.html"><b>제작 문의</b><span>바로 상담</span></a>
+    <section class="cta anchor" id="cta">
+      <div>
+        <p class="kick" style="display:block;margin-bottom:22px">Start</p>
+        <h2>사례로 보여드리기 전에,<br /><span class="r">제안서로 먼저.</span></h2>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:44px">
+          <a class="cta__btn" href="free-proposal.html" style="background:var(--red);border-color:var(--red);color:#fff">무료 시안·제안받기 →</a>
+          <a class="cta__btn" href="inquiry.html">제작 문의</a>
         </div>
       </div>
     </section>
