@@ -69,10 +69,13 @@
     if(hpin) hpin.classList.add("is-pinned"); /* 핀 활성일 때만 overflow 숨김(콘텐츠 갇힘 방지) */
     var htween=gsap.to(track,{x:function(){return -dist();},ease:"none",
       scrollTrigger:{trigger:".hpin",start:"top top",end:function(){return "+="+dist();},scrub:1,pin:true,invalidateOnRefresh:true,anticipatePin:1}});
-    /* 패널 넘버: 가로 스크롤(containerAnimation)에 연동해 등장 */
-    gsap.utils.toArray(".hpanel .no").forEach(function(no){
-      gsap.from(no,{opacity:0,x:50,ease:"none",scrollTrigger:{trigger:no,containerAnimation:htween,start:"left 88%"}});
+    /* 활성 패널 토글 — 가로 스크롤로 뷰포트 중앙에 온 패널의 숫자만 레드(모션 따라 이동) */
+    var panels=gsap.utils.toArray(".hpanel");
+    panels.forEach(function(panel){
+      ScrollTrigger.create({trigger:panel,containerAnimation:htween,start:"left center",end:"right center",
+        onToggle:function(self){panel.classList.toggle("is-active",self.isActive);}});
     });
+    if(panels[0]) panels[0].classList.add("is-active"); /* 초기 활성 */
     return function(){ if(hpin) hpin.classList.remove("is-pinned"); }; /* 미디어 이탈 시 정리 */
   });
 
