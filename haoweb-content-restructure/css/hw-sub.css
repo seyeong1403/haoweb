@@ -183,6 +183,29 @@
 .airel__lens p{color:var(--dim);font-size:.95rem;margin-top:6px;line-height:1.6;max-width:56ch}
 @media(max-width:600px){.airel__lens{grid-template-columns:1fr;gap:6px}.airel__lens::before{display:none}}
 
+/* ── 글로벌 좌표형 관계 그래픽(지도·국기 없이 · KR 국내팀 ↔ 국가) ── */
+.geomap{margin-top:40px;border-top:1px solid var(--line)}
+.geomap__base{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;padding:18px 2px 20px;border-bottom:1px solid var(--line)}
+.geomap__base .k{font-family:var(--mono);font-weight:800;font-size:.95rem;letter-spacing:.14em;color:var(--red)}
+.geomap__base b{font-family:var(--disp);font-weight:800;font-size:1.1rem}
+.geomap__base span{color:var(--dim);font-size:.92rem}
+.geomap__row{position:relative;display:grid;grid-template-columns:64px 1fr auto auto;align-items:center;gap:18px;padding:20px 2px 20px 22px;border-bottom:1px solid var(--line);transition:padding-left .35s var(--e-out)}
+.geomap__row::before{content:"";position:absolute;left:4px;top:50%;width:9px;height:1px;background:var(--dim-2)}
+.geomap__row--office::before{background:var(--red);box-shadow:0 0 8px var(--red)}
+.geomap__row:hover{padding-left:32px}
+.geomap__code{font-family:var(--mono);font-weight:800;font-size:1.5rem;letter-spacing:.04em;color:var(--dim-2)}
+.geomap__row--office .geomap__code{color:var(--red)}
+.geomap__name{font-family:var(--disp);font-weight:800;font-size:clamp(1.1rem,2.2vw,1.5rem);letter-spacing:-.02em;color:var(--dim-2);transition:color .25s}
+.geomap__row:hover .geomap__name{color:#fff}
+.geomap__role{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--dim-2);white-space:nowrap}
+.geomap__row--office .geomap__role{color:var(--red)}
+.geomap__row .go{font-family:var(--mono);color:var(--dim-2)}
+.geomap__row:hover .go{color:var(--red)}
+.psec--light .geomap,.psec--light .geomap__base,.psec--light .geomap__row{border-color:rgba(20,20,20,.14)}
+.psec--light .geomap__name{color:#a9a79e}
+.psec--light .geomap__row:hover .geomap__name{color:var(--light-ink)}
+@media(max-width:560px){.geomap__row{grid-template-columns:52px 1fr;gap:6px 14px}.geomap__row .geomap__role{grid-column:2}.geomap__row .go{display:none}}
+
 /* ── 유틸 ── */
 .sec-note{color:var(--dim-2);font-size:.88rem;line-height:1.6;margin-top:18px;max-width:66ch}
 .sec-note a{color:var(--red);font-weight:600}
