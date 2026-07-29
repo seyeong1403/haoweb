@@ -62,6 +62,11 @@
 .prep__list li{position:relative;padding-left:24px;color:var(--dim);line-height:1.55}
 .prep__list li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:1.5px;background:var(--red)}
 .prep .p-actions{margin-top:34px}
+/* 준비중 3종 시각 차별화(절제된 모티프 · 가짜 콘텐츠 없음) */
+.prep--projects::after{content:"";position:absolute;right:-46px;top:34px;width:190px;height:126px;border:1px solid rgba(255,255,255,.08);border-radius:6px;box-shadow:-26px 30px 0 -1px rgba(255,255,255,.05);transform:rotate(9deg);pointer-events:none}
+.prep--interview::after{content:"\201C";position:absolute;right:26px;bottom:-46px;font-family:var(--disp);font-weight:800;font-size:13rem;line-height:1;color:rgba(232,56,23,.12);pointer-events:none}
+.prep--notice::after{content:"";position:absolute;right:34px;top:40px;width:128px;height:2px;background:rgba(255,255,255,.10);box-shadow:0 16px 0 rgba(255,255,255,.07),0 32px 0 rgba(255,255,255,.05),0 48px 0 rgba(255,255,255,.035);pointer-events:none}
+@media(max-width:640px){.prep--projects::after,.prep--interview::after,.prep--notice::after{display:none}}
 @media(prefers-reduced-motion:reduce){.prep::before{animation:none}}
 @media(max-width:640px){.prep__list{grid-template-columns:1fr}}
 
